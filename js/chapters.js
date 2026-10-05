@@ -442,4 +442,82 @@ const ALL_CHAPTERS = {
       { type: "normal", scene: "Gin Son Nefesini Veriyor — Yuki Onu Kucaklıyor — Gözyaşları", dialogue: [{ type: "say", speaker: "Yuki", text: "GIN! GIN, KALK!" }, { type: "say", speaker: "Ren", text: "Yuki... o gitti." }, { type: "say", speaker: "Yuki", text: "Hayır... hayır o gidemez. O... o benim ailemdi." }] },
       { type: "closeup", scene: "Gin'in Elinde Bir Anahtar — Yuki'ye Uzatıyor — Son Hareket", dialogue: [{ type: "say", speaker: "Gin (son söz)", text: "Bu... bu anahtar. Altın Çiçeğin bulunduğu mağaranın anahtarı. Fuji Dağı'nın altında." }, { type: "say", speaker: "Yuki", text: "Gin..." }, { type: "say", speaker: "Gin (son söz)", text: "Yuriko... kızına iyi bak." }] },
       { type: "splash", scene: "Gin Ölüyor — Yuki Anahtarı Tutuyor — Gözyaşları — Ama Kararlılık", dialogue: [{ type: "say", speaker: "Yuki", text: "Gin... söz veriyorum. Bu savaşı kazanacağım." }, { type: "say", speaker: "Ren", text: "Yuki... gel. Buradan gitmeliyiz." }] },
-      { type: "normal", scene: "Yuki ve Ren K
+      { type: "normal", scene: "Yuki ve Ren Karanlık Pazar'dan Ayrılıyor — Gin'in Bedeni Arkada", dialogue: [{ type: "say", speaker: "Yuki", text: "Ren... Gin... o benim ailemdi. Tıpkı senin gibi. Tıpkı annem gibi." }, { type: "say", speaker: "Ren", text: "Biliyorum. Ve... onun için savaşacağız." }] },
+      { type: "splash", scene: "Yuki ve Ren — Şafak — Tokyo — Yeni Bir Yol — Fuji Dağı Uzakta", dialogue: [{ type: "inner", text: '"Gin... son sözünü unutmayacağım. Ve... Altın Çiçeği bulacağım. Senin için."' }] }
+    ]
+  },
+
+  26: {
+    jp: "第26話", title: "Babanın Kalbi",
+    pages: [
+      { type: "splash", scene: "Yuki ve Ren — Yolculuk — Fuji Dağı'na Doğru — Tren İçi", dialogue: [{ type: "inner", text: '"Fuji Dağı\'na gidiyoruz. Altın Çiçeği bulacağız. Ama önce... babamın geçmişini anlamam lazım."' }] },
+      { type: "normal", scene: "Yuki Bir Hayalet Çiçek Çıkarıyor — Bahçıvan'ın Anısı — Onu Okumaya Karar Veriyor", dialogue: [{ type: "say", speaker: "Yuki", text: "Bu... babamın anısı. Ölümünden önce... ona dokunduğumda... bu çiçek oluştu." }, { type: "say", speaker: "Ren", text: "Onu okumak... tehlikeli olabilir." }, { type: "say", speaker: "Yuki", text: "Biliyorum. Ama... babamı anlamam lazım." }] },
+      { type: "closeup", scene: "Yuki Çiçeğe Dokunuyor — Anı Patlıyor — Genç Sōren — Yuriko'nun Mezarında", dialogue: [{ type: "say", speaker: "Genç Sōren", text: "Seni geri getireceğim. Ne olursa olsun. Bu dünyayı yakacağım... ama seni geri getireceğim." }] },
+      { type: "splash", scene: "Genç Sōren Laboratuvarda — Yasak Deneyler — Çiçekler — Kan — Delilik", dialogue: [{ type: "say", speaker: "Genç Sōren", text: "Yuriko... seni bulacağım. Altın Çiçek... seni bana getirecek." }, { type: "say", speaker: "Genç Sōren (ses)", text: "Ve o gün... Yuki'yi de kurtaracağım." }] },
+      { type: "normal", scene: "Geriye Dönüş — Sōren ve Küçük Yuki — Bahçede — Çiçekler", dialogue: [{ type: "say", speaker: "Küçük Yuki", text: "Baba... bu çiçek ne?" }, { type: "say", speaker: "Sōren", text: "Bu... bir anı çiçeği. Ama... sen onu görmemelisin." }, { type: "say", speaker: "Küçük Yuki", text: "Neden?" }, { type: "say", speaker: "Sōren", text: "Çünkü... bazı anılar... çok acıtır." }] },
+      { type: "closeup", scene: "Şimdiki Zaman — Yuki Gözlerini Açıyor — Gözyaşları", dialogue: [{ type: "say", speaker: "Yuki", text: "Babam... o... o beni korumaya çalışıyordu. Ama... yöntemi yanlıştı." }, { type: "say", speaker: "Ren", text: "Yuki..." }, { type: "say", speaker: "Yuki", text: "Ama... onu affediyorum. Çünkü... o da bir kurban." }] },
+      { type: "splash", scene: "Yuki Ayağa Kalkıyor — Kararlılık — Fuji Dağı Yaklaşıyor", dialogue: [{ type: "say", speaker: "Yuki", text: "Artık... babamın intikamını almayacağım. Onun yerine... onun adına savaşacağım." }, { type: "say", speaker: "Ren", text: "Ne için?" }, { type: "say", speaker: "Yuki", text: "Barış için. Ve... ailem için." }] },
+      { type: "normal", scene: "Tren Duruyor — Fuji İstasyonu — Yuki ve Ren İniyor", dialogue: [{ type: "say", speaker: "Yuki", text: "Fuji Dağı. Altın Çiçek... burada." }, { type: "say", speaker: "Ren", text: "Ve... Toplayıcılar da burada." }, { type: "say", speaker: "Yuki", text: "Biliyorum. Ama... hazırım." }] },
+      { type: "splash", scene: "Fuji Dağı — Sis — Mağara Girişi — Yuki ve Ren — Kararlılık", dialogue: [{ type: "inner", text: '"Bu... son savaş. Ve ben... kazanacağım."' }] }
+    ]
+  },
+
+  27: {
+    jp: "第27話", title: "Altın Çiçeğin Peşinde I",
+    pages: [
+      { type: "splash", scene: "Fuji Dağı — Mağara Girişi — Karanlık — Yuki ve Ren — Fenerler", dialogue: [{ type: "inner", text: '"Mağara... çok karanlık. Ve... çok soğuk. Ama... burada bir şey var. Bir şey... beni çağırıyor."' }] },
+      { type: "normal", scene: "Mağara İçi — Duvarlarda Eski Çizimler — Altın Çiçek Sembolleri", dialogue: [{ type: "say", speaker: "Yuki", text: "Bu çizimler... çok eski. Belki... yüzyıllar önce." }, { type: "say", speaker: "Ren", text: "Bunlar... Altın Çiçeği anlatıyor." }, { type: "say", speaker: "Yuki", text: "Evet. Ve... bir uyarı." }] },
+      { type: "closeup", scene: "Duvardaki Yazı — Eski Japonca — Yuki Okuyor", dialogue: [{ type: "say", speaker: "Yuki", text: "'Altın Çiçek... sadece bir kez açar. Ve onu kullanan... asla geri dönemez.'" }, { type: "say", speaker: "Ren", text: "Yani... onu kullanmak... seni öldürür." }, { type: "say", speaker: "Yuki", text: "Evet. Ama... belki başka bir yol vardır." }] },
+      { type: "splash", scene: "Mağara Derinleşiyor — Büyük Bir Oda — Ortada Altın Çiçek — Işık Saçıyor", dialogue: [{ type: "say", speaker: "Yuki", text: "Bu... bu o. Altın Çiçek." }, { type: "say", speaker: "Ren", text: "Çok güzel... ama... çok tehlikeli." }] },
+      { type: "normal", scene: "Yuki Altın Çiçeğe Yaklaşıyor — Ama Bir Ses Onu Durduruyor", dialogue: [{ type: "say", speaker: "Gizli Ses", text: "Hoş geldin, Yuki Ayanokōji. Sonunda... buluştuk." }, { type: "say", speaker: "Yuki", text: "Sen... kimsin?" }, { type: "say", speaker: "Gizli Ses", text: "Ben... Toplayıcıların lideriyim. Ve... senin kaderin." }] },
+      { type: "closeup", scene: "Gölgelerden Bir Figür Çıkıyor — Yüzü Görünmüyor — Ama Sesi Tanıdık", dialogue: [{ type: "say", speaker: "Gizli Ses", text: "Ben... Ne'nin kardeşiyim. Ve... senin annenin ölümünden sorumlu olan kişi." }, { type: "say", speaker: "Yuki", text: "Ne?!" }, { type: "say", speaker: "Gizli Ses", text: "Evet. Ben... Yuriko'yu öldürdüm. Ve şimdi... seni de öldüreceğim." }] },
+      { type: "splash", scene: "Gizli Figür Saldırıyor — Yuki Karşılık Veriyor — Mağara Sallanıyor", dialogue: [{ type: "say", speaker: "Yuki", text: "SEN... SEN ANNEMİ ÖLDÜRDÜN!" }, { type: "say", speaker: "Gizli Figür", text: "Evet. Ve... şimdi seni de öldüreceğim." }] },
+      { type: "normal", scene: "Yuki ve Gizli Figür Çarpışıyor — Yuki Güçlü — Ama Figür Daha Güçlü", dialogue: [{ type: "say", speaker: "Yuki", text: "Sen... sen kimsin?!" }, { type: "say", speaker: "Gizli Figür", text: "Ben... Ayanokōji Sōren'in kardeşiyim. Senin... amcan." }, { type: "say", speaker: "Yuki", text: "Ne?!" }] },
+      { type: "splash", scene: "Amca Yüzünü Gösteriyor — Bahçıvan'a Benziyor — Ama Daha Karanlık — Yuki Şok", dialogue: [{ type: "say", speaker: "Amca", text: "Evet. Ben... Sōren'in kardeşiyim. Ve... ben de Altın Çiçeği istiyorum. Ama... farklı bir amaçla." }, { type: "say", speaker: "Yuki", text: "Ne... ne istiyorsun?" }, { type: "say", speaker: "Amca", text: "Dünyayı... ölülerden temizlemek. Tüm Hayalet Çiçekleri yok etmek. Ve... senin gibi Kan'nōsha'ları da." }] }
+    ]
+  },
+
+  28: {
+    jp: "第28話", title: "Altın Çiçeğin Peşinde II",
+    pages: [
+      { type: "splash", scene: "Mağara — Yuki ve Amca — Karşı Karşıya — Ren Arada", dialogue: [{ type: "say", speaker: "Amca", text: "Sen... sen annen gibi zayıfsın. O da beni durdurmaya çalıştı. Ama başaramadı." }, { type: "say", speaker: "Yuki", text: "Ben... ben annem değilim. Ben... daha güçlüyüm." }, { type: "say", speaker: "Amca", text: "O zaman... kanıtla." }] },
+      { type: "normal", scene: "Büyük Dövüş — Yuki vs Amca — Çiçek Kılıç vs Karanlık Güç", dialogue: [{ type: "say", speaker: "Yuki", text: "SANA... DOKUNMA DEDİM!" }, { type: "say", speaker: "Amca", text: "Bu... çok zayıf." }] },
+      { type: "closeup", scene: "Amca Yuki'yi Yere Seriyor — Yuki Nefes Nefese — Ama Ayağa Kalkıyor", dialogue: [{ type: "say", speaker: "Amca", text: "Gördün mü? Zayıfsın." }, { type: "say", speaker: "Yuki", text: "Hayır. Ben... daha yeni başlıyorum." }] },
+      { type: "splash", scene: "Yuki Beyaz Çiçeği Kullanıyor — Tüm Anıları Okuyor — Güç Patlaması", dialogue: [{ type: "inner", text: '"Anne... baba... Hana... Gin... Ne... Hepiniz... benimle."' }] },
+      { type: "normal", scene: "Yuki Amca'yı Yere Seriyor — Amca Şok — Yuki Kılıcını İndiriyor", dialogue: [{ type: "say", speaker: "Yuki", text: "Seni... öldürmeyeceğim. Çünkü... ben annemim kızıyım. Ve o... asla öldürmezdi." }, { type: "say", speaker: "Amca", text: "O zaman... sen de zayıfsın." }, { type: "say", speaker: "Yuki", text: "Hayır. Ben... merhametliyim." }] },
+      { type: "splash", scene: "Altın Çiçek — Yuki ve Amca — Aralarında — Işık Patlaması", dialogue: [{ type: "say", speaker: "Altın Çiçek (ses)", text: "Yuki... beni kullanmak istiyor musun?" }, { type: "say", speaker: "Yuki", text: "Hayır. Ben... seni korumak istiyorum." }, { type: "say", speaker: "Altın Çiçek (ses)", text: "O zaman... beni yok et. Yoksa... herkes ölecek." }] },
+      { type: "normal", scene: "Yuki Altın Çiçeği Tutuyor — Ama Kullanmıyor — Amca Şok", dialogue: [{ type: "say", speaker: "Amca", text: "Ne... ne yapıyorsun?!" }, { type: "say", speaker: "Yuki", text: "Ben... bu çiçeği yok etmeyeceğim. Ama... kullanmayacağım da." }, { type: "say", speaker: "Amca", text: "O zaman... ne yapacaksın?" }] },
+      { type: "splash", scene: "Yuki Altın Çiçeği Yere Bırakıyor — Ve Ona Dokunuyor — Anı Patlaması", dialogue: [{ type: "say", speaker: "Yuki", text: "Onun anısını okuyacağım. Ve... onun gerçek amacını öğreneceğim." }] },
+      { type: "closeup", scene: "Yuki Anıyı Okuyor — Altın Çiçeğin Geçmişi — İlk Kan'nōsha — İlk Koruyucu", dialogue: [{ type: "say", speaker: "Altın Çiçek (anıdan)", text: "Ben... ilk Kan'nōsha tarafından yaratıldım. Amaç... ölüleri geri getirmek değil. Amaç... onları korumak." }, { type: "say", speaker: "Yuki", text: "Yani... sen bir koruyucusun." }, { type: "say", speaker: "Altın Çiçek (anıdan)", text: "Evet. Ve... sen... benim yeni koruyucum olacaksın." }] }
+    ]
+  },
+
+  29: {
+    jp: "第29話", title: "Fuji Dağı",
+    pages: [
+      { type: "splash", scene: "Mağara — Yuki Altın Çiçeği Tutuyor — Amca Şok — Işık Patlaması", dialogue: [{ type: "say", speaker: "Yuki", text: "Altın Çiçek... beni seçti. Ben... onun yeni koruyucusuyum." }, { type: "say", speaker: "Amca", text: "Hayır... hayır bu imkansız!" }, { type: "say", speaker: "Yuki", text: "Sen... sen annemi öldürdün. Ve şimdi... seni durduracağım." }] },
+      { type: "normal", scene: "Yuki vs Amca — Son Dövüş — Yuki Güçlü — Amca Zayıflıyor", dialogue: [{ type: "say", speaker: "Yuki", text: "Bu... annem için. Babam için. Hana için. Ve... Gin için." }, { type: "say", speaker: "Amca", text: "Sen... sen gerçekten... güçlüsün." }] },
+      { type: "closeup", scene: "Amca Yere Düşüyor — Yuki Kılıcını İndiriyor — Ama Öldürmüyor", dialogue: [{ type: "say", speaker: "Yuki", text: "Seni... öldürmeyeceğim. Ama... seni durduracağım." }, { type: "say", speaker: "Amca", text: "Neden... neden beni öldürmüyorsun?" }, { type: "say", speaker: "Yuki", text: "Çünkü... sen de bir kurban. Tıpkı babam gibi." }] },
+      { type: "splash", scene: "Yuki Altın Çiçeği Kullanıyor — Işık Patlaması — Amca'nın Karanlığı Dağılıyor", dialogue: [{ type: "say", speaker: "Yuki", text: "Altın Çiçek... onun karanlığını temizle." }, { type: "say", speaker: "Altın Çiçek (ses)", text: "Emredersin, Koruyucu." }] },
+      { type: "normal", scene: "Amca — Gözleri Açılıyor — Karanlık Gidiyor — Ağlıyor", dialogue: [{ type: "say", speaker: "Amca", text: "Yuki... ben... ben ne yaptım?" }, { type: "say", speaker: "Yuki", text: "Şimdi... kendini affetmelisin. Tıpkı babam gibi." }, { type: "say", speaker: "Amca", text: "Affedebilir miyim?" }, { type: "say", speaker: "Yuki", text: "Belki. Ama... önce... yaşamalısın." }] },
+      { type: "splash", scene: "Yuki ve Ren Mağaradan Çıkıyor — Fuji Dağı — Şafak — Altın Çiçek Parlıyor", dialogue: [{ type: "say", speaker: "Ren", text: "Yuki... başardın." }, { type: "say", speaker: "Yuki", text: "Hayır. Biz... başardık." }, { type: "say", speaker: "Ren", text: "Ve... şimdi ne olacak?" }] },
+      { type: "normal", scene: "Yuki Altın Çiçeği Gökyüzüne Kaldırıyor — Işık — Dünya — Barış", dialogue: [{ type: "say", speaker: "Yuki", text: "Şimdi... yeni bir başlangıç. Hayalet Çiçekler... artık korunacak. Ve... Kan'nōsha'lar... artık yalnız olmayacak." }] },
+      { type: "splash", scene: "Yuki ve Ren — Fuji Dağı'ndan Aşağı İniyor — Tokyo — Yeni Bir Yol", dialogue: [{ type: "inner", text: '"Arc 3... sona erdi. Altın Çiçek... artık bende. Ve... artık... yalnız değilim."' }] }
+    ]
+  },
+
+  30: {
+    jp: "第30話", title: "Seçim",
+    pages: [
+      { type: "splash", scene: "Tokyo — Dr. Kurosawa'nın Muayenehanesi — Yuki ve Ren — Altın Çiçek Masada", dialogue: [{ type: "say", speaker: "Dr. Kurosawa", text: "Yuki... Altın Çiçek... seni seçti. Ve... bu büyük bir sorumluluk." }, { type: "say", speaker: "Yuki", text: "Biliyorum. Ama... hazırım." }, { type: "say", speaker: "Dr. Kurosawa", text: "Peki... şimdi ne yapacaksın?" }] },
+      { type: "normal", scene: "Yuki Altın Çiçeği Tutuyor — Kararlılık — Gözlerinde Işık", dialogue: [{ type: "say", speaker: "Yuki", text: "Ben... Altın Çiçeği kullanmayacağım. Ama... onu koruyacağım." }, { type: "say", speaker: "Ren", text: "Neden kullanmıyorsun?" }, { type: "say", speaker: "Yuki", text: "Çünkü... ölüler geri gelmez. Ve... onları geri getirmeye çalışmak... her şeyi mahveder." }] },
+      { type: "closeup", scene: "Yuki'nin Yüzü — Gözyaşı — Ama Kararlılık", dialogue: [{ type: "say", speaker: "Yuki", text: "Annem... babam... Hana... Gin... Onlar... artık yok. Ama... kalbimde yaşıyorlar." }, { type: "say", speaker: "Ren", text: "Yuki..." }, { type: "say", speaker: "Yuki", text: "Ve ben... onların anılarını onurlandıracağım. Ama... onları geri getirmeyeceğim." }] },
+      { type: "splash", scene: "Yuki Altın Çiçeği Bir Kutuya Koyuyor — Kilitliyor — Ve Anahtarı Saklıyor", dialogue: [{ type: "say", speaker: "Yuki", text: "Bu... artık bir koruma. Bir silah değil." }, { type: "say", speaker: "Dr. Kurosawa", text: "Ama... bir gün... birileri onu bulabilir." }, { type: "say", speaker: "Yuki", text: "O zaman... onu koruyacağım. Tıpkı annemin beni koruduğu gibi." }] },
+      { type: "normal", scene: "Ren ve Mio İçeri Giriyor — Hep Birlikte — Aile", dialogue: [{ type: "say", speaker: "Mio", text: "Peki... şimdi ne olacak?" }, { type: "say", speaker: "Yuki", text: "Şimdi... yeni bir başlangıç. Koruyucular... yeniden inşa edilecek. Ve... Kan'nōsha'lar eğitilecek." }, { type: "say", speaker: "Ren", text: "Ve biz?" }, { type: "say", speaker: "Yuki", text: "Biz... birlikte olacağız. Her zaman." }] },
+      { type: "splash", scene: "Dörtlü — Yuki, Ren, Mio ve Dr. Kurosawa — Yan Yana — Şafak — Tokyo", dialogue: [{ type: "say", speaker: "Yuki", text: "Bu... sadece bir başlangıç. Ve... daha çok savaş var. Ama... artık hazırım." }, { type: "say", speaker: "Ren", text: "Ben de." }, { type: "say", speaker: "Mio", text: "Ben de." }, { type: "say", speaker: "Dr. Kurosawa", text: "Ben de." }] },
+      { type: "closeup", scene: "Yuki'nin Yüzü — Gülümseme — Umut", dialogue: [{ type: "inner", text: '"Arc 3... sona erdi. Ve... ben... hala ayaktayım. Ama... hikaye... daha bitmedi."' }] },
+      { type: "splash", scene: "幽霊花 — Arc 3: Altın Çiçek — SON — Arc 4: Kırık Anılar Yakında", dialogue: [] }
+    ]
+  }
+
+};
