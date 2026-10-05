@@ -1,0 +1,66 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 500" width="400" height="500">
+  <defs>
+    <linearGradient id="bahBg" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#0A0A0A"/>
+      <stop offset="100%" stop-color="#1A0505"/>
+    </linearGradient>
+    <radialGradient id="bahGlow" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#F4A261" stop-opacity="0.4"/>
+      <stop offset="100%" stop-color="#F4A261" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+  <rect width="400" height="500" fill="url(#bahBg)"/>
+  <circle cx="200" cy="220" r="200" fill="url(#bahGlow)"/>
+  
+  <!-- Haori (pelerin) -->
+  <path d="M 80 500 L 80 280 Q 100 200 140 180 L 260 180 Q 300 200 320 280 L 320 500 Z" fill="#0A0A0A" stroke="#333" stroke-width="1"/>
+  <path d="M 200 200 L 200 500" stroke="#333" stroke-width="1"/>
+  <path d="M 140 180 L 200 320 L 260 180" fill="none" stroke="#E63946" stroke-width="1" opacity="0.5"/>
+  
+  <!-- Boyun -->
+  <rect x="180" y="170" width="40" height="40" fill="#2A2A2A"/>
+  
+  <!-- Yüz (gölgede) -->
+  <ellipse cx="200" cy="130" rx="75" ry="95" fill="#0A0A0A"/>
+  <ellipse cx="200" cy="130" rx="70" ry="90" fill="#1A1A1A"/>
+  
+  <!-- Gözler (parlayan) -->
+  <ellipse cx="175" cy="125" rx="8" ry="4" fill="#E63946"/>
+  <ellipse cx="225" cy="125" rx="8" ry="4" fill="#E63946"/>
+  <circle cx="175" cy="125" r="2" fill="#FFAA00"/>
+  <circle cx="225" cy="125" r="2" fill="#FFAA00"/>
+  
+  <!-- Ağız (hafif gülümseme) -->
+  <path d="M 185 175 Q 200 180 215 175" stroke="#4A0000" stroke-width="2" fill="none"/>
+  
+  <!-- Kitsune maskesi (sağ tarafta sallanan) -->
+  <g transform="translate(320, 130)">
+    <ellipse cx="0" cy="0" rx="25" ry="30" fill="#FFFFFF" stroke="#E63946" stroke-width="2"/>
+    <path d="M -25 -20 L -30 -40 L -10 -25 Z" fill="#FFFFFF" stroke="#E63946" stroke-width="2"/>
+    <path d="M 25 -20 L 30 -40 L 10 -25 Z" fill="#FFFFFF" stroke="#E63946" stroke-width="2"/>
+    <ellipse cx="-8" cy="0" rx="3" ry="4" fill="#0A0A0A"/>
+    <ellipse cx="8" cy="0" rx="3" ry="4" fill="#0A0A0A"/>
+    <path d="M -8 12 Q 0 18 8 12" stroke="#E63946" stroke-width="2" fill="none"/>
+  </g>
+  
+  <!-- Makas -->
+  <g transform="translate(80, 400) rotate(-20)">
+    <path d="M 0 0 L -30 -80" stroke="#C0C0C0" stroke-width="4"/>
+    <path d="M 0 0 L 30 -80" stroke="#C0C0C0" stroke-width="4"/>
+    <circle cx="0" cy="0" r="8" fill="#8B1A1A"/>
+    <circle cx="-35" cy="-85" r="6" fill="none" stroke="#C0C0C0" stroke-width="3"/>
+    <circle cx="35" cy="-85" r="6" fill="none" stroke="#C0C0C0" stroke-width="3"/>
+  </g>
+  
+  <!-- Etrafta uçuşan çiçekler -->
+  <g opacity="0.7">
+    <circle cx="60" cy="150" r="4" fill="#E63946"/>
+    <circle cx="350" cy="280" r="3" fill="#4A90D9"/>
+    <circle cx="100" cy="300" r="3" fill="#F4A261"/>
+    <circle cx="320" cy="80" r="4" fill="#8B1A1A"/>
+  </g>
+  
+  <!-- İsim -->
+  <text x="200" y="470" text-anchor="middle" font-family="Cinzel, serif" font-size="20" font-weight="700" fill="#FFFFFF" letter-spacing="4">NISHISHI</text>
+  <text x="200" y="490" text-anchor="middle" font-family="Noto Sans JP, sans-serif" font-size="12" fill="#E63946" letter-spacing="2">庭師</text>
+</svg>
