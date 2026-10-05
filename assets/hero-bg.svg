@@ -10,22 +10,13 @@
       <stop offset="0%" stop-color="#F4A261" stop-opacity="0.6"/>
       <stop offset="100%" stop-color="#F4A261" stop-opacity="0"/>
     </radialGradient>
-    <filter id="blur1">
-      <feGaussianBlur stdDeviation="2"/>
-    </filter>
-    <filter id="blur2">
-      <feGaussianBlur stdDeviation="5"/>
-    </filter>
+    <filter id="blur1"><feGaussianBlur stdDeviation="2"/></filter>
+    <filter id="blur2"><feGaussianBlur stdDeviation="5"/></filter>
   </defs>
-  
   <rect width="1600" height="900" fill="url(#skyGrad)"/>
-  
-  <!-- Ay -->
   <circle cx="1200" cy="200" r="200" fill="url(#moonGlow)"/>
   <circle cx="1200" cy="200" r="70" fill="#F4E0B0" opacity="0.9"/>
   <circle cx="1200" cy="200" r="70" fill="none" stroke="#F4A261" stroke-width="1" opacity="0.5"/>
-  
-  <!-- Yıldızlar -->
   <g fill="#FFFFFF" opacity="0.6">
     <circle cx="150" cy="80" r="1.5"/>
     <circle cx="350" cy="150" r="1"/>
@@ -40,8 +31,6 @@
     <circle cx="1350" cy="400" r="1"/>
     <circle cx="80" cy="400" r="1.5"/>
   </g>
-  
-  <!-- Tokyo silüeti (uzak) -->
   <g filter="url(#blur2)" opacity="0.5" fill="#0A0A0A">
     <rect x="0" y="600" width="80" height="300"/>
     <rect x="100" y="550" width="60" height="350"/>
@@ -59,8 +48,6 @@
     <rect x="1350" y="580" width="80" height="320"/>
     <rect x="1450" y="620" width="150" height="280"/>
   </g>
-  
-  <!-- Tokyo silüeti (yakın) -->
   <g filter="url(#blur1)" opacity="0.85" fill="#050505">
     <rect x="0" y="700" width="120" height="200"/>
     <rect x="140" y="650" width="90" height="250"/>
@@ -76,8 +63,6 @@
     <rect x="1390" y="720" width="90" height="180"/>
     <rect x="1500" y="750" width="100" height="150"/>
   </g>
-  
-  <!-- Işıklı pencereler -->
   <g fill="#E63946" opacity="0.5">
     <rect x="160" y="680" width="4" height="6"/>
     <rect x="180" y="700" width="4" height="6"/>
@@ -88,11 +73,7 @@
     <rect x="1050" y="720" width="4" height="6"/>
     <rect x="1260" y="740" width="4" height="6"/>
   </g>
-  
-  <!-- Sis -->
   <ellipse cx="800" cy="850" rx="900" ry="100" fill="#2D1B3D" opacity="0.4" filter="url(#blur2)"/>
-  
-  <!-- Ön plandaki çiçekler -->
   <g opacity="0.9">
     <g transform="translate(200, 830)">
       <ellipse cx="0" cy="-25" rx="8" ry="20" fill="#E63946"/>
@@ -119,8 +100,6 @@
       <circle r="6" fill="#F4A261"/>
     </g>
   </g>
-  
-  <!-- Uçuşan yapraklar -->
   <g fill="#E63946" opacity="0.4">
     <ellipse cx="400" cy="500" rx="3" ry="6" transform="rotate(30 400 500)"/>
     <ellipse cx="700" cy="450" rx="3" ry="6" transform="rotate(-20 700 450)"/>
