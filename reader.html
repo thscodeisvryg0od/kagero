@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bölüm 1: İlk Fısıltı — 幽霊花</title>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700;900&family=Inter:wght@300;400;600&family=Noto+Sans+JP:wght@300;400;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<!-- İLERLEME ÇUBUĞU -->
+<div class="progress-bar" id="progressBar"></div>
+
+<!-- ÜST BAR -->
+<div class="reader-topbar" id="topbar">
+  <a href="index.html" class="back-btn">← Seriye Dön</a>
+  <div class="chapter-info">
+    <div class="jp">第1話</div>
+    <div class="title">İlk Fısıltı</div>
+  </div>
+  <div class="reader-controls">
+    <button class="control-btn" title="Ayarlar">⚙</button>
+    <button class="control-btn" title="Yer İmi">🔖</button>
+    <button class="control-btn" title="Tam Ekran" onclick="toggleFullscreen()">⛶</button>
+  </div>
+</div>
+
+<!-- OKUMA ALANI -->
+<div class="reader-container">
+
+  <!-- SAYFA 1 -->
+  <div class="page">
+    <div class="panel panel-splash">
+      <div class="panel-image" data-scene="Yağmurlu Tokyo Gecesi — Shinjuku Silüeti — Kan İçinde Açan Kırmızı Çiçek"></div>
+    </div>
+    <div class="panel-dialogue">
+      <div class="inner-voice">"Her ölüm bir iz bırakır. Ama bazıları... bazıları çiçek açar."</div>
+    </div>
+    <div class="page-number">Sayfa 1</div>
+  </div>
+
+  <!-- SAYFA 2 -->
+  <div class="page">
+    <div class="panel">
+      <div class="panel-image" data-scene="Yuki, Dizlerinin Üstünde, Kan Birikintisindeki Çiçeğe Bakıyor — Yağmur"></div>
+    </div>
+    <div class="panel-dialogue">
+      <div class="dialogue-box">
+        <div class="dialogue-speaker">Yuki</div>
+        <div class="dialogue-text">Yine mi...?</div>
+      </div>
+      <div class="inner-voice">"Bu his... her seferinde aynı. Mide bulantısı. Kalp çarpıntısı. Ve o sesler..."</div>
+    </div>
+    <div class="panel panel-closeup">
+      <div class="panel-image" data-scene="Geriye Dönüş — 7 Yaşındaki Yuki, Yanan Evin Önünde"></div>
+    </div>
+    <div class="panel-dialogue">
+      <div class="dialogue-box">
+        <div class="dialogue-speaker">Annesi (ses)</div>
+        <div class="dialogue-text">Yuki! Kaç! Sakın arkanı dönme!</div>
+      </div>
+    </div>
+    <div class="page-number">Sayfa 2</div>
+  </div>
+
+  <!-- SAYFA 3 -->
+  <div class="page">
+    <div class="panel">
+      <div class="panel-image" data-scene="Yuki'nin Parmağı Çiçeğe Değiyor — Temas Anı"></div>
+    </div>
+    <div class="panel panel-splash">
+      <div class="panel-image" data-scene="Yuki'nin Gözleri Beyaz Işıkla Doluyor — Fısıltılar"></div>
+    </div>
+    <div class="panel-dialogue">
+      <div class="whisper">"Bıçak... çok soğuk..."</div>
+      <div class="whisper">"Lütfen... dur..."</div>
+      <div class="whisper">"ANNEM... ANNEM NEREDE..."</div>
+    </div>
+    <div class="panel panel-closeup">
+      <div class="panel-image" data-scene="Kadın Karanlık Sokakta Koşuyor — Peşinde Gölgeli Figür"></div>
+    </div>
+    <div class="page-number">Sayfa 3</div>
+  </div>
+
+  <!-- SAYFA 4 -->
+  <div class="page">
+    <div class="panel">
+      <div class="panel-image" data-scene="Ren, Sokak Lambasının Altında — Elinde Tantō — Alaycı İfade"></div>
+    </div>
+    <div class="panel-dialogue">
+      <div class="dialogue-box">
+        <div class="dialogue-speaker">Ren</div>
+        <div class="dialogue-text">Ona dokunmamalıydın.</div>
+      </div>
+      <div class="dialogue-box">
+        <div class="dialogue-speaker">Ren</div>
+        <div class="dialogue-text">Yoksa sen de mi 'Kan'nōsha'sın?</div>
+      </div>
+      <div class="dialogue-box">
+        <div class="dialogue-speaker">Yuki</div>
+        <div class="dialogue-text">Sen... kimsin?</div>
+      </div>
+      <div class="dialogue-box">
+        <div class="dialogue-speaker">Ren</div>
+        <div class="dialogue-text">Bu soruyu ben sana soracaktım. Ama önce... o çiçekten kaç tane daha var, biliyor musun? Ve sen onlardan biriydin.</div>
+      </div>
+    </div>
+    <div class="panel panel-splash">
+      <div class="panel-image" data-scene="Ren, Elini Yuki'ye Uzatıyor — Yüzlerce Hayalet Çiçek Silüeti — 'Hoş geldin, karanlık bahçeye.'"></div>
+    </div>
+    <div class="page-number">Sayfa 4</div>
+  </div>
+
+  <!-- BÖLÜM SONU -->
+  <div class="page">
+    <div class="panel panel-splash">
+      <div class="panel-image" data-scene="幽霊花 — Bölüm 1: İlk Fısıltı — Devam Edecek"></div>
+    </div>
+    <div class="page-number">Bölüm Sonu</div>
+  </div>
+
+  <!-- NAVİGASYON -->
+  <div class="reader-nav">
+    <a href="#" class="nav-btn disabled">← Önceki Bölüm</a>
+    <a href="#" class="nav-btn">Sonraki Bölüm →</a>
+  </div>
+
+  <!-- YORUMLAR -->
+  <div class="comments-section">
+    <h3 class="comments-title">💬 Yorumlar (24)</h3>
+    <textarea class="comment-input" placeholder="Bu bölüm hakkında ne düşünüyorsun?"></textarea>
+    <button class="comment-submit">Gönder</button>
+  </div>
+
+</div>
+
+<script src="js/main.js"></script>
+</body>
+</html>
