@@ -1,10 +1,16 @@
 /* ============================================
    KAGERŌ — Bölüm Verileri
    幽霊花: Hayalet Çiçekler
-   Arc 1: İlk Fısıltı (1-8) + Arc 2: Karanlık Bahçe (9-18)
+   Arc 1: İlk Fısıltı (1-8)
+   Arc 2: Karanlık Bahçe (9-18)
+   Arc 3: Altın Çiçek (19-30)
    ============================================ */
 
 const ALL_CHAPTERS = {
+
+  // ============================================
+  // ARC 1: İLK FISILTI (1-8)
+  // ============================================
 
   1: {
     jp: "第1話", title: "İlk Fısıltı",
@@ -150,9 +156,9 @@ const ALL_CHAPTERS = {
     ]
   },
 
-  /* ============================================
-     ARC 2: KARANLIK BAHÇE
-     ============================================ */
+  // ============================================
+  // ARC 2: KARANLIK BAHÇE (9-18)
+  // ============================================
 
   9: {
     jp: "第9話", title: "Kaçış",
@@ -323,9 +329,117 @@ const ALL_CHAPTERS = {
       { type: "closeup", scene: "Yuki Bahçıvan'ın Yanına Koşuyor — Bahçıvan Nefes Alıyor Ama Zayıf", dialogue: [{ type: "say", speaker: "Bahçıvan", text: "Yuki... sen... sen güçlüsün. Annen gibi." }, { type: "say", speaker: "Yuki", text: "Sus. Seni kurtaracağım." }, { type: "say", speaker: "Bahçıvan", text: "Hayır. Ben... ben gidiyorum. Ama... sen yaşa. Benim için. Ve annen için." }] },
       { type: "splash", scene: "Bahçıvan Son Nefesini Veriyor — Yuki Onu Kucaklıyor — Gözyaşları — Tapınak Alevler İçinde", dialogue: [{ type: "say", speaker: "Yuki", text: "BABA! BABA KALK! LÜTFEN KALK!" }, { type: "say", speaker: "Bahçıvan (son söz)", text: "Seni seviyorum... kızım." }] },
       { type: "closeup", scene: "Yuki Bahçıvan'ın Bedeni Yanında — Gözyaşları — Ren Yanına Geliyor", dialogue: [{ type: "say", speaker: "Ren", text: "Yuki... gel. Buradan gitmeliyiz." }, { type: "say", speaker: "Yuki", text: "O... o benim babamdı. Ve ben... ben onu kurtaramadım." }, { type: "say", speaker: "Ren", text: "Hayır. Sen onu kurtardın. Karanlıktan kurtardın." }] },
-      { type: "splash", scene: "Yuki Ayağa Kalkıyor — Gözyaşları Ama Kararlılık — Yanında Ren — Tapınaktan Çıkıyorlar — Şafak Söküyor", dialogue: [{ type: "inner", text: '"Arc 2... sona erdi. Babam öldü. Ama ben... ben hala ayaktayım. Ve şimdi... şimdi gerçek savaş başlıyor."' }] },
-      { type: "splash", scene: "幽霊花 — Arc 2: Karanlık Bahçe — SON — Arc 3: Altın Çiçek Yakında", dialogue: [] }
+      { type: "splash", scene: "Yuki Ayağa Kalkıyor — Gözyaşları Ama Kararlılık — Yanında Ren — Tapınaktan Çıkıyorlar — Şafak Söküyor", dialogue: [{ type: "inner", text: '"Arc 2... sona erdi. Babam öldü. Ama ben... ben hala ayaktayım. Ve şimdi... şimdi gerçek savaş başlıyor."' }] }
     ]
-  }
+  },
 
-};
+  // ============================================
+  // ARC 3: ALTIN ÇİÇEK (19-30)
+  // ============================================
+
+  19: {
+    jp: "第19話", title: "Altın Çiçeğin Efsanesi",
+    pages: [
+      { type: "splash", scene: "Dr. Kurosawa'nın Muayenehanesi — Gece — Yuki, Ren ve Dr. Kurosawa Masada — Mum Işığı", dialogue: [{ type: "inner", text: '"Babamın ölümünden bir hafta sonra... Dr. Kurosawa bizi çağırdı. Ve bize bir efsane anlattı."' }] },
+      { type: "normal", scene: "Dr. Kurosawa Eski Bir Kitap Açıyor — Sayfalarda Altın Çiçek Çizimi", dialogue: [{ type: "say", speaker: "Dr. Kurosawa", text: "Altın Çiçek... efsaneye göre, ölümü tersine çevirebilen tek çiçek. Ama bedeli var." }, { type: "say", speaker: "Yuki", text: "Ne bedeli?" }, { type: "say", speaker: "Dr. Kurosawa", text: "Kullanan kişinin hayatı." }] },
+      { type: "closeup", scene: "Yuki'nin Yüzü — Şaşkın Ama Meraklı", dialogue: [{ type: "say", speaker: "Yuki", text: "Yani... birini geri getirmek için... kendi hayatını mı veriyorsun?" }, { type: "say", speaker: "Dr. Kurosawa", text: "Evet. Ama asıl tehlike bu değil." }] },
+      { type: "normal", scene: "Dr. Kurosawa Sayfayı Çeviriyor — Karanlık Bir Sembol — Kitsune Maskesi", dialogue: [{ type: "say", speaker: "Dr. Kurosawa", text: "Altın Çiçek... aynı zamanda bir kapıyı açar. Ölüler ile yaşayanlar arasında. Ve o kapı... bir kez açıldığında... kapanmaz." }, { type: "say", speaker: "Ren", text: "Yani... Kuroi onu açmak mı istiyor?" }, { type: "say", speaker: "Dr. Kurosawa", text: "Hayır. Kuroi sadece bir piyon. Gerçek lider... Ne'nin bize söylediği kişi." }] },
+      { type: "splash", scene: "Geriye Dönüş — Ne'nin Son Anı — Yuki'nin Elini Tutuyor — Tapınak Alevler İçinde", dialogue: [{ type: "say", speaker: "Ne (anıdan)", text: "Toplayıcılar... bir lider tarafından yönetiliyor. Ve o lider... Altın Çiçeği arıyor." }] },
+      { type: "normal", scene: "Dr. Kurosawa Ayağa Kalkıyor — Pencereden Dışarı Bakıyor", dialogue: [{ type: "say", speaker: "Dr. Kurosawa", text: "Bu lideri bulmalıyız. Yoksa... her şey kaybolur." }, { type: "say", speaker: "Yuki", text: "Nereden başlayalım?" }, { type: "say", speaker: "Dr. Kurosawa", text: "Aokigahara. İntihar Ormanı. Orada... bir ipucu var." }] },
+      { type: "closeup", scene: "Yuki ve Ren Birbirine Bakıyor — Kararlılık", dialogue: [{ type: "say", speaker: "Yuki", text: "O zaman... oraya gidiyoruz." }, { type: "say", speaker: "Ren", text: "Ben de geliyorum." }, { type: "say", speaker: "Yuki", text: "Biliyorum. Sen... her zaman yanımdasın." }] },
+      { type: "splash", scene: "Harita Açılıyor — Aokigahara Ormanı İşaretli — Fuji Dağı Uzakta", dialogue: [{ type: "say", speaker: "Dr. Kurosawa", text: "Aokigahara... aynı zamanda Fuji Dağı'nın eteklerinde. Ve efsaneye göre... Altın Çiçek, Fuji'nin altındaki bir mağarada." }] },
+      { type: "normal", scene: "Gece — Yuki ve Ren Odada — Hazırlık", dialogue: [{ type: "say", speaker: "Ren", text: "Yuki... korkuyor musun?" }, { type: "say", speaker: "Yuki", text: "Evet. Ama... artık korkumu yenmeyi öğrendim." }, { type: "say", speaker: "Ren", text: "Ben de. Ama... seninle olmak... beni güçlü kılıyor." }] },
+      { type: "closeup", scene: "Yuki ve Ren — Eller Birleşiyor — Gözler Buluşuyor", dialogue: [{ type: "say", speaker: "Yuki", text: "O zaman... birlikte. Her zaman." }, { type: "say", speaker: "Ren", text: "Her zaman." }] }
+    ]
+  },
+
+  20: {
+    jp: "第20話", title: "Aokigahara",
+    pages: [
+      { type: "splash", scene: "Aokigahara Ormanı — Sis — Karanlık Ağaçlar — Yuki ve Ren İçeri Giriyor", dialogue: [{ type: "inner", text: '"Aokigahara... İntihar Ormanı. Buranın çiçekleri... çok güçlü. Çok tehlikeli."' }] },
+      { type: "normal", scene: "Orman İçi — Etrafta Mavi ve Siyah Çiçekler — Fısıltılar", dialogue: [{ type: "whisper", text: '"Neden... neden yaşıyorum..."' }, { type: "whisper", text: '"Yalnızım... çok yalnızım..."' }, { type: "whisper", text: '"Kimse... kimse beni sevmedi..."' }] },
+      { type: "closeup", scene: "Yuki Kulaklarını Kapatıyor — Ama Fısıltılar Yükseliyor", dialogue: [{ type: "say", speaker: "Yuki", text: "Çok... çok fazla." }, { type: "say", speaker: "Ren", text: "Beni dinle! Gerçek olan benim. Sadece sesimi duy. Sadece... beni." }] },
+      { type: "splash", scene: "Yuki Ren'in Sesine Odaklanıyor — Fısıltılar Dağılıyor — Ama Gözlerinden Yaşlar Akıyor", dialogue: [{ type: "say", speaker: "Yuki", text: "Ren... korkuyorum." }, { type: "say", speaker: "Ren", text: "Ben de. Ama birlikte korkarız." }] },
+      { type: "normal", scene: "İlerliyorlar — Bir Ağacın Altında Bir Çiçek — Altın Renginde Ama Soluk", dialogue: [{ type: "say", speaker: "Yuki", text: "Bu... bu Altın Çiçek değil." }, { type: "say", speaker: "Ren", text: "Ama ona benziyor. Bir kopya olabilir." }, { type: "say", speaker: "Yuki", text: "Hayır. Bu... bir anı." }] },
+      { type: "closeup", scene: "Yuki Çiçeğe Dokunuyor — Anı Patlıyor — Yaşlı Bir Adam — Yalnız Ölüyor", dialogue: [{ type: "whisper", text: '"Altın Çiçeği... buldum... ama... yalnızım..."' }, { type: "whisper", text: '"Kimse... kimse bilmeyecek..."' }] },
+      { type: "normal", scene: "Yuki Geri Çekiliyor — Şok — Ama Anlıyor", dialogue: [{ type: "say", speaker: "Yuki", text: "Bu adam... Altın Çiçeği bulmuş. Ama... onu kullanmamış." }, { type: "say", speaker: "Ren", text: "Neden?" }, { type: "say", speaker: "Yuki", text: "Çünkü... çok yalnızmış. Ve... kimseyi geri getirmek istememiş." }] },
+      { type: "splash", scene: "Aniden Bir Ses — Kuroi — Yanında Onlarca Toplayıcı — Ormanı Sarıyor", dialogue: [{ type: "say", speaker: "Kuroi", text: "Ne kadar dokunaklı. Ama... bu hikaye burada bitiyor." }, { type: "say", speaker: "Yuki", text: "Kuroi... sen... sen hala pes etmedin mi?" }, { type: "say", speaker: "Kuroi", text: "Pes etmek mi? Ben... kızım için savaşıyorum." }] },
+      { type: "closeup", scene: "Kuroi'nin Yüzü — Delilik — Ama Aynı Zamanda Acı", dialogue: [{ type: "say", speaker: "Kuroi", text: "Sen... sen annen gibisin. O da beni durdurmaya çalıştı. Ama başaramadı." }, { type: "say", speaker: "Yuki", text: "Ben... ben annem değilim. Ben... daha güçlüyüm." }] },
+      { type: "splash", scene: "Yuki vs Kuroi — Beyaz Çiçek Kılıcı — Kamçı — Hızlı Dövüş — Ağaçlar Devriliyor", dialogue: [{ type: "say", speaker: "Yuki", text: "Bu sefer... seni durduracağım!" }, { type: "say", speaker: "Kuroi", text: "Denemekten zarar gelmez!" }] },
+      { type: "normal", scene: "Yuki Kuroi'yi Yere Seriyor — Ama Kuroi Kaçıyor — Sis İçinde Kayboluyor", dialogue: [{ type: "say", speaker: "Kuroi", text: "Bu sefer... kazandın. Ama bir sonraki... ben kazanacağım." }, { type: "say", speaker: "Ren", text: "Yuki! Peşinden gidelim!" }, { type: "say", speaker: "Yuki", text: "Hayır. Bu... bir tuzak. Ve biz... daha önemli bir şey bulduk." }] },
+      { type: "splash", scene: "Yuki Elinde Küçük Bir Parça — Altın Renkli — Kırık Bir Çiçek Parçası", dialogue: [{ type: "say", speaker: "Yuki", text: "Bu... Altın Çiçeğin bir parçası. Ve... bu parça... beni bir yere götürecek." }] }
+    ]
+  },
+
+  21: {
+    jp: "第21話", title: "Toplayıcılar Savaşı I",
+    pages: [
+      { type: "splash", scene: "Tokyo — Gece — Toplayıcılar Şehre Saldırıyor — Hayalet Çiçekler Sokaklarda", dialogue: [{ type: "inner", text: '"Savaş... şehre geldi. Toplayıcılar... her yerdeler. Ve biz... hazırlıksız yakalandık."' }] },
+      { type: "normal", scene: "Dr. Kurosawa'nın Muayenehanesi — Harita — Saldırı Noktaları", dialogue: [{ type: "say", speaker: "Dr. Kurosawa", text: "Toplayıcılar üç noktada saldırıyor. Shinjuku, Shibuya ve Yanaka." }, { type: "say", speaker: "Ren", text: "Yanaka... tapınak nerede." }, { type: "say", speaker: "Yuki", text: "O zaman... oraya gidiyorum." }] },
+      { type: "closeup", scene: "Yuki ve Ren Ayrılıyor — Kararlılık", dialogue: [{ type: "say", speaker: "Ren", text: "Yuki... dikkatli ol." }, { type: "say", speaker: "Yuki", text: "Sen de. Ve... Ren." }, { type: "say", speaker: "Ren", text: "Hm?" }, { type: "say", speaker: "Yuki", text: "Dön. Bana dön." }] },
+      { type: "splash", scene: "Yuki Yanaka'ya Gidiyor — Mezarlık Altı Tapınak — Kuroi Bekliyor", dialogue: [{ type: "say", speaker: "Kuroi", text: "Hoş geldin. Seni bekliyordum." }, { type: "say", speaker: "Yuki", text: "Kuroi. Bu sefer... kaçmayacaksın." }, { type: "say", speaker: "Kuroi", text: "Kaçmak mı? Ben... kazanacağım." }] },
+      { type: "normal", scene: "Tapınak İçi — İki Taraf Karşı Karşıya — Toplayıcılar vs Koruyucular", dialogue: [{ type: "say", speaker: "Kuroi", text: "Koruyucular... çok zayıf. Ve sen... onların lideri mi oldun?" }, { type: "say", speaker: "Yuki", text: "Hayır. Ben... onların umuduyum." }] },
+      { type: "splash", scene: "Büyük Dövüş Başlıyor — Yuki Merkezde — Çiçek Kılıç vs Kamçı", dialogue: [{ type: "say", speaker: "Yuki", text: "SANA... DOKUNMA DEDİM!" }, { type: "say", speaker: "Kuroi", text: "O zaman... beni durdur!" }] },
+      { type: "normal", scene: "Yuki Kuroi'yi İtiyor — Kuroi Dengesini Kaybediyor — Ama Yeni Bir Silah Çıkarıyor", dialogue: [{ type: "say", speaker: "Kuroi", text: "Bu... Altın Çiçek'ten yapılmış bir silah. Ve sen... onu yenemezsin." }, { type: "say", speaker: "Yuki", text: "Ama deneyeceğim." }] },
+      { type: "splash", scene: "Yuki ve Kuroi Son Güçleriyle Çarpışıyor — Işık Patlaması — Tapınak Sallanıyor", dialogue: [{ type: "say", speaker: "Yuki", text: "BEN... SENİ... DURDURACAĞIM!" }, { type: "say", speaker: "Kuroi", text: "YAPAMAZSIN!" }] },
+      { type: "closeup", scene: "Yuki Kuroi'nin Silahını Kırıyor — Kuroi Şok — Yuki Kılıcını İndiriyor", dialogue: [{ type: "say", speaker: "Yuki", text: "Seni... öldürmeyeceğim. Ama... seni durduracağım." }, { type: "say", speaker: "Kuroi", text: "Neden... neden beni öldürmüyorsun?" }, { type: "say", speaker: "Yuki", text: "Çünkü... sen de bir kurban. Tıpkı babam gibi." }] },
+      { type: "splash", scene: "Kuroi Yere Çöküyor — Gözyaşları — Yuki Ona Bakıyor — Merhamet", dialogue: [{ type: "say", speaker: "Kuroi", text: "Kızım... kızım beni affetmez." }, { type: "say", speaker: "Yuki", text: "Belki. Ama... sen kendini affetmelisin." }] }
+    ]
+  },
+
+  22: {
+    jp: "第22話", title: "İlk Kan",
+    pages: [
+      { type: "splash", scene: "Shibuya — Gece — Ren Toplayıcılarla Savaşıyor — Yalnız — Kanlar İçinde", dialogue: [{ type: "inner", text: '"Yuki Yanaka\'da. Ben Shibuya\'da. Ve... yalnızım. Ama... onun için savaşıyorum."' }] },
+      { type: "normal", scene: "Ren Bir Toplayıcıyı Alt Ediyor — Ama Arkasından Saldırı — Bıçak", dialogue: [{ type: "say", speaker: "Toplayıcı", text: "Sen... Tachibana'sın. Bahçıvan'ın sağ kolu." }, { type: "say", speaker: "Ren", text: "Ben... kimsenin sağ kolu değilim." }] },
+      { type: "closeup", scene: "Ren Bıçakla Yaralanıyor — Ama Karşılık Veriyor — Toplayıcıyı Yere Seriyor", dialogue: [{ type: "say", speaker: "Ren", text: "Ben... kendi yolumu seçtim." }, { type: "say", speaker: "Toplayıcı", text: "O zaman... öl." }] },
+      { type: "splash", scene: "Ren ve Toplayıcı Çarpışıyor — Ren Kazanıyor Ama Ağır Yaralı — Yerde Nefes Nefese", dialogue: [{ type: "say", speaker: "Ren", text: "Yuki... seni... görmem lazım." }] },
+      { type: "normal", scene: "Yuki Yanaka'dan Dönüyor — Ren'i Buluyor — Kanlar İçinde", dialogue: [{ type: "say", speaker: "Yuki", text: "REN! REN, UYAN!" }, { type: "say", speaker: "Ren", text: "Yuki... sen... sen iyi misin?" }, { type: "say", speaker: "Yuki", text: "Ben iyiyim. Ama sen... sen yaralısın." }] },
+      { type: "closeup", scene: "Yuki Ren'in Yarasını Sarıyor — Gözyaşları — Ama Kararlılık", dialogue: [{ type: "say", speaker: "Ren", text: "Yuki... ben... ben seni koruyamadım." }, { type: "say", speaker: "Yuki", text: "Hayır. Sen... sen benim için savaştın. Ve ben... senin için savaşacağım." }] },
+      { type: "splash", scene: "Yuki Ren'i Sırtına Alıyor — Şafak — Tokyo Sokakları — Yürüyor", dialogue: [{ type: "say", speaker: "Yuki", text: "Sana söylemiştim. Dön. Bana dön." }, { type: "say", speaker: "Ren", text: "Döndüm. Ama... senin sayende." }] },
+      { type: "normal", scene: "Dr. Kurosawa'nın Muayenehanesi — Ren Yatakta — Yuki Başında", dialogue: [{ type: "say", speaker: "Dr. Kurosawa", text: "Yaraları ciddi ama... yaşayacak." }, { type: "say", speaker: "Yuki", text: "Teşekkür ederim." }, { type: "say", speaker: "Dr. Kurosawa", text: "Yuki... sen... sen birini öldürdün mü?" }] },
+      { type: "closeup", scene: "Yuki'nin Yüzü — Ciddi — Ama Sakin", dialogue: [{ type: "say", speaker: "Yuki", text: "Hayır. Ama... öldürmek zorunda kalabilirdim. Ve... bunu yapardım." }, { type: "say", speaker: "Dr. Kurosawa", text: "O zaman... sen artık bir çocuk değilsin." }, { type: "say", speaker: "Yuki", text: "Hayır. Ben... bir Koruyucuyum." }] },
+      { type: "splash", scene: "Yuki Pencereden Dışarı Bakıyor — Şafak — Tokyo — Kararlılık", dialogue: [{ type: "inner", text: '"Bu savaş... daha yeni başlıyor. Ve ben... hazırım."' }] }
+    ]
+  },
+
+  23: {
+    jp: "第23話", title: "Mio'nun Sırrı",
+    pages: [
+      { type: "splash", scene: "Mio Sakuraba — Yuki'nin Evi — Kapıda — Elinde Notlar ve Fotoğraflar", dialogue: [{ type: "say", speaker: "Mio", text: "Yuki! Sen... sen nerelerdeydin?! Haftalardır yoksun!" }, { type: "say", speaker: "Yuki", text: "Mio... ben... ben açıklayamam." }, { type: "say", speaker: "Mio", text: "Hayır. Bu sefer... seni dinleyeceğim. Ve... her şeyi anlatacaksın." }] },
+      { type: "normal", scene: "Yuki'nin Evi — Oturma Odası — Mio ve Yuki Karşı Karşıya", dialogue: [{ type: "say", speaker: "Mio", text: "Bak. Ben... seni takip ettim. Ve... gördüklerim..." }, { type: "say", speaker: "Yuki", text: "Ne gördün?" }, { type: "say", speaker: "Mio", text: "Hayalet Çiçekler. Fısıltılar. Ve... senin onlarla konuştuğunu." }] },
+      { type: "closeup", scene: "Yuki'nin Yüzü — Şok — Ama Sonra Rahatlama", dialogue: [{ type: "say", speaker: "Yuki", text: "Yani... biliyorsun." }, { type: "say", speaker: "Mio", text: "Biliyorum. Ve... seni anlamak istiyorum." }, { type: "say", speaker: "Yuki", text: "Bu... çok uzun bir hikaye." }, { type: "say", speaker: "Mio", text: "Anlat. Tüm gece dinleyeceğim." }] },
+      { type: "splash", scene: "Yuki Anlatmaya Başlıyor — Mio Dinliyor — Gözyaşları — Ama Kararlılık", dialogue: [{ type: "say", speaker: "Yuki", text: "Ben... bir Kan'nōsha'yım. Hayalet Çiçekleri okuyabilirim. Ve... babam... bir canavardı." }, { type: "say", speaker: "Mio", text: "Yuki..." }] },
+      { type: "normal", scene: "Mio Yuki'ye Sarılıyor — Gözyaşları — Sessizlik", dialogue: [{ type: "say", speaker: "Mio", text: "Sen... sen yalnız değilsin. Ben... ben buradayım." }, { type: "say", speaker: "Yuki", text: "Ama... bu tehlikeli. Sen... sen zarar görebilirsin." }, { type: "say", speaker: "Mio", text: "Umurumda değil. Sen... benim en iyi arkadaşımsın." }] },
+      { type: "closeup", scene: "Yuki'nin Yüzü — Gözyaşı — Ama Mutluluk", dialogue: [{ type: "say", speaker: "Yuki", text: "Teşekkür ederim, Mio. Bu... bu çok şey ifade ediyor." }, { type: "say", speaker: "Mio", text: "O zaman bana da öğret. Bu dünyada ben de varım." }] },
+      { type: "splash", scene: "Mio ve Yuki — Yan Yana — Şafak — Yeni Bir Başlangıç", dialogue: [{ type: "say", speaker: "Mio", text: "Bir gazeteci olarak... gerçeği yazmak zorundayım. Ama önce... senin yanında olmak istiyorum." }, { type: "say", speaker: "Yuki", text: "O zaman... hoş geldin. Karanlık bahçeye." }] },
+      { type: "normal", scene: "Ren Kapıda — Yeni Uyanmış — Mio ve Yuki'yi Görüyor", dialogue: [{ type: "say", speaker: "Ren", text: "Mio... sen... burada mısın?" }, { type: "say", speaker: "Mio", text: "Evet. Ve... artık bir parçayım." }, { type: "say", speaker: "Yuki", text: "Ren... Mio her şeyi biliyor." }] },
+      { type: "closeup", scene: "Ren'in Yüzü — Şaşkın — Ama Sonra Rahatlama", dialogue: [{ type: "say", speaker: "Ren", text: "O zaman... üçümüz. Daha güçlüyüz." }, { type: "say", speaker: "Yuki", text: "Evet. Üçümüz." }] }
+    ]
+  },
+
+  24: {
+    jp: "第24話", title: "Dayı",
+    pages: [
+      { type: "splash", scene: "Dr. Kurosawa'nın Muayenehanesi — Gece — Dr. Kurosawa ve Yuki — Yalnız", dialogue: [{ type: "say", speaker: "Dr. Kurosawa", text: "Yuki... sana bir şey söylemem lazım. Gerçek kimliğim hakkında." }, { type: "say", speaker: "Yuki", text: "Sen... sen benim dayımsın. Bunu biliyorum." }, { type: "say", speaker: "Dr. Kurosawa", text: "Evet. Ama... daha fazlası var." }] },
+      { type: "normal", scene: "Dr. Kurosawa Bir Fotoğraf Çıkarıyor — Genç Yuriko ve Genç Kendisi — Koruyucular Tapınağı", dialogue: [{ type: "say", speaker: "Dr. Kurosawa", text: "Ben... bir zamanlar Koruyucuydum. Yuriko'nun kardeşi. Ve... onunla birlikte eğitim aldım." }, { type: "say", speaker: "Yuki", text: "Neden bıraktın?" }, { type: "say", speaker: "Dr. Kurosawa", text: "Çünkü... korktum. Ve... annen öldüğünde... kaçtım." }] },
+      { type: "closeup", scene: "Dr. Kurosawa'nın Gözleri — Gözyaşları — Suçluluk", dialogue: [{ type: "say", speaker: "Dr. Kurosawa", text: "O gece... ben de oradaydım. Ama... hiçbir şey yapamadım. Korktum." }, { type: "say", speaker: "Yuki", text: "Dayı..." }, { type: "say", speaker: "Dr. Kurosawa", text: "Ve o günden beri... kendimi affetmedim." }] },
+      { type: "splash", scene: "Geriye Dönüş — Yanan Ev — Genç Dr. Kurosawa Dışarıda — Yuriko İçeride", dialogue: [{ type: "say", speaker: "Genç Kurosawa", text: "Yuriko! Çık dışarı!" }, { type: "say", speaker: "Yuriko (ses)", text: "Kenji! Yuki'yi al ve kaç! Onu koru!" }] },
+      { type: "normal", scene: "Genç Kurosawa Küçük Yuki'yi Kucaklıyor — Ama Geri Dönemiyor — Alevler", dialogue: [{ type: "say", speaker: "Genç Kurosawa", text: "Hayır... hayır, seni bırakmayacağım!" }, { type: "say", speaker: "Yuriko (ses)", text: "Kenji... kaç. Yuki'yi koru. Bu... benim son isteğim." }] },
+      { type: "splash", scene: "Şimdiki Zaman — Yuki ve Dr. Kurosawa — Sarılıyor — Gözyaşları", dialogue: [{ type: "say", speaker: "Yuki", text: "Dayı... sen elinden geleni yaptın." }, { type: "say", speaker: "Dr. Kurosawa", text: "Hayır. Yapmadım. Ama şimdi... seni koruyacağım." }, { type: "say", speaker: "Yuki", text: "O zaman... birlikte savaşalım. Annem için. Babam için. Ve... kendimiz için." }] },
+      { type: "normal", scene: "Ren ve Mio İçeri Giriyor — Aile Tamamlanıyor", dialogue: [{ type: "say", speaker: "Ren", text: "Biz... bir şey mi kaçırdık?" }, { type: "say", speaker: "Mio", text: "Sanırım... bir aile anı." }, { type: "say", speaker: "Yuki", text: "Evet. Ve... artık yalnız değilim." }] },
+      { type: "splash", scene: "Dörtlü — Yuki, Ren, Mio ve Dr. Kurosawa — Yan Yana — Kararlılık", dialogue: [{ type: "say", speaker: "Yuki", text: "Toplayıcılar... Kuroi... ve o gizli lider. Hepsi... bizi bekliyor." }, { type: "say", speaker: "Ren", text: "O zaman... onları bulalım." }, { type: "say", speaker: "Mio", text: "Ve... gerçeği ortaya çıkaralım." }] }
+    ]
+  },
+
+  25: {
+    jp: "第25話", title: "Gin'in Vedası",
+    pages: [
+      { type: "splash", scene: "Karanlık Pazar — Yanmış — Yıkılmış — Yuki ve Ren Geliyor", dialogue: [{ type: "inner", text: '"Karanlık Pazar... yok oldu. Gin... Gin nerede?"' }] },
+      { type: "normal", scene: "Yuki ve Ren Enkaz Arasında — Gin'i Arıyor", dialogue: [{ type: "say", speaker: "Yuki", text: "Gin! GIN!" }, { type: "say", speaker: "Ren", text: "Yuki... burada bir şey var." }] },
+      { type: "closeup", scene: "Gin — Enkaz Altında — Zayıf — Ama Gülümsüyor", dialogue: [{ type: "say", speaker: "Gin", text: "Yuki... geldin." }, { type: "say", speaker: "Yuki", text: "Gin! Seni kurtaracağım!" }, { type: "say", speaker: "Gin", text: "Hayır. Ben... ben gidiyorum. Ama... sana bir şey söylemeliyim." }] },
+      { type: "splash", scene: "Gin Yuki'nin Elini Tutuyor — Gözleri Kapalı — Ama Huzurlu", dialogue: [{ type: "say", speaker: "Gin", text: "Yuki... annen... benim öğrencimdi. Ve... sen... sen onun kızısın. Sen... sen her şeyi başarabilirsin." }, { type: "say", speaker: "Yuki", text: "Gin... gitme." }, { type: "say", speaker: "Gin", text: "Gitmeliyim. Ama... sen... sen yaşa. Benim için. Annen için." }] },
+      { type: "normal", scene: "Gin Son Nefesini Veriyor — Yuki Onu Kucaklıyor — Gözyaşları", dialogue: [{ type: "say", speaker: "Yuki", text: "GIN! GIN, KALK!" }, { type: "say", speaker: "Ren", text: "Yuki... o gitti." }, { type: "say", speaker: "Yuki", text: "Hayır... hayır o gidemez. O... o benim ailemdi." }] },
+      { type: "closeup", scene: "Gin'in Elinde Bir Anahtar — Yuki'ye Uzatıyor — Son Hareket", dialogue: [{ type: "say", speaker: "Gin (son söz)", text: "Bu... bu anahtar. Altın Çiçeğin bulunduğu mağaranın anahtarı. Fuji Dağı'nın altında." }, { type: "say", speaker: "Yuki", text: "Gin..." }, { type: "say", speaker: "Gin (son söz)", text: "Yuriko... kızına iyi bak." }] },
+      { type: "splash", scene: "Gin Ölüyor — Yuki Anahtarı Tutuyor — Gözyaşları — Ama Kararlılık", dialogue: [{ type: "say", speaker: "Yuki", text: "Gin... söz veriyorum. Bu savaşı kazanacağım." }, { type: "say", speaker: "Ren", text: "Yuki... gel. Buradan gitmeliyiz." }] },
+      { type: "normal", scene: "Yuki ve Ren K
