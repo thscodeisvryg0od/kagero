@@ -7,10 +7,3 @@ KAGERŌ, anime çizgi roman ve webtoon yayınlayan bir platformdur. İlk serimiz
 ## 🎯 Seri Hakkında
 
 **Hayalet Çiçekler**, karanlık fantezi ve psikolojik gerilim türünde bir anime çizgi romanıdır.
-
-## 🚀 Kurulum
-
-```bash
-git clone https://github.com/kullanici-adi/kagero.git
-cd kagero
-# index.html'i tarayıcıda aç
