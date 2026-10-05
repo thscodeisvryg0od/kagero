@@ -1,5 +1,5 @@
 /* ============================================
-   幽霊花 — HAYALET ÇİÇEKLER
+   KAGERŌ — Anime Çizgi Roman Platformu
    Ana Stil Dosyası
    ============================================ */
 
@@ -21,15 +21,9 @@
   --transition: 0.3s ease;
 }
 
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
+* { margin: 0; padding: 0; box-sizing: border-box; }
 
-html {
-  scroll-behavior: smooth;
-}
+html { scroll-behavior: smooth; }
 
 body {
   background: var(--bg);
@@ -57,9 +51,7 @@ body {
   transition: transform var(--transition);
 }
 
-.navbar.hidden {
-  transform: translateY(-100%);
-}
+.navbar.hidden { transform: translateY(-100%); }
 
 .navbar .logo {
   font-family: var(--font-title);
@@ -71,12 +63,11 @@ body {
   gap: 0.5rem;
   text-decoration: none;
   color: var(--white);
+  transition: color var(--transition);
+  z-index: 10;
 }
 
-.navbar .logo span {
-  color: var(--red);
-  font-family: var(--font-jp);
-}
+.navbar .logo:hover { color: var(--red); }
 
 .navbar ul {
   display: flex;
@@ -114,7 +105,13 @@ body {
   color: var(--white);
   font-size: 1.5rem;
   cursor: pointer;
+  padding: 0.5rem;
+  transition: color var(--transition), transform var(--transition);
+  z-index: 10;
 }
+
+.menu-toggle:hover { color: var(--red); }
+.menu-toggle.active { transform: rotate(90deg); }
 
 /* ============================================
    HERO
@@ -145,11 +142,27 @@ body {
   background-size: 200% 200%;
   animation: floatParticles 20s infinite linear;
   opacity: 0.6;
+  z-index: 1;
+  pointer-events: none;
 }
 
 @keyframes floatParticles {
   from { background-position: 0 0; }
   to { background-position: 200% 200%; }
+}
+
+.hero-bg-img {
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  object-fit: cover;
+  opacity: 0.5;
+  z-index: 0;
+}
+
+.hero > h1, .hero > h2, .hero > p, .hero > div {
+  position: relative;
+  z-index: 2;
 }
 
 .hero-title-jp {
@@ -160,8 +173,6 @@ body {
   letter-spacing: 20px;
   text-shadow: 0 0 40px rgba(230,57,70,0.5);
   animation: glow 3s infinite alternate;
-  position: relative;
-  z-index: 1;
 }
 
 @keyframes glow {
@@ -176,8 +187,6 @@ body {
   letter-spacing: 10px;
   color: var(--white);
   margin-top: 0.5rem;
-  position: relative;
-  z-index: 1;
 }
 
 .hero-tagline {
@@ -186,8 +195,6 @@ body {
   margin-top: 2rem;
   font-style: italic;
   letter-spacing: 2px;
-  position: relative;
-  z-index: 1;
   max-width: 600px;
 }
 
@@ -195,8 +202,6 @@ body {
   margin-top: 3rem;
   display: flex;
   gap: 1.5rem;
-  position: relative;
-  z-index: 1;
   flex-wrap: wrap;
   justify-content: center;
 }
@@ -383,23 +388,28 @@ section {
 }
 
 .character-avatar {
-  width: 120px;
-  height: 120px;
+  width: 140px;
+  height: 140px;
   border-radius: 50%;
-  background: radial-gradient(circle, var(--red) 0%, var(--purple) 100%);
   margin: 0 auto 1.5rem;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-family: var(--font-jp);
-  font-size: 3rem;
-  color: var(--white);
-  border: 2px solid var(--gold);
+  overflow: hidden;
+  border: 3px solid var(--gold);
   transition: transform var(--transition);
+  background: var(--bg);
+}
+
+.character-avatar img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
 
 .character-card:hover .character-avatar {
-  transform: scale(1.1) rotate(5deg);
+  transform: scale(1.08) rotate(3deg);
+  box-shadow: 0 0 30px rgba(244,162,97,0.5);
 }
 
 .character-name {
@@ -560,6 +570,9 @@ footer .footer-links a:hover { color: var(--red); }
   color: var(--gray);
   letter-spacing: 1px;
   z-index: 10;
+  background: rgba(10,10,10,0.6);
+  padding: 0.2rem 0.6rem;
+  border-radius: 12px;
 }
 
 .panel {
@@ -572,10 +585,13 @@ footer .footer-links a:hover { color: var(--red); }
 
 .panel:last-child { border-bottom: none; }
 
+/* ============ PANEL ARKA PLANLARI ============ */
 .panel-image {
   width: 100%;
   min-height: 300px;
-  background: linear-gradient(135deg, #1A0A1A 0%, #0A0A0A 100%);
+  background: 
+    radial-gradient(ellipse at center, #2D1B3D 0%, #1A0A1A 50%, #0A0A0A 100%),
+    linear-gradient(135deg, #1A0A1A 0%, #0A0A0A 100%);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -590,29 +606,68 @@ footer .footer-links a:hover { color: var(--red); }
   left: 50%;
   transform: translate(-50%, -50%);
   font-family: var(--font-jp);
-  font-size: 1.5rem;
-  color: rgba(230,57,70,0.3);
-  letter-spacing: 5px;
+  font-size: 1.4rem;
+  font-weight: 400;
+  color: rgba(255, 255, 255, 0.95);
+  letter-spacing: 3px;
   text-align: center;
-  padding: 1rem;
+  padding: 2rem;
   width: 90%;
+  line-height: 1.6;
+  text-shadow: 
+    0 0 20px rgba(230,57,70,0.8),
+    0 0 40px rgba(230,57,70,0.5),
+    0 2px 4px rgba(0,0,0,0.9);
+  z-index: 2;
 }
 
+.panel-image::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse at center, transparent 30%, rgba(0,0,0,0.7) 100%);
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* Splash — Sinematik, büyük */
 .panel-splash .panel-image {
   min-height: 500px;
-  background: linear-gradient(135deg, #2D1B3D 0%, #1A0A1A 100%);
+  background: 
+    radial-gradient(ellipse at center, #4D1B5D 0%, #2D1B3D 40%, #0A0A0A 100%),
+    linear-gradient(135deg, #2D1B3D 0%, #1A0A1A 100%);
 }
 
 .panel-splash .panel-image::before {
-  font-size: 2.5rem;
-  color: rgba(230,57,70,0.5);
+  font-size: 2rem;
+  color: rgba(255, 255, 255, 1);
+  text-shadow: 
+    0 0 30px rgba(230,57,70,1),
+    0 0 60px rgba(230,57,70,0.7),
+    0 2px 4px rgba(0,0,0,1);
 }
 
-.panel-closeup .panel-image { min-height: 400px; }
+/* Closeup — Yakın çekim, dramatik */
+.panel-closeup .panel-image {
+  min-height: 400px;
+  background: 
+    radial-gradient(ellipse at center, #3D0A1A 0%, #1A0A1A 50%, #0A0A0A 100%),
+    linear-gradient(135deg, #1A0A1A 0%, #0A0A0A 100%);
+}
+
+.panel-closeup .panel-image::before {
+  font-size: 1.6rem;
+  color: rgba(255, 220, 220, 1);
+  text-shadow: 
+    0 0 25px rgba(230,57,70,1),
+    0 0 50px rgba(230,57,70,0.6),
+    0 2px 4px rgba(0,0,0,1);
+}
 
 .panel-dialogue {
   padding: 1.5rem 2rem;
   background: var(--bg2);
+  position: relative;
 }
 
 .dialogue-box {
@@ -622,6 +677,18 @@ footer .footer-links a:hover { color: var(--red); }
   margin: 0.8rem 0;
   border-radius: 0 8px 8px 0;
   position: relative;
+  animation: dialogueSlide 0.6s ease;
+}
+
+@keyframes dialogueSlide {
+  from {
+    opacity: 0;
+    transform: translateX(-15px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
 }
 
 .dialogue-speaker {
@@ -650,6 +717,7 @@ footer .footer-links a:hover { color: var(--red); }
   border-radius: 8px;
   margin: 0.8rem 0;
   border-left: 2px dashed rgba(244,162,97,0.3);
+  animation: dialogueSlide 0.6s ease;
 }
 
 .whisper {
@@ -822,7 +890,6 @@ footer .footer-links a:hover { color: var(--red); }
   line-height: 1.7;
 }
 
-/* Çiçek renk göstergesi */
 .flower-colors {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
@@ -917,9 +984,7 @@ footer .footer-links a:hover { color: var(--red); }
   border: 1px solid transparent;
 }
 
-.poll-option:hover {
-  border-color: var(--red);
-}
+.poll-option:hover { border-color: var(--red); }
 
 /* ============================================
    MAĞAZA SAYFASI
@@ -955,9 +1020,7 @@ footer .footer-links a:hover { color: var(--red); }
   color: rgba(230,57,70,0.4);
 }
 
-.product-info {
-  padding: 1.5rem;
-}
+.product-info { padding: 1.5rem; }
 
 .product-title {
   font-family: var(--font-title);
@@ -997,17 +1060,68 @@ footer .footer-links a:hover { color: var(--red); }
    ============================================ */
 @media (max-width: 968px) {
   .navbar { padding: 1rem 1.5rem; }
-  .navbar ul { display: none; }
-  .navbar ul.open {
-    display: flex;
-    flex-direction: column;
+  
+  /* ANİMASYONLU MOBILE MENU */
+  .navbar ul {
     position: absolute;
     top: 100%; left: 0; right: 0;
+    flex-direction: column;
     background: rgba(10,10,10,0.98);
-    padding: 2rem;
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+    padding: 0 2rem;
     border-bottom: 1px solid rgba(230,57,70,0.3);
+    max-height: 0;
+    overflow: hidden;
+    opacity: 0;
+    transform: translateY(-10px);
+    gap: 0;
+    transition: max-height 0.5s cubic-bezier(0.4, 0, 0.2, 1),
+                opacity 0.4s ease,
+                transform 0.4s ease,
+                padding 0.4s ease;
+    box-shadow: 0 10px 40px rgba(0,0,0,0.8);
   }
+  
+  .navbar ul.open {
+    max-height: 500px;
+    padding: 1.5rem 2rem 2rem;
+    opacity: 1;
+    transform: translateY(0);
+  }
+  
+  .navbar ul li {
+    opacity: 0;
+    transform: translateX(-20px);
+    transition: opacity 0.3s ease, transform 0.3s ease;
+  }
+  
+  .navbar ul.open li {
+    opacity: 1;
+    transform: translateX(0);
+  }
+  
+  .navbar ul.open li:nth-child(1) { transition-delay: 0.1s; }
+  .navbar ul.open li:nth-child(2) { transition-delay: 0.15s; }
+  .navbar ul.open li:nth-child(3) { transition-delay: 0.2s; }
+  .navbar ul.open li:nth-child(4) { transition-delay: 0.25s; }
+  .navbar ul.open li:nth-child(5) { transition-delay: 0.3s; }
+  .navbar ul.open li:nth-child(6) { transition-delay: 0.35s; }
+  
+  .navbar ul li a {
+    display: block;
+    padding: 1rem 0;
+    border-bottom: 1px solid rgba(230,57,70,0.1);
+    font-size: 1rem;
+    letter-spacing: 2px;
+  }
+  
+  .navbar ul li:last-child a { border-bottom: none; }
+  
+  .navbar ul li a::after { display: none; }
+  
   .menu-toggle { display: block; }
+  
   .hero-title-jp { font-size: 3.5rem; letter-spacing: 10px; }
   .hero-title-tr { font-size: 1.5rem; letter-spacing: 5px; }
   section { padding: 3rem 1.5rem; }
@@ -1023,7 +1137,8 @@ footer .footer-links a:hover { color: var(--red); }
   .reader-topbar { padding: 0.6rem 1rem; }
   .chapter-info .title { font-size: 0.8rem; }
   .reader-container { padding: 5rem 0.5rem 2rem; }
-  .panel-image { min-height: 200px; }
+  .panel-image { min-height: 220px; }
   .panel-splash .panel-image { min-height: 350px; }
+  .panel-closeup .panel-image { min-height: 280px; }
   .nav-btn { padding: 0.8rem 1rem; font-size: 0.7rem; }
 }
