@@ -1,0 +1,130 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 900" preserveAspectRatio="xMidYMid slice">
+  <defs>
+    <linearGradient id="skyGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#0A0A0A"/>
+      <stop offset="40%" stop-color="#1A0A1A"/>
+      <stop offset="70%" stop-color="#2D1B3D"/>
+      <stop offset="100%" stop-color="#0A0A0A"/>
+    </linearGradient>
+    <radialGradient id="moonGlow" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#F4A261" stop-opacity="0.6"/>
+      <stop offset="100%" stop-color="#F4A261" stop-opacity="0"/>
+    </radialGradient>
+    <filter id="blur1">
+      <feGaussianBlur stdDeviation="2"/>
+    </filter>
+    <filter id="blur2">
+      <feGaussianBlur stdDeviation="5"/>
+    </filter>
+  </defs>
+  
+  <rect width="1600" height="900" fill="url(#skyGrad)"/>
+  
+  <!-- Ay -->
+  <circle cx="1200" cy="200" r="200" fill="url(#moonGlow)"/>
+  <circle cx="1200" cy="200" r="70" fill="#F4E0B0" opacity="0.9"/>
+  <circle cx="1200" cy="200" r="70" fill="none" stroke="#F4A261" stroke-width="1" opacity="0.5"/>
+  
+  <!-- Yıldızlar -->
+  <g fill="#FFFFFF" opacity="0.6">
+    <circle cx="150" cy="80" r="1.5"/>
+    <circle cx="350" cy="150" r="1"/>
+    <circle cx="550" cy="100" r="2"/>
+    <circle cx="750" cy="180" r="1"/>
+    <circle cx="900" cy="90" r="1.5"/>
+    <circle cx="1050" cy="250" r="1"/>
+    <circle cx="1400" cy="120" r="1.5"/>
+    <circle cx="1500" cy="300" r="1"/>
+    <circle cx="250" cy="280" r="1"/>
+    <circle cx="650" cy="320" r="1.5"/>
+    <circle cx="1350" cy="400" r="1"/>
+    <circle cx="80" cy="400" r="1.5"/>
+  </g>
+  
+  <!-- Tokyo silüeti (uzak) -->
+  <g filter="url(#blur2)" opacity="0.5" fill="#0A0A0A">
+    <rect x="0" y="600" width="80" height="300"/>
+    <rect x="100" y="550" width="60" height="350"/>
+    <rect x="180" y="620" width="100" height="280"/>
+    <rect x="300" y="500" width="70" height="400"/>
+    <rect x="390" y="580" width="90" height="320"/>
+    <rect x="500" y="520" width="60" height="380"/>
+    <rect x="580" y="600" width="120" height="300"/>
+    <rect x="720" y="480" width="80" height="420"/>
+    <rect x="820" y="560" width="100" height="340"/>
+    <rect x="940" y="620" width="70" height="280"/>
+    <rect x="1030" y="540" width="90" height="360"/>
+    <rect x="1140" y="600" width="60" height="300"/>
+    <rect x="1220" y="500" width="110" height="400"/>
+    <rect x="1350" y="580" width="80" height="320"/>
+    <rect x="1450" y="620" width="150" height="280"/>
+  </g>
+  
+  <!-- Tokyo silüeti (yakın) -->
+  <g filter="url(#blur1)" opacity="0.85" fill="#050505">
+    <rect x="0" y="700" width="120" height="200"/>
+    <rect x="140" y="650" width="90" height="250"/>
+    <rect x="250" y="720" width="130" height="180"/>
+    <rect x="400" y="680" width="100" height="220"/>
+    <rect x="520" y="750" width="80" height="150"/>
+    <rect x="620" y="700" width="140" height="200"/>
+    <rect x="780" y="660" width="90" height="240"/>
+    <rect x="890" y="730" width="110" height="170"/>
+    <rect x="1020" y="690" width="100" height="210"/>
+    <rect x="1140" y="750" width="80" height="150"/>
+    <rect x="1240" y="700" width="130" height="200"/>
+    <rect x="1390" y="720" width="90" height="180"/>
+    <rect x="1500" y="750" width="100" height="150"/>
+  </g>
+  
+  <!-- Işıklı pencereler -->
+  <g fill="#E63946" opacity="0.5">
+    <rect x="160" y="680" width="4" height="6"/>
+    <rect x="180" y="700" width="4" height="6"/>
+    <rect x="290" y="760" width="4" height="6"/>
+    <rect x="430" y="720" width="4" height="6"/>
+    <rect x="650" y="740" width="4" height="6"/>
+    <rect x="800" y="700" width="4" height="6"/>
+    <rect x="1050" y="720" width="4" height="6"/>
+    <rect x="1260" y="740" width="4" height="6"/>
+  </g>
+  
+  <!-- Sis -->
+  <ellipse cx="800" cy="850" rx="900" ry="100" fill="#2D1B3D" opacity="0.4" filter="url(#blur2)"/>
+  
+  <!-- Ön plandaki çiçekler -->
+  <g opacity="0.9">
+    <g transform="translate(200, 830)">
+      <ellipse cx="0" cy="-25" rx="8" ry="20" fill="#E63946"/>
+      <ellipse cx="24" cy="-8" rx="8" ry="20" fill="#E63946" transform="rotate(72)"/>
+      <ellipse cx="15" cy="21" rx="8" ry="20" fill="#E63946" transform="rotate(144)"/>
+      <ellipse cx="-15" cy="21" rx="8" ry="20" fill="#E63946" transform="rotate(216)"/>
+      <ellipse cx="-24" cy="-8" rx="8" ry="20" fill="#E63946" transform="rotate(288)"/>
+      <circle r="6" fill="#F4A261"/>
+    </g>
+    <g transform="translate(1400, 850) scale(0.8)">
+      <ellipse cx="0" cy="-25" rx="8" ry="20" fill="#E63946"/>
+      <ellipse cx="24" cy="-8" rx="8" ry="20" fill="#E63946" transform="rotate(72)"/>
+      <ellipse cx="15" cy="21" rx="8" ry="20" fill="#E63946" transform="rotate(144)"/>
+      <ellipse cx="-15" cy="21" rx="8" ry="20" fill="#E63946" transform="rotate(216)"/>
+      <ellipse cx="-24" cy="-8" rx="8" ry="20" fill="#E63946" transform="rotate(288)"/>
+      <circle r="6" fill="#F4A261"/>
+    </g>
+    <g transform="translate(800, 870) scale(0.6)">
+      <ellipse cx="0" cy="-25" rx="8" ry="20" fill="#4A90D9"/>
+      <ellipse cx="24" cy="-8" rx="8" ry="20" fill="#4A90D9" transform="rotate(72)"/>
+      <ellipse cx="15" cy="21" rx="8" ry="20" fill="#4A90D9" transform="rotate(144)"/>
+      <ellipse cx="-15" cy="21" rx="8" ry="20" fill="#4A90D9" transform="rotate(216)"/>
+      <ellipse cx="-24" cy="-8" rx="8" ry="20" fill="#4A90D9" transform="rotate(288)"/>
+      <circle r="6" fill="#F4A261"/>
+    </g>
+  </g>
+  
+  <!-- Uçuşan yapraklar -->
+  <g fill="#E63946" opacity="0.4">
+    <ellipse cx="400" cy="500" rx="3" ry="6" transform="rotate(30 400 500)"/>
+    <ellipse cx="700" cy="450" rx="3" ry="6" transform="rotate(-20 700 450)"/>
+    <ellipse cx="1000" cy="520" rx="3" ry="6" transform="rotate(60 1000 520)"/>
+    <ellipse cx="1300" cy="480" rx="3" ry="6" transform="rotate(-40 1300 480)"/>
+  </g>
+</svg>
