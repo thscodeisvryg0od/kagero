@@ -1,5 +1,5 @@
 /* ============================================
-   幽霊花 — HAYALET ÇİÇEKLER
+   KAGERŌ — Anime Çizgi Roman Platformu
    Ana JavaScript
    ============================================ */
 
@@ -24,15 +24,48 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   // ============================================
-  // MOBILE MENU
+  // MOBILE MENU — ANİMASYONLU
   // ============================================
   const menuToggle = document.querySelector('.menu-toggle');
   const navMenu = document.querySelector('.navbar ul');
 
   if (menuToggle && navMenu) {
     menuToggle.addEventListener('click', () => {
-      navMenu.classList.toggle('open');
-      menuToggle.textContent = navMenu.classList.contains('open') ? '✕' : '☰';
+      const isOpen = navMenu.classList.toggle('open');
+      menuToggle.classList.toggle('active', isOpen);
+      menuToggle.textContent = isOpen ? '✕' : '☰';
+      menuToggle.setAttribute('aria-expanded', isOpen);
+    });
+
+    // Menü linkine tıklanınca kapat
+    navMenu.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => {
+        navMenu.classList.remove('open');
+        menuToggle.classList.remove('active');
+        menuToggle.textContent = '☰';
+        menuToggle.setAttribute('aria-expanded', 'false');
+      });
+    });
+
+    // Dışarı tıklanınca kapat
+    document.addEventListener('click', (e) => {
+      if (navMenu.classList.contains('open') 
+          && !navMenu.contains(e.target) 
+          && !menuToggle.contains(e.target)) {
+        navMenu.classList.remove('open');
+        menuToggle.classList.remove('active');
+        menuToggle.textContent = '☰';
+        menuToggle.setAttribute('aria-expanded', 'false');
+      }
+    });
+
+    // ESC ile kapat
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && navMenu.classList.contains('open')) {
+        navMenu.classList.remove('open');
+        menuToggle.classList.remove('active');
+        menuToggle.textContent = '☰';
+      }
     });
   }
 
@@ -45,7 +78,7 @@ document.addEventListener('DOMContentLoaded', () => {
     window.addEventListener('scroll', () => {
       const scrollTop = window.scrollY;
       const docHeight = document.documentElement.scrollHeight - window.innerHeight;
-      const progress = (scrollTop / docHeight) * 100;
+      const progress = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
       progressBar.style.width = progress + '%';
     });
   }
@@ -147,7 +180,9 @@ document.addEventListener('DOMContentLoaded', () => {
   // ============================================
   // FADE-IN ANİMASYONU
   // ============================================
-  const fadeElements = document.querySelectorAll('.chapter-card, .character-card, .world-card, .product-card');
+  const fadeElements = document.querySelectorAll(
+    '.chapter-card, .character-card, .world-card, .product-card, .chapter-item, .forum-thread'
+  );
   
   if (fadeElements.length > 0 && 'IntersectionObserver' in window) {
     const fadeObserver = new IntersectionObserver((entries) => {
@@ -160,17 +195,41 @@ document.addEventListener('DOMContentLoaded', () => {
       });
     }, { threshold: 0.1 });
 
-    fadeElements.forEach(el => {
+    fadeElements.forEach((el, i) => {
       el.style.opacity = '0';
       el.style.transform = 'translateY(20px)';
-      el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+      el.style.transition = `opacity 0.6s ease ${i * 0.05}s, transform 0.6s ease ${i * 0.05}s`;
       fadeObserver.observe(el);
+    });
+  }
+
+  // ============================================
+  // PANEL SCROLL REVEAL (Reader)
+  // ============================================
+  const panels = document.querySelectorAll('.panel-image, .panel-dialogue');
+  
+  if (panels.length > 0 && 'IntersectionObserver' in window) {
+    const panelObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.style.opacity = '1';
+          entry.target.style.transform = 'translateY(0)';
+        }
+      });
+    }, { threshold: 0.1 });
+
+    panels.forEach(panel => {
+      panel.style.opacity = '0';
+      panel.style.transform = 'translateY(30px)';
+      panel.style.transition = 'opacity 0.8s ease, transform 0.8s ease';
+      panelObserver.observe(panel);
     });
   }
 
   // ============================================
   // KONSOL MESAJI
   // ============================================
-  console.log('%c幽霊花 — HAYALET ÇİÇEKLER', 'color: #E63946; font-size: 24px; font-weight: bold; font-family: serif;');
-  console.log('%c"Her ölüm bir iz bırakır. Ama bazıları... bazıları çiçek açar."', 'color: #F4A261; font-style: italic; font-size: 14px;');
+  console.log('%cKAGERŌ 陽炎', 'color: #E63946; font-size: 28px; font-weight: 900; font-family: serif; letter-spacing: 4px;');
+  console.log('%c"Her hikaye bir iz bırakır."', 'color: #F4A261; font-style: italic; font-size: 14px;');
+  console.log('%c幽霊花 — Hayalet Çiçekler | 50 Bölüm | 5 Arc', 'color: #B0B0B0; font-size: 12px;');
 });
