@@ -1,0 +1,66 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 500" width="400" height="500">
+  <defs>
+    <linearGradient id="renBg" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#1A0505"/>
+      <stop offset="100%" stop-color="#0A0A0A"/>
+    </linearGradient>
+    <linearGradient id="renHair" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#1A1A1A"/>
+      <stop offset="100%" stop-color="#000000"/>
+    </linearGradient>
+    <radialGradient id="renGlow" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#E63946" stop-opacity="0.5"/>
+      <stop offset="100%" stop-color="#E63946" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+  <rect width="400" height="500" fill="url(#renBg)"/>
+  <circle cx="200" cy="220" r="180" fill="url(#renGlow)"/>
+  
+  <!-- Saç arka -->
+  <path d="M 110 180 Q 110 70 200 65 Q 290 70 290 180 L 290 250 L 110 250 Z" fill="url(#renHair)"/>
+  
+  <!-- Yüz -->
+  <ellipse cx="200" cy="220" rx="68" ry="88" fill="#E8D5C8"/>
+  
+  <!-- Saç ön (dağınık) -->
+  <path d="M 130 170 Q 140 120 170 115 L 180 145 L 200 110 L 220 145 L 230 115 Q 260 120 270 170 L 260 160 L 250 130 L 240 160 L 220 135 L 200 170 L 180 135 L 160 160 L 150 130 L 140 160 Z" fill="url(#renHair)"/>
+  
+  <!-- Gözler -->
+  <ellipse cx="172" cy="225" rx="11" ry="14" fill="#0A0A0A"/>
+  <ellipse cx="228" cy="225" rx="11" ry="14" fill="#0A0A0A"/>
+  <ellipse cx="172" cy="225" rx="9" ry="12" fill="#8B1A1A"/>
+  <ellipse cx="228" cy="225" rx="9" ry="12" fill="#8B1A1A"/>
+  <circle cx="172" cy="225" r="5" fill="#0A0A0A"/>
+  <circle cx="228" cy="225" r="5" fill="#0A0A0A"/>
+  <circle cx="175" cy="220" r="2" fill="#FFFFFF"/>
+  <circle cx="231" cy="220" r="2" fill="#FFFFFF"/>
+  
+  <!-- Kaşlar (ciddi) -->
+  <path d="M 158 207 L 188 210" stroke="#0A0A0A" stroke-width="2.5" fill="none"/>
+  <path d="M 212 210 L 242 207" stroke="#0A0A0A" stroke-width="2.5" fill="none"/>
+  
+  <!-- Burun -->
+  <path d="M 200 240 L 195 262 L 205 262" stroke="#B89585" stroke-width="1.5" fill="none"/>
+  
+  <!-- Ağız (alaycı) -->
+  <path d="M 188 280 Q 200 285 215 278" stroke="#8B1A1A" stroke-width="2" fill="none"/>
+  
+  <!-- Yara izi -->
+  <path d="M 240 200 L 250 215" stroke="#8B1A1A" stroke-width="1.5" fill="none" opacity="0.6"/>
+  
+  <!-- Küpe -->
+  <circle cx="270" cy="245" r="6" fill="none" stroke="#F4A261" stroke-width="2"/>
+  <ellipse cx="270" cy="245" rx="3" ry="5" fill="#E63946"/>
+  
+  <!-- Tantō -->
+  <g transform="translate(320, 400) rotate(30)">
+    <rect x="-3" y="-60" width="6" height="50" fill="#333"/>
+    <rect x="-5" y="-80" width="10" height="20" fill="#666"/>
+    <path d="M 0 -110 L -4 -80 L 4 -80 Z" fill="#C0C0C0"/>
+    <circle cx="0" cy="-60" r="4" fill="#8B1A1A"/>
+  </g>
+  
+  <!-- İsim -->
+  <text x="200" y="470" text-anchor="middle" font-family="Cinzel, serif" font-size="20" font-weight="700" fill="#FFFFFF" letter-spacing="4">REN</text>
+  <text x="200" y="490" text-anchor="middle" font-family="Noto Sans JP, sans-serif" font-size="12" fill="#E63946" letter-spacing="2">橘 蓮</text>
+</svg>
