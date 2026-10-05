@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bölüm Arşivi — KAGERŌ</title>
+<meta name="description" content="KAGERŌ — 幽霊花: Hayalet Çiçekler tüm bölümler. 50 bölüm, 5 arc.">
+<link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700;900&family=Inter:wght@300;400;600&family=Noto+Sans+JP:wght@300;400;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+<style>
+  .arc-tabs {
+    display: flex;
+    gap: 0.5rem;
+    margin-bottom: 3rem;
+    overflow-x: auto;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid rgba(230,57,70,0.2);
+  }
+  .arc-tab {
+    padding: 0.8rem 1.5rem;
+    background: transparent;
+    border: 1px solid rgba(230,57,70,0.3);
+    color: var(--gray);
+    font-family: 'Cinzel', serif;
+    font-size: 0.8rem;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: all 0.3s;
+    white-space: nowrap;
+    border-radius: 4px;
+  }
+  .arc-tab:hover { color: var(--white); border-color: var(--red); }
+  .arc-tab.active {
+    background: var(--red);
+    color: var(--white);
+    border-color: var(--red);
+    box-shadow: 0 5px 20px rgba(230,57,70,0.3);
+  }
+  .arc-section { display: none; animation: fadeIn 0.5s; }
+  .arc-section.active { display: block; }
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  .arc-header {
+    margin-bottom: 2rem;
+    padding: 2rem;
+    background: linear-gradient(135deg, var(--purple), var(--bg2));
+    border-left: 4px solid var(--red);
+    border-radius: 4px;
+  }
+  .arc-header h2 {
+    font-family: 'Cinzel', serif;
+    font-size: 1.8rem;
+    margin-bottom: 0.5rem;
+  }
+  .arc-header .jp {
+    font-family: 'Noto Sans JP', sans-serif;
+    color: var(--red);
+    font-size: 1rem;
+    letter-spacing: 4px;
+    margin-bottom: 1rem;
+  }
+  .arc-header p {
+    color: var(--gray);
+    line-height: 1.7;
+  }
+  .chapter-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 1rem;
+  }
+  .chapter-item {
+    background: var(--bg2);
+    border: 1px solid rgba(230,57,70,0.15);
+    padding: 1.2rem 1.5rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1rem;
+    text-decoration: none;
+    color: inherit;
+    transition: all 0.3s;
+    border-radius: 4px;
+  }
+  .chapter-item:hover {
+    border-color: var(--red);
+    transform: translateX(5px);
+    background: var(--bg3);
+  }
+  .chapter-item .num {
+    font-family: 'Noto Sans JP', sans-serif;
+    font-size: 0.8rem;
+    color: var(--red);
+    letter-spacing: 2px;
+    min-width: 60px;
+  }
+  .chapter-item .title {
+    font-family: 'Cinzel', serif;
+    font-size: 0.95rem;
+    font-weight: 700;
+    flex: 1;
+  }
+  .chapter-item .status {
+    font-size: 0.7rem;
+    color: var(--gold);
+    letter-spacing: 1px;
+  }
+  .chapter-item .status.soon { color: var(--gray); }
+  @media (max-width: 600px) {
+    .chapter-item { flex-direction: column; align-items: flex-start; gap: 0.5rem; }
+  }
+</style>
+</head>
+<body>
+
+<nav class="navbar">
+  <a href="index.html" class="logo">
+    <img src="assets/logo-icon.svg" alt="KAGERŌ" width="36" height="36" style="vertical-align: middle;">
+    <span>KAGERŌ</span>
+  </a>
+  <button class="menu-toggle">☰</button>
+  <ul>
+    <li><a href="index.html">Ana Sayfa</a></li>
+    <li><a href="chapters.html" class="active">Bölümler</a></li>
+    <li><a href="characters.html">Karakterler</a></li>
+    <li><a href="world.html">Dünya</a></li>
+    <li><a href="community.html">Topluluk</a></li>
+    <li><a href="shop.html">Mağaza</a></li>
+  </ul>
+</nav>
+
+<section style="padding-top: 8rem;">
+  <h2 class="section-title">
+    <span class="section-title-jp">全話</span> BÖLÜM ARŞİVİ
+  </h2>
+  <p class="section-subtitle">幽霊花 — Hayalet Çiçekler | 50 Bölüm · 5 Arc</p>
+
+  <div class="arc-tabs">
+    <button class="arc-tab active" onclick="showArc('arc1', event)">Arc 1 — İlk Fısıltı</button>
+    <button class="arc-tab" onclick="showArc('arc2', event)">Arc 2 — Karanlık Bahçe</button>
+    <button class="arc-tab" onclick="showArc('arc3', event)">Arc 3 — Altın Çiçek</button>
+    <button class="arc-tab" onclick="showArc('arc4', event)">Arc 4 — Kırık Anılar</button>
+    <button class="arc-tab" onclick="showArc('arc5', event)">Arc 5 — Yeni Bahar</button>
+  </div>
+
+  <!-- ARC 1 -->
+  <div class="arc-section active" id="arc1">
+    <div class="arc-header">
+      <h2>Arc 1: İlk Fısıltı</h2>
+      <div class="jp">第一囁き — Bölüm 1-8</div>
+      <p>Yuki, bir cinayet mahallinde kırmızı bir Hayalet Çiçek bulur. Ren ile tanışır. Babasının gölgesiyle yüzleşir. Her şey burada başlar.</p>
+    </div>
+    <div class="chapter-list">
+      <a href="reader.html" class="chapter-item"><span class="num">第1話</span><span class="title">İlk Fısıltı</span><span class="status">✓ OKU</span></a>
+      <a href="reader.html" class="chapter-item"><span class="num">第2話</span><span class="title">İlk Temas</span><span class="status">✓ OKU</span></a>
+      <a href="reader.html" class="chapter-item"><span class="num">第3話</span><span class="title">Karanlık Pazar</span><span class="status">✓ OKU</span></a>
+      <a href="reader.html" class="chapter-item"><span class="num">第4話</span><span class="title">Beyaz Çiçek</span><span class="status">✓ OKU</span></a>
+      <a href="reader.html" class="chapter-item"><span class="num">第5話</span><span class="title">Toplayıcı</span><span class="status">✓ OKU</span></a>
+      <a href="reader.html" class="chapter-item"><span class="num">第6話</span><span class="title">Koruyucular</span><span class="status">✓ OKU</span></a>
+      <a href="reader.html" class="chapter-item"><span class="num">第7話</span><span class="title">Eğitim</span><span class="status">✓ OKU</span></a>
+      <a href="reader.html" class="chapter-item"><span class="num">第8話</span><span class="title">Babanın Gölgesi</span><span class="status">✓ OKU</span></a>
+    </div>
+  </div>
+
+  <!-- ARC 2 -->
+  <div class="arc-section" id="arc2">
+    <div class="arc-header">
+      <h2>Arc 2: Karanlık Bahçe</h2>
+      <div class="jp">暗い庭 — Bölüm 9-18</div>
+      <p>Bahçıvan saldırır. Koruyucu tapınağına sığınırlar. Yuriko ve Sōren'in yasak aşkı ortaya çıkar. Hana'nın ölümünün gerçeği.</p>
+    </div>
+    <div class="chapter-list">
+      <a href="reader.html" class="chapter-item"><span class="num">第9話</span><span class="title">Kaçış</span><span class="status">✓ OKU</span></a>
+      <a href="reader.html" class="chapter-item"><span class="num">第10話</span><span class="title">Koruyucular</span><span class="status">✓ OKU</span></a>
+      <a href="reader.html" class="chapter-item"><span class="num">第11話</span><span class="title">Yasak Aşk</span><span class="status">✓ OKU</span></a>
+      <a href="reader.html" class="chapter-item"><span class="num">第12話</span><span class="title">Kırık Yemin</span><span class="status">✓ OKU</span></a>
+      <a href="reader.html" class="chapter-item"><span class="num">第13話</span><span class="title">İlk Kurban</span><span class="status">✓ OKU</span></a>
+      <a href="reader.html" class="chapter-item"><span class="num">第14話</span><span class="title">Babanın Gölgesi</span><span class="status">✓ OKU</span></a>
+      <a href="reader.html" class="chapter-item"><span class="num">第15話</span><span class="title">Eğitim Başlıyor</span><span class="status">✓ OKU</span></a>
+      <a href="reader.html" class="chapter-item"><span class="num">第16話</span><span class="title">İlk Görev</span><span class="status">✓ OKU</span></a>
+      <a href="reader.html" class="chapter-item"><span class="num">第17話</span><span class="title">Kan ve Çiçek</span><span class="status">✓ OKU</span></a>
+      <a href="reader.html" class="chapter-item"><span class="num">第18話</span><span class="title">Karanlık Bahçe</span><span class="status">✓ OKU</span></a>
+    </div>
+  </div>
+
+  <!-- ARC 3 -->
+  <div class="arc-section" id="arc3">
+    <div class="arc-header">
+      <h2>Arc 3: Altın Çiçek</h2>
+      <div class="jp">金花 — Bölüm 19-30</div>
+      <p>Altın Çiçeğin peşinde. Aokigahara Ormanı. Toplayıcılar Savaşı. Gin'in ölümü. Fuji Dağı'ndaki büyük buluşma.</p>
+    </div>
+    <div class="chapter-list">
+      <a href="reader.html" class="chapter-item"><span class="num">第19話</span><span class="title">Altın Çiçeğin Efsanesi</span><span class="status">✓ OKU</span></a>
+      <a href="reader.html" class="chapter-item"><span class="num">第20話</span><span class="title">Aokigahara</span><span class="status">✓ OKU</span></a>
+      <a href="reader.html" class="chapter-item"><span class="num">第21話</span><span class="title">Toplayıcılar Savaşı I</span><span class="status">✓ OKU</span></a>
+      <a href="reader.html" class="chapter-item"><span class="num">第22話</span><span class="title">İlk Kan</span><span class="status">✓ OKU</span></a>
+      <a href="reader.html" class="chapter-item"><span class="num">第23話</span><span class="title">Mio'nun Sırrı</span><span class="status">✓ OKU</span></a>
+      <a href="reader.html" class="chapter-item"><span class="num">第24話</span><span class="title">Dayı</span><span class="status">✓ OKU</span></a>
+      <a href="reader.html" class="chapter-item"><span class="num">第25話</span><span class="title">Gin'in Vedası</span><span class="status">✓ OKU</span></a>
+      <a href="reader.html" class="chapter-item"><span class="num">第26話</span><span class="title">Babanın Kalbi</span><span class="status">✓ OKU</span></a>
+      <a href="reader.html" class="chapter-item"><span class="num">第27話</span><span class="title">Altın Çiçeğin Peşinde I</span><span class="status">✓ OKU</span></a>
+      <a href="reader.html" class="chapter-item"><span class="num">第28話</span><span class="title">Altın Çiçeğin Peşinde II</span><span class="status">✓ OKU</span></a>
+      <a href="reader.html" class="chapter-item"><span class="num">第29話</span><span class="title">Fuji Dağı</span><span class="status">✓ OKU</span></a>
+      <a href="reader.html" class="chapter-item"><span class="num">第30話</span><span class="title">Seçim</span><span class="status">✓ OKU</span></a>
+    </div>
+  </div>
+
+  <!-- ARC 4 -->
+  <div class="arc-section" id="arc4">
+    <div class="arc-header">
+      <h2>Arc 4: Kırık Anılar</h2>
+      <div class="jp">壊れた記憶 — Bölüm 31-40</div>
+      <p>Yuki ve babası birlikte çalışır. Hana'nın gerçeği. Büyük Savaş. Bahçıvan'ın fedakarlığı. Veda.</p>
+    </div>
+    <div class="chapter-list">
+      <a href="reader.html" class="chapter-item"><span class="num">第31話</span><span class="title">Baba ve Kız</span><span class="status">✓ OKU</span></a>
+      <a href="reader.html" class="chapter-item"><span class="num">第32話</span><span class="title">Sessiz Akşam Yemeği</span><span class="status">✓ OKU</span></a>
+      <a href="reader.html" class="chapter-item"><span class="num">第33話</span><span class="title">Geçmişin Hayaletleri</span><span class="status">✓ OKU</span></a>
+      <a href="reader.html" class="chapter-item"><span class="num">第34話</span><span class="title">Hana'nın Gerçeği</span><span class="status">✓ OKU</span></a>
+      <a href="reader.html" class="chapter-item"><span class="num">第35話</span><span class="title">Ren'in Yıkımı</span><span class="status">✓ OKU</span></a>
+      <a href="reader.html" class="chapter-item"><span class="num">第36話</span><span class="title">Bağışlama</span><span class="status">✓ OKU</span></a>
+      <a href="reader.html" class="chapter-item"><span class="num">第37話</span><span class="title">Büyük Savaş I</span><span class="status">✓ OKU</span></a>
+      <a href="reader.html" class="chapter-item"><span class="num">第38話</span><span class="title">Büyük Savaş II</span><span class="status">✓ OKU</span></a>
+      <a href="reader.html" class="chapter-item"><span class="num">第39話</span><span class="title">Fedakarlık</span><span class="status">✓ OKU</span></a>
+      <a href="reader.html" class="chapter-item"><span class="num">第40話</span><span class="title">Babanın Sonu</span><span class="status">✓ OKU</span></a>
+    </div>
+  </div>
+
+  <!-- ARC 5 -->
+  <div class="arc-section" id="arc5">
+    <div class="arc-header">
+      <h2>Arc 5: Yeni Bahar</h2>
+      <div class="jp">新春 — Bölüm 41-50</div>
+      <p>Yas. Altın Çiçeğin gerçeği. Son veda. Bırakış. Yeni bahar. Final.</p>
+    </div>
+    <div class="chapter-list">
+      <a href="reader.html" class="chapter-item"><span class="num">第41話</span><span class="title">Yas</span><span class="status">✓ OKU</span></a>
+      <a href="reader.html" class="chapter-item"><span class="num">第42話</span><span class="title">Boşluk</span><span class="status">✓ OKU</span></a>
+      <a href="reader.html" class="chapter-item"><span class="num">第43話</span><span class="title">Ren'in Dönüşü</span><span class="status">✓ OKU</span></a>
+      <a href="reader.html" class="chapter-item"><span class="num">第44話</span><span class="title">Altın Çiçeğin Gerçeği I</span><span class="status">✓ OKU</span></a>
+      <a href="reader.html" class="chapter-item"><span class="num">第45話</span><span class="title">Altın Çiçeğin Gerçeği II</span><span class="status">✓ OKU</span></a>
+      <a href="reader.html" class="chapter-item"><span class="num">第46話</span><span class="title">Annenin Sırrı</span><span class="status">✓ OKU</span></a>
+      <a href="reader.html" class="chapter-item"><span class="num">第47話</span><span class="title">Son Veda I</span><span class="status">✓ OKU</span></a>
+      <a href="reader.html" class="chapter-item"><span class="num">第48話</span><span class="title">Son Veda II</span><span class="status">✓ OKU</span></a>
+      <a href="reader.html" class="chapter-item"><span class="num">第49話</span><span class="title">Bırakış</span><span class="status">✓ OKU</span></a>
+      <a href="reader.html" class="chapter-item"><span class="num">第50話</span><span class="title">Yeni Bahar — FİNAL</span><span class="status">✓ FİNAL</span></a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-logo">KAGERŌ <span style="color: var(--red); font-family: var(--font-jp);">陽炎</span></div>
+  <div class="footer-links">
+    <a href="index.html">Ana Sayfa</a>
+    <a href="chapters.html">Bölümler</a>
+    <a href="characters.html">Karakterler</a>
+    <a href="world.html">Dünya</a>
+    <a href="community.html">Topluluk</a>
+    <a href="shop.html">Mağaza</a>
+  </div>
+  <p>© 2026 KAGERŌ — Anime Çizgi Roman Platformu. Tüm hakları saklıdır.</p>
+  <p style="color: var(--red); margin-top: 1rem;">Her hikaye bir iz bırakır. 🌸</p>
+</footer>
+
+<script src="js/main.js"></script>
+<script>
+  function showArc(arcId, event) {
+    document.querySelectorAll('.arc-tab').forEach(t => t.classList.remove('active'));
+    document.querySelectorAll('.arc-section').forEach(s => s.classList.remove('active'));
+    if (event && event.target) event.target.classList.add('active');
+    document.getElementById(arcId).classList.add('active');
+  }
+</script>
+</body>
+</html>
