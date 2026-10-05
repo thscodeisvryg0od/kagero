@@ -32,16 +32,10 @@
     overflow: hidden;
     box-shadow: 0 20px 60px rgba(230,57,70,0.2);
   }
-  .char-portrait::before {
-    content: '雪';
-    font-family: 'Noto Sans JP', sans-serif;
-    font-size: 15rem;
-    color: rgba(230,57,70,0.15);
-    animation: pulse 4s infinite alternate;
-  }
-  @keyframes pulse {
-    from { opacity: 0.1; transform: scale(1); }
-    to { opacity: 0.25; transform: scale(1.05); }
+  .char-portrait img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
   }
   .char-jp-name {
     font-family: 'Noto Sans JP', sans-serif;
@@ -262,7 +256,7 @@
   <button class="menu-toggle">☰</button>
   <ul>
     <li><a href="index.html">Ana Sayfa</a></li>
-    <li><a href="reader.html">Bölümler</a></li>
+    <li><a href="chapters.html">Bölümler</a></li>
     <li><a href="characters.html" class="active">Karakterler</a></li>
     <li><a href="world.html">Dünya</a></li>
     <li><a href="community.html">Topluluk</a></li>
@@ -272,7 +266,9 @@
 
 <div class="char-hero">
   <div class="char-visual">
-    <div class="char-portrait"></div>
+    <div class="char-portrait">
+      <img src="assets/character-yuki.svg" alt="Yuki Ayanokōji">
+    </div>
   </div>
   <div class="char-info">
     <div class="char-jp-name">綾小路 雪</div>
@@ -396,7 +392,7 @@
   <div class="footer-logo">KAGERŌ <span style="color: var(--red); font-family: var(--font-jp);">陽炎</span></div>
   <div class="footer-links">
     <a href="index.html">Ana Sayfa</a>
-    <a href="reader.html">Bölümler</a>
+    <a href="chapters.html">Bölümler</a>
     <a href="characters.html">Karakterler</a>
     <a href="world.html">Dünya</a>
     <a href="community.html">Topluluk</a>
