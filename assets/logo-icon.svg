@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" width="400" height="400">
+  <defs>
+    <linearGradient id="ringGradient2" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#E63946"/>
+      <stop offset="100%" stop-color="#F4A261"/>
+    </linearGradient>
+    <radialGradient id="innerGlow2" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#2D1B3D"/>
+      <stop offset="100%" stop-color="#0A0A0A"/>
+    </radialGradient>
+    <filter id="glow2">
+      <feGaussianBlur stdDeviation="4" result="coloredBlur"/>
+      <feMerge>
+        <feMergeNode in="coloredBlur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+
+  <circle cx="200" cy="200" r="160" fill="none" stroke="url(#ringGradient2)" stroke-width="4"/>
+  <circle cx="200" cy="200" r="140" fill="none" stroke="url(#ringGradient2)" stroke-width="2" opacity="0.5"/>
+  <circle cx="200" cy="200" r="120" fill="url(#innerGlow2)" stroke="#E63946" stroke-width="1.5" opacity="0.8"/>
+
+  <g filter="url(#glow2)" transform="translate(200,200)">
+    <ellipse cx="0" cy="-35" rx="11" ry="28" fill="#E63946" opacity="0.95"/>
+    <ellipse cx="33" cy="-11" rx="11" ry="28" fill="#E63946" opacity="0.95" transform="rotate(72)"/>
+    <ellipse cx="21" cy="29" rx="11" ry="28" fill="#E63946" opacity="0.95" transform="rotate(144)"/>
+    <ellipse cx="-21" cy="29" rx="11" ry="28" fill="#E63946" opacity="0.95" transform="rotate(216)"/>
+    <ellipse cx="-33" cy="-11" rx="11" ry="28" fill="#E63946" opacity="0.95" transform="rotate(288)"/>
+    <circle cx="0" cy="0" r="9" fill="#F4A261"/>
+  </g>
+</svg>
