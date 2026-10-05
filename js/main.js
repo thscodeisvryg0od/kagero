@@ -1,6 +1,6 @@
 /* ============================================
    KAGERŌ — Anime Çizgi Roman Platformu
-   Ana JavaScript
+   Ana JavaScript (Performans Optimize)
    ============================================ */
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -10,21 +10,28 @@ document.addEventListener('DOMContentLoaded', () => {
   // ============================================
   const navbar = document.querySelector('.navbar');
   let lastScroll = 0;
+  let ticking = false;
 
   if (navbar) {
     window.addEventListener('scroll', () => {
-      const currentScroll = window.scrollY;
-      if (currentScroll > lastScroll && currentScroll > 200) {
-        navbar.classList.add('hidden');
-      } else {
-        navbar.classList.remove('hidden');
+      if (!ticking) {
+        window.requestAnimationFrame(() => {
+          const currentScroll = window.scrollY;
+          if (currentScroll > lastScroll && currentScroll > 200) {
+            navbar.classList.add('hidden');
+          } else {
+            navbar.classList.remove('hidden');
+          }
+          lastScroll = currentScroll;
+          ticking = false;
+        });
+        ticking = true;
       }
-      lastScroll = currentScroll;
-    });
+    }, { passive: true });
   }
 
   // ============================================
-  // MOBILE MENU — ANİMASYONLU
+  // MOBILE MENU
   // ============================================
   const menuToggle = document.querySelector('.menu-toggle');
   const navMenu = document.querySelector('.navbar ul');
@@ -37,17 +44,14 @@ document.addEventListener('DOMContentLoaded', () => {
       menuToggle.setAttribute('aria-expanded', isOpen);
     });
 
-    // Menü linkine tıklanınca kapat
     navMenu.querySelectorAll('a').forEach(link => {
       link.addEventListener('click', () => {
         navMenu.classList.remove('open');
         menuToggle.classList.remove('active');
         menuToggle.textContent = '☰';
-        menuToggle.setAttribute('aria-expanded', 'false');
       });
     });
 
-    // Dışarı tıklanınca kapat
     document.addEventListener('click', (e) => {
       if (navMenu.classList.contains('open') 
           && !navMenu.contains(e.target) 
@@ -55,11 +59,9 @@ document.addEventListener('DOMContentLoaded', () => {
         navMenu.classList.remove('open');
         menuToggle.classList.remove('active');
         menuToggle.textContent = '☰';
-        menuToggle.setAttribute('aria-expanded', 'false');
       }
     });
 
-    // ESC ile kapat
     document.addEventListener('keydown', (e) => {
       if (e.key === 'Escape' && navMenu.classList.contains('open')) {
         navMenu.classList.remove('open');
@@ -73,14 +75,20 @@ document.addEventListener('DOMContentLoaded', () => {
   // İLERLEME ÇUBUĞU
   // ============================================
   const progressBar = document.getElementById('progressBar');
-
   if (progressBar) {
+    let pbTicking = false;
     window.addEventListener('scroll', () => {
-      const scrollTop = window.scrollY;
-      const docHeight = document.documentElement.scrollHeight - window.innerHeight;
-      const progress = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
-      progressBar.style.width = progress + '%';
-    });
+      if (!pbTicking) {
+        window.requestAnimationFrame(() => {
+          const scrollTop = window.scrollY;
+          const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+          const progress = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
+          progressBar.style.width = progress + '%';
+          pbTicking = false;
+        });
+        pbTicking = true;
+      }
+    }, { passive: true });
   }
 
   // ============================================
@@ -88,38 +96,31 @@ document.addEventListener('DOMContentLoaded', () => {
   // ============================================
   window.toggleFullscreen = function() {
     if (!document.fullscreenElement) {
-      document.documentElement.requestFullscreen().catch(err => {
-        console.log('Tam ekran hatası:', err);
-      });
+      document.documentElement.requestFullscreen().catch(err => console.log(err));
     } else {
       document.exitFullscreen();
     }
   };
 
   // ============================================
-  // KLAVYE NAVİGASYONU (Reader)
+  // KLAVYE NAVİGASYONU
   // ============================================
   document.addEventListener('keydown', (e) => {
-    if (e.key === 'ArrowRight') {
-      window.scrollBy({ top: 500, behavior: 'smooth' });
-    }
-    if (e.key === 'ArrowLeft') {
-      window.scrollBy({ top: -500, behavior: 'smooth' });
+    if (document.getElementById('readerContainer')) {
+      if (e.key === 'ArrowRight') window.scrollBy({ top: 500, behavior: 'smooth' });
+      if (e.key === 'ArrowLeft') window.scrollBy({ top: -500, behavior: 'smooth' });
     }
   });
 
   // ============================================
-  // SEKMELER (Karakter sayfası)
+  // SEKMELER
   // ============================================
   window.showTab = function(tabId, event) {
-    document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
-    document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
-    
-    if (event && event.target) {
-      event.target.classList.add('active');
-    }
-    
-    const target = document.getElementById(tabId);
+    const currentPage = document.querySelector('.char-page.active') || document;
+    currentPage.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+    currentPage.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+    if (event && event.target) event.target.classList.add('active');
+    const target = currentPage.querySelector('#' + tabId) || document.getElementById(tabId);
     if (target) target.classList.add('active');
   };
 
@@ -127,22 +128,18 @@ document.addEventListener('DOMContentLoaded', () => {
   // GÜÇ BARLARI ANİMASYONU
   // ============================================
   const powerFills = document.querySelectorAll('.power-fill');
-  
-  if (powerFills.length > 0) {
+  if (powerFills.length > 0 && 'IntersectionObserver' in window) {
     const observer = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
           const bar = entry.target;
           const width = bar.dataset.width || bar.style.width;
           bar.style.width = '0%';
-          setTimeout(() => {
-            bar.style.width = width;
-          }, 200);
+          setTimeout(() => { bar.style.width = width; }, 150);
           observer.unobserve(bar);
         }
       });
-    }, { threshold: 0.5 });
-
+    }, { threshold: 0.3 });
     powerFills.forEach(bar => {
       if (!bar.dataset.width) bar.dataset.width = bar.style.width;
       observer.observe(bar);
@@ -154,7 +151,6 @@ document.addEventListener('DOMContentLoaded', () => {
   // ============================================
   const commentSubmit = document.querySelector('.comment-submit');
   const commentInput = document.querySelector('.comment-input');
-
   if (commentSubmit && commentInput) {
     commentSubmit.addEventListener('click', () => {
       const text = commentInput.value.trim();
@@ -172,16 +168,15 @@ document.addEventListener('DOMContentLoaded', () => {
   // ============================================
   document.querySelectorAll('.poll-option').forEach(option => {
     option.addEventListener('click', () => {
-      const pollName = option.closest('.sidebar-box')?.querySelector('.sidebar-title')?.textContent;
       alert(`"${option.textContent.trim()}" için oy kullandınız! (Demo)`);
     });
   });
 
   // ============================================
-  // FADE-IN ANİMASYONU
+  // FADE-IN (hafifletildi)
   // ============================================
   const fadeElements = document.querySelectorAll(
-    '.chapter-card, .character-card, .world-card, .product-card, .chapter-item, .forum-thread'
+    '.chapter-card, .character-card, .world-card, .product-card'
   );
   
   if (fadeElements.length > 0 && 'IntersectionObserver' in window) {
@@ -193,43 +188,19 @@ document.addEventListener('DOMContentLoaded', () => {
           fadeObserver.unobserve(entry.target);
         }
       });
-    }, { threshold: 0.1 });
+    }, { threshold: 0.05 });
 
     fadeElements.forEach((el, i) => {
       el.style.opacity = '0';
-      el.style.transform = 'translateY(20px)';
-      el.style.transition = `opacity 0.6s ease ${i * 0.05}s, transform 0.6s ease ${i * 0.05}s`;
+      el.style.transform = 'translateY(15px)';
+      el.style.transition = `opacity 0.5s ease ${Math.min(i * 0.04, 0.4)}s, transform 0.5s ease ${Math.min(i * 0.04, 0.4)}s`;
       fadeObserver.observe(el);
     });
   }
 
   // ============================================
-  // PANEL SCROLL REVEAL (Reader)
-  // ============================================
-  const panels = document.querySelectorAll('.panel-image, .panel-dialogue');
-  
-  if (panels.length > 0 && 'IntersectionObserver' in window) {
-    const panelObserver = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.style.opacity = '1';
-          entry.target.style.transform = 'translateY(0)';
-        }
-      });
-    }, { threshold: 0.1 });
-
-    panels.forEach(panel => {
-      panel.style.opacity = '0';
-      panel.style.transform = 'translateY(30px)';
-      panel.style.transition = 'opacity 0.8s ease, transform 0.8s ease';
-      panelObserver.observe(panel);
-    });
-  }
-
-  // ============================================
-  // KONSOL MESAJI
+  // KONSOL
   // ============================================
   console.log('%cKAGERŌ 陽炎', 'color: #E63946; font-size: 28px; font-weight: 900; font-family: serif; letter-spacing: 4px;');
   console.log('%c"Her hikaye bir iz bırakır."', 'color: #F4A261; font-style: italic; font-size: 14px;');
-  console.log('%c幽霊花 — Hayalet Çiçekler | 50 Bölüm | 5 Arc', 'color: #B0B0B0; font-size: 12px;');
 });
