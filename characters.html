@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Karakterler — 幽霊花</title>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700;900&family=Inter:wght@300;400;600&family=Noto+Sans+JP:wght@300;400;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+<style>
+  .char-hero {
+    min-height: 90vh;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+    padding: 8rem 3rem 3rem;
+    max-width: 1400px;
+    margin: 0 auto;
+    gap: 3rem;
+  }
+  .char-portrait {
+    width: 100%;
+    aspect-ratio: 3/4;
+    background: linear-gradient(180deg, #1A0A1A 0%, #0A0A0A 100%);
+    border: 1px solid rgba(230,57,70,0.3);
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 20px 60px rgba(230,57,70,0.2);
+  }
+  .char-portrait::before {
+    content: '雪';
+    font-family: 'Noto Sans JP', sans-serif;
+    font-size: 15rem;
+    color: rgba(230,57,70,0.15);
+    animation: pulse 4s infinite alternate;
+  }
+  @keyframes pulse {
+    from { opacity: 0.1; transform: scale(1); }
+    to { opacity: 0.25; transform: scale(1.05); }
+  }
+  .char-jp-name {
+    font-family: 'Noto Sans JP', sans-serif;
+    font-size: 1rem;
+    color: var(--red);
+    letter-spacing: 8px;
+    margin-bottom: 0.5rem;
+  }
+  .char-name {
+    font-family: 'Cinzel', serif;
+    font-size: 3.5rem;
+    font-weight: 900;
+    line-height: 1.1;
+    margin-bottom: 0.5rem;
+    background: linear-gradient(135deg, var(--white) 0%, var(--red) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+  .char-role {
+    display: inline-block;
+    padding: 0.4rem 1rem;
+    background: rgba(230,57,70,0.15);
+    border: 1px solid var(--red);
+    color: var(--red);
+    font-size: 0.75rem;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    margin-bottom: 2rem;
+  }
+  .char-tagline {
+    font-style: italic;
+    color: var(--gold);
+    font-size: 1.1rem;
+    line-height: 1.6;
+    padding-left: 1.5rem;
+    border-left: 3px solid var(--gold);
+    margin-bottom: 2rem;
+  }
+  .stats-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+    margin-bottom: 2rem;
+  }
+  .stat-item {
+    background: var(--bg2);
+    padding: 1rem;
+    border-left: 2px solid var(--red);
+  }
+  .stat-label {
+    font-size: 0.7rem;
+    color: var(--gray);
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin-bottom: 0.3rem;
+  }
+  .stat-value {
+    font-family: 'Cinzel', serif;
+    font-size: 1.1rem;
+    font-weight: 700;
+  }
+  .power-bar { margin-bottom: 1.5rem; }
+  .power-header {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.75rem;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin-bottom: 0.5rem;
+  }
+  .power-header .label { color: var(--gray); }
+  .power-header .value { color: var(--red); font-weight: 700; }
+  .power-track {
+    height: 6px;
+    background: rgba(255,255,255,0.1);
+    border-radius: 3px;
+    overflow: hidden;
+  }
+  .power-fill {
+    height: 100%;
+    background: linear-gradient(90deg, var(--red), var(--gold));
+    border-radius: 3px;
+    transition: width 1s ease-out;
+  }
+  .tabs-section {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 3rem;
+  }
+  .tabs {
+    display: flex;
+    border-bottom: 1px solid rgba(230,57,70,0.3);
+    margin-bottom: 3rem;
+    overflow-x: auto;
+  }
+  .tab {
+    padding: 1rem 2rem;
+    background: transparent;
+    border: none;
+    color: var(--gray);
+    font-family: 'Cinzel', serif;
+    font-size: 0.85rem;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: all 0.3s;
+    position: relative;
+    white-space: nowrap;
+  }
+  .tab:hover { color: var(--white); }
+  .tab.active { color: var(--red); }
+  .tab.active::after {
+    content: '';
+    position: absolute;
+    bottom: -1px; left: 0; right: 0;
+    height: 2px;
+    background: var(--red);
+    box-shadow: 0 0 10px var(--red);
+  }
+  .tab-content { display: none; animation: fadeIn 0.5s; }
+  .tab-content.active { display: block; }
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  .tab-content h3 {
+    font-family: 'Cinzel', serif;
+    font-size: 1.5rem;
+    margin-bottom: 1.5rem;
+    color: var(--gold);
+    letter-spacing: 2px;
+  }
+  .tab-content p {
+    color: var(--gray);
+    line-height: 1.8;
+    font-size: 1rem;
+    margin-bottom: 1.5rem;
+  }
+  .relations-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1.5rem;
+  }
+  .relation-card {
+    background: var(--bg2);
+    padding: 1.5rem;
+    border: 1px solid rgba(230,57,70,0.2);
+    transition: all 0.3s;
+  }
+  .relation-card:hover {
+    border-color: var(--red);
+    transform: translateY(-5px);
+    box-shadow: 0 15px 40px rgba(230,57,70,0.15);
+  }
+  .relation-name {
+    font-family: 'Cinzel', serif;
+    font-size: 1.1rem;
+    font-weight: 700;
+    margin-bottom: 0.3rem;
+  }
+  .relation-name-jp {
+    font-family: 'Noto Sans JP', sans-serif;
+    font-size: 0.8rem;
+    color: var(--gold);
+    margin-bottom: 1rem;
+  }
+  .relation-type {
+    font-size: 0.75rem;
+    color: var(--red);
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin-bottom: 1rem;
+  }
+  .relation-desc {
+    font-size: 0.85rem;
+    color: var(--gray);
+    line-height: 1.6;
+  }
+  .quotes-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+  .quote-item {
+    background: var(--bg2);
+    padding: 2rem;
+    border-left: 3px solid var(--red);
+    position: relative;
+  }
+  .quote-text {
+    font-style: italic;
+    font-size: 1.05rem;
+    line-height: 1.7;
+    padding-left: 2rem;
+    margin-bottom: 0.8rem;
+  }
+  .quote-context {
+    font-size: 0.8rem;
+    color: var(--gray);
+    letter-spacing: 1px;
+    padding-left: 2rem;
+  }
+  @media (max-width: 968px) {
+    .char-hero { grid-template-columns: 1fr; padding: 6rem 1.5rem 2rem; }
+    .char-name { font-size: 2.5rem; }
+    .tabs-section { padding: 2rem 1.5rem; }
+  }
+</style>
+</head>
+<body>
+
+<nav class="navbar">
+  <a href="index.html" class="logo"><span>幽霊花</span> HAYALET ÇİÇEKLER</a>
+  <button class="menu-toggle">☰</button>
+  <ul>
+    <li><a href="index.html">Ana Sayfa</a></li>
+    <li><a href="reader.html">Bölümler</a></li>
+    <li><a href="characters.html" class="active">Karakterler</a></li>
+    <li><a href="world.html">Dünya</a></li>
+    <li><a href="community.html">Topluluk</a></li>
+    <li><a href="shop.html">Mağaza</a></li>
+  </ul>
+</nav>
+
+<div class="char-hero">
+  <div class="char-visual">
+    <div class="char-portrait"></div>
+  </div>
+  <div class="char-info">
+    <div class="char-jp-name">綾小路 雪</div>
+    <h1 class="char-name">Yuki Ayanokōji</h1>
+    <div class="char-role">Protagonist — Kan'nōsha</div>
+    <p class="char-tagline">"Ben zaten çoktan kayboldum. Ama belki... belki birinin beni bulmasına izin verebilirim."</p>
+    <div class="stats-grid">
+      <div class="stat-item"><div class="stat-label">Yaş</div><div class="stat-value">18</div></div>
+      <div class="stat-item"><div class="stat-label">Boy</div><div class="stat-value">162 cm</div></div>
+      <div class="stat-item"><div class="stat-label">Doğum Günü</div><div class="stat-value">21 Aralık</div></div>
+      <div class="stat-item"><div class="stat-label">Kan Grubu</div><div class="stat-value">AB</div></div>
+    </div>
+    <div class="power-bar">
+      <div class="power-header"><span class="label">Fısıltı Duyma</span><span class="value">S-Sınıfı</span></div>
+      <div class="power-track"><div class="power-fill" style="width: 95%;"></div></div>
+    </div>
+    <div class="power-bar">
+      <div class="power-header"><span class="label">Zihinsel Dayanıklılık</span><span class="value">B-Sınıfı</span></div>
+      <div class="power-track"><div class="power-fill" style="width: 65%;"></div></div>
+    </div>
+    <div class="power-bar">
+      <div class="power-header"><span class="label">Fiziksel Güç</span><span class="value">D-Sınıfı</span></div>
+      <div class="power-track"><div class="power-fill" style="width: 30%;"></div></div>
+    </div>
+  </div>
+</div>
+
+<div class="tabs-section">
+  <div class="tabs">
+    <button class="tab active" onclick="showTab('bio', event)">Biyografi</button>
+    <button class="tab" onclick="showTab('powers', event)">Güçler</button>
+    <button class="tab" onclick="showTab('relations', event)">İlişkiler</button>
+    <button class="tab" onclick="showTab('quotes', event)">Alıntılar</button>
+  </div>
+
+  <div class="tab-content active" id="bio">
+    <h3>📖 Biyografi</h3>
+    <p>Yuki Ayanokōji, 21 Aralık'ta Tokyo'nun Yanaka semtinde doğdu. Babası <strong>Ayanokōji Sōren</strong> bir botanik profesörü, annesi <strong>Ayanokōji Yuriko</strong> ise gizemli bir geçmişe sahip bir çiçek uzmanıydı. Yuki, 7 yaşına kadar sıradan bir çocukluk geçirdi — ta ki o geceye kadar.</p>
+    <p>7 yaşındayken, ailesinin evi gizemli bir şekilde alev aldı. Yangında annesi ve babası öldü. Yuki, yangından sağ kurtuldu ama kendini bir çiçek tarlasının ortasında buldu. O günden beri, ölülerin fısıltılarını duyuyor.</p>
+    <p>Beş yıl sonra, Koruyucuların lideri oldu. Ailesinin anısını onurlandırarak, yeni nesil Kan'nōsha'ları eğitiyor.</p>
+  </div>
+
+  <div class="tab-content" id="powers">
+    <h3>⚡ Güçler ve Yetenekler</h3>
+    <p><strong>Fısıltı Duyma (囁き聞き — Sasayaki Kiki):</strong> Yuki, Hayalet Çiçeklere dokunduğunda ölünün son anısını yaşar. Bu, sadece görsel değil; duygusal, işitsel ve hatta fiziksel bir deneyimdir.</p>
+    <p><strong>Anı Filtreleme:</strong> Eğitimle geliştirdiği bir yetenek. İstemediği anıları bloklayabilir, sadece belirli bir anıya odaklanabilir.</p>
+    <p><strong>Ölü İletişimi:</strong> Nadiren de olsa, güçlü bir Hayalet Çiçek aracılığıyla ölünün ruhuyla kısa süreli iletişim kurabilir.</p>
+    <p><strong>Zayıflıklar:</strong> Duyduğu anılar onu psikolojik olarak yıpratır. Uzun süreli kullanımda halüsinasyonlar görebilir.</p>
+  </div>
+
+  <div class="tab-content" id="relations">
+    <h3>🔗 İlişkiler</h3>
+    <div class="relations-grid">
+      <div class="relation-card">
+        <div class="relation-name">Ren Tachibana</div>
+        <div class="relation-name-jp">橘 蓮</div>
+        <div class="relation-type">Müttefik / Sevgili</div>
+        <div class="relation-desc">Yuki'yi Hayalet Çiçekler dünyasına sokan kişi. Zamanla aralarındaki bağ derinleşti.</div>
+      </div>
+      <div class="relation-card">
+        <div class="relation-name">Bahçıvan</div>
+        <div class="relation-name-jp">庭師</div>
+        <div class="relation-type">Baba / Düşman</div>
+        <div class="relation-desc">Yuki'nin babası. Trajik bir figür. Sonunda kızı için kendini feda etti.</div>
+      </div>
+      <div class="relation-card">
+        <div class="relation-name">Yuriko Ayanokōji</div>
+        <div class="relation-name-jp">綾小路 百合子</div>
+        <div class="relation-type">Anne (Ölü)</div>
+        <div class="relation-desc">Yuki'nin annesi. Eski bir Kan'nōsha. Yuki'yi korumak için öldü.</div>
+      </div>
+      <div class="relation-card">
+        <div class="relation-name">Mio Sakuraba</div>
+        <div class="relation-name-jp">桜庭 美桜</div>
+        <div class="relation-type">En İyi Arkadaş</div>
+        <div class="relation-desc">Yuki'nin normal hayattaki bağlantısı. Sonunda gerçeği öğrendi ve destek oldu.</div>
+      </div>
+      <div class="relation-card">
+        <div class="relation-name">Dr. Kenji Kurosawa</div>
+        <div class="relation-name-jp">黒沢 健二</div>
+        <div class="relation-type">Dayı / Mentor</div>
+        <div class="relation-desc">Yuriko'nun kardeşi. Yuki'nin dayısı. Ona rehberlik etti.</div>
+      </div>
+      <div class="relation-card">
+        <div class="relation-name">Ne</div>
+        <div class="relation-name-jp">根</div>
+        <div class="relation-type">Mentor</div>
+        <div class="relation-desc">Koruyucuların eski lideri. Görevi Yuki'ye devretti.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="tab-content" id="quotes">
+    <h3>💬 Alıntılar</h3>
+    <div class="quotes-list">
+      <div class="quote-item">
+        <div class="quote-text">Her ölüm bir iz bırakır. Ama bazıları... bazıları çiçek açar.</div>
+        <div class="quote-context">— Bölüm 1: İlk Fısıltı</div>
+      </div>
+      <div class="quote-item">
+        <div class="quote-text">Ben zaten çoktan kayboldum. Ama belki... belki birinin beni bulmasına izin verebilirim.</div>
+        <div class="quote-context">— Bölüm 2: İlk Temas</div>
+      </div>
+      <div class="quote-item">
+        <div class="quote-text">Ben zaten her gün acı çekiyorum. En azından... nedenini bilmek istiyorum.</div>
+        <div class="quote-context">— Bölüm 3: Karanlık Pazar</div>
+      </div>
+      <div class="quote-item">
+        <div class="quote-text">Ağla. İstediğin kadar. Sonra... devam ederiz.</div>
+        <div class="quote-context">— Ren Tachibana, Bölüm 3</div>
+      </div>
+      <div class="quote-item">
+        <div class="quote-text">Seninle gurur duyuyoruz. Ama sen... sen hep bizimlesin. Kalbimizde.</div>
+        <div class="quote-context">— Yuriko, Bölüm 48</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <div class="footer-logo">幽霊花 — HAYALET ÇİÇEKLER</div>
+  <p>© 2026 Hayalet Çiçekler Projesi. Tüm hakları saklıdır.</p>
+</footer>
+
+<script src="js/main.js"></script>
+</body>
+</html>
