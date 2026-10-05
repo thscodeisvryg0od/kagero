@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64">
+  <defs>
+    <linearGradient id="favGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#E63946"/>
+      <stop offset="100%" stop-color="#F4A261"/>
+    </linearGradient>
+  </defs>
+
+  <rect width="64" height="64" fill="#0A0A0A" rx="12"/>
+
+  <g transform="translate(32,30)">
+    <ellipse cx="0" cy="-10" rx="4" ry="9" fill="#E63946"/>
+    <ellipse cx="9.5" cy="-3" rx="4" ry="9" fill="#E63946" transform="rotate(72)"/>
+    <ellipse cx="5.9" cy="8" rx="4" ry="9" fill="#E63946" transform="rotate(144)"/>
+    <ellipse cx="-5.9" cy="8" rx="4" ry="9" fill="#E63946" transform="rotate(216)"/>
+    <ellipse cx="-9.5" cy="-3" rx="4" ry="9" fill="#E63946" transform="rotate(288)"/>
+    <circle cx="0" cy="0" r="3" fill="#F4A261"/>
+  </g>
+
+  <text x="32" y="55" text-anchor="middle" font-family="Georgia, serif" font-size="9" font-weight="700" fill="#FFFFFF" letter-spacing="1">K</text>
+</svg>
