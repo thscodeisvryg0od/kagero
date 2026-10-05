@@ -28,233 +28,73 @@
 
 <div class="reader-container" id="readerContainer"></div>
 
+<script src="js/chapters.js"></script>
 <script src="js/main.js"></script>
 <script>
-/* ============================================
-   BÖLÜM VERİLERİ
-   ============================================ */
-const chaptersData = {
-  1: {
-    jp: "第1話", title: "İlk Fısıltı",
-    pages: [
-      { type: "splash", scene: "Yağmurlu Tokyo Gecesi — Shinjuku Silüeti — Kan İçinde Açan Kırmızı Çiçek", dialogue: [{ type: "inner", text: '"Her ölüm bir iz bırakır. Ama bazıları... bazıları çiçek açar."' }] },
-      { type: "normal", scene: "Yuki, Dizlerinin Üstünde, Kan Birikintisindeki Çiçeğe Bakıyor — Yağmur", dialogue: [{ type: "say", speaker: "Yuki", text: "Yine mi...?" }, { type: "inner", text: '"Bu his... her seferinde aynı. Mide bulantısı. Kalp çarpıntısı. Ve o sesler..."' }] },
-      { type: "closeup", scene: "Geriye Dönüş — 7 Yaşındaki Yuki, Yanan Evin Önünde", dialogue: [{ type: "say", speaker: "Annesi (ses)", text: "Yuki! Kaç! Sakın arkanı dönme!" }] },
-      { type: "normal", scene: "Yuki'nin Parmağı Çiçeğe Değiyor — Temas Anı", dialogue: [] },
-      { type: "splash", scene: "Yuki'nin Gözleri Beyaz Işıkla Doluyor — Fısıltılar", dialogue: [{ type: "whisper", text: '"Bıçak... çok soğuk..."' }, { type: "whisper", text: '"Lütfen... dur..."' }, { type: "whisper", text: '"ANNEM... ANNEM NEREDE..."' }] },
-      { type: "closeup", scene: "Kadın Karanlık Sokakta Koşuyor — Peşinde Gölgeli Figür", dialogue: [] },
-      { type: "normal", scene: "Ren, Sokak Lambasının Altında — Elinde Tantō — Alaycı İfade", dialogue: [{ type: "say", speaker: "Ren", text: "Ona dokunmamalıydın." }, { type: "say", speaker: "Ren", text: "Yoksa sen de mi 'Kan'nōsha'sın?" }, { type: "say", speaker: "Yuki", text: "Sen... kimsin?" }, { type: "say", speaker: "Ren", text: "Bu soruyu ben sana soracaktım. Ama önce... o çiçekten kaç tane daha var, biliyor musun? Ve sen onlardan biriydin." }] },
-      { type: "splash", scene: "Ren, Elini Yuki'ye Uzatıyor — Yüzlerce Hayalet Çiçek Silüeti — 'Hoş geldin, karanlık bahçeye.'", dialogue: [] }
-    ]
-  },
-  2: {
-    jp: "第2話", title: "İlk Temas",
-    pages: [
-      { type: "splash", scene: "Şafak Söküyor — Yuki ve Ren Dar Sokaktan Ana Caddeye Çıkıyor", dialogue: [{ type: "inner", text: '"Bir gece. Sadece bir gece. Ve hayatım... geri dönüşü olmayan bir yola girdi."' }] },
-      { type: "normal", scene: "Yuki ve Ren Yan Yana Yürüyor — Islak Saçlar, Sessizlik", dialogue: [{ type: "say", speaker: "Yuki", text: "Bana ne olduğunu açıklamadın." }, { type: "say", speaker: "Ren", text: "Açıklayacağım. Ama önce duş, temiz kıyafet ve... kahve." }] },
-      { type: "closeup", scene: "Ren'in Yüzü — Ciddi Ama Yorgun İfade", dialogue: [{ type: "say", speaker: "Ren", text: "Cinayet mahallinden çıkmış bir lise öğrencisi gibi görünüyorsun. Ve emin ol, polis birazdan o sokakta olacak." }] },
-      { type: "closeup", scene: "Yuki'nin Şaşkın Yüzü", dialogue: [{ type: "say", speaker: "Yuki", text: "Polis mi?! Ben... ben bir şey yapmadım!" }, { type: "say", speaker: "Ren (off-screen)", text: "Biliyorum. Ama 'Kan'nōsha' olduğunu polise nasıl açıklayacaksın?" }] },
-      { type: "normal", scene: "Ren'in Dairesi — Yanaka Semti — Eski Ahşap ve Taş Bina", dialogue: [{ type: "say", speaker: "Ren", text: "Burada yaşıyorum. Sadece geçici bir yer. Ama işini görür." }] },
-      { type: "normal", scene: "Ren'in Dairesi İçi — Cam Kavanozlar, Kurutulmuş Çiçekler, Haritalar, Kendo Kılıcı", dialogue: [{ type: "say", speaker: "Yuki", text: "Bunlar... hepsi Hayalet Çiçek mi?" }, { type: "say", speaker: "Ren (off-screen)", text: "Evet. Her biri birinin son anısı. Bazıları... benim bulduğum. Bazıları... benim avladığım." }] },
-      { type: "normal", scene: "Ren Mutfakta Kahve Yapıyor — Sırtı Yuki'ye Dönük", dialogue: [{ type: "say", speaker: "Yuki", text: "Neden bana yardım ediyorsun? Beni tanımıyorsun bile." }, { type: "say", speaker: "Ren", text: "Çünkü bir zamanlar ben de senin gibiydim. Karanlıkta yalnız." }, { type: "inner", text: '"Ve yalnız olanlar... en kolay avlananlardır."' }] },
-      { type: "normal", scene: "Masa Başı — Aralarında Harita, Defter ve Tantō", dialogue: [{ type: "say", speaker: "Ren", text: "Peki. Sana kısa bir ders vereceğim. Uzun versiyonu 3 yıl sürdü, kısa versiyonu 5 dakika." }, { type: "say", speaker: "Ren", text: "Bir: Hayalet Çiçekler, şiddetli ölümlerin olduğu yerlerde açar. İki: Her çiçek, ölünün son anısını taşır. Üç: Sadece 'Kan'nōsha'lar bu anıları okuyabilir." }, { type: "say", speaker: "Ren", text: "Dört: Sen bir Kan'nōsha'sın. Beş: Bu, senin için hem bir armağan... hem de bir lanet." }, { type: "say", speaker: "Yuki", text: "Neden lanet?" }, { type: "say", speaker: "Ren", text: "Çünkü duyduğun her fısıltı, seni biraz daha içine çeker. Bir gün... geri dönemeyebilirsin." }, { type: "say", speaker: "Yuki", text: "Ben zaten... çoktan kayboldum." }] },
-      { type: "normal", scene: "Ren'in Gözleri — Tanıdık Bir Acı", dialogue: [{ type: "say", speaker: "Ren", text: "Kaybolmadın. Sadece... yolunu bilmiyorsun. Ben de bilmiyordum." }] },
-      { type: "closeup", scene: "Geriye Dönüş — Genç Ren, Hastane Koridorunda, Elinde Çiçek", dialogue: [{ type: "say", speaker: "Doktor (ses)", text: "Tachibana-san... kız kardeşiniz... kurtaramadık." }] },
-      { type: "closeup", scene: "Ren, Hana'nın Hastane Odasına Giriyor — Hana Yatakta Hareketsiz", dialogue: [{ type: "inner", text: '"Hana... neden... neden sen?"' }] },
-      { type: "normal", scene: "Şimdiki Zaman — Ren Masadan Kalkıyor, Duvardaki Haritaya Gidiyor", dialogue: [{ type: "say", speaker: "Yuki", text: "Kız kardeşin mi?" }, { type: "say", speaker: "Ren", text: "Konuşmayalım. Şimdi değil." }] },
-      { type: "normal", scene: "Harita — Kırmızı İğnelerle İşaretlenmiş Noktalar — Ortada Siyah İğne", dialogue: [{ type: "say", speaker: "Ren", text: "Bu harita... son 6 ayda bulduğum tüm Hayalet Çiçeklerin yerleri. Ve hepsi aynı desende." }, { type: "say", speaker: "Ren", text: "Her çiçek, bir cinayet kurbanına ait. Ve hepsi... aynı kişi tarafından öldürülmüş." }, { type: "say", speaker: "Yuki", text: "Aynı kişi mi? Bir seri katil mi?" }, { type: "say", speaker: "Ren", text: "Hayır. Daha kötüsü." }] },
-      { type: "splash", scene: "Ren Yuki'ye Dönüyor — Karanlık İfade — Arka Planda Harita ve Kavanozlar", dialogue: [{ type: "say", speaker: "Ren", text: "Bir 'Toplayıcı'. Ve o toplayıcı... senin annenin ölümünden de sorumlu olabilir." }] },
-      { type: "closeup", scene: "Yuki'nin Gözleri — Şok, İnançsızlık, Öfke, Bir Kıvılcım", dialogue: [{ type: "say", speaker: "Yuki", text: "Ne... ne dedin sen?" }] }
-    ]
-  },
-  3: {
-    jp: "第3話", title: "Karanlık Pazar",
-    pages: [
-      { type: "splash", scene: "Tokyo'nun Altında Terk Edilmiş Metro İstasyonu — Onlarca Tezgah — Parlayan Çiçekler", dialogue: [{ type: "inner", text: '"Tokyo\'nun altında... başka bir Tokyo var. Ve buranın ışıkları... ölülerden geliyor."' }] },
-      { type: "normal", scene: "Ren Paslı Bir Demir Kapıyı Açıyor — Tabela: '闇市 — Yamīchi'", dialogue: [{ type: "say", speaker: "Ren", text: "Hoş geldin. Burası Karanlık Pazar. Tokyo'nun en eski yeraltı piyasası." }, { type: "say", speaker: "Yuki", text: "Bunlar... hepsi mi Kan'nōsha?" }, { type: "say", speaker: "Ren", text: "Hayır. Çoğu sadece alıcı. Anıları toplayanlar, satanlar, koleksiyon yapanlar. Ve tabii... avcılar." }] },
-      { type: "closeup", scene: "Tezgahlar — Kavanozlar — Etiketler: 'Boğulma', 'Cinayet', 'İntihar' — Fiyatlar", dialogue: [{ type: "say", speaker: "Yuki", text: "15 milyon yen... bir anı için mi?" }, { type: "say", speaker: "Ren", text: "Bir hayatın son 3 saniyesi. Bence ucuz bile." }] },
-      { type: "normal", scene: "Pazarın Kalabalığı — İnsanlar Fısıldaşıyor, Pazarlık Yapıyor", dialogue: [{ type: "say", speaker: "Ren", text: "Burada kural birdir: Ne aldığını sorma. Ne sattığını söyleme." }] },
-      { type: "closeup", scene: "Yuki Bir Tezgahın Önünde Duruyor — Beyaz Çiçek — Etiket: '綾小路 百合子 — Ayanokōji Yuriko'", dialogue: [{ type: "say", speaker: "Yuki", text: "Bu... bu annemin adı..." }] },
-      { type: "normal", scene: "Tezgahın Arkasında Yaşlı Kör Kadın — Gin — Beyaz Gözler, Huzurlu Gülümseme", dialogue: [{ type: "say", speaker: "Gin", text: "Demek sonunda geldin. Seni bekliyordum, küçük Ayanokōji." }, { type: "say", speaker: "Yuki", text: "Beni... beni nasıl tanıyorsun?" }, { type: "say", speaker: "Gin", text: "Gözlerim görmüyor. Ama annenin çiçeğini tanırım. O çiçek, 12 yıldır bu tezgahta. Ve sadece senin elinde açacak." }] },
-      { type: "normal", scene: "Ren Tezgahın Yanında — Endişeli İfade", dialogue: [{ type: "say", speaker: "Ren", text: "Gin-san... onu bulmanız gerektiğini biliyordunuz. Neden şimdiye kadar beklediniz?" }, { type: "say", speaker: "Gin", text: "Çünkü çiçek, sahibini bekler. Tıpkı anılar gibi. Zorla açtırırsan... solar." }] },
-      { type: "closeup", scene: "Gin'in Elleri — Beyaz Çiçeği Yuki'ye Uzatıyor — Çiçek Hafifçe Parlıyor", dialogue: [{ type: "say", speaker: "Gin", text: "Al. Bu, annenin son anısı. Ama açmadan önce... iyi düşün." }, { type: "say", speaker: "Yuki", text: "Neden?" }, { type: "say", speaker: "Gin", text: "Çünkü bazı anılar... insanı kurtarmaz. Sadece acıtır." }, { type: "say", speaker: "Yuki", text: "Ben zaten her gün acı çekiyorum. En azından... nedenini bilmek istiyorum." }] },
-      { type: "splash", scene: "Beyaz Çiçek Açılıyor — Işık Patlaması — Annenin Silüeti", dialogue: [] },
-      { type: "closeup", scene: "Geriye Dönüş — Yanan Evin İçi — Yuriko Alevlerin Ortasında — Karşısında Gölgeli Figür", dialogue: [{ type: "say", speaker: "Yuriko", text: "Onu al. Ama kızıma dokunma. Anlaşma bu." }, { type: "say", speaker: "Gölgeli Figür", text: "Anlaşma... kabul edildi." }] },
-      { type: "closeup", scene: "Yuriko Gölgeli Figüre Bakıyor — Kararlılık — Elinde Beyaz Çiçek", dialogue: [{ type: "say", speaker: "Yuriko", text: "Yuki... büyüdüğünde... bu çiçeği ona ver. Ve söyle ona..." }, { type: "say", speaker: "Yuriko", text: "Beni affetsin." }] },
-      { type: "normal", scene: "Şimdiki Zaman — Yuki Dizlerinin Üstüne Çöküyor — Beyaz Çiçek Elinde Parçalanıyor", dialogue: [{ type: "say", speaker: "Yuki", text: "Anne... sen... sen beni kurtarmak için mi..." }] },
-      { type: "normal", scene: "Ren Yuki'nin Yanına Çöküyor — Elini Omzuna Koyuyor", dialogue: [{ type: "say", speaker: "Ren", text: "Ağla. İstediğin kadar. Sonra... devam ederiz." }] },
-      { type: "closeup", scene: "Gin Başını Öne Eğiyor — Gözlerinden Yaşlar — Gülümseme", dialogue: [{ type: "say", speaker: "Gin", text: "Yuriko... kızın geldi. Sonunda." }] },
-      { type: "normal", scene: "Pazarın Kalabalığı Aniden Susuyor — Herkes Bir Yöne Bakıyor", dialogue: [{ type: "say", speaker: "Bilinmeyen Ses", text: "Ne kadar dokunaklı. Ama ben... daha çok 'Altın Çiçek'i merak ediyorum." }] },
-      { type: "splash", scene: "Bahçıvan Pazarın Girişinde — Uzun Siyah Haori — Elinde Budama Makası — Etrafında Uçuşan Çiçekler", dialogue: [{ type: "say", speaker: "Bahçıvan", text: "Merhaba, küçük Ayanokōji. Beni hatırladın mı?" }] },
-      { type: "closeup", scene: "Yuki'nin Gözleri — Korku, Öfke, Tanıdık Acı", dialogue: [{ type: "say", speaker: "Yuki", text: "Sen... sen o gün oradaydın." }] },
-      { type: "closeup", scene: "Bahçıvan Elini Kaldırıyor — Makasını Açıyor — Sakin Ses", dialogue: [{ type: "say", speaker: "Bahçıvan", text: "Evet. Ve şimdi... annenin bıraktığı yerden devam edelim." }] },
-      { type: "splash", scene: "Bahçıvan Makasını Yuki'ye Doğrultuyor — Ren Tantō'sunu Çekiyor — Yuki Yerde", dialogue: [{ type: "say", speaker: "Bahçıvan", text: "Hoş geldin, kızım. Bahçemize." }] }
-    ]
-  },
-  4: {
-    jp: "第4話", title: "Beyaz Çiçek",
-    pages: [
-      { type: "splash", scene: "Bahçıvan ve Yuki Karşı Karşıya — Karanlık Pazar — Ren Arada — Gerginlik", dialogue: [{ type: "inner", text: '"Babam... o adam... babam mı? Hayır. O bir canavar. Ve ben... ben onun kızıyım."' }] },
-      { type: "normal", scene: "Ren Tantō'sunu Çekiyor — Bahçıvan'ın Karşısına Geçiyor", dialogue: [{ type: "say", speaker: "Ren", text: "Bir adım daha atarsan... seni keserim." }, { type: "say", speaker: "Bahçıvan", text: "Ah, Tachibana. Hala Hana'nın intikamını almaya çalışıyorsun. Ama söyle bana... ben mi öldürdüm onu, yoksa kendi kız kardeşin mi kendini feda etti?" }] },
-      { type: "closeup", scene: "Ren'in Yüzü — Şok, Öfke, Yıkım", dialogue: [{ type: "say", speaker: "Ren", text: "Ne... ne dedin sen?" }] },
-      { type: "normal", scene: "Yuki Ayağa Kalkıyor — Beyaz Çiçeğin Parçaları Elinde — Kararlı İfade", dialogue: [{ type: "say", speaker: "Yuki", text: "Yeter!" }, { type: "say", speaker: "Yuki", text: "Sana bir sorum var. Annem... seninle mi anlaşma yaptı?" }] },
-      { type: "closeup", scene: "Bahçıvan'ın Yüzü Hala Gölgede — Ama Hafif Bir Duraksama", dialogue: [{ type: "say", speaker: "Bahçıvan", text: "Evet." }, { type: "say", speaker: "Bahçıvan", text: "Annen, seni korumak için kendi hayatını feda etti. Ben de... onun anısını korumak için buradayım." }] },
-      { type: "closeup", scene: "Yuki'nin Gözleri — Gözyaşı Ama Kararlılık", dialogue: [{ type: "say", speaker: "Yuki", text: "Yalan söylüyorsun." }, { type: "say", speaker: "Yuki", text: "Annem benim için öldü. Ama sen... sen onun ölümünü kullandın." }] },
-      { type: "splash", scene: "Yuki Ellerini Kaldırıyor — Beyaz Çiçeğin Parçaları Havada Dönüyor — Işık Patlaması", dialogue: [{ type: "say", speaker: "Yuki", text: "Ve ben... senin kızın olmayı reddediyorum." }] },
-      { type: "normal", scene: "Bahçıvan Geri Adım Atıyor — İlk Kez Tereddüt — Makasını İndiriyor", dialogue: [{ type: "say", speaker: "Bahçıvan", text: "Yuki..." }, { type: "say", speaker: "Yuki", text: "Git. Şimdi. Yoksa... annemin anısını kullanarak seni durdururum." }] },
-      { type: "normal", scene: "Bahçıvan Arka Planda Kayboluyor — Sis — Çiçekler Soluyor", dialogue: [{ type: "say", speaker: "Bahçıvan", text: "Peki. Ama bir gün... sen de anlayacaksın. Ben... senin babanım. Ve sen... benim kızımsın." }] },
-      { type: "normal", scene: "Karanlık Pazar — Herkes Kaçtı — Sadece Yuki, Ren ve Gin Kaldı", dialogue: [{ type: "say", speaker: "Gin", text: "Aferin, küçük Ayanokōji. Annenin kızı olduğunu kanıtladın." }] },
-      { type: "closeup", scene: "Yuki ve Ren Yan Yana — Ren'in Eli Yuki'nin Omzunda", dialogue: [{ type: "say", speaker: "Ren", text: "İyi misin?" }, { type: "say", speaker: "Yuki", text: "Hayır. Ama... sanırım bir gün olacağım." }] },
-      { type: "normal", scene: "Gin Onlara Yaklaşıyor — Elinde Küçük Bir Not", dialogue: [{ type: "say", speaker: "Gin", text: "Bu adresi al. Dr. Kenji Kurosawa. O... size yardım edecek." }, { type: "say", speaker: "Yuki", text: "Kim o?" }, { type: "say", speaker: "Gin", text: "Annenin kardeşi. Senin dayın." }] },
-      { type: "splash", scene: "Yuki Şaşkın Yüzü — Beyaz Çiçeğin Son Yaprağı Havada Süzülüyor", dialogue: [{ type: "inner", text: '"Bir dayım var. Bir ailem var. Ve belki... belki hala bir umut var."' }] }
-    ]
-  },
-  5: {
-    jp: "第5話", title: "Toplayıcı",
-    pages: [
-      { type: "splash", scene: "Terk Edilmiş Bir Depo — Beton Duvarlar — Ren ve Yuki Karşı Koyuyor — Karşılarında Üç Figür", dialogue: [{ type: "inner", text: '"İlk görevimiz. İlk gerçek tehlikemiz. Ve ilk... ölümüm."' }] },
-      { type: "normal", scene: "Dr. Kurosawa'nın Muayenehanesi — Yuki ve Ren Hazırlanıyor — Tantō ve Fener", dialogue: [{ type: "say", speaker: "Dr. Kurosawa", text: "Shinjuku'da bir Hayalet Çiçek tespit edildi. Kırmızı. Yani cinayet." }, { type: "say", speaker: "Ren", text: "Toplayıcılar da peşinde mi?" }, { type: "say", speaker: "Dr. Kurosawa", text: "Evet. Ve bu sefer... liderlerinden biri geliyor." }] },
-      { type: "closeup", scene: "Ren'in Yüzü — Ciddi İfade", dialogue: [{ type: "say", speaker: "Ren", text: "Kuroi." }, { type: "say", speaker: "Yuki", text: "Kuroi kim?" }, { type: "say", speaker: "Ren", text: "Eski bir polis memuru. Kızı öldürülünce Toplayıcılara katıldı. Şimdi... onların en tehlikeli avcısı." }] },
-      { type: "normal", scene: "Terk Edilmiş Depo — Gece — Ren ve Yuki İçeri Giriyor", dialogue: [{ type: "say", speaker: "Ren", text: "Ben içeri gireceğim. Sen arkada kal. Çiçeği gördüğünde... bana haber ver." }, { type: "say", speaker: "Yuki", text: "Ama ben..." }, { type: "say", speaker: "Ren", text: "Yuki. Dinle. Bu sefer... emirlerime uy." }] },
-      { type: "splash", scene: "Depo İçi — Ortada Kan İzleri — Kırmızı Çiçek Açıyor — Etrafı Çiçeklerle Sarılı", dialogue: [] },
-      { type: "closeup", scene: "Yuki Çiçeğe Yaklaşıyor — Elini Uzatıyor — Titriyor", dialogue: [{ type: "say", speaker: "Yuki", text: "Sadece... sadece bir anı. Sonra bırakacağım." }] },
-      { type: "splash", scene: "Yuki Çiçeğe Dokunuyor — Anı Patlıyor — Genç Bir Adam Ölü Yatıyor", dialogue: [{ type: "whisper", text: '"Neden... neden ben..."' }, { type: "whisper", text: '"Sadece yardım etmek istedim..."' }, { type: "whisper", text: '"Kuroi... o beni öldürdü..."' }] },
-      { type: "closeup", scene: "Yuki Geri Sıçrıyor — Nefes Nefese — Gözleri Açık", dialogue: [{ type: "say", speaker: "Yuki", text: "Kuroi... bu cinayeti o işledi. Ve... ve kızı için yapmış." }] },
-      { type: "normal", scene: "Aniden Bir Ses — Kuroi Gölgelerden Çıkıyor — Elinde Çiçeklerden Yapılmış Kamçı", dialogue: [{ type: "say", speaker: "Kuroi", text: "Doğru tahmin, küçük Kan'nōsha." }, { type: "say", speaker: "Kuroi", text: "Ama sen... annene çok benziyorsun. Ve bu... beni rahatsız ediyor." }] },
-      { type: "splash", scene: "Ren İçeri Dalıyor — Tantō Hazır — Kuroi'ye Saldırıyor", dialogue: [{ type: "say", speaker: "Ren", text: "Yuki! Kaç!" }] },
-      { type: "normal", scene: "Ren vs Kuroi — Tantō vs Çiçek Kamçısı — Hızlı Dövüş Sahnesi", dialogue: [{ type: "say", speaker: "Kuroi", text: "Hala aynı Tachibana. Hala kız kardeşinin intikamını arıyorsun." }, { type: "say", speaker: "Ren", text: "Sus!" }, { type: "say", speaker: "Kuroi", text: "Hana... senin yüzünden öldü. Biliyorsun, değil mi?" }] },
-      { type: "closeup", scene: "Ren'in Yüzü — Şok, Öfke Karışımı — Kuroi Fırsatı Kullanıp Kaçıyor", dialogue: [{ type: "say", speaker: "Kuroi", text: "Bahçıvan seni arıyor, küçük Kan'nōsha. Ve o... asla pes etmez." }] },
-      { type: "normal", scene: "Depo Boş — Ren Yerde Dizlerinin Üstünde — Yuki Yanına Geliyor", dialogue: [{ type: "say", speaker: "Yuki", text: "Ren! Yaralı mısın?" }, { type: "say", speaker: "Ren", text: "Hayır. Ama... o haklı. Hana... benim yüzümden öldü." }] },
-      { type: "closeup", scene: "Yuki Ren'in Yanına Çöküyor — Elini Omzuna Koyuyor", dialogue: [{ type: "say", speaker: "Yuki", text: "Hayır. Sen değil. Bahçıvan. Ve biz... onu durduracağız." }] },
-      { type: "splash", scene: "Ren ve Yuki Dışarı Çıkıyor — Şafak — Arka Planda Dr. Kurosawa'nın Arabası", dialogue: [{ type: "say", speaker: "Dr. Kurosawa", text: "Eve dönelim. Konuşmamız gereken çok şey var." }] }
-    ]
-  },
-  6: {
-    jp: "第6話", title: "Koruyucular",
-    pages: [
-      { type: "splash", scene: "Yanaka Mezarlığı — Gece — Dr. Kurosawa Mezarın Önünde Duruyor — Elinde Mum", dialogue: [{ type: "say", speaker: "Dr. Kurosawa", text: "Bu mezarlığın altında... yüzyıllardır saklanan bir tapınak var." }] },
-      { type: "normal", scene: "Dr. Kurosawa Bir Taşı İtiyor — Gizli Geçit Açılıyor — Merdiven Aşağı İniyor", dialogue: [{ type: "say", speaker: "Yuki", text: "Burası... burası hep burada mıydı?" }, { type: "say", speaker: "Dr. Kurosawa", text: "Tokyo'nun kuruluşundan beri. Koruyucular... şehrin altında yaşar." }] },
-      { type: "normal", scene: "Merdiven Aşağı — Mumlarla Aydınlatılmış Koridor — Duvarlarda Çiçek Sembolleri", dialogue: [{ type: "say", speaker: "Ren", text: "Buraya daha önce geldin mi?" }, { type: "say", speaker: "Dr. Kurosawa", text: "Ben... bir zamanlar burada yaşadım. Ama artık sadece bir misafirim." }] },
-      { type: "splash", scene: "Büyük Bir Tapınak Odası — Yüzlerce Çiçek — Ortada Bir Taht — Üzerinde Bir Figür — Kitsune Maskeli", dialogue: [{ type: "inner", text: '"Bu... bu bir insan mı? Yoksa... bir şey mi?"' }] },
-      { type: "closeup", scene: "Ne — Kitsune Maskesi — Sesi Hem Kadın Hem Erkek Gibi — Ağırbaşlı", dialogue: [{ type: "say", speaker: "Ne", text: "Hoş geldin, Yuki Ayanokōji. Sonunda yüzünü gördüm." }, { type: "say", speaker: "Yuki", text: "Sen... beni tanıyor musun?" }, { type: "say", speaker: "Ne", text: "Ben seni doğmadan önce tanıyordum. Annen... benim öğrencimdi." }] },
-      { type: "normal", scene: "Yuki Şaşkın — Ren Sessiz — Dr. Kurosawa Başını Öne Eğiyor", dialogue: [{ type: "say", speaker: "Ne", text: "Ayanokōji Yuriko... en güçlü Kan'nōsha'ydı. Ve en büyük hatayı o yaptı. Bahçıvan'ı durdurmaya çalışırken... ona aşık oldu." }] },
-      { type: "splash", scene: "Geriye Dönüş — Genç Yuriko ve Genç Sōren — Birlikte Çiçek Topluyorlar — Gülümsüyorlar", dialogue: [{ type: "say", speaker: "Genç Yuriko", text: "Sōren... bu çiçek çok güzel." }, { type: "say", speaker: "Genç Sōren", text: "Senin kadar değil." }] },
-      { type: "closeup", scene: "Geriye Dönüş — Laboratuvar — Genç Sōren Çiçeklerle Dolu — Notlar Alıyor", dialogue: [{ type: "say", speaker: "Genç Sōren", text: "Ölüm bir hastalık. Ve ben... tedavisini bulacağım." }, { type: "say", speaker: "Genç Yuriko", text: "Bazı şeyler iyileştirilmemeli, Sōren. Bazı yaralar... hatırlatılmalı." }] },
-      { type: "normal", scene: "Geriye Dönüş — Koruyucular Tapınağı — Sōren ve Yuriko Tartışıyor", dialogue: [{ type: "say", speaker: "Genç Yuriko", text: "Sōren... eğer bu yolda devam edersen... seni durdurmak zorunda kalacağım." }, { type: "say", speaker: "Genç Sōren", text: "O zaman durdur. Ama bil ki... seni asla bırakmayacağım." }] },
-      { type: "normal", scene: "Şimdiki Zaman — Ne Ayağa Kalkıyor — Yuki'ye Yaklaşıyor", dialogue: [{ type: "say", speaker: "Ne", text: "Annen, seni korumak için öldü. Ve sen... sen onun mirasını taşıyorsun." }, { type: "say", speaker: "Ne", text: "Ama bir seçim yapmalısın. Ya eğitimini kabul et... ya da her şeyi unut." }] },
-      { type: "closeup", scene: "Yuki'nin Yüzü — Kararlı İfade", dialogue: [{ type: "say", speaker: "Yuki", text: "Eğitimi kabul ediyorum." }, { type: "say", speaker: "Ne", text: "Neden?" }, { type: "say", speaker: "Yuki", text: "Çünkü... annemi affetmek istiyorum. Ve babamı... durdurmak istiyorum." }] },
-      { type: "splash", scene: "Ne Başını Sallıyor — Elini Kaldırıyor — Bir Kapı Açılıyor — İçeride Eğitim Alanı", dialogue: [{ type: "say", speaker: "Ne", text: "Öyleyse... hoş geldin, Koruyucu adayı. Eğitimin... şimdi başlıyor." }] }
-    ]
-  },
-  7: {
-    jp: "第7話", title: "Eğitim",
-    pages: [
-      { type: "splash", scene: "Tapınak Eğitim Alanı — Ahşap Zemin — Yuki ve Ren Karşı Karşıya — Dr. Kurosawa İzliyor", dialogue: [{ type: "inner", text: '"Bir ay geçti. Her gün. Her gece. Fısıltıları kontrol etmeyi öğrendim. Ama hala... hala yeterince güçlü değilim."' }] },
-      { type: "normal", scene: "Yuki Meditasyon Yapıyor — Etrafında Fısıltılar — Ama Yüzü Sakin", dialogue: [{ type: "whisper", text: '"Beni duy... beni duy..."' }, { type: "whisper", text: '"Nerede... nerede..."' }, { type: "say", speaker: "Yuki (fısıltıyla)", text: "Sizi duyuyorum. Ama... sizi dinlemek zorunda değilim." }] },
-      { type: "closeup", scene: "Yuki'nin Gözleri Açılıyor — Sakin — Etrafındaki Fısıltılar Dağılıyor", dialogue: [{ type: "say", speaker: "Ne (off-screen)", text: "İyi. Anı Filtreleme'yi öğrendin. Şimdi... sıra dövüşte." }] },
-      { type: "normal", scene: "Ren Tantō'sunu Çekiyor — Yuki Elinde Küçük Bir Bıçak — Karşı Karşıya", dialogue: [{ type: "say", speaker: "Ren", text: "Beni durdurmaya çalış." }, { type: "say", speaker: "Yuki", text: "Ama sen... çok hızlısın." }, { type: "say", speaker: "Ren", text: "Hayat da hızlıdır. Ölüm ise... daha hızlı." }] },
-      { type: "splash", scene: "Dövüş Sahnesi — Ren Hızlı Hareket Ediyor — Yuki Kaçınıyor — Ama Bir Hamlede Yere Düşüyor", dialogue: [{ type: "say", speaker: "Ren", text: "Yetersizsin. Bir daha." }, { type: "say", speaker: "Yuki", text: "Bir daha." }] },
-      { type: "normal", scene: "Günler Geçiyor — Yuki Sürekli Çalışıyor — Ellerinde Yara İzleri", dialogue: [{ type: "say", speaker: "Dr. Kurosawa", text: "Yuki... çok fazla çalışıyorsun." }, { type: "say", speaker: "Yuki", text: "Yeterince iyi değilim. Ve zaman yok." }] },
-      { type: "closeup", scene: "Ren'in Yüzü — Sessizce İzliyor — Bir Şey Söylemek İstiyor Ama Söyleyemiyor", dialogue: [{ type: "inner", text: '"O... çok çalışıyor. Tıpkı Hana gibi. Ve ben... onu da kaybetmekten korkuyorum."' }] },
-      { type: "normal", scene: "Bir Gece — Yuki ve Ren Tapınak Çatısında — Gökyüzü Yıldızlı", dialogue: [{ type: "say", speaker: "Ren", text: "Neden bu kadar çok çalışıyorsun?" }, { type: "say", speaker: "Yuki", text: "Çünkü... anneme cevap vermek istiyorum. Ve babama... hayır demek istiyorum." }, { type: "say", speaker: "Ren", text: "Peki... sana bir şey göstereceğim." }] },
-      { type: "normal", scene: "Ren Bir Defter Çıkarıyor — Hana'nın Çizim Defteri — Yuki'ye Uzatıyor", dialogue: [{ type: "say", speaker: "Ren", text: "Bu, Hana'nın çizim defteri. Onun son çizimi... sana yardımcı olabilir." }] },
-      { type: "closeup", scene: "Yuki Defteri Açıyor — Son Sayfa — Bahçıvan'ın Yüzü Çizili", dialogue: [{ type: "say", speaker: "Yuki", text: "Bu... bu..." }, { type: "say", speaker: "Ren", text: "Evet. Hana... Bahçıvan'ın yüzünü görmüş. Ve bu çizim... onun son mesajı." }] },
-      { type: "splash", scene: "Yuki Çizime Bakıyor — Şok — Çünkü Çizimde Yüz Net — Ve O Yüz... Sōren Ayanokōji", dialogue: [{ type: "say", speaker: "Yuki", text: "Bu... bu babam." }, { type: "say", speaker: "Ren", text: "Evet. Ve Hana bunu bilerek öldü. Çünkü... seni korumak istedi." }] },
-      { type: "closeup", scene: "Yuki'nin Gözleri — Gözyaşı — Ama Kararlılık", dialogue: [{ type: "say", speaker: "Yuki", text: "O zaman... ben de onun için savaşacağım. Hana için. Annem için. Ve... senin için." }] }
-    ]
-  },
-  8: {
-    jp: "第8話", title: "Babanın Gölgesi",
-    pages: [
-      { type: "splash", scene: "Tokyo Kulesi — Gece — Yuki ve Ren Tepede — Bahçıvan Bekliyor — Aralarında Tek Bir Çiçek", dialogue: [{ type: "inner", text: '"Bu gece... her şey bitecek. Ya ben... ya o."' }] },
-      { type: "normal", scene: "Bahçıvan Sırtı Dönük — Elinde Budama Makası — Arka Planda Şehir Işıkları", dialogue: [{ type: "say", speaker: "Bahçıvan", text: "Geldin. Sonunda." }, { type: "say", speaker: "Yuki", text: "Babanı tanıdım. Ve o... sen değilsin. Sen... sen onun gölgesisin." }] },
-      { type: "closeup", scene: "Bahçıvan Yavaşça Dönüyor — Yüzü Hala Gölgede — Ama Sesi Titriyor", dialogue: [{ type: "say", speaker: "Bahçıvan", text: "Belki. Ama gölge de olsa... senin babam. Ve sen... benim kızımsın." }] },
-      { type: "normal", scene: "Yuki İleri Adım Atıyor — Elinde Beyaz Çiçek — Kararlı", dialogue: [{ type: "say", speaker: "Yuki", text: "Bana bir soru sordun. Şimdi ben soruyorum. Annem... ona ne yaptın?" }] },
-      { type: "closeup", scene: "Bahçıvan'ın Elleri Titriyor — Makası Yere Düşüyor", dialogue: [{ type: "say", speaker: "Bahçıvan", text: "Ben... ben ona zarar vermedim. O... o kendini feda etti. Seni benden korumak için." }, { type: "say", speaker: "Bahçıvan", text: "Ama ben... ben onu geri getirecektim. Her şeyi yaptım. Ve... ve başaramadım." }] },
-      { type: "normal", scene: "Yuki Yaklaşıyor — Beyaz Çiçek Parlıyor — Bahçıvan Geri Adım Atıyor", dialogue: [{ type: "say", speaker: "Yuki", text: "Sen... sen onu sevdin mi? Gerçekten?" }, { type: "say", speaker: "Bahçıvan", text: "Evet. Hala seviyorum. Ve... ve seni de seviyorum." }] },
-      { type: "splash", scene: "Yuki Beyaz Çiçeği Bahçıvan'a Uzatıyor — Bahçıvan Şok — Çiçek Kendiliğinden Açılıyor", dialogue: [{ type: "say", speaker: "Yuki", text: "O zaman... annemin son anısını gör. Onun son sözünü duy." }] },
-      { type: "closeup", scene: "Bahçıvan Çiçeğe Dokunuyor — Anı Patlıyor — Yanan Ev — Yuriko Alevlerin İçinde", dialogue: [{ type: "say", speaker: "Yuriko", text: "Sōren... duyabiliyor musun? Seni affediyorum. Ama... kızımıza iyi bak. Yoksa... seni asla affetmem." }] },
-      { type: "closeup", scene: "Bahçıvan'ın Yüzü — İlk Kez Görünüyor — Gözyaşları — Yıkım — Ama Aynı Zamanda Huzur", dialogue: [{ type: "say", speaker: "Bahçıvan", text: "Yuriko... affediyorsun... beni..." }] },
-      { type: "splash", scene: "Bahçıvan Yere Dizlerinin Üstüne Çöküyor — Maskesi Düşüyor — Gerçek Yüzü Ortaya Çıkıyor", dialogue: [{ type: "say", speaker: "Bahçıvan", text: "Yuki... ben... ben çok özür dilerim. Ben... ben bir canavardım." }] },
-      { type: "closeup", scene: "Yuki Bahçıvan'ın Karşısında Duruyor — Elini Uzatıyor", dialogue: [{ type: "say", speaker: "Yuki", text: "Kalk, baba. Seni affetmiyorum. Ama... sana bir şans veriyorum." }] },
-      { type: "normal", scene: "Ren Uzaktan İzliyor — Şaşkın — Ama Saygıyla", dialogue: [{ type: "inner", text: '"Yuki... sen... sen gerçekten annenin kızısın."' }] },
-      { type: "closeup", scene: "Bahçıvan Yuki'nin Elini Tutuyor — Ayağa Kalkıyor — Kararlı İfade", dialogue: [{ type: "say", speaker: "Bahçıvan", text: "Bir şans. Sadece bir şans. Ve ben... onu hak etmek için her şeyi yapacağım." }] },
-      { type: "splash", scene: "Üçü Yan Yana — Tokyo Kulesi — Şafak Söküyor — Beyaz Çiçek Açıyor", dialogue: [{ type: "inner", text: '"Arc 1... sona erdi. Ve ben... ben hala ayaktayım."' }] },
-      { type: "splash", scene: "幽霊花 — Arc 1: İlk Fısıltı — SON — Arc 2: Karanlık Bahçe Yakında", dialogue: [] }
-    ]
+  const urlParams = new URLSearchParams(window.location.search);
+  const chapterNum = parseInt(urlParams.get('ch')) || 1;
+  const chapter = ALL_CHAPTERS[chapterNum];
+
+  if (!chapter) {
+    document.getElementById('readerContainer').innerHTML = `
+      <div style="text-align: center; padding: 4rem 2rem;">
+        <h2 style="font-family: var(--font-title); font-size: 2rem; color: var(--red); margin-bottom: 1rem;">Bölüm Bulunamadı</h2>
+        <p style="color: var(--gray); margin-bottom: 2rem;">Bu bölüm henüz yayınlanmadı veya mevcut değil.</p>
+        <a href="chapters.html" class="btn btn-primary">Bölüm Arşivine Dön</a>
+      </div>
+    `;
+  } else {
+    document.getElementById('chapterJp').textContent = chapter.jp;
+    document.getElementById('chapterTitle').textContent = chapter.title;
+    document.title = `Bölüm ${chapterNum}: ${chapter.title} — KAGERŌ`;
+
+    const container = document.getElementById('readerContainer');
+    let html = '';
+
+    chapter.pages.forEach((page, index) => {
+      let panelClass = 'panel';
+      if (page.type === 'splash') panelClass += ' panel-splash';
+      if (page.type === 'closeup') panelClass += ' panel-closeup';
+
+      html += '<div class="page">';
+      html += `<div class="${panelClass}"><div class="panel-image" data-scene="${page.scene}"></div></div>`;
+
+      if (page.dialogue && page.dialogue.length > 0) {
+        html += '<div class="panel-dialogue">';
+        page.dialogue.forEach(d => {
+          if (d.type === 'say') {
+            html += `<div class="dialogue-box"><div class="dialogue-speaker">${d.speaker}</div><div class="dialogue-text">${d.text}</div></div>`;
+          } else if (d.type === 'inner') {
+            html += `<div class="inner-voice">${d.text}</div>`;
+          } else if (d.type === 'whisper') {
+            html += `<div class="whisper">${d.text}</div>`;
+          }
+        });
+        html += '</div>';
+      }
+
+      html += `<div class="page-number">Sayfa ${index + 1}</div></div>`;
+    });
+
+    const prevLink = chapterNum > 1 
+      ? `<a href="reader.html?ch=${chapterNum - 1}" class="nav-btn">← Önceki Bölüm</a>`
+      : `<a href="#" class="nav-btn disabled">← Önceki Bölüm</a>`;
+    
+    const nextLink = ALL_CHAPTERS[chapterNum + 1]
+      ? `<a href="reader.html?ch=${chapterNum + 1}" class="nav-btn">Sonraki Bölüm →</a>`
+      : `<a href="chapters.html" class="nav-btn">Bölüm Arşivi →</a>`;
+
+    html += `<div class="reader-nav">${prevLink}${nextLink}</div>`;
+    html += `
+      <div class="comments-section">
+        <h3 class="comments-title">💬 Yorumlar</h3>
+        <textarea class="comment-input" placeholder="Bu bölüm hakkında ne düşünüyorsun?"></textarea>
+        <button class="comment-submit">Gönder</button>
+      </div>
+    `;
+
+    container.innerHTML = html;
   }
-};
-
-/* ============================================
-   URL'DEN BÖLÜM NUMARASI AL
-   ============================================ */
-const urlParams = new URLSearchParams(window.location.search);
-const chapterNum = parseInt(urlParams.get('ch')) || 1;
-const chapter = chaptersData[chapterNum];
-
-if (!chapter) {
-  document.getElementById('readerContainer').innerHTML = `
-    <div style="text-align: center; padding: 4rem 2rem;">
-      <h2 style="font-family: var(--font-title); font-size: 2rem; color: var(--red); margin-bottom: 1rem;">Bölüm Bulunamadı</h2>
-      <p style="color: var(--gray); margin-bottom: 2rem;">Bu bölüm henüz yayınlanmadı veya mevcut değil.</p>
-      <a href="chapters.html" class="btn btn-primary">Bölüm Arşivine Dön</a>
-    </div>
-  `;
-} else {
-  document.getElementById('chapterJp').textContent = chapter.jp;
-  document.getElementById('chapterTitle').textContent = chapter.title;
-  document.title = `Bölüm ${chapterNum}: ${chapter.title} — KAGERŌ`;
-
-  const container = document.getElementById('readerContainer');
-  let html = '';
-
-  chapter.pages.forEach((page, index) => {
-    let panelClass = 'panel';
-    if (page.type === 'splash') panelClass += ' panel-splash';
-    if (page.type === 'closeup') panelClass += ' panel-closeup';
-
-    html += '<div class="page">';
-    html += `<div class="${panelClass}">`;
-    html += `<div class="panel-image" data-scene="${page.scene}"></div>`;
-    html += '</div>';
-
-    if (page.dialogue && page.dialogue.length > 0) {
-      html += '<div class="panel-dialogue">';
-      page.dialogue.forEach(d => {
-        if (d.type === 'say') {
-          html += `<div class="dialogue-box"><div class="dialogue-speaker">${d.speaker}</div><div class="dialogue-text">${d.text}</div></div>`;
-        } else if (d.type === 'inner') {
-          html += `<div class="inner-voice">${d.text}</div>`;
-        } else if (d.type === 'whisper') {
-          html += `<div class="whisper">${d.text}</div>`;
-        }
-      });
-      html += '</div>';
-    }
-
-    html += `<div class="page-number">Sayfa ${index + 1}</div>`;
-    html += '</div>';
-  });
-
-  const prevLink = chapterNum > 1 
-    ? `<a href="reader.html?ch=${chapterNum - 1}" class="nav-btn">← Önceki Bölüm</a>`
-    : `<a href="#" class="nav-btn disabled">← Önceki Bölüm</a>`;
-  
-  const nextLink = chaptersData[chapterNum + 1]
-    ? `<a href="reader.html?ch=${chapterNum + 1}" class="nav-btn">Sonraki Bölüm →</a>`
-    : `<a href="chapters.html" class="nav-btn">Bölüm Arşivi →</a>`;
-
-  html += `<div class="reader-nav">${prevLink}${nextLink}</div>`;
-  html += `
-    <div class="comments-section">
-      <h3 class="comments-title">💬 Yorumlar</h3>
-      <textarea class="comment-input" placeholder="Bu bölüm hakkında ne düşünüyorsun?"></textarea>
-      <button class="comment-submit">Gönder</button>
-    </div>
-  `;
-
-  container.innerHTML = html;
-}
 </script>
 </body>
 </html>
