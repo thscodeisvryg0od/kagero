@@ -8,6 +8,137 @@
 <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
 <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700;900&family=Inter:wght@300;400;600&family=Noto+Sans+JP:wght@300;400;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="css/style.css">
+<style>
+  .world-card.clickable { cursor: pointer; display: block; text-decoration: none; color: inherit; }
+  .world-card.clickable:hover {
+    border-color: var(--red);
+    transform: translateY(-5px);
+    box-shadow: 0 20px 50px rgba(230,57,70,0.25);
+  }
+  .world-card.clickable::after {
+    content: '→';
+    position: absolute;
+    top: 1.5rem;
+    right: 1.5rem;
+    color: var(--red);
+    font-size: 1.5rem;
+    opacity: 0;
+    transition: all 0.3s;
+  }
+  .world-card.clickable:hover::after {
+    opacity: 1;
+    transform: translateX(5px);
+  }
+  .world-card { position: relative; }
+  
+  .world-detail {
+    display: none;
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 0 3rem 5rem;
+    animation: fadeIn 0.5s;
+  }
+  .world-detail.active { display: block; }
+  .world-detail-back {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: var(--gray);
+    text-decoration: none;
+    font-size: 0.85rem;
+    margin-bottom: 2rem;
+    transition: color 0.3s;
+    cursor: pointer;
+    background: none;
+    border: none;
+    padding: 0;
+    font-family: var(--font-body);
+  }
+  .world-detail-back:hover { color: var(--red); }
+  .world-detail-hero {
+    background: linear-gradient(135deg, var(--purple), var(--bg2));
+    border-left: 4px solid var(--red);
+    padding: 2.5rem;
+    border-radius: 8px;
+    margin-bottom: 2rem;
+  }
+  .world-detail-icon {
+    font-family: var(--font-jp);
+    font-size: 4rem;
+    color: var(--red);
+    margin-bottom: 1rem;
+  }
+  .world-detail-title {
+    font-family: var(--font-title);
+    font-size: 2.2rem;
+    margin-bottom: 0.5rem;
+  }
+  .world-detail-jp {
+    font-family: var(--font-jp);
+    color: var(--gold);
+    font-size: 1rem;
+    letter-spacing: 4px;
+    margin-bottom: 1.5rem;
+  }
+  .world-detail-body p {
+    color: var(--gray-light);
+    line-height: 1.8;
+    font-size: 1.02rem;
+    margin-bottom: 1.2rem;
+  }
+  .world-detail-body h4 {
+    font-family: var(--font-title);
+    color: var(--gold);
+    font-size: 1.2rem;
+    margin: 2rem 0 1rem;
+    letter-spacing: 1px;
+  }
+  .world-detail-body ul {
+    list-style: none;
+    padding-left: 0;
+  }
+  .world-detail-body li {
+    color: var(--gray-light);
+    line-height: 1.8;
+    padding-left: 1.5rem;
+    position: relative;
+    margin-bottom: 0.6rem;
+  }
+  .world-detail-body li::before {
+    content: '❋';
+    position: absolute;
+    left: 0;
+    color: var(--red);
+  }
+  .world-facts {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 1rem;
+    margin: 2rem 0;
+  }
+  .world-fact {
+    background: var(--bg2);
+    padding: 1.2rem;
+    border-left: 3px solid var(--red);
+  }
+  .world-fact-label {
+    font-size: 0.7rem;
+    color: var(--gray);
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin-bottom: 0.4rem;
+  }
+  .world-fact-value {
+    font-family: var(--font-title);
+    font-size: 1.1rem;
+    font-weight: 700;
+  }
+  @media (max-width: 768px) {
+    .world-detail { padding: 0 1.5rem 3rem; }
+    .world-detail-hero { padding: 1.5rem; }
+    .world-detail-title { font-size: 1.6rem; }
+  }
+</style>
 </head>
 <body>
 
@@ -16,7 +147,7 @@
     <img src="assets/logo-icon.svg" alt="KAGERŌ" width="36" height="36" style="vertical-align: middle;">
     <span>KAGERŌ</span>
   </a>
-  <button class="menu-toggle">☰</button>
+  <button class="menu-toggle" aria-label="Menü">☰</button>
   <ul>
     <li><a href="index.html">Ana Sayfa</a></li>
     <li><a href="chapters.html">Bölümler</a></li>
@@ -27,40 +158,55 @@
   </ul>
 </nav>
 
-<section style="padding-top: 8rem;">
+<!-- ANA LİSTE -->
+<section id="world-main" style="padding-top: 8rem;">
   <h2 class="section-title">
     <span class="section-title-jp">世界観</span> DÜNYA
   </h2>
-  <p class="section-subtitle">Hayalet Çiçeklerin dünyasına hoş geldiniz</p>
+  <p class="section-subtitle">Hayalet Çiçeklerin dünyasına hoş geldiniz — Kartlara tıklayın</p>
 
   <div class="world-grid">
-    <div class="world-card">
+    <a href="#world-ghost-flowers" class="world-card clickable" onclick="showWorld('world-ghost-flowers', event)">
       <div class="world-card-icon">花</div>
       <h3 class="world-card-title">Hayalet Çiçekler</h3>
       <div class="world-card-title-jp">幽霊花 — Yūrei Hana</div>
-      <p class="world-card-desc">Şiddetli ölümlerin olduğu yerlerde açan doğaüstü çiçekler. Her biri, ölünün son anısını ve duygusunu taşır. Renkleri ölüm şekline göre değişir.</p>
-    </div>
+      <p class="world-card-desc">Şiddetli ölümlerin olduğu yerlerde açan doğaüstü çiçekler. Renkleri ölüm şekline göre değişir.</p>
+    </a>
 
-    <div class="world-card">
+    <a href="#world-whispers" class="world-card clickable" onclick="showWorld('world-whispers', event)">
       <div class="world-card-icon">囁</div>
       <h3 class="world-card-title">Fısıltılar</h3>
       <div class="world-card-title-jp">囁き — Sasayaki</div>
-      <p class="world-card-desc">Çiçeğe dokunan veya koklayan kişi, ölünün son anını yaşar. Sadece "Kan'nōsha" (Hassas) kişiler bu fısıltıları duyabilir.</p>
-    </div>
+      <p class="world-card-desc">Çiçeğe dokunan kişi ölünün son anını yaşar. Sadece Kan'nōsha'lar duyabilir.</p>
+    </a>
 
-    <div class="world-card">
+    <a href="#world-gardeners" class="world-card clickable" onclick="showWorld('world-gardeners', event)">
       <div class="world-card-icon">庭</div>
       <h3 class="world-card-title">Bahçıvanlar</h3>
       <div class="world-card-title-jp">庭師 — Nishishi</div>
-      <p class="world-card-desc">Hayalet Çiçekleri toplayıp satan, kullanan veya yok eden gizli bir topluluk. İki ana grup: Koruyucular ve Toplayıcılar.</p>
-    </div>
+      <p class="world-card-desc">Hayalet Çiçekleri toplayıp satan gizli topluluk. Koruyucular ve Toplayıcılar.</p>
+    </a>
 
-    <div class="world-card">
+    <a href="#world-market" class="world-card clickable" onclick="showWorld('world-market', event)">
       <div class="world-card-icon">闇</div>
       <h3 class="world-card-title">Karanlık Pazar</h3>
       <div class="world-card-title-jp">闇市 — Yamīchi</div>
-      <p class="world-card-desc">Hayalet Çiçeklerin alınıp satıldığı yeraltı piyasası. Tokyo'nun altında, terk edilmiş bir metro istasyonunda kurulur.</p>
-    </div>
+      <p class="world-card-desc">Anıların alınıp satıldığı yeraltı piyasası. Tokyo'nun altında kurulur.</p>
+    </a>
+
+    <a href="#world-kanosha" class="world-card clickable" onclick="showWorld('world-kanosha', event)">
+      <div class="world-card-icon">感</div>
+      <h3 class="world-card-title">Kan'nōsha</h3>
+      <div class="world-card-title-jp">感応者</div>
+      <p class="world-card-desc">Hayalet Çiçeklerin fısıltılarını duyabilen nadir kişiler. Yuki gibi.</p>
+    </a>
+
+    <a href="#world-golden" class="world-card clickable" onclick="showWorld('world-golden', event)">
+      <div class="world-card-icon">金</div>
+      <h3 class="world-card-title">Altın Çiçek</h3>
+      <div class="world-card-title-jp">金花 — Kinhana</div>
+      <p class="world-card-desc">Efsanevi çiçek. Ölümü tersine çevirebilir. Ama bedeli vardır.</p>
+    </a>
   </div>
 
   <h2 class="section-title" style="margin-top: 5rem;">
@@ -69,23 +215,23 @@
   <p class="section-subtitle">Ölüm şekline göre çiçek renkleri</p>
 
   <div class="flower-colors">
-    <div class="flower-color-item red">
+    <div class="flower-color-item red" onclick="showWorld('world-flower-red', event)" style="cursor: pointer;">
       <h4>Kırmızı</h4>
       <p>Cinayet</p>
     </div>
-    <div class="flower-color-item blue">
+    <div class="flower-color-item blue" onclick="showWorld('world-flower-blue', event)" style="cursor: pointer;">
       <h4>Mavi</h4>
       <p>Boğulma</p>
     </div>
-    <div class="flower-color-item black">
+    <div class="flower-color-item black" onclick="showWorld('world-flower-black', event)" style="cursor: pointer;">
       <h4>Siyah</h4>
       <p>İntihar</p>
     </div>
-    <div class="flower-color-item white">
+    <div class="flower-color-item white" onclick="showWorld('world-flower-white', event)" style="cursor: pointer;">
       <h4>Beyaz</h4>
-      <p>Doğal Ölüm</p>
+      <p>Fedakarlık</p>
     </div>
-    <div class="flower-color-item gold">
+    <div class="flower-color-item gold" onclick="showWorld('world-flower-gold', event)" style="cursor: pointer;">
       <h4>Altın</h4>
       <p>Efsanevi</p>
     </div>
@@ -94,38 +240,508 @@
   <h2 class="section-title" style="margin-top: 5rem;">
     <span class="section-title-jp">場所</span> ÖNEMLİ MEKANLAR
   </h2>
-  <p class="section-subtitle">Hikayenin geçtiği yerler</p>
+  <p class="section-subtitle">Hikayenin geçtiği yerler — Detay için tıklayın</p>
 
   <div class="world-grid">
-    <div class="world-card">
+    <a href="#world-yanaka" class="world-card clickable" onclick="showWorld('world-yanaka', event)">
       <div class="world-card-icon">墓</div>
       <h3 class="world-card-title">Yanaka Mezarlığı</h3>
       <div class="world-card-title-jp">谷中霊園</div>
-      <p class="world-card-desc">Koruyucuların gizli tapınağının bulunduğu yer. Yuki'nin ailesinin mezarları burada.</p>
-    </div>
-    <div class="world-card">
+      <p class="world-card-desc">Koruyucuların gizli tapınağı. Yuki'nin ailesinin mezarları burada.</p>
+    </a>
+    <a href="#world-aokigahara" class="world-card clickable" onclick="showWorld('world-aokigahara', event)">
       <div class="world-card-icon">森</div>
       <h3 class="world-card-title">Aokigahara Ormanı</h3>
       <div class="world-card-title-jp">青木ヶ原</div>
-      <p class="world-card-desc">İntihar kurbanlarının çiçekleriyle dolu bir bahçe. Fısıltıların en yoğun olduğu yer.</p>
-    </div>
-    <div class="world-card">
+      <p class="world-card-desc">İntihar kurbanlarının çiçekleriyle dolu bahçe. Fısıltıların en yoğun olduğu yer.</p>
+    </a>
+    <a href="#world-fuji" class="world-card clickable" onclick="showWorld('world-fuji', event)">
       <div class="world-card-icon">山</div>
       <h3 class="world-card-title">Fuji Dağı</h3>
       <div class="world-card-title-jp">富士山</div>
-      <p class="world-card-desc">Altın Çiçeğin saklandığı gizli mağaranın bulunduğu yer.</p>
-    </div>
-    <div class="world-card">
+      <p class="world-card-desc">Altın Çiçeğin saklandığı mağara. Arc 3'ün final savaş alanı.</p>
+    </a>
+    <a href="#world-shinjuku" class="world-card clickable" onclick="showWorld('world-shinjuku', event)">
       <div class="world-card-icon">街</div>
       <h3 class="world-card-title">Shinjuku</h3>
       <div class="world-card-title-jp">新宿</div>
-      <p class="world-card-desc">Hikayenin başladığı yer. İlk Hayalet Çiçek, burada bulundu.</p>
-    </div>
+      <p class="world-card-desc">Hikayenin başladığı yer. İlk Hayalet Çiçek burada bulundu.</p>
+    </a>
+    <a href="#world-ryokan" class="world-card clickable" onclick="showWorld('world-ryokan', event)">
+      <div class="world-card-icon">宿</div>
+      <h3 class="world-card-title">Ryokan</h3>
+      <div class="world-card-title-jp">旅館</div>
+      <p class="world-card-desc">Dağ yolundaki gizli Japon hanı. Arc 2'de sığınak oldu.</p>
+    </a>
+    <a href="#world-factory" class="world-card clickable" onclick="showWorld('world-factory', event)">
+      <div class="world-card-icon">工</div>
+      <h3 class="world-card-title">Terk Edilmiş Fabrika</h3>
+      <div class="world-card-title-jp">廃工場</div>
+      <p class="world-card-desc">Kuroi'nin üssü. Yüzlerce kavanozda anı sakladığı yer.</p>
+    </a>
   </div>
 </section>
 
+<!-- DETAY SAYFALARI -->
+<div class="world-detail" id="world-ghost-flowers">
+  <button class="world-detail-back" onclick="hideWorld()">← Dünya Sayfasına Dön</button>
+  <div class="world-detail-hero">
+    <div class="world-detail-icon">花</div>
+    <h1 class="world-detail-title">Hayalet Çiçekler</h1>
+    <div class="world-detail-jp">幽霊花 — Yūrei Hana</div>
+  </div>
+  <div class="world-detail-body">
+    <p>Hayalet Çiçekler, şiddetli ölümlerin yaşandığı yerlerde açan doğaüstü bitkilerdir. Her çiçek, ölünün son üç saniyesini, son duygusunu ve son düşüncesini taşır.</p>
+    <p>Bu çiçekler sıradan insanlar tarafından görülmez. Sadece Kan'nōsha'lar ve deneyimli Bahçıvanlar onları görebilir. Bir çiçeğe dokunmak, ölünün son anını tamamen yaşamak demektir — acıyı, korkuyu ve son düşünceyi hissetmek.</p>
+    
+    <div class="world-facts">
+      <div class="world-fact">
+        <div class="world-fact-label">Oluşum Süresi</div>
+        <div class="world-fact-value">1-3 gün</div>
+      </div>
+      <div class="world-fact">
+        <div class="world-fact-label">Ömür</div>
+        <div class="world-fact-value">7 gün</div>
+      </div>
+      <div class="world-fact">
+        <div class="world-fact-label">Görünürlük</div>
+        <div class="world-fact-value">Kan'nōsha</div>
+      </div>
+      <div class="world-fact">
+        <div class="world-fact-label">Tehlike</div>
+        <div class="world-fact-value">Yüksek</div>
+      </div>
+    </div>
+
+    <h4>Çiçeğin Özellikleri</h4>
+    <ul>
+      <li>Şiddetli ölümlerin olduğu yerde otomatik olarak açar</li>
+      <li>Her çiçeğin rengi ölüm şeklini belirtir</li>
+      <li>Ölünün son anısını taşır — dokunan kişi anıyı yaşar</li>
+      <li>7 gün içinde solmazsa, kalıcı hale gelir</li>
+      <li>Yanlış kullanılırsa Kan'nōsha'yı delirtebilir</li>
+    </ul>
+
+    <h4>Tehlikeler</h4>
+    <p>Hayalet Çiçekler bir Kan'nōsha'yı psikolojik olarak yıpratır. Uzun süreli kullanımda halüsinasyonlar, kabuslar ve hatta kişilik bozuklukları görülebilir. Bu yüzden Kan'nōsha'lar nadiren ve dikkatli kullanır.</p>
+  </div>
+</div>
+
+<div class="world-detail" id="world-whispers">
+  <button class="world-detail-back" onclick="hideWorld()">← Dünya Sayfasına Dön</button>
+  <div class="world-detail-hero">
+    <div class="world-detail-icon">囁</div>
+    <h1 class="world-detail-title">Fısıltılar</h1>
+    <div class="world-detail-jp">囁き — Sasayaki</div>
+  </div>
+  <div class="world-detail-body">
+    <p>Fısıltılar, Hayalet Çiçeklerin taşıdığı ölü anıların Kan'nōsha'lar tarafından duyulması olayıdır. Bir çiçeğe dokunduğunuzda, ölünün son üç saniyesini tamamen yaşarsınız — tüm duyularınızla.</p>
+    <p>Bu deneyim görsel, işitsel, dokunsal ve duygusaldır. Ölüm acısını, korkuyu, pişmanlığı ve son düşünceyi hissedersiniz. Bu, çoğu Kan'nōsha için travmatik bir deneyimdir.</p>
+
+    <h4>Duyulan Şeyler</h4>
+    <ul>
+      <li><strong>Sesler:</strong> Ölünün son çığlığı, fısıltısı veya sessizliği</li>
+      <li><strong>Görüntüler:</strong> Ölüm anının bulanık kareleri</li>
+      <li><strong>Duygular:</strong> Korku, öfke, pişmanlık, huzur — hangisi son duygusuysa</li>
+      <li><strong>Düşünceler:</strong> Son düşünce — genelde sevilen biri hakkında</li>
+      <li><strong>Fiziksel:</strong> Ölüm anındaki acı veya soğukluk</li>
+    </ul>
+
+    <h4>Korunma</h4>
+    <p>Deneyimli Kan'nōsha'lar "Anı Filtreleme" tekniğini kullanır. Bu, gereksiz anıları bloklayıp sadece istenen bilgiyi almaya odaklanmayı sağlar. Yuki bu tekniği Ne'den öğrenmiştir.</p>
+  </div>
+</div>
+
+<div class="world-detail" id="world-gardeners">
+  <button class="world-detail-back" onclick="hideWorld()">← Dünya Sayfasına Dön</button>
+  <div class="world-detail-hero">
+    <div class="world-detail-icon">庭</div>
+    <h1 class="world-detail-title">Bahçıvanlar</h1>
+    <div class="world-detail-jp">庭師 — Nishishi</div>
+  </div>
+  <div class="world-detail-body">
+    <p>Bahçıvanlar, Hayalet Çiçekleri toplayan, kullanan veya yok eden gizli bir topluluktur. İki ana grup vardır: <strong>Koruyucular</strong> ve <strong>Toplayıcılar</strong>.</p>
+
+    <h4>守り人 — Koruyucular</h4>
+    <p>Hayalet Çiçeklerin doğal dengesini koruyan eski bir topluluk. Yanlış kullanımı engeller, Kan'nōsha'ları eğitir ve çiçeklerin şiddetli ölümlerden oluşmasını sağlar. Yüzyıllardır Tokyo'nun altındaki tapınakta yaşarlar.</p>
+    <ul>
+      <li><strong>Ne:</strong> Eski lider (öldü)</li>
+      <li><strong>Yuki:</strong> Yeni lider (Arc 3 sonu)</li>
+      <li><strong>Dr. Kurosawa:</strong> Eski üye, danışman</li>
+      <li><strong>Gin:</strong> Eski öğretmen (öldü)</li>
+    </ul>
+
+    <h4>集め人 — Toplayıcılar</h4>
+    <p>Hayalet Çiçekleri karanlık amaçlar için kullanan grup. Anıları satar, ölüleri diriltmeye çalışır ve insanları sömürür. Bahçıvan (Sōren) onların eski lideriydi.</p>
+    <ul>
+      <li><strong>Bahçıvan:</strong> Eski lider</li>
+      <li><strong>Kuroi:</strong> Sağ kol (öldü)</li>
+      <li><strong>Amca:</strong> Yeni lider (yenildi, Arc 3 sonu)</li>
+    </ul>
+
+    <h4>Arc 4'teki Durum</h4>
+    <p>Toplayıcılar büyük ölçüde dağıldı. Ama kalıntıları hala tehlikeli. Koruyucular yeniden inşa ediliyor. Yuki, yeni nesil Kan'nōsha'ları eğitiyor.</p>
+  </div>
+</div>
+
+<div class="world-detail" id="world-market">
+  <button class="world-detail-back" onclick="hideWorld()">← Dünya Sayfasına Dön</button>
+  <div class="world-detail-hero">
+    <div class="world-detail-icon">闇</div>
+    <h1 class="world-detail-title">Karanlık Pazar</h1>
+    <div class="world-detail-jp">闇市 — Yamīchi</div>
+  </div>
+  <div class="world-detail-body">
+    <p>Karanlık Pazar, Tokyo'nun altında, terk edilmiş bir metro istasyonunda kurulan yeraltı piyasasıdır. Sadece Hayalet Çiçekler hakkında bilgisi olan insanlar buraya ulaşabilir.</p>
+    <p>Burada her şey satılır: anılar, çiçekler, bilgi, hatta ölülerin son sözleri. Fiyatlar ölüm şekline, kurbanın ününe ve anının değerine göre değişir.</p>
+
+    <div class="world-facts">
+      <div class="world-fact">
+        <div class="world-fact-label">Konum</div>
+        <div class="world-fact-value">Yeraltı</div>
+      </div>
+      <div class="world-fact">
+        <div class="world-fact-label">Kuruluş</div>
+        <div class="world-fact-value">Yüzyıllar</div>
+      </div>
+      <div class="world-fact">
+        <div class="world-fact-label">Kural</div>
+        <div class="world-fact-value">Sorma!</div>
+      </div>
+      <div class="world-fact">
+        <div class="world-fact-label">Durum</div>
+        <div class="world-fact-value">Yıkıldı (Arc 3)</div>
+      </div>
+    </div>
+
+    <h4>Fiyat Örnekleri</h4>
+    <ul>
+      <li><strong>Doğal ölüm (beyaz):</strong> 500.000 ¥</li>
+      <li><strong>İntihar (siyah):</strong> 2.000.000 ¥</li>
+      <li><strong>Boğulma (mavi):</strong> 5.000.000 ¥</li>
+      <li><strong>Cinayet (kırmızı):</strong> 15.000.000 ¥</li>
+      <li><strong>Fedakarlık (beyaz-özel):</strong> Paha biçilemez</li>
+      <li><strong>Altın Çiçek:</strong> Efsanevi</li>
+    </ul>
+
+    <h4>Ünlü Kişiler</h4>
+    <p><strong>Gin:</strong> Pazarın en eski satıcısı. Kör ama her şeyi bilen kadın. Arc 3'te hayatını kaybetti.</p>
+  </div>
+</div>
+
+<div class="world-detail" id="world-kanosha">
+  <button class="world-detail-back" onclick="hideWorld()">← Dünya Sayfasına Dön</button>
+  <div class="world-detail-hero">
+    <div class="world-detail-icon">感</div>
+    <h1 class="world-detail-title">Kan'nōsha</h1>
+    <div class="world-detail-jp">感応者 — Hassas</div>
+  </div>
+  <div class="world-detail-body">
+    <p>Kan'nōsha (Hassas), Hayalet Çiçeklerin fısıltılarını duyabilen nadir kişilerdir. Bu yetenek doğuştandır — sonradan kazanılamaz. Yüzyılda belki 5-10 Kan'nōsha doğar.</p>
+    <p>Yuki, annesi Yuriko'nun ardından gelen en güçlü Kan'nōsha'dır. Yeteneği o kadar güçlü ki, sadece bir çiçeğe dokunarak tüm bir hayatı okuyabilir.</p>
+
+    <h4>Yetenek Seviyeleri</h4>
+    <ul>
+      <li><strong>E-Sınıfı:</strong> Sadece çok güçlü çiçekleri duyabilir</li>
+      <li><strong>C-Sınıfı:</strong> Normal çiçekleri duyabilir, kısa anıları okuyabilir</li>
+      <li><strong>A-Sınıfı:</strong> Tüm çiçekleri duyabilir, uzun anıları okuyabilir, çiçekleri silaha dönüştürebilir</li>
+      <li><strong>S-Sınıfı:</strong> Tüm yetenekler + ölüyle iletişim + Anı Filtreleme (Nadir)</li>
+      <li><strong>SS-Sınıfı:</strong> Efsanevi. Altın Çiçeği taşıyabilir. (Sadece Yuriko ve Yuki)</li>
+    </ul>
+
+    <h4>Bilinen Kan'nōsha'lar</h4>
+    <ul>
+      <li><strong>Ayanokōji Yuriko (SS):</strong> Öldü — Yuki'nin annesi</li>
+      <li><strong>Ayanokōji Yuki (SS):</strong> Aktif — Protagonist</li>
+      <li><strong>Ayanokōji Sōren (A):</strong> Gücünü kaybetti — Yuki'nin babası</li>
+      <li><strong>Gin (A):</strong> Öldü — Yuriko'nun hocası</li>
+      <li><strong>Dr. Kurosawa (C):</strong> Aktif — Yuki'nin dayısı</li>
+    </ul>
+  </div>
+</div>
+
+<div class="world-detail" id="world-golden">
+  <button class="world-detail-back" onclick="hideWorld()">← Dünya Sayfasına Dön</button>
+  <div class="world-detail-hero">
+    <div class="world-detail-icon">金</div>
+    <h1 class="world-detail-title">Altın Çiçek</h1>
+    <div class="world-detail-jp">金花 — Kinhana</div>
+  </div>
+  <div class="world-detail-body">
+    <p>Altın Çiçek, dünyadaki en nadir ve en güçlü Hayalet Çiçektir. Sadece bir kez açar — ve sadece seçtiği kişi tarafından kullanılabilir. Efsaneye göre ölümü tersine çevirebilir.</p>
+    <p>Ama gerçek çok farklıdır. Altın Çiçek ölüleri geri getirmez — sadece son bir veda için şans verir. Ve kullanan kişinin hayatını ister.</p>
+
+    <div class="world-facts">
+      <div class="world-fact">
+        <div class="world-fact-label">Konum</div>
+        <div class="world-fact-value">Fuji Dağı</div>
+      </div>
+      <div class="world-fact">
+        <div class="world-fact-label">Rengi</div>
+        <div class="world-fact-value">Altın</div>
+      </div>
+      <div class="world-fact">
+        <div class="world-fact-label">Güç</div>
+        <div class="world-fact-value">SS-Sınıfı</div>
+      </div>
+      <div class="world-fact">
+        <div class="world-fact-label">Bedeli</div>
+        <div class="world-fact-value">Hayat</div>
+      </div>
+    </div>
+
+    <h4>Gerçek Gücü</h4>
+    <p>Altın Çiçek ölüleri diriltmez — bir kişinin son bir kez sevdikleriyle konuşmasını sağlar. Bu bir "son veda"dır. Bir kez kullanılır, bir kez açılır ve sonra sonsuza dek uyur.</p>
+
+    <h4>Taşıyıcılık</h4>
+    <p>Altın Çiçek kendine bir koruyucu seçer. Bu kişi çiçeği taşır ama kullanmaz. Kullanmak isteyen başkalarından korur. Yuki, Arc 3'ün sonunda bu koruyucu seçildi.</p>
+  </div>
+</div>
+
+<div class="world-detail" id="world-flower-red">
+  <button class="world-detail-back" onclick="hideWorld()">← Dünya Sayfasına Dön</button>
+  <div class="world-detail-hero">
+    <div class="world-detail-icon" style="color: #E63946;">赤</div>
+    <h1 class="world-detail-title">Kırmızı Çiçek</h1>
+    <div class="world-detail-jp">赤い花 — Cinayet</div>
+  </div>
+  <div class="world-detail-body">
+    <p>Kırmızı Hayalet Çiçek, cinayet sonucu ölen kişilerin bulunduğu yerlerde açar. En yaygın çiçek türüdür — çünkü dünyada her gün binlerce cinayet işlenir.</p>
+    <p>Bu çiçeklerin anıları genelde şiddetli ve travmatiktir. Ölünün son anısı — katilinin yüzü, bıçağın soğukluğu, çığlığı — Kan'nōsha'ya tamamen yansır.</p>
+    <h4>Özellikler</h4>
+    <ul>
+      <li>Renk: Kan kırmızısı</li>
+      <li>Koku: Metalik (kan kokusu)</li>
+      <li>Anı Yoğunluğu: Yüksek</li>
+      <li>Fiyat: 10-15 milyon ¥</li>
+      <li>Tehlike: Psikolojik</li>
+    </ul>
+    <h4>Ünlü Kırmızı Çiçekler</h4>
+    <ul>
+      <li><strong>Bölüm 1:</strong> İlk cinayet kurbanı (Yuki'nin bulduğu)</li>
+      <li><strong>Bölüm 5:</strong> Kuroi'nin cinayeti</li>
+      <li><strong>Bölüm 13:</strong> Hana'nın ölümü (aslında beyaz)</li>
+    </ul>
+  </div>
+</div>
+
+<div class="world-detail" id="world-flower-blue">
+  <button class="world-detail-back" onclick="hideWorld()">← Dünya Sayfasına Dön</button>
+  <div class="world-detail-hero">
+    <div class="world-detail-icon" style="color: #4A90D9;">青</div>
+    <h1 class="world-detail-title">Mavi Çiçek</h1>
+    <div class="world-detail-jp">青い花 — Boğulma</div>
+  </div>
+  <div class="world-detail-body">
+    <p>Mavi Hayalet Çiçek, boğularak ölen kişilerin bulunduğu yerlerde açar — nehirler, göller, denizler. Anısı genelde sessiz ve yavaştır; suyun altındaki boğulma hissi.</p>
+    <p>Bu çiçekler, Kan'nōsha'ya suyun altındaymış hissi verir. Nefes alamama, karanlık, soğukluk... En zor çiçek türlerinden biridir.</p>
+    <h4>Özellikler</h4>
+    <ul>
+      <li>Renk: Okyanus mavisi</li>
+      <li>Koku: Tuzlu (deniz kokusu)</li>
+      <li>Anı Yoğunluğu: Orta-yüksek</li>
+      <li>Fiyat: 3-5 milyon ¥</li>
+      <li>Tehlike: Nefes darlığı hissi</li>
+    </ul>
+  </div>
+</div>
+
+<div class="world-detail" id="world-flower-black">
+  <button class="world-detail-back" onclick="hideWorld()">← Dünya Sayfasına Dön</button>
+  <div class="world-detail-hero">
+    <div class="world-detail-icon" style="color: #666;">黒</div>
+    <h1 class="world-detail-title">Siyah Çiçek</h1>
+    <div class="world-detail-jp">黒い花 — İntihar</div>
+  </div>
+  <div class="world-detail-body">
+    <p>Siyah Hayalet Çiçek, intihar sonucu ölen kişilerin bulunduğu yerlerde açar. Anısı en depresif ve çaresiz olanıdır — kişinin son düşünceleri genelde pişmanlık ve yalnızlık doludur.</p>
+    <p>Bu çiçekler Kan'nōsha'lar için en tehlikelisidir, çünkü depresyon ve intihar düşüncesi bulaşıcı olabilir. Deneyimli Kan'nōsha'lar bile bu çiçeklerle çalışırken koruma kullanır.</p>
+    <h4>Özellikler</h4>
+    <ul>
+      <li>Renk: Gece siyahı</li>
+      <li>Koku: Yok</li>
+      <li>Anı Yoğunluğu: Çok yüksek</li>
+      <li>Fiyat: 1-2 milyon ¥</li>
+      <li>Tehlike: Depresyon, halüsinasyon</li>
+    </ul>
+    <h4>Önemli Not</h4>
+    <p>Aokigahara Ormanı (İntihar Ormanı) dünyanın en yoğun siyah çiçek tarlasıdır. Yuki, Arc 3'te bu ormanda neredeyse kayboldu.</p>
+  </div>
+</div>
+
+<div class="world-detail" id="world-flower-white">
+  <button class="world-detail-back" onclick="hideWorld()">← Dünya Sayfasına Dön</button>
+  <div class="world-detail-hero">
+    <div class="world-detail-icon" style="color: #FFFFFF;">白</div>
+    <h1 class="world-detail-title">Beyaz Çiçek</h1>
+    <div class="world-detail-jp">白い花 — Fedakarlık</div>
+  </div>
+  <div class="world-detail-body">
+    <p>Beyaz Hayalet Çiçek, en nadir ve en kutsal çiçek türüdür. Sadece bir başkası için kendini feda eden kişilerin ölümünde açar. Anısı huzur, sevgi ve kabul doludur.</p>
+    <p>Bu çiçekler, Kan'nōsha'ya huzur verir. Acı vermez, aksine güzellik ve sevgi hissi yayar. Bu yüzden paha biçilemez — çok az kişi fedakarlıkla ölür.</p>
+    <h4>Özellikler</h4>
+    <ul>
+      <li>Renk: Kar beyazı</li>
+      <li>Koku: Çiçek kokusu (nadir)</li>
+      <li>Anı Yoğunluğu: Düşük (huzurlu)</li>
+      <li>Fiyat: Paha biçilemez</li>
+      <li>Tehlike: Düşük</li>
+    </ul>
+    <h4>Ünlü Beyaz Çiçekler</h4>
+    <ul>
+      <li><strong>Yuriko Ayanokōji:</strong> Kızı için öldü (Bölüm 3-4)</li>
+      <li><strong>Hana Tachibana:</strong> Yuki'yi korumak için öldü (Bölüm 13)</li>
+      <li><strong>Sōren Ayanokōji:</strong> Kızı için kendini feda etti (Arc 4)</li>
+    </ul>
+  </div>
+</div>
+
+<div class="world-detail" id="world-flower-gold">
+  <button class="world-detail-back" onclick="hideWorld()">← Dünya Sayfasına Dön</button>
+  <div class="world-detail-hero">
+    <div class="world-detail-icon" style="color: #F4A261;">金</div>
+    <h1 class="world-detail-title">Altın Çiçek</h1>
+    <div class="world-detail-jp">金花 — Kinhana</div>
+  </div>
+  <div class="world-detail-body">
+    <p>Altın Çiçek efsanevi bir çiçektir — dünyada sadece bir tanedir. Yüzyıllar boyunca bir koruyucu tarafından saklanır. Kim açmak isterse, ona ulaşmak için tüm engelleri aşması gerekir.</p>
+    <p>Detaylı bilgi için yukarıdaki "Altın Çiçek" kartına tıklayın.</p>
+  </div>
+</div>
+
+<div class="world-detail" id="world-yanaka">
+  <button class="world-detail-back" onclick="hideWorld()">← Dünya Sayfasına Dön</button>
+  <div class="world-detail-hero">
+    <div class="world-detail-icon">墓</div>
+    <h1 class="world-detail-title">Yanaka Mezarlığı</h1>
+    <div class="world-detail-jp">谷中霊園</div>
+  </div>
+  <div class="world-detail-body">
+    <p>Tokyo'nun Yanaka semtinde bulunan tarihi mezarlık. Yüzlerce yıllık mezar taşları, kiraz ağaçları ve saklı bir gizem: <strong>Koruyucuların tapınağı.</strong></p>
+    <p>Mezarlığın altında, yüzyıllar önce inşa edilmiş bir tapınak kompleksi var. Ne ve Koruyucular burada yaşar, eğitim yapar ve Hayalet Çiçekleri korur.</p>
+    <h4>Önemli Yerler</h4>
+    <ul>
+      <li><strong>Ayanokōji ailesinin mezarları:</strong> Yuriko ve Sōren'in mezarları</li>
+      <li><strong>Gizli giriş:</strong> Dr. Kurosawa'nın bildiği bir taş</li>
+      <li><strong>Ana tapınak:</strong> Ne'nin tahtı</li>
+      <li><strong>Eğitim alanı:</strong> Yuki ve Ren'in antrenman yaptığı yer</li>
+    </ul>
+    <h4>Arc 2-3'teki Rolü</h4>
+    <p>Koruyucuların merkeziydi. Ama Arc 2'nin sonunda Kuroi ve Toplayıcılar tarafından saldırıya uğradı. Arc 3'te kısmen yıkıldı. Şu anda yeniden inşa ediliyor.</p>
+  </div>
+</div>
+
+<div class="world-detail" id="world-aokigahara">
+  <button class="world-detail-back" onclick="hideWorld()">← Dünya Sayfasına Dön</button>
+  <div class="world-detail-hero">
+    <div class="world-detail-icon">森</div>
+    <h1 class="world-detail-title">Aokigahara Ormanı</h1>
+    <div class="world-detail-jp">青木ヶ原 — İntihar Ormanı</div>
+  </div>
+  <div class="world-detail-body">
+    <p>Fuji Dağı'nın eteklerinde bulunan yoğun orman. Dünyanın en ünlü "intihar ormanı" olarak bilinir. Yılda yüzlerce kişi burada hayatına son verir.</p>
+    <p>Bu yüzden Aokigahara, <strong>dünyanın en yoğun siyah çiçek tarlasıdır.</strong> Binlerce siyah Hayalet Çiçek, ormanın her yerinde açar. Fısıltılar o kadar yoğundur ki, deneyimli Kan'nōsha'lar bile delirebilir.</p>
+    <h4>Özellikler</h4>
+    <ul>
+      <li>Siyah çiçek yoğunluğu: Çok yüksek</li>
+      <li>Fısıltı yoğunluğu: Öldürücü seviye</li>
+      <li>Görünüm: Sonsuz karanlık, sis</li>
+      <li>Tehlike: Çok yüksek</li>
+    </ul>
+    <h4>Arc 3'teki Rolü</h4>
+    <p>Yuki ve Ren, Altın Çiçeğin izini sürerken Aokigahara'ya girdi. Yuki, fısıltılar yüzünden neredeyse kayboldu. Ren onu kurtardı. Bu sahneden sonra aralarındaki bağ derinleşti.</p>
+  </div>
+</div>
+
+<div class="world-detail" id="world-fuji">
+  <button class="world-detail-back" onclick="hideWorld()">← Dünya Sayfasına Dön</button>
+  <div class="world-detail-hero">
+    <div class="world-detail-icon">山</div>
+    <h1 class="world-detail-title">Fuji Dağı</h1>
+    <div class="world-detail-jp">富士山</div>
+  </div>
+  <div class="world-detail-body">
+    <p>Japonya'nın en kutsal dağı. Ama turistlerin bilmediği bir sır var: Dağın altında, yüzyıllar önce inşa edilmiş bir mağara kompleksi.</p>
+    <p>Bu mağarada <strong>Altın Çiçek</strong> saklanır. Sadece bir koruyucu tarafından korunur. Girişte eski Japonca uyarılar yazılıdır: <em>"Altın Çiçek sadece bir kez açar. Ve onu kullanan asla geri dönemez."</em></p>
+    <h4>Mağara Bölümleri</h4>
+    <ul>
+      <li><strong>Giriş:</strong> Eski çizimler ve uyarılar</li>
+      <li><strong>Orta koridor:</strong> Hayalet Çiçek tarlaları</li>
+      <li><strong>Ana oda:</strong> Altın Çiçek sunağı</li>
+      <li><strong>Gizli geçit:</strong> Kaçış yolu</li>
+    </ul>
+    <h4>Arc 3 Finali</h4>
+    <p>Yuki, Amca (Sōren'in kardeşi) ile burada son savaşını verdi. Altın Çiçek onu koruyucu olarak seçti.</p>
+  </div>
+</div>
+
+<div class="world-detail" id="world-shinjuku">
+  <button class="world-detail-back" onclick="hideWorld()">← Dünya Sayfasına Dön</button>
+  <div class="world-detail-hero">
+    <div class="world-detail-icon">街</div>
+    <h1 class="world-detail-title">Shinjuku</h1>
+    <div class="world-detail-jp">新宿</div>
+  </div>
+  <div class="world-detail-body">
+    <p>Tokyo'nun en yoğun ve en modern semtlerinden biri. Ama gece olduğunda, karanlık sokaklarında başka bir dünya saklıdır — cinayet mahalleri, hayalet çiçekler ve gizli pazarlar.</p>
+    <p>Hikayenin başladığı yer. Yuki, ilk Hayalet Çiçeği burada buldu (Bölüm 1). Ren ile burada tanıştı. Ve babasının gerçeğiyle ilk kez burada yüzleşti.</p>
+    <h4>Önemli Yerler</h4>
+    <ul>
+      <li><strong>İlk cinayet mahalli:</strong> Bölüm 1'in başlangıcı</li>
+      <li><strong>Karanlık giriş:</strong> Karanlık Pazar'a giden yol</li>
+      <li><strong>Kuroi'nin saldırı noktası:</strong> Bölüm 5</li>
+    </ul>
+  </div>
+</div>
+
+<div class="world-detail" id="world-ryokan">
+  <button class="world-detail-back" onclick="hideWorld()">← Dünya Sayfasına Dön</button>
+  <div class="world-detail-hero">
+    <div class="world-detail-icon">宿</div>
+    <h1 class="world-detail-title">Ryokan</h1>
+    <div class="world-detail-title-jp">旅館 — Dağ Hanı</div>
+  </div>
+  <div class="world-detail-body">
+    <p>Tokyo'dan uzakta, dağ yolunda bulunan eski bir Japon hanı. Sōren (Bahçıvan), 12 yıl önce burada saklandı. Neden? Çünkü <strong>burada hayalet çiçek yok.</strong></p>
+    <p>Ryokan, bir tür "güvenli bölge"dir. Çiçekler olmadığı için fısıltılar da yoktur. Kan'nōsha'lar burada dinlenebilir.</p>
+    <h4>Özellikler</h4>
+    <ul>
+      <li>Ahşap mimari, geleneksel Japon tarzı</li>
+      <li>Onsen (sıcak su kaynağı)</li>
+      <li>Boş odalar, sessizlik</li>
+      <li>Hayalet çiçek yoğunluğu: Sıfır</li>
+    </ul>
+    <h4>Arc 2'deki Rolü</h4>
+    <p>Yuki, Ren ve Sōren, Kuroi'den kaçtıktan sonra buraya sığındı. Yuriko'nun mektubu burada açıldı. Ren burada ağır yaralandı ve Yuki onu bir doktor anısıyla kurtardı.</p>
+  </div>
+</div>
+
+<div class="world-detail" id="world-factory">
+  <button class="world-detail-back" onclick="hideWorld()">← Dünya Sayfasına Dön</button>
+  <div class="world-detail-hero">
+    <div class="world-detail-icon">工</div>
+    <h1 class="world-detail-title">Terk Edilmiş Fabrika</h1>
+    <div class="world-detail-jp">廃工場</div>
+  </div>
+  <div class="world-detail-body">
+    <p>Tokyo'nun dışında, kimsenin bilmediği bir fabrika. Kuroi, Toplayıcıları yönetmek için burayı üs olarak kullandı.</p>
+    <p>Fabrikanın içi <strong>yüzlerce kavanozda Hayalet Çiçek</strong> ile dolu. Kuroi, kurbanlarının anılarını topladı ve kavanozlarda sakladı. Her kavanoz birinin son anısı.</p>
+    <h4>Önemli Anlar</h4>
+    <ul>
+      <li><strong>Bölüm 16:</strong> Yuki, Ren ve Sōren fabrikaya girdi</li>
+      <li><strong>Hana'nın anısı:</strong> Kavanozlardan birinde Hana'nın son anısı bulundu</li>
+      <li><strong>Kuroi ile dövüş:</strong> Fabrikada gerçekleşti</li>
+    </ul>
+    <h4>Şu Anki Durum</h4>
+    <p>Kuroi'nin ölümünden sonra fabrika terk edildi. Kavanozlar kırıldı, anılar serbest kaldı. Belki bir gün birileri oraya gidip geçmişi araştırır.</p>
+  </div>
+</div>
+
 <footer>
-  <div class="footer-logo">KAGERŌ <span style="color: var(--red); font-family: var(--font-jp);">陽炎</span></div>
+  <div class="footer-logo">
+    <span class="brand">KAGERŌ</span>
+    <span class="jp">陽炎</span>
+  </div>
   <div class="footer-links">
     <a href="index.html">Ana Sayfa</a>
     <a href="chapters.html">Bölümler</a>
@@ -139,5 +755,41 @@
 </footer>
 
 <script src="js/main.js"></script>
+<script>
+  function showWorld(id, event) {
+    if (event) event.preventDefault();
+    
+    // Ana listeyi gizle
+    document.getElementById('world-main').style.display = 'none';
+    
+    // Tüm detayları gizle
+    document.querySelectorAll('.world-detail').forEach(d => d.classList.remove('active'));
+    
+    // İstenen detayı göster
+    const detail = document.getElementById(id);
+    if (detail) {
+      detail.classList.add('active');
+      window.scrollTo({ top: 0, behavior: 'instant' });
+      history.pushState({ world: id }, '', '#' + id);
+    }
+  }
+  
+  function hideWorld() {
+    document.getElementById('world-main').style.display = 'block';
+    document.querySelectorAll('.world-detail').forEach(d => d.classList.remove('active'));
+    window.scrollTo({ top: 0, behavior: 'instant' });
+    history.pushState({}, '', 'world.html');
+  }
+  
+  // URL hash kontrolü (sayfa yüklendiğinde)
+  window.addEventListener('DOMContentLoaded', () => {
+    if (window.location.hash) {
+      const id = window.location.hash.substring(1);
+      if (document.getElementById(id)) {
+        showWorld(id);
+      }
+    }
+  });
+</script>
 </body>
 </html>
