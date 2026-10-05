@@ -15,22 +15,12 @@
   </defs>
   <rect width="400" height="500" fill="url(#yukiBg)"/>
   <circle cx="200" cy="220" r="180" fill="url(#yukiGlow)"/>
-  
-  <!-- Saç arka -->
   <path d="M 100 180 Q 100 60 200 60 Q 300 60 300 180 L 300 350 L 260 340 L 260 200 L 140 200 L 140 340 L 100 350 Z" fill="url(#yukiHair)" opacity="0.9"/>
-  
-  <!-- Yüz -->
   <ellipse cx="200" cy="220" rx="70" ry="90" fill="#F5E6E0"/>
-  
-  <!-- Saç ön -->
   <path d="M 130 180 Q 140 110 200 100 Q 260 110 270 180 Q 250 150 200 145 Q 150 150 130 180 Z" fill="url(#yukiHair)"/>
   <path d="M 135 175 Q 120 230 130 290 L 145 285 Q 140 230 150 185 Z" fill="url(#yukiHair)"/>
   <path d="M 265 175 Q 280 230 270 290 L 255 285 Q 260 230 250 185 Z" fill="url(#yukiHair)"/>
-  
-  <!-- Örgü -->
   <path d="M 260 200 Q 275 300 265 400 L 280 400 Q 295 300 275 200 Z" fill="url(#yukiHair)" opacity="0.8"/>
-  
-  <!-- Gözler -->
   <ellipse cx="175" cy="225" rx="12" ry="15" fill="#0A0A0A"/>
   <ellipse cx="225" cy="225" rx="12" ry="15" fill="#0A0A0A"/>
   <ellipse cx="175" cy="225" rx="10" ry="13" fill="#4A90D9"/>
@@ -39,21 +29,11 @@
   <circle cx="225" cy="225" r="5" fill="#0A0A0A"/>
   <circle cx="178" cy="220" r="3" fill="#FFFFFF"/>
   <circle cx="228" cy="220" r="3" fill="#FFFFFF"/>
-  
-  <!-- Kaşlar -->
   <path d="M 160 205 Q 175 200 190 205" stroke="#0A0A0A" stroke-width="2" fill="none"/>
   <path d="M 210 205 Q 225 200 240 205" stroke="#0A0A0A" stroke-width="2" fill="none"/>
-  
-  <!-- Burun -->
   <path d="M 200 240 L 195 260 L 205 260" stroke="#D4A5A5" stroke-width="1.5" fill="none"/>
-  
-  <!-- Ağız -->
   <path d="M 190 275 Q 200 280 210 275" stroke="#B85C5C" stroke-width="2" fill="none"/>
-  
-  <!-- Gözyaşı -->
   <path d="M 175 240 Q 173 255 175 265" stroke="#4A90D9" stroke-width="2" fill="none" opacity="0.7"/>
-  
-  <!-- Çiçek -->
   <g transform="translate(300, 400)">
     <ellipse cx="0" cy="-15" rx="6" ry="12" fill="#E63946"/>
     <ellipse cx="15" cy="-5" rx="6" ry="12" fill="#E63946" transform="rotate(72 0 0)"/>
@@ -62,8 +42,6 @@
     <ellipse cx="-15" cy="-5" rx="6" ry="12" fill="#E63946" transform="rotate(288 0 0)"/>
     <circle r="4" fill="#F4A261"/>
   </g>
-  
-  <!-- İsim -->
   <text x="200" y="470" text-anchor="middle" font-family="Cinzel, serif" font-size="20" font-weight="700" fill="#FFFFFF" letter-spacing="4">YUKI</text>
   <text x="200" y="490" text-anchor="middle" font-family="Noto Sans JP, sans-serif" font-size="12" fill="#E63946" letter-spacing="2">綾小路 雪</text>
 </svg>
