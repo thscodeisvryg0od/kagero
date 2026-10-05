@@ -1,6 +1,3 @@
-# kagero
-陽炎 (KAGERŌ) — Yeni nesil anime çizgi roman platformu. İlk seri: Hayalet Çiçekler.
-
 # 🌸 KAGERŌ (陽炎)
 
 > "Her hikaye bir iz bırakır."
