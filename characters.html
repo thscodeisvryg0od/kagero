@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Karakterler — KAGERŌ</title>
-<meta name="description" content="KAGERŌ — 幽霊花: Hayalet Çiçekler karakterleri. Yuki, Ren, Bahçıvan, Mio ve daha fazlası.">
+<meta name="description" content="KAGERŌ — 幽霊花: Hayalet Çiçekler karakterleri. Yuki, Ren, Bahçıvan, Mio, Küçük Yuriko ve daha fazlası.">
 <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
 <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700;900&family=Inter:wght@300;400;600&family=Noto+Sans+JP:wght@300;400;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="css/style.css">
@@ -21,10 +21,11 @@
   .char-selector-btn {
     padding: 0.7rem 1.5rem;
     background: transparent;
-    border: 1px solid rgba(230,57,70,0.3);
+    border: 3px solid rgba(230,57,70,0.3);
     color: var(--gray);
-    font-family: 'Cinzel', serif;
+    font-family: 'Shippori Mincho', 'Cinzel', serif;
     font-size: 0.8rem;
+    font-weight: 700;
     letter-spacing: 1px;
     cursor: pointer;
     transition: all 0.3s;
@@ -40,14 +41,14 @@
     background: var(--red);
     color: var(--white);
     border-color: var(--red);
-    box-shadow: 0 5px 20px rgba(230,57,70,0.3);
+    box-shadow: 3px 3px 0 var(--ink, #0A0A0A);
   }
   .char-selector-btn .avatar-mini {
-    width: 24px;
-    height: 24px;
+    width: 26px;
+    height: 26px;
     border-radius: 50%;
     overflow: hidden;
-    border: 1px solid currentColor;
+    border: 2px solid currentColor;
     flex-shrink: 0;
   }
   .char-selector-btn .avatar-mini img { width: 100%; height: 100%; object-fit: cover; }
@@ -66,16 +67,55 @@
     width: 100%;
     aspect-ratio: 4/5;
     background: linear-gradient(180deg, #1A0A1A 0%, #0A0A0A 100%);
-    border: 1px solid rgba(230,57,70,0.3);
-    border-radius: 8px;
+    border: 3px solid var(--ink, #0A0A0A);
+    border-radius: 4px;
     display: flex;
     align-items: center;
     justify-content: center;
     position: relative;
     overflow: hidden;
-    box-shadow: 0 20px 60px rgba(230,57,70,0.2);
+    box-shadow: 8px 8px 0 rgba(0,0,0,0.7);
   }
   .char-portrait img { width: 100%; height: 100%; object-fit: cover; }
+  
+  /* Ölü karakter işareti */
+  .char-portrait.deceased::after {
+    content: '享年 — ÖLÜM';
+    position: absolute;
+    top: 1rem;
+    left: 1rem;
+    font-family: 'Shippori Mincho', serif;
+    font-size: 0.7rem;
+    font-weight: 800;
+    letter-spacing: 3px;
+    background: var(--manga-seal, #B71C1C);
+    color: white;
+    padding: 0.3rem 0.8rem;
+    border: 2px solid white;
+    transform: rotate(-4deg);
+    box-shadow: 2px 2px 0 rgba(0,0,0,0.8);
+    z-index: 5;
+  }
+  
+  /* Yeni karakter işareti */
+  .char-portrait.new::after {
+    content: '新 — YENİ';
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    font-family: 'Shippori Mincho', serif;
+    font-size: 0.7rem;
+    font-weight: 800;
+    letter-spacing: 3px;
+    background: var(--manga-gold, #D4A017);
+    color: #0A0A0A;
+    padding: 0.3rem 0.8rem;
+    border: 2px solid #0A0A0A;
+    transform: rotate(4deg);
+    box-shadow: 2px 2px 0 rgba(0,0,0,0.8);
+    z-index: 5;
+  }
+  
   .char-jp-name {
     font-family: 'Noto Sans JP', sans-serif;
     font-size: 1rem;
@@ -84,7 +124,7 @@
     margin-bottom: 0.5rem;
   }
   .char-name {
-    font-family: 'Cinzel', serif;
+    font-family: 'Shippori Mincho', 'Cinzel', serif;
     font-size: 3rem;
     font-weight: 900;
     line-height: 1.1;
@@ -98,12 +138,23 @@
     display: inline-block;
     padding: 0.4rem 1rem;
     background: rgba(230,57,70,0.15);
-    border: 1px solid var(--red);
+    border: 2px solid var(--red);
     color: var(--red);
     font-size: 0.75rem;
     letter-spacing: 3px;
     text-transform: uppercase;
     margin-bottom: 2rem;
+    font-weight: 700;
+  }
+  .char-role.deceased {
+    background: rgba(102,102,102,0.15);
+    border-color: var(--gray);
+    color: var(--gray);
+  }
+  .char-role.new {
+    background: rgba(244,162,97,0.15);
+    border-color: var(--gold);
+    color: var(--gold);
   }
   .char-tagline {
     font-style: italic;
@@ -123,7 +174,9 @@
   .stat-item {
     background: var(--bg2);
     padding: 1rem;
-    border-left: 2px solid var(--red);
+    border-left: 3px solid var(--red);
+    border: 2px solid rgba(230,57,70,0.2);
+    border-left-width: 4px;
   }
   .stat-label {
     font-size: 0.7rem;
@@ -131,9 +184,10 @@
     letter-spacing: 2px;
     text-transform: uppercase;
     margin-bottom: 0.3rem;
+    font-weight: 700;
   }
   .stat-value {
-    font-family: 'Cinzel', serif;
+    font-family: 'Shippori Mincho', 'Cinzel', serif;
     font-size: 1.1rem;
     font-weight: 700;
   }
@@ -145,19 +199,19 @@
     letter-spacing: 2px;
     text-transform: uppercase;
     margin-bottom: 0.5rem;
+    font-weight: 700;
   }
   .power-header .label { color: var(--gray); }
   .power-header .value { color: var(--red); font-weight: 700; }
   .power-track {
-    height: 6px;
-    background: rgba(255,255,255,0.1);
-    border-radius: 3px;
+    height: 8px;
+    background: rgba(255,255,255,0.08);
+    border: 2px solid rgba(230,57,70,0.2);
     overflow: hidden;
   }
   .power-fill {
     height: 100%;
     background: linear-gradient(90deg, var(--red), var(--gold));
-    border-radius: 3px;
     transition: width 1s ease-out;
   }
   .tabs-section {
@@ -167,7 +221,7 @@
   }
   .tabs {
     display: flex;
-    border-bottom: 1px solid rgba(230,57,70,0.3);
+    border-bottom: 3px solid rgba(230,57,70,0.3);
     margin-bottom: 3rem;
     overflow-x: auto;
   }
@@ -176,8 +230,9 @@
     background: transparent;
     border: none;
     color: var(--gray);
-    font-family: 'Cinzel', serif;
+    font-family: 'Shippori Mincho', 'Cinzel', serif;
     font-size: 0.85rem;
+    font-weight: 700;
     letter-spacing: 2px;
     text-transform: uppercase;
     cursor: pointer;
@@ -190,8 +245,8 @@
   .tab.active::after {
     content: '';
     position: absolute;
-    bottom: -1px; left: 0; right: 0;
-    height: 2px;
+    bottom: -3px; left: 0; right: 0;
+    height: 3px;
     background: var(--red);
     box-shadow: 0 0 10px var(--red);
   }
@@ -202,7 +257,7 @@
     to { opacity: 1; transform: translateY(0); }
   }
   .tab-content h3 {
-    font-family: 'Cinzel', serif;
+    font-family: 'Shippori Mincho', 'Cinzel', serif;
     font-size: 1.5rem;
     margin-bottom: 1.5rem;
     color: var(--gold);
@@ -222,16 +277,17 @@
   .relation-card {
     background: var(--bg2);
     padding: 1.5rem;
-    border: 1px solid rgba(230,57,70,0.2);
+    border: 2px solid rgba(230,57,70,0.2);
     transition: all 0.3s;
+    box-shadow: 4px 4px 0 rgba(0,0,0,0.5);
   }
   .relation-card:hover {
     border-color: var(--red);
-    transform: translateY(-5px);
-    box-shadow: 0 15px 40px rgba(230,57,70,0.15);
+    transform: translate(-3px, -3px);
+    box-shadow: 7px 7px 0 rgba(230,57,70,0.3);
   }
   .relation-name {
-    font-family: 'Cinzel', serif;
+    font-family: 'Shippori Mincho', 'Cinzel', serif;
     font-size: 1.1rem;
     font-weight: 700;
     margin-bottom: 0.3rem;
@@ -248,6 +304,7 @@
     letter-spacing: 2px;
     text-transform: uppercase;
     margin-bottom: 1rem;
+    font-weight: 700;
   }
   .relation-desc {
     font-size: 0.85rem;
@@ -258,7 +315,10 @@
   .quote-item {
     background: var(--bg2);
     padding: 2rem;
-    border-left: 3px solid var(--red);
+    border-left: 4px solid var(--red);
+    border: 2px solid rgba(230,57,70,0.15);
+    border-left-width: 4px;
+    position: relative;
   }
   .quote-text {
     font-style: italic;
@@ -287,6 +347,14 @@
 </head>
 <body>
 
+<div class="sakura-container" aria-hidden="true">
+  <div class="sakura"></div>
+  <div class="sakura"></div>
+  <div class="sakura"></div>
+  <div class="sakura"></div>
+  <div class="sakura"></div>
+</div>
+
 <nav class="navbar">
   <a href="index.html" class="logo">
     <img src="assets/logo-icon.svg" alt="KAGERŌ" width="36" height="36" style="vertical-align: middle;">
@@ -307,24 +375,28 @@
   <h2 class="section-title" style="justify-content: center; text-align: center;">
     <span class="section-title-jp">登場人物</span> KARAKTERLER
   </h2>
-  <p class="section-subtitle" style="text-align: center;">Hikayenin kahramanları ve gölgeleri</p>
+  <p class="section-subtitle" style="text-align: center;">Hikayenin kahramanları ve gölgeleri — 5 yıl sonra</p>
 
   <div class="char-selector">
     <a href="characters.html?char=yuki" class="char-selector-btn">
       <span class="avatar-mini"><img src="assets/character-yuki.svg" alt=""></span>
-      Yuki Ayanokōji
+      Yuki
     </a>
     <a href="characters.html?char=ren" class="char-selector-btn">
       <span class="avatar-mini"><img src="assets/character-ren.svg" alt=""></span>
-      Ren Tachibana
+      Ren
+    </a>
+    <a href="characters.html?char=mio" class="char-selector-btn">
+      <span class="avatar-mini"><img src="assets/character-mio.svg" alt=""></span>
+      Mio
+    </a>
+    <a href="characters.html?char=yuriko" class="char-selector-btn">
+      <span class="avatar-mini"><img src="assets/character-yuriko.svg" alt=""></span>
+      Yuriko Jr.
     </a>
     <a href="characters.html?char=nishishi" class="char-selector-btn">
       <span class="avatar-mini"><img src="assets/character-nishishi.svg" alt=""></span>
       Bahçıvan
-    </a>
-    <a href="characters.html?char=mio" class="char-selector-btn">
-      <span class="avatar-mini"><img src="assets/character-mio.svg" alt=""></span>
-      Mio Sakuraba
     </a>
   </div>
 
@@ -337,25 +409,25 @@
       <div class="char-info">
         <div class="char-jp-name">綾小路 雪</div>
         <h1 class="char-name">Yuki Ayanokōji</h1>
-        <div class="char-role">Protagonist — Kan'nōsha</div>
-        <p class="char-tagline">"Ben zaten çoktan kayboldum. Ama belki... belki birinin beni bulmasına izin verebilirim."</p>
+        <div class="char-role">Eski Protagonist — Koruyucuların Eğitmeni</div>
+        <p class="char-tagline">"Ben artık savaşmıyorum. Ama... savaşacak olanlara yol gösteriyorum."</p>
         <div class="stats-grid">
-          <div class="stat-item"><div class="stat-label">Yaş</div><div class="stat-value">18</div></div>
-          <div class="stat-item"><div class="stat-label">Boy</div><div class="stat-value">162 cm</div></div>
+          <div class="stat-item"><div class="stat-label">Yaş</div><div class="stat-value">23</div></div>
+          <div class="stat-item"><div class="stat-label">Boy</div><div class="stat-value">164 cm</div></div>
           <div class="stat-item"><div class="stat-label">Doğum Günü</div><div class="stat-value">21 Aralık</div></div>
-          <div class="stat-item"><div class="stat-label">Kan Grubu</div><div class="stat-value">AB</div></div>
+          <div class="stat-item"><div class="stat-label">Rol</div><div class="stat-value">Anne & Eğitmen</div></div>
         </div>
         <div class="power-bar">
-          <div class="power-header"><span class="label">Fısıltı Duyma</span><span class="value">S-Sınıfı</span></div>
+          <div class="power-header"><span class="label">Fısıltı Duyma</span><span class="value">SS-Sınıfı</span></div>
+          <div class="power-track"><div class="power-fill" style="width: 100%;"></div></div>
+        </div>
+        <div class="power-bar">
+          <div class="power-header"><span class="label">Öğretmenlik</span><span class="value">S-Sınıfı</span></div>
           <div class="power-track"><div class="power-fill" style="width: 95%;"></div></div>
         </div>
         <div class="power-bar">
-          <div class="power-header"><span class="label">Zihinsel Dayanıklılık</span><span class="value">B-Sınıfı</span></div>
-          <div class="power-track"><div class="power-fill" style="width: 65%;"></div></div>
-        </div>
-        <div class="power-bar">
-          <div class="power-header"><span class="label">Fiziksel Güç</span><span class="value">C-Sınıfı</span></div>
-          <div class="power-track"><div class="power-fill" style="width: 50%;"></div></div>
+          <div class="power-header"><span class="label">Fiziksel Güç</span><span class="value">B-Sınıfı</span></div>
+          <div class="power-track"><div class="power-fill" style="width: 70%;"></div></div>
         </div>
       </div>
     </div>
@@ -368,39 +440,38 @@
       </div>
       <div class="tab-content active" id="yuki-bio">
         <h3>📖 Biyografi</h3>
-        <p>Yuki Ayanokōji, 21 Aralık'ta Tokyo'nun Yanaka semtinde doğdu. Babası <strong>Ayanokōji Sōren</strong> bir botanik profesörü, annesi <strong>Ayanokōji Yuriko</strong> ise gizemli bir geçmişe sahip bir çiçek uzmanıydı. Yuki, 7 yaşına kadar sıradan bir çocukluk geçirdi — ta ki o geceye kadar.</p>
-        <p>7 yaşındayken, ailesinin evi gizemli bir şekilde alev aldı. Yangında annesi öldü. Yuki, yangından sağ kurtuldu ama kendini bir çiçek tarlasının ortasında buldu. O günden beri, ölülerin fısıltılarını duyuyor.</p>
-        <p>18 yaşında, ilk Hayalet Çiçeği bulduğunda Ren ile tanıştı. Karanlık Pazar'a girdi, Koruyucularla tanıştı, babasının kim olduğunu öğrendi. Ve kendi yolunu seçti: <strong>Hayalet Çiçeklerin koruyucusu olmak.</strong></p>
-        <p>Arc 3'ün sonunda Altın Çiçek'i elde etti. Ama onu kullanmayı reddetti. Ve şimdi, Arc 4'te en zor sınavla yüzleşiyor: <em>Babamı affetmek mi, yoksa onu tamamen silmek mi?</em></p>
+        <p><strong>Finalden 5 yıl sonra:</strong> Yuki artık Koruyucuların lideri değil. Hayalet Çiçeklerle dolu bir dünyada yeni nesil Kan'nōsha'ları eğitiyor. Ren ile evlendi, bir kızı oldu: <strong>Küçük Yuriko</strong>.</p>
+        <p>Altın Çiçeği kullandıktan sonra bir yıl boyunca Kan'nōsha gücünü kaybetti. O bir yılda "normal" bir hayat yaşadı — evlendi, hamile kaldı, kızını doğurdu. Bir yıl sonra gücü geri geldi ama artık farklı bir insan: <em>Daha huzurlu, daha bilge.</em></p>
+        <p>Şu anda Yanaka Mezarlığı altındaki tapınakta, genç Kan'nōsha'lara <strong>"Yuriko'nun Yolu"</strong>nu öğretiyor. Annesinin mirasını yaşatıyor.</p>
+        <p>Her bahar, ailesinin mezarlarını ziyaret eder. Yanında Ren ve küçük Yuriko olur. Ve her seferinde aynı şeyi fısıldar: <em>"Sizi hala seviyorum."</em></p>
       </div>
       <div class="tab-content" id="yuki-powers">
         <h3>⚡ Güçler ve Yetenekler</h3>
-        <p><strong>Fısıltı Duyma (囁き聞き — Sasayaki Kiki):</strong> Yuki, Hayalet Çiçeklere dokunduğunda ölünün son anısını yaşar. Bu, sadece görsel değil; duygusal, işitsel ve hatta fiziksel bir deneyimdir.</p>
-        <p><strong>Anı Filtreleme:</strong> Eğitimle geliştirdiği bir yetenek. İstemediği anıları bloklayabilir, sadece belirli bir anıya odaklanabilir.</p>
-        <p><strong>Çiçek Kılıcı (花刀 — Hanatō):</strong> Yuriko'nun Yolu'nu öğrendikten sonra geliştirdi. Beyaz çiçeği ışık kılıcına dönüştürebilir.</p>
-        <p><strong>Ölü İletişimi:</strong> Nadiren de olsa, güçlü bir Hayalet Çiçek aracılığıyla ölünün ruhuyla kısa süreli iletişim kurabilir.</p>
-        <p><strong>Altın Çiçek Taşıyıcılığı:</strong> Altın Çiçeği taşıyan tek kişi. Çiçek onu koruyucusu olarak seçti. Kullanmayı reddediyor ama onu koruyor.</p>
-        <p><strong>Zayıflıklar:</strong> Duyduğu anılar onu psikolojik olarak yıpratır. Uzun süreli kullanımda halüsinasyonlar görebilir. Duygusal bağları onu savunmasız bırakır.</p>
+        <p><strong>Fısıltı Duyma (囁き聞き — Sasayaki Kiki):</strong> Yuki, Hayalet Çiçeklere dokunduğunda ölünün son anısını yaşar. Ama artık bu yeteneği kontrol edebiliyor — anıları bloklayabilir, seçebilir veya tamamen açabilir.</p>
+        <p><strong>Anı Filtreleme:</strong> Mükemmel seviyede. Gereksiz anıları bloklayıp sadece istenen bilgiyi alabilir.</p>
+        <p><strong>Çiçek Kılıcı (花刀 — Hanatō):</strong> Beyaz çiçeği ışık kılıcına dönüştürebilir. Ama artık nadiren kullanıyor.</p>
+        <p><strong>Öğretmenlik (師範 — Shihan):</strong> Yeni yeteneği. Genç Kan'nōsha'lara Yuriko'nun Yolu'nu öğretebilir. Onların yeteneklerini keşfetmelerine yardım eder.</p>
+        <p><strong>Anne Sezgisi:</strong> Annesinden miras kalan bir tür sezgi. Kızı Yuriko'nun tehlikede olup olmadığını uzaktan hissedebilir.</p>
+        <p><strong>Zayıflıklar:</strong> Fiziksel olarak artık eskisi kadar güçlü değil. Anne olmak onu daha koruyucu ve daha duygusal yaptı.</p>
       </div>
       <div class="tab-content" id="yuki-relations">
         <h3>🔗 İlişkiler</h3>
         <div class="relations-grid">
-          <div class="relation-card"><div class="relation-name">Ren Tachibana</div><div class="relation-name-jp">橘 蓮</div><div class="relation-type">Müttefik / Sevgili</div><div class="relation-desc">Onu Hayalet Çiçekler dünyasına sokan kişi. Zamanla aralarındaki bağ derinleşti.</div></div>
-          <div class="relation-card"><div class="relation-name">Bahçıvan</div><div class="relation-name-jp">庭師</div><div class="relation-type">Baba / Düşman</div><div class="relation-desc">Yuki'nin babası. Trajik bir figür. Arc 4'te kızı için savaşıyor.</div></div>
-          <div class="relation-card"><div class="relation-name">Yuriko Ayanokōji</div><div class="relation-name-jp">綾小路 百合子</div><div class="relation-type">Anne (Ölü)</div><div class="relation-desc">Yuki'nin annesi. Eski bir Kan'nōsha. Yuki'yi korumak için öldü.</div></div>
-          <div class="relation-card"><div class="relation-name">Mio Sakuraba</div><div class="relation-name-jp">桜庭 美桜</div><div class="relation-type">En İyi Arkadaş</div><div class="relation-desc">Yuki'nin normal hayattaki bağlantısı. Sırrını öğrendi ve destek oldu.</div></div>
-          <div class="relation-card"><div class="relation-name">Dr. Kenji Kurosawa</div><div class="relation-name-jp">黒沢 健二</div><div class="relation-type">Dayı / Mentor</div><div class="relation-desc">Yuriko'nun kardeşi. Yuki'nin dayısı. Ona rehberlik ediyor.</div></div>
-          <div class="relation-card"><div class="relation-name">Gin</div><div class="relation-name-jp">銀</div><div class="relation-type">Mentor (Ölü)</div><div class="relation-desc">Annenin öğretmeni. Arc 3'te hayatını kaybetti.</div></div>
+          <div class="relation-card"><div class="relation-name">Ren Tachibana</div><div class="relation-name-jp">橘 蓮</div><div class="relation-type">Koca / Aşk</div><div class="relation-desc">Beş yıl önce evlendiler. Şimdi birlikte bir kız çocuğu büyütüyorlar.</div></div>
+          <div class="relation-card"><div class="relation-name">Yuriko Ayanokōji Jr.</div><div class="relation-name-jp">綾小路 百合子</div><div class="relation-type">Kızı</div><div class="relation-desc">4 yaşında. Annesi gibi beyaz saçlı, babası gibi kızıl gözlü. Geleceğin Kan'nōsha'sı.</div></div>
+          <div class="relation-card"><div class="relation-name">Mio Sakuraba</div><div class="relation-name-jp">桜庭 美桜</div><div class="relation-type">En İyi Arkadaş</div><div class="relation-desc">Hala en yakın dostu. Yuriko'nun vaftiz annesi.</div></div>
+          <div class="relation-card"><div class="relation-name">Dr. Kenji Kurosawa</div><div class="relation-name-jp">黒沢 健二</div><div class="relation-type">Dayı / Danışman</div><div class="relation-desc">Aile danışmanı. Yuriko Jr.'ın büyük dayısı.</div></div>
+          <div class="relation-card"><div class="relation-name">Bahçıvan</div><div class="relation-name-jp">庭師</div><div class="relation-type">Baba (Merhum)</div><div class="relation-desc">Kızı için kendini feda etti. Yuki onu her bahar anar.</div></div>
+          <div class="relation-card"><div class="relation-name">Ayanokōji Rei</div><div class="relation-name-jp">綾小路 零</div><div class="relation-type">Büyükbaba (Merhum)</div><div class="relation-desc">Son anda kızını kurtardı. Torunu onu affetti.</div></div>
         </div>
       </div>
       <div class="tab-content" id="yuki-quotes">
         <h3>💬 Alıntılar</h3>
         <div class="quotes-list">
           <div class="quote-item"><div class="quote-text">Her ölüm bir iz bırakır. Ama bazıları... bazıları çiçek açar.</div><div class="quote-context">— Bölüm 1: İlk Fısıltı</div></div>
-          <div class="quote-item"><div class="quote-text">Ben zaten çoktan kayboldum. Ama belki... belki birinin beni bulmasına izin verebilirim.</div><div class="quote-context">— Bölüm 2: İlk Temas</div></div>
-          <div class="quote-item"><div class="quote-text">Ben zaten her gün acı çekiyorum. En azından... nedenini bilmek istiyorum.</div><div class="quote-context">— Bölüm 3: Karanlık Pazar</div></div>
-          <div class="quote-item"><div class="quote-text">Ağla. İstediğin kadar. Sonra... devam ederiz.</div><div class="quote-context">— Ren Tachibana, Bölüm 3</div></div>
-          <div class="quote-item"><div class="quote-text">Seninle gurur duyuyoruz. Ama sen... sen hep bizimlesin. Kalbimizde.</div><div class="quote-context">— Yuriko, Bölüm 48</div></div>
+          <div class="quote-item"><div class="quote-text">Ben artık savaşmıyorum. Ama... savaşacak olanlara yol gösteriyorum.</div><div class="quote-context">— Bölüm 50: Yeni Bahar</div></div>
+          <div class="quote-item"><div class="quote-text">Onlar cennette, tatlım. Ama... seni izliyorlar. Her zaman.</div><div class="quote-context">— Bölüm 50 (Kızına)</div></div>
+          <div class="quote-item"><div class="quote-text">Seni seviyorum. Ve... bu... bu gerçek. İlk kez... bu tamamen gerçek.</div><div class="quote-context">— Bölüm 49 (Ren'e)</div></div>
         </div>
       </div>
     </div>
@@ -415,25 +486,25 @@
       <div class="char-info">
         <div class="char-jp-name">橘 蓮</div>
         <h1 class="char-name">Ren Tachibana</h1>
-        <div class="char-role">Deuteragonist — Çiçek Avcısı</div>
-        <p class="char-tagline">"Ağla. İstediğin kadar. Sonra... devam ederiz."</p>
+        <div class="char-role">Emekli Çiçek Avcısı — Baba</div>
+        <p class="char-tagline">"Seni asla bırakmayacağım. Çünkü... sen benim her şeyimsin."</p>
         <div class="stats-grid">
-          <div class="stat-item"><div class="stat-label">Yaş</div><div class="stat-value">21</div></div>
-          <div class="stat-item"><div class="stat-label">Boy</div><div class="stat-value">185 cm</div></div>
+          <div class="stat-item"><div class="stat-label">Yaş</div><div class="stat-value">26</div></div>
+          <div class="stat-item"><div class="stat-label">Boy</div><div class="stat-value">186 cm</div></div>
           <div class="stat-item"><div class="stat-label">Doğum Günü</div><div class="stat-value">3 Ağustos</div></div>
-          <div class="stat-item"><div class="stat-label">Kan Grubu</div><div class="stat-value">O</div></div>
+          <div class="stat-item"><div class="stat-label">Rol</div><div class="stat-value">Koca & Baba</div></div>
         </div>
         <div class="power-bar">
-          <div class="power-header"><span class="label">Çiçek Avcılığı</span><span class="value">A-Sınıfı</span></div>
-          <div class="power-track"><div class="power-fill" style="width: 88%;"></div></div>
+          <div class="power-header"><span class="label">Çiçek Avcılığı</span><span class="value">S-Sınıfı</span></div>
+          <div class="power-track"><div class="power-fill" style="width: 95%;"></div></div>
         </div>
         <div class="power-bar">
-          <div class="power-header"><span class="label">Dövüş Sanatları</span><span class="value">A-Sınıfı</span></div>
-          <div class="power-track"><div class="power-fill" style="width: 90%;"></div></div>
+          <div class="power-header"><span class="label">Dövüş Sanatları</span><span class="value">S-Sınıfı</span></div>
+          <div class="power-track"><div class="power-fill" style="width: 92%;"></div></div>
         </div>
         <div class="power-bar">
-          <div class="power-header"><span class="label">Zihinsel Dayanıklılık</span><span class="value">B-Sınıfı</span></div>
-          <div class="power-track"><div class="power-fill" style="width: 75%;"></div></div>
+          <div class="power-header"><span class="label">Babacılık</span><span class="value">S-Sınıfı</span></div>
+          <div class="power-track"><div class="power-fill" style="width: 98%;"></div></div>
         </div>
       </div>
     </div>
@@ -446,111 +517,35 @@
       </div>
       <div class="tab-content active" id="ren-bio">
         <h3>📖 Biyografi</h3>
-        <p>Ren Tachibana, 3 Ağustos'ta Tokyo'nun Shibuya semtinde doğdu. Tıp fakültesinde okuyan parlak bir öğrenciydi. Ama 2 yıl önce, kız kardeşi <strong>Hana</strong> gizemli bir şekilde öldü. O günden sonra Ren, hayatını değiştirdi.</p>
-        <p>Tıp fakültesini 3. sınıfta bıraktı. Kız kardeşinin ölümünü araştırırken Hayalet Çiçekler dünyasına girdi. Şimdi bir <strong>Çiçek Avcısı</strong> — tehlikeli çiçekleri avlıyor, anıları topluyor ve sırları çözüyor.</p>
-        <p>Soğuk, mesafeli ve alaycı görünür. Ama altında, kız kardeşinin anısına bağlı, kırık bir kalp yatar. Arc 4'te Hana'nın gerçek ölüm nedenini öğrenecek ve yıkılacak.</p>
-        <p>Yuki'ye karşı hisleri zamanla derinleşti. Onun yanında savaşmak, onu korumak ve onunla birlikte yaşamak istiyor.</p>
+        <p><strong>Finalden 5 yıl sonra:</strong> Ren, Yuki ile evlendi. Küçük Yuriko'nun babası. Emekli bir çiçek avcısı — artık tehlikeli işlere girmiyor, çünkü kızına ve karısına söz verdi.</p>
+        <p>Hana'nın ölümüyle yüzleşti, Yumi'yi buldu ve kız kardeşinin fedakarlığını onurlandırdı. Artık kalbi huzurlu. Yuki ile birlikte sade bir hayat yaşıyor.</p>
+        <p>Yine de zaman zaman <strong>tantō'sunu</strong> eline alır ve kızı Yuriko'ya nasıl dövüşüleceğini öğretir. <em>"Sana bir gün lazım olabilir,"</em> der. Yuriko her seferinde güler: <em>"Baba, ben daha 4 yaşındayım!"</em></p>
       </div>
       <div class="tab-content" id="ren-powers">
         <h3>⚡ Güçler ve Yetenekler</h3>
-        <p><strong>Çiçek Avcılığı (花狩人 — Hanakari):</strong> Hayalet Çiçekleri tespit edebilir, toplayabilir ve geçici olarak kullanabilir. Bir çiçeğin enerjisini alıp kendi saldırılarına katabilir.</p>
-        <p><strong>Dövüş Sanatları Ustalığı:</strong> <strong>Kendō</strong> ve <strong>Aikidō</strong>'da ustadır. <strong>Tantō</strong> (kısa bıçak) kullanır. Hız ve keskinlik onun en büyük silahı.</p>
-        <p><strong>Tıp Bilgisi:</strong> Tıp fakültesindeki eğitimi sayesinde anatomi, ilk yardım ve zehir bilgisi üstündür. Bu onu hem savaşta hem de kurtarmada etkili kılar.</p>
-        <p><strong>Analitik Zeka:</strong> Hızlı düşünme, durum analizi ve strateji kurma yeteneği mükemmeldir.</p>
-        <p><strong>Zayıflıklar:</strong> Duygusal bağ kurmaktan kaçınır. Hana'nın ölümüyle ilgili takıntılıdır ve bu onu kör edebilir. Yuki'ye olan sevgisi bazen onu savunmasız kılar.</p>
+        <p><strong>Çiçek Avcılığı (花狩人 — Hanakari):</strong> Hayalet Çiçekleri tespit edebilir, toplayabilir ve geçici olarak kullanabilir.</p>
+        <p><strong>Dövüş Sanatları Ustalığı:</strong> <strong>Kendō</strong> ve <strong>Aikidō</strong>'da ustadır. Artık sadece kızına öğretiyor.</p>
+        <p><strong>Tıp Bilgisi:</strong> Tıp fakültesindeki eğitimi hala hafızasında. Aile hekimi gibi çalışıyor — küçük yaraları, hastalıkları tedavi ediyor.</p>
+        <p><strong>Baba Sezgisi:</strong> Yeni yeteneği. Kızı Yuriko ağlamaya başlamadan 5 saniye önce uyanıyor.</p>
+        <p><strong>Zayıflıklar:</strong> Uykusuzluk. Yuriko'nun gece ağlamaları onu yoruyor ama hiç şikayet etmiyor.</p>
       </div>
       <div class="tab-content" id="ren-relations">
         <h3>🔗 İlişkiler</h3>
         <div class="relations-grid">
-          <div class="relation-card"><div class="relation-name">Yuki Ayanokōji</div><div class="relation-name-jp">綾小路 雪</div><div class="relation-type">Müttefik / Sevgili</div><div class="relation-desc">Onu Hayalet Çiçekler dünyasına sokan kişi. Zamanla aşık oldu.</div></div>
-          <div class="relation-card"><div class="relation-name">Hana Tachibana</div><div class="relation-name-jp">橘 華</div><div class="relation-type">Kız Kardeş (Ölü)</div><div class="relation-desc">Ren'in motivasyonu. Ölümü hala gizemini koruyor.</div></div>
-          <div class="relation-card"><div class="relation-name">Bahçıvan</div><div class="relation-name-jp">庭師</div><div class="relation-type">Düşman (Belirsiz)</div><div class="relation-desc">Hana'nın ölümünden sorumlu olabilecek kişi. Ama Hana kendini feda etmiş.</div></div>
-          <div class="relation-card"><div class="relation-name">Mio Sakuraba</div><div class="relation-name-jp">桜庭 美桜</div><div class="relation-type">Tanıdık</div><div class="relation-desc">Başta güvenmedi, sonra saygı duydu.</div></div>
+          <div class="relation-card"><div class="relation-name">Yuki Ayanokōji</div><div class="relation-name-jp">綾小路 雪</div><div class="relation-type">Karısı / Aşk</div><div class="relation-desc">Beş yıl önce evlendiler. Hayatının aşkı.</div></div>
+          <div class="relation-card"><div class="relation-name">Yuriko Jr.</div><div class="relation-name-jp">綾小路 百合子</div><div class="relation-type">Kızı</div><div class="relation-desc">Dünyasının merkezi. Ona tantō kullanmayı öğretiyor.</div></div>
+          <div class="relation-card"><div class="relation-name">Hana Tachibana</div><div class="relation-name-jp">橘 華</div><div class="relation-type">Kız Kardeş (Merhum)</div><div class="relation-desc">Anısını onurlandırıyor. Kızına onun resimlerini gösteriyor.</div></div>
+          <div class="relation-card"><div class="relation-name">Yumi Kuroi</div><div class="relation-name-jp">黒井 由美</div><div class="relation-type">Yeni Arkadaş</div><div class="relation-desc">Hana'nın koruduğu kişi. Hala görüşüyorlar. Yuriko Jr.'ın "teyzesi".</div></div>
+          <div class="relation-card"><div class="relation-name">Mio Sakuraba</div><div class="relation-name-jp">桜庭 美桜</div><div class="relation-type">Arkadaş</div><div class="relation-desc">Başta güvenmedi, şimdi aile dostu.</div></div>
         </div>
       </div>
       <div class="tab-content" id="ren-quotes">
         <h3>💬 Alıntılar</h3>
         <div class="quotes-list">
           <div class="quote-item"><div class="quote-text">Ona dokunmamalıydın. Yoksa sen de mi 'Kan'nōsha'sın?</div><div class="quote-context">— Bölüm 1: İlk Fısıltı</div></div>
-          <div class="quote-item"><div class="quote-text">Ağla. İstediğin kadar. Sonra... devam ederiz.</div><div class="quote-context">— Bölüm 3: Karanlık Pazar</div></div>
-          <div class="quote-item"><div class="quote-text">Ben de korkuyorum. Ama birlikte korkarız.</div><div class="quote-context">— Bölüm 20: Aokigahara</div></div>
-          <div class="quote-item"><div class="quote-text">Seni kaybetmek istemiyorum. Ve bu... beni korkutuyor.</div><div class="quote-context">— Bölüm 15: Yeni Eğitim</div></div>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- ============ BAHÇIVAN ============ -->
-  <div class="char-page" id="page-nishishi">
-    <div class="char-hero">
-      <div class="char-visual">
-        <div class="char-portrait"><img src="assets/character-nishishi.svg" alt="Bahçıvan"></div>
-      </div>
-      <div class="char-info">
-        <div class="char-jp-name">庭師</div>
-        <h1 class="char-name">Bahçıvan</h1>
-        <div class="char-role">Antagonist — Sōren Ayanokōji</div>
-        <p class="char-tagline">"Ölüm bir hastalık. Ve ben... tedavisini bulacağım."</p>
-        <div class="stats-grid">
-          <div class="stat-item"><div class="stat-label">Gerçek Ad</div><div class="stat-value">Sōren</div></div>
-          <div class="stat-item"><div class="stat-label">Yaş</div><div class="stat-value">45</div></div>
-          <div class="stat-item"><div class="stat-label">Boy</div><div class="stat-value">182 cm</div></div>
-          <div class="stat-item"><div class="stat-label">Rol</div><div class="stat-value">Baba</div></div>
-        </div>
-        <div class="power-bar">
-          <div class="power-header"><span class="label">Çiçek Kontrolü</span><span class="value">S-Sınıfı</span></div>
-          <div class="power-track"><div class="power-fill" style="width: 92%;"></div></div>
-        </div>
-        <div class="power-bar">
-          <div class="power-header"><span class="label">Manipülasyon</span><span class="value">S-Sınıfı</span></div>
-          <div class="power-track"><div class="power-fill" style="width: 88%;"></div></div>
-        </div>
-        <div class="power-bar">
-          <div class="power-header"><span class="label">Çiçek Kılıcı</span><span class="value">A-Sınıfı</span></div>
-          <div class="power-track"><div class="power-fill" style="width: 80%;"></div></div>
-        </div>
-      </div>
-    </div>
-    <div class="tabs-section">
-      <div class="tabs">
-        <button class="tab active" onclick="showTab('bah-bio', event)">Biyografi</button>
-        <button class="tab" onclick="showTab('bah-powers', event)">Güçler</button>
-        <button class="tab" onclick="showTab('bah-relations', event)">İlişkiler</button>
-        <button class="tab" onclick="showTab('bah-quotes', event)">Alıntılar</button>
-      </div>
-      <div class="tab-content active" id="bah-bio">
-        <h3>📖 Biyografi</h3>
-        <p>Gerçek adı <strong>Ayanokōji Sōren</strong>'dir. Yuki'nin babası. Eski bir botanik profesörü. Karısı <strong>Yuriko</strong>'yu kaybettikten sonra delirir. Hayalet Çiçeklerin peşine düşer, Toplayıcıların lideri olur.</p>
-        <p>Yüzü her zaman gölgede. Uzun siyah <strong>haori</strong> giyer. Elinde her zaman bir <strong>budama makası</strong>. Ölümü bir sanat olarak görür.</p>
-        <p><strong>Trajedi:</strong> Aslında iyi bir adamdı. Karısını kaybettikten sonra annesini de geri getirmek istedi. Yasak araştırmalara daldı. Yuriko onu durdurmaya çalıştı ama başaramadı. Sōren, Yuriko'nun kendini feda etmesinden sonra tamamen karanlığa gömüldü.</p>
-        <p><strong>Arc 1'de:</strong> Bahçıvan olarak Yuki'yi buldu. Arc 2'de Kuroi ile savaşırken ölümcül yaralandı. Arc 3'te kızıyla barıştı. <strong>Arc 4'te:</strong> Büyük Savaş'ta Yuki için kendini feda edecek.</p>
-      </div>
-      <div class="tab-content" id="bah-powers">
-        <h3>⚡ Güçler ve Yetenekler</h3>
-        <p><strong>Bahçıvan (庭師の力 — Nishishi no Chikara):</strong> Hayalet Çiçekleri kontrol edebilir, onlardan silah yapabilir, hatta ölüleri geçici olarak diriltebilir.</p>
-        <p><strong>Çiçek Makası:</strong> Kendi yaptığı, Hayalet Çiçeklerden güç alan bir silah. Keskinliği ve hızı efsanevidir.</p>
-        <p><strong>Manipülasyon:</strong> İnsanları ustaca manipüle eder. Onları kendi amaçları için kullanır. Ama artık kızı için kullanıyor.</p>
-        <p><strong>Botanik Bilgisi:</strong> Yüzyıllar boyunca toplanmış çiçek bilgisine sahip. Her çiçeğin türünü, özelliğini ve zayıflığını bilir.</p>
-        <p><strong>Zayıflık:</strong> Takıntılı olduğu için hata yapar. Ailesine olan sevgisi bir zaafıdır. Pişmanlık onu bazen felç eder.</p>
-      </div>
-      <div class="tab-content" id="bah-relations">
-        <h3>🔗 İlişkiler</h3>
-        <div class="relations-grid">
-          <div class="relation-card"><div class="relation-name">Yuki Ayanokōji</div><div class="relation-name-jp">綾小路 雪</div><div class="relation-type">Kızı</div><div class="relation-desc">Onu seviyor ama yöntemleri yanlıştı. Arc 3'te barıştılar.</div></div>
-          <div class="relation-card"><div class="relation-name">Yuriko Ayanokōji</div><div class="relation-name-jp">綾小路 百合子</div><div class="relation-type">Karısı (Ölü)</div><div class="relation-desc">Onu geri getirmek için her şeyi yaptı. Ama artık bıraktı.</div></div>
-          <div class="relation-card"><div class="relation-name">Ren Tachibana</div><div class="relation-name-jp">橘 蓮</div><div class="relation-type">Müttefik</div><div class="relation-desc">Ren, onu Hana'nın ölümünden sorumlu tutuyordu. Ama gerçek ortaya çıktı.</div></div>
-          <div class="relation-card"><div class="relation-name">Ne</div><div class="relation-name-jp">根</div><div class="relation-type">Eski Mentor (Ölü)</div><div class="relation-desc">Koruyucuların lideri. Onu eğitti. Onu kovdu.</div></div>
-          <div class="relation-card"><div class="relation-name">Kuroi</div><div class="relation-name-jp">黒井</div><div class="relation-type">Düşman (Ölü)</div><div class="relation-desc">Onu yaratan ve yok eden kişi.</div></div>
-        </div>
-      </div>
-      <div class="tab-content" id="bah-quotes">
-        <h3>💬 Alıntılar</h3>
-        <div class="quotes-list">
-          <div class="quote-item"><div class="quote-text">Ölüm bir hastalık. Ve ben... tedavisini bulacağım.</div><div class="quote-context">— Bölüm 11: Yasak Aşk</div></div>
-          <div class="quote-item"><div class="quote-text">Hoş geldin, kızım. Bahçemize.</div><div class="quote-context">— Bölüm 3: Karanlık Pazar</div></div>
-          <div class="quote-item"><div class="quote-text">Senin annen bir yalancıydı. Ve ben... onun yalanını düzelteceğim.</div><div class="quote-context">— Bölüm 4: Beyaz Çiçek</div></div>
-          <div class="quote-item"><div class="quote-text">Kalk, baba. Seni affetmiyorum. Ama... sana bir şans veriyorum.</div><div class="quote-context">— Yuki'ye cevap, Bölüm 8</div></div>
-          <div class="quote-item"><div class="quote-text">Seni seviyorum... kızım.</div><div class="quote-context">— Bölüm 18: Son Sözü</div></div>
+          <div class="quote-item"><div class="quote-text">Seni asla bırakmayacağım. Çünkü... sen benim her şeyimsin.</div><div class="quote-context">— Bölüm 41: Yas</div></div>
+          <div class="quote-item"><div class="quote-text">Yuriko... tantō'yu böyle tut. Evet, aynen böyle. Aferin kızıma!</div><div class="quote-context">— Bonus sahne</div></div>
+          <div class="quote-item"><div class="quote-text">Yuki... beş yıl önce... babam öldüğünde... sen yıkılmıştın. Ama şimdi... şimdi bak sana.</div><div class="quote-context">— Bölüm 50</div></div>
         </div>
       </div>
     </div>
@@ -565,25 +560,25 @@
       <div class="char-info">
         <div class="char-jp-name">桜庭 美桜</div>
         <h1 class="char-name">Mio Sakuraba</h1>
-        <div class="char-role">Yardımcı — Gazeteci</div>
-        <p class="char-tagline">"Bir gazeteci olarak... gerçeği yazmak zorundayım. Ama önce... senin yanında olmak istiyorum."</p>
+        <div class="char-role">Araştırmacı Gazeteci</div>
+        <p class="char-tagline">"Bir gazeteci olarak... gerçeği yazmak zorundayım. Ve bu gerçek... artık sizin hikayeniz."</p>
         <div class="stats-grid">
-          <div class="stat-item"><div class="stat-label">Yaş</div><div class="stat-value">18</div></div>
-          <div class="stat-item"><div class="stat-label">Boy</div><div class="stat-value">158 cm</div></div>
+          <div class="stat-item"><div class="stat-label">Yaş</div><div class="stat-value">23</div></div>
+          <div class="stat-item"><div class="stat-label">Boy</div><div class="stat-value">160 cm</div></div>
           <div class="stat-item"><div class="stat-label">Doğum Günü</div><div class="stat-value">4 Nisan</div></div>
-          <div class="stat-item"><div class="stat-label">Kan Grubu</div><div class="stat-value">B</div></div>
+          <div class="stat-item"><div class="stat-label">Rol</div><div class="stat-value">Vaftiz Anne</div></div>
         </div>
         <div class="power-bar">
-          <div class="power-header"><span class="label">Gazetecilik</span><span class="value">A-Sınıfı</span></div>
-          <div class="power-track"><div class="power-fill" style="width: 85%;"></div></div>
-        </div>
-        <div class="power-bar">
-          <div class="power-header"><span class="label">Merak</span><span class="value">S-Sınıfı</span></div>
-          <div class="power-track"><div class="power-fill" style="width: 95%;"></div></div>
-        </div>
-        <div class="power-bar">
-          <div class="power-header"><span class="label">Sadakat</span><span class="value">S-Sınıfı</span></div>
+          <div class="power-header"><span class="label">Araştırma</span><span class="value">SS-Sınıfı</span></div>
           <div class="power-track"><div class="power-fill" style="width: 98%;"></div></div>
+        </div>
+        <div class="power-bar">
+          <div class="power-header"><span class="label">Yazarlık</span><span class="value">S-Sınıfı</span></div>
+          <div class="power-track"><div class="power-fill" style="width: 92%;"></div></div>
+        </div>
+        <div class="power-bar">
+          <div class="power-header"><span class="label">Sadakat</span><span class="value">SS-Sınıfı</span></div>
+          <div class="power-track"><div class="power-fill" style="width: 100%;"></div></div>
         </div>
       </div>
     </div>
@@ -596,35 +591,185 @@
       </div>
       <div class="tab-content active" id="mio-bio">
         <h3>📖 Biyografi</h3>
-        <p>Mio Sakuraba, Yuki'nin en iyi arkadaşı. Gazetecilik öğrencisi. Enerjik, konuşkan ve son derece meraklıdır. Yuki'nin sırrını bilmez ama bir şeylerin yanlış olduğunu sezer.</p>
-        <p>Hikayede <strong>normal dünyayı</strong> temsil eder. Yuki'nin insanlığını korur, ona "neden devam etmesi gerektiğini" hatırlatır.</p>
-        <p><strong>Bölüm 23'te</strong> Yuki'nin sırrını öğrendi. İlk başta inanmadı, sonra tüm gerçeği kabul etti. Ve o günden sonra, Yuki'nin en sadık müttefiki oldu.</p>
-        <p>Gazetecilik yetenekleri sayesinde Yuki'ye istihbarat sağlıyor. Toplayıcıların hareketlerini takip ediyor, gazete arşivlerinden bilgi topluyor. <em>"Kalemin kılıçtan keskin"</em> sözünün vücut bulmuş hali.</p>
+        <p><strong>Finalden 5 yıl sonra:</strong> Mio artık ünlü bir araştırmacı gazeteci. Hayalet Çiçekler dünyasını dünyaya tanıtan belgesel dizisi <em>"Sessiz Bahçe"</em> ile ödüller kazandı.</p>
+        <p>Yuki'nin sırrını korumak için mesleki etiğinden defalarca ödün verdi. Ama sonunda bu hikaye onun kariyerini yaptı — <em>doğru anlatıldığında.</em></p>
+        <p>Küçük Yuriko'nun <strong>vaftiz annesi</strong>. Her hafta Yanaka'ya gelir, kıza hikayeler anlatır. Yuriko ona <em>"Mio Teyze"</em> der.</p>
       </div>
       <div class="tab-content" id="mio-powers">
         <h3>⚡ Yetenekler</h3>
-        <p><strong>Araştırma Dehası:</strong> Mükemmel bir araştırmacı. Gazetecilik becerileri sayesinde gizli bilgileri ortaya çıkarır. Arşivlerden, kayıtlardan ve tanıklardan bilgi toplar.</p>
-        <p><strong>Fotoğrafçılık:</strong> Olay yerlerini ve önemli anları fotoğraflar. Kanıt toplar. Görsel hafızası güçlüdür.</p>
-        <p><strong>Sosyal Ağ:</strong> Geniş bir çevresi var. Üniversite, gazete, polis... her yerden bilgi alabilir.</p>
-        <p><strong>Azim:</strong> Bir hikayenin peşine düştüğünde asla bırakmaz. Bu yüzden Yuki'nin peşine düştü ve gerçeği öğrendi.</p>
-        <p><strong>Zayıflık:</strong> Fiziksel olarak savunmasızdır. Duygusal kararlar verebilir. Merakı onu bazen tehlikeye atar.</p>
+        <p><strong>Araştırma Dehası:</strong> Dünyanın her arşivine erişimi var. Gazete, polis kayıtları, hükümet belgeleri — hepsini okuyabilir.</p>
+        <p><strong>Fotoğrafçılık:</strong> Ödüllü bir fotoğrafçı. "Sessiz Bahçe" belgeselindeki fotoğraflar birçok yerde sergilendi.</p>
+        <p><strong>Sosyal Ağ:</strong> Artık uluslararası bağlantıları var. Japonya, ABD, İngiltere — her yerde temasları var.</p>
+        <p><strong>Hikaye Anlatma:</strong> Yuriko Jr.'a anlattığı hikayeler onu büyülüyor. Belki gelecekte bir çocuk kitabı yazar.</p>
+        <p><strong>Zayıflık:</strong> Hala fiziksel olarak savunmasız. Ama artık eskisi kadar tehlikeye girmiyor.</p>
       </div>
       <div class="tab-content" id="mio-relations">
         <h3>🔗 İlişkiler</h3>
         <div class="relations-grid">
-          <div class="relation-card"><div class="relation-name">Yuki Ayanokōji</div><div class="relation-name-jp">綾小路 雪</div><div class="relation-type">En İyi Arkadaş</div><div class="relation-desc">Yuki'nin normal hayattaki tek bağlantısı. Sırrını öğrendikten sonra destek oldu.</div></div>
-          <div class="relation-card"><div class="relation-name">Ren Tachibana</div><div class="relation-name-jp">橘 蓮</div><div class="relation-type">Tanıdık</div><div class="relation-desc">Başta güvenmedi, sonra saygı duydu. Onun Yuki'yi sevdiğini biliyor.</div></div>
-          <div class="relation-card"><div class="relation-name">Dr. Kurosawa</div><div class="relation-name-jp">黒沢 健二</div><div class="relation-type">Bilgi Kaynağı</div><div class="relation-desc">Ondan Hayalet Çiçekler hakkında bilgi aldı.</div></div>
-          <div class="relation-card"><div class="relation-name">Gin</div><div class="relation-name-jp">銀</div><div class="relation-type">Tanıdık (Ölü)</div><div class="relation-desc">Bir kez karşılaştı. Gin'in ölümünden sonra Yuki'ye daha çok destek oldu.</div></div>
+          <div class="relation-card"><div class="relation-name">Yuki Ayanokōji</div><div class="relation-name-jp">綾小路 雪</div><div class="relation-type">En İyi Arkadaş</div><div class="relation-desc">12 yıllık dostluk. Hala her hafta görüşüyorlar.</div></div>
+          <div class="relation-card"><div class="relation-name">Yuriko Jr.</div><div class="relation-name-jp">綾小路 百合子</div><div class="relation-type">Vaftiz Kızı</div><div class="relation-desc">Her hafta hikaye anlatıyor. "Mio Teyze" olarak anılıyor.</div></div>
+          <div class="relation-card"><div class="relation-name">Ren Tachibana</div><div class="relation-name-jp">橘 蓮</div><div class="relation-type">Aile Dostu</div><div class="relation-desc">Başta güvenmedi, şimdi yakın dost.</div></div>
+          <div class="relation-card"><div class="relation-name">Dr. Kurosawa</div><div class="relation-name-jp">黒沢 健二</div><div class="relation-type">Bilgi Kaynağı</div><div class="relation-desc">Hala ondan bilgi alıyor.</div></div>
         </div>
       </div>
       <div class="tab-content" id="mio-quotes">
         <h3>💬 Alıntılar</h3>
         <div class="quotes-list">
-          <div class="quote-item"><div class="quote-text">Sen... sen ne saklıyorsun, Yuki?</div><div class="quote-context">— Bölüm 22: İlk Kan</div></div>
-          <div class="quote-item"><div class="quote-text">Bir gazeteci olarak... gerçeği yazmak zorundayım. Ama önce... senin yanında olmak istiyorum.</div><div class="quote-context">— Bölüm 23: Mio'nun Sırrı</div></div>
-          <div class="quote-item"><div class="quote-text">O zaman bana da öğret. Bu dünyada ben de varım.</div><div class="quote-context">— Bölüm 24: Dayı</div></div>
-          <div class="quote-item"><div class="quote-text">Yalnız değilsin. Ben buradayım. Ve hep burada olacağım.</div><div class="quote-context">— Bölüm 23: Mio'nun Sırrı</div></div>
+          <div class="quote-item"><div class="quote-text">Sen... sen yalnız değilsin. Ben... ben buradayım.</div><div class="quote-context">— Bölüm 23: Mio'nun Sırrı</div></div>
+          <div class="quote-item"><div class="quote-text">Bir gazeteci olarak... gerçeği yazmak zorundayım. Ama önce... senin yanında olmak istiyorum.</div><div class="quote-context">— Bölüm 23</div></div>
+          <div class="quote-item"><div class="quote-text">Yuriko, bu hikaye... bir zamanlar annenin hikayesiydi. Ama artık senin hikayen.</div><div class="quote-context">— Bonus sahne (Küçük Yuriko'ya)</div></div>
+          <div class="quote-item"><div class="quote-text">Sonunda. Seni aptal. Ama... çok tatlısınız.</div><div class="quote-context">— Bölüm 43 (Yuki & Ren için)</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============ KÜÇÜK YURIKO ============ -->
+  <div class="char-page" id="page-yuriko">
+    <div class="char-hero">
+      <div class="char-visual">
+        <div class="char-portrait new"><img src="assets/character-yuriko.svg" alt="Yuriko Ayanokōji Jr."></div>
+      </div>
+      <div class="char-info">
+        <div class="char-jp-name">綾小路 百合子</div>
+        <h1 class="char-name">Yuriko Jr.</h1>
+        <div class="char-role new">Yeni Nesil — Gelecek Kan'nōsha</div>
+        <p class="char-tagline">"Anne... bu çiçek ne?" / "Bu... Hayalet Çiçek, tatlım."</p>
+        <div class="stats-grid">
+          <div class="stat-item"><div class="stat-label">Yaş</div><div class="stat-value">4</div></div>
+          <div class="stat-item"><div class="stat-label">Boy</div><div class="stat-value">95 cm</div></div>
+          <div class="stat-item"><div class="stat-label">Doğum Günü</div><div class="stat-value">21 Aralık</div></div>
+          <div class="stat-item"><div class="stat-label">Rol</div><div class="stat-value">Gelecek</div></div>
+        </div>
+        <div class="power-bar">
+          <div class="power-header"><span class="label">Potansiyel</span><span class="value">???</span></div>
+          <div class="power-track"><div class="power-fill" style="width: 100%;"></div></div>
+        </div>
+        <div class="power-bar">
+          <div class="power-header"><span class="label">Sevimlilik</span><span class="value">SS-Sınıfı</span></div>
+          <div class="power-track"><div class="power-fill" style="width: 100%;"></div></div>
+        </div>
+        <div class="power-bar">
+          <div class="power-header"><span class="label">Merak</span><span class="value">S-Sınıfı</span></div>
+          <div class="power-track"><div class="power-fill" style="width: 98%;"></div></div>
+        </div>
+      </div>
+    </div>
+    <div class="tabs-section">
+      <div class="tabs">
+        <button class="tab active" onclick="showTab('yuriko-bio', event)">Biyografi</button>
+        <button class="tab" onclick="showTab('yuriko-powers', event)">Potansiyel</button>
+        <button class="tab" onclick="showTab('yuriko-relations', event)">İlişkiler</button>
+        <button class="tab" onclick="showTab('yuriko-quotes', event)">Sözler</button>
+      </div>
+      <div class="tab-content active" id="yuriko-bio">
+        <h3>📖 Biyografi</h3>
+        <p><strong>Küçük Yuriko</strong>, Yuki ve Ren'in kızı. 21 Aralık'ta — annesinin doğum gününde — doğdu. Adı, büyükannesinden miras: <strong>Ayanokōji Yuriko.</strong></p>
+        <p>Beyaz saçları annesine benziyor. Kızıl-kahve gözleri babasından. Yüz ifadesi ise... <em>Hana'nın gülümsemesi.</em></p>
+        <p>Henüz 4 yaşında ama Hayalet Çiçekleri "hissedebiliyor". Annesi gibi onları göremiyor, ama yanlarına yaklaştığında gülüyor. Sanki <em>onları duyabiliyor.</em></p>
+        <p>Dr. Kurosawa'ya göre, eğer Kan'nōsha olursa... <strong>annesinden bile güçlü olabilir.</strong></p>
+      </div>
+      <div class="tab-content" id="yuriko-powers">
+        <h3>⚡ Potansiyel</h3>
+        <p><strong>Erken Belirtiler:</strong> Hayalet Çiçeklerin yanında rahatlıyor. Rüyasında "beyaz çiçekler" gördüğünü söylüyor. Bazen annesiyle aynı anda uyanıyor — sanki bir şey hissediyormuş gibi.</p>
+        <p><strong>Kan'nōsha Potansiyeli:</strong> Dr. Kurosawa'ya göre %95. Yuki'nin soyundan geliyor ve annesi hamileyken Altın Çiçeği kullanmıştı — bu onu doğumdan önce kutsamış olabilir.</p>
+        <p><strong>Beklenen Güç:</strong> 18 yaşında uyanacak. Şimdilik sadece <em>"hissediyor", "göremiyor."</em></p>
+        <p><strong>Öğreniyor:</strong> Babası ona tantō kullanmayı öğretiyor. Annesi ona çiçekleri sevmeyi öğretiyor. Mio ise hikayeler anlatıyor.</p>
+        <p><strong>Zayıflık:</strong> 4 yaşında. Her şey zayıflık.</p>
+      </div>
+      <div class="tab-content" id="yuriko-relations">
+        <h3>🔗 İlişkiler</h3>
+        <div class="relations-grid">
+          <div class="relation-card"><div class="relation-name">Yuki Ayanokōji</div><div class="relation-name-jp">綾小路 雪</div><div class="relation-type">Annesi</div><div class="relation-desc">En büyük kahramanı. "Anne gibi olmak istiyorum!" der.</div></div>
+          <div class="relation-card"><div class="relation-name">Ren Tachibana</div><div class="relation-name-jp">橘 蓮</div><div class="relation-type">Babası</div><div class="relation-desc">Onunla oynamayı sever. "Baba, tantō'nu göster!" der.</div></div>
+          <div class="relation-card"><div class="relation-name">Mio Sakuraba</div><div class="relation-name-jp">桜庭 美桜</div><div class="relation-type">Vaftiz Annesi</div><div class="relation-desc">"Mio Teyze" ona hikayeler anlatır.</div></div>
+          <div class="relation-card"><div class="relation-name">Dr. Kurosawa</div><div class="relation-name-jp">黒沢 健二</div><div class="relation-type">Büyük Dayı</div><div class="relation-desc">Ona şeker verir. Annesi izin vermese bile.</div></div>
+          <div class="relation-card"><div class="relation-name">Yuriko (Büyükanne)</div><div class="relation-name-jp">綾小路 百合子</div><div class="relation-type">Büyükanne (Merhum)</div><div class="relation-desc">Hiç tanışmadı ama adını taşıyor.</div></div>
+          <div class="relation-card"><div class="relation-name">Sōren (Büyükbaba)</div><div class="relation-name-jp">綾小路 蒼蓮</div><div class="relation-type">Büyükbaba (Merhum)</div><div class="relation-desc">Kızı için öldü. Yuriko Jr. onun mirasını taşıyor.</div></div>
+        </div>
+      </div>
+      <div class="tab-content" id="yuriko-quotes">
+        <h3>💬 Sözler</h3>
+        <div class="quotes-list">
+          <div class="quote-item"><div class="quote-text">Anne... bu çiçek ne?</div><div class="quote-context">— Bölüm 50</div></div>
+          <div class="quote-item"><div class="quote-text">Ama... onlar neden yok?</div><div class="quote-context">— Bölüm 50 (Mezarlıkta)</div></div>
+          <div class="quote-item"><div class="quote-text">Baba! Tantō'nu göster bana!</div><div class="quote-context">— Bonus sahne</div></div>
+          <div class="quote-item"><div class="quote-text">Anne gibi olmak istiyorum!</div><div class="quote-context">— Her gün söylediği cümle</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============ BAHÇIVAN ============ -->
+  <div class="char-page" id="page-nishishi">
+    <div class="char-hero">
+      <div class="char-visual">
+        <div class="char-portrait deceased"><img src="assets/character-nishishi.svg" alt="Bahçıvan"></div>
+      </div>
+      <div class="char-info">
+        <div class="char-jp-name">庭師</div>
+        <h1 class="char-name">Bahçıvan</h1>
+        <div class="char-role deceased">Antagonist — Sōren Ayanokōji (Merhum)</div>
+        <p class="char-tagline">"Ölüm bir hastalık. Ve ben... tedavisini bulacağım."</p>
+        <div class="stats-grid">
+          <div class="stat-item"><div class="stat-label">Gerçek Ad</div><div class="stat-value">Sōren</div></div>
+          <div class="stat-item"><div class="stat-label">Ölüm Yaşı</div><div class="stat-value">45</div></div>
+          <div class="stat-item"><div class="stat-label">Ölüm Sebebi</div><div class="stat-value">Fedakarlık</div></div>
+          <div class="stat-item"><div class="stat-label">Defin Yeri</div><div class="stat-value">Yanaka</div></div>
+        </div>
+        <div class="power-bar">
+          <div class="power-header"><span class="label">Çiçek Kontrolü</span><span class="value">S-Sınıfı</span></div>
+          <div class="power-track"><div class="power-fill" style="width: 92%;"></div></div>
+        </div>
+        <div class="power-bar">
+          <div class="power-header"><span class="label">Pişmanlık</span><span class="value">S-Sınıfı</span></div>
+          <div class="power-track"><div class="power-fill" style="width: 100%;"></div></div>
+        </div>
+        <div class="power-bar">
+          <div class="power-header"><span class="label">Sevgi</span><span class="value">SS-Sınıfı</span></div>
+          <div class="power-track"><div class="power-fill" style="width: 100%;"></div></div>
+        </div>
+      </div>
+    </div>
+    <div class="tabs-section">
+      <div class="tabs">
+        <button class="tab active" onclick="showTab('bah-bio', event)">Biyografi</button>
+        <button class="tab" onclick="showTab('bah-powers', event)">Güçler</button>
+        <button class="tab" onclick="showTab('bah-relations', event)">İlişkiler</button>
+        <button class="tab" onclick="showTab('bah-quotes', event)">Alıntılar</button>
+      </div>
+      <div class="tab-content active" id="bah-bio">
+        <h3>📖 Biyografi</h3>
+        <p><strong>Gerçek adı:</strong> Ayanokōji Sōren. Yuki'nin babası. Eski bir botanik profesörüydü. Karısı Yuriko'yu kaybettikten sonra delirir — Toplayıcıların lideri olur, "Bahçıvan" adını alır.</p>
+        <p><strong>Trajedi:</strong> Aslında iyi bir adamdı. Karısını geri getirmek için yasak araştırmalara daldı. Yuriko onu durdurmaya çalıştı, başaramadı. Sōren, Yuriko'nun kendini feda etmesinden sonra tamamen karanlığa gömüldü.</p>
+        <p><strong>Kurtuluş:</strong> Kızı Yuki ile yüzleşti. Onu affetti — affetmedi ama bir şans verdi. Birlikte Tapınak'ta sığındılar. Kuroi'ye karşı savaştı. Ama Büyük Savaş'ta ağır yaralandı.</p>
+        <p><strong>Ölümü:</strong> Yuki'nin kollarında, <em>"Seni seviyorum, kızım"</em> diyerek hayatını kaybetti. Yanaka Mezarlığı'nda, karısı Yuriko'nun yanına gömüldü.</p>
+        <p><strong>Mirası:</strong> Yuki hala her bahar onun mezarını ziyaret eder. Ve küçük Yuriko'ya onun hikayesini anlatır — <em>karanlığa düşen ama kurtulan bir adamın hikayesini.</em></p>
+      </div>
+      <div class="tab-content" id="bah-powers">
+        <h3>⚡ Güçler ve Yetenekler</h3>
+        <p><strong>Bahçıvan (庭師の力 — Nishishi no Chikara):</strong> Hayalet Çiçekleri kontrol edebilirdi. Onlardan silah yapar, hatta ölüleri geçici olarak diriltebilirdi.</p>
+        <p><strong>Çiçek Makası:</strong> Kendi yaptığı, Hayalet Çiçeklerden güç alan bir silah. Yuki'ye ölmeden önce bıraktı — ama Yuki onu kullanmıyor.</p>
+        <p><strong>Botanik Bilgisi:</strong> Yüzyıllar boyunca toplanmış çiçek bilgisine sahipti.</p>
+        <p><strong>Zayıflığı:</strong> Ailesine olan sevgisi. Bu sevgi onu hem mahvetti hem kurtardı.</p>
+      </div>
+      <div class="tab-content" id="bah-relations">
+        <h3>🔗 İlişkiler</h3>
+        <div class="relations-grid">
+          <div class="relation-card"><div class="relation-name">Yuki Ayanokōji</div><div class="relation-name-jp">綾小路 雪</div><div class="relation-type">Kızı</div><div class="relation-desc">Onu sevdi ama çok geç gösterdi. Sonunda affedildi.</div></div>
+          <div class="relation-card"><div class="relation-name">Yuriko Ayanokōji</div><div class="relation-name-jp">綾小路 百合子</div><div class="relation-type">Karısı (Merhum)</div><div class="relation-desc">Hayatının aşkı. Onu geri getirmek için her şeyi yaptı.</div></div>
+          <div class="relation-card"><div class="relation-name">Ayanokōji Rei</div><div class="relation-name-jp">綾小路 零</div><div class="relation-type">Babası (Merhum)</div><div class="relation-desc">Onu kovan babası. Sonunda ondan özür diledi.</div></div>
+          <div class="relation-card"><div class="relation-name">Ren Tachibana</div><div class="relation-name-jp">橘 蓮</div><div class="relation-type">Damat</div><div class="relation-desc">Başta düşmandı, sonunda aile oldu.</div></div>
+          <div class="relation-card"><div class="relation-name">Hana Tachibana</div><div class="relation-name-jp">橘 華</div><div class="relation-type">Öğrencisi (Merhum)</div><div class="relation-desc">Yanlışlıkla ölümüne sebep oldu. En büyük pişmanlığı.</div></div>
+        </div>
+      </div>
+      <div class="tab-content" id="bah-quotes">
+        <h3>💬 Alıntılar</h3>
+        <div class="quotes-list">
+          <div class="quote-item"><div class="quote-text">Ölüm bir hastalık. Ve ben... tedavisini bulacağım.</div><div class="quote-context">— Bölüm 11: Yasak Aşk</div></div>
+          <div class="quote-item"><div class="quote-text">Hoş geldin, kızım. Bahçemize.</div><div class="quote-context">— Bölüm 3: Karanlık Pazar</div></div>
+          <div class="quote-item"><div class="quote-text">Kalk, baba. Seni affetmiyorum. Ama... sana bir şans veriyorum.</div><div class="quote-context">— Yuki'nin sözü, Bölüm 8</div></div>
+          <div class="quote-item"><div class="quote-text">Seni seviyorum... kızım.</div><div class="quote-context">— Son sözü, Bölüm 18</div></div>
         </div>
       </div>
     </div>
@@ -665,7 +810,6 @@
       if (b.getAttribute('href').includes('char=' + char)) b.classList.add('active');
     });
 
-    // Sayfa yüklendiğinde yukarı kaydır
     window.scrollTo({ top: 0, behavior: 'instant' });
   }
   
