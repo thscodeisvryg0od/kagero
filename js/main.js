@@ -1,6 +1,6 @@
 /* ============================================
    KAGERŌ — Anime Çizgi Roman Platformu
-   Ana JavaScript (Performans Optimize)
+   Ana JavaScript
    ============================================ */
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -173,7 +173,7 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   // ============================================
-  // FADE-IN (hafifletildi)
+  // FADE-IN (sadece ana sayfa kartları)
   // ============================================
   const fadeElements = document.querySelectorAll(
     '.chapter-card, .character-card, .world-card, .product-card'
