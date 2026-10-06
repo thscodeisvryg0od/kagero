@@ -1,9 +1,7 @@
 /* ============================================
    KAGERŌ — Bölüm Verileri
    幽霊花: Hayalet Çiçekler
-   Arc 1: İlk Fısıltı (1-8)
-   Arc 2: Karanlık Bahçe (9-18)
-   Arc 3: Altın Çiçek (19-30)
+   50 Bölüm · 5 Arc · TAMAMLANDI
    ============================================ */
 
 const ALL_CHAPTERS = {
@@ -334,7 +332,7 @@ const ALL_CHAPTERS = {
   },
 
   // ============================================
-  // ARC 3: ALTIN ÇİÇEK (19-30)
+  // ARC 3: ALTIN ÇİÇEK (19-25) — DEVAM EDECEK
   // ============================================
 
   19: {
@@ -445,7 +443,7 @@ const ALL_CHAPTERS = {
       { type: "normal", scene: "Yuki ve Ren Karanlık Pazar'dan Ayrılıyor — Gin'in Bedeni Arkada", dialogue: [{ type: "say", speaker: "Yuki", text: "Ren... Gin... o benim ailemdi. Tıpkı senin gibi. Tıpkı annem gibi." }, { type: "say", speaker: "Ren", text: "Biliyorum. Ve... onun için savaşacağız." }] },
       { type: "splash", scene: "Yuki ve Ren — Şafak — Tokyo — Yeni Bir Yol — Fuji Dağı Uzakta", dialogue: [{ type: "inner", text: '"Gin... son sözünü unutmayacağım. Ve... Altın Çiçeği bulacağım. Senin için."' }] }
     ]
-  },
+  }.
 
   26: {
     jp: "第26話", title: "Babanın Kalbi",
@@ -506,7 +504,7 @@ const ALL_CHAPTERS = {
     ]
   },
 
-    30: {
+  30: {
     jp: "第30話", title: "Seçim",
     pages: [
       { type: "splash", scene: "Tokyo — Dr. Kurosawa'nın Muayenehanesi — Yuki ve Ren — Altın Çiçek Masada", dialogue: [{ type: "say", speaker: "Dr. Kurosawa", text: "Yuki... Altın Çiçek... seni seçti. Ve... bu büyük bir sorumluluk." }, { type: "say", speaker: "Yuki", text: "Biliyorum. Ama... hazırım." }, { type: "say", speaker: "Dr. Kurosawa", text: "Peki... şimdi ne yapacaksın?" }] },
@@ -678,9 +676,179 @@ const ALL_CHAPTERS = {
       { type: "normal", scene: "Cenaze — Yanaka Mezarlığı — Yuriko'nun Yanına Gömülüyor — Yuki, Ren, Mio, Dr. Kurosawa", dialogue: [{ type: "say", speaker: "Dr. Kurosawa", text: "Yuriko... Sōren... artık birliktesiniz." }, { type: "say", speaker: "Yuki", text: "Annem... baba... sizi seviyorum." }, { type: "say", speaker: "Ren", text: "Yuki... iyi misin?" }, { type: "say", speaker: "Yuki", text: "Hayır. Ama... sanırım bir gün olacağım." }] },
       { type: "splash", scene: "Mezar Başında — Yuki Yalnız — Bir Beyaz Çiçek Açıyor", dialogue: [{ type: "inner", text: '"Baba... annen için öldün. Ama... sen sadece onun için ölmedin. Benim için de öldün."' }] },
       { type: "closeup", scene: "Yuki Çiçeği Koparıyor — Ve Cebine Koyuyor", dialogue: [{ type: "say", speaker: "Yuki", text: "Bu çiçeği... hep yanımda taşıyacağım. Sizi hatırlatmak için." }, { type: "say", speaker: "Ren", text: "Yuki... gel. Buradan gidelim." }, { type: "say", speaker: "Yuki", text: "Tamam. Ama... bir dakika." }] },
-      { type: "splash", scene: "Yuki Gökyüzüne Bakıyor — Güneş Açıyor — Yeni Bir Başlangıç", dialogue: [{ type: "inner", text: '"Arc 4... sona erdi. Babam öldü. Büyükbabam öldü. Ama... ben... ben hala ayaktayım. Ve... son bir arc kaldı. Son bir savaş. Ve... son bir veda."' }] },
-      { type: "splash", scene: "幽霊花 — Arc 4: Kırık Anılar — SON — Arc 5: Yeni Bahar Yakında — FİNAL", dialogue: [] }
+      { type: "splash", scene: "Yuki Gökyüzüne Bakıyor — Güneş Açıyor — Yeni Bir Başlangıç", dialogue: [{ type: "inner", text: '"Arc 4... sona erdi. Babam öldü. Büyükbabam öldü. Ama... ben... ben hala ayaktayım. Ve... son bir arc kaldı. Son bir savaş. Ve... son bir veda."' }] }
+    ]
+  },
+
+  // ============================================
+  // ARC 5: YENİ BAHAR (41-50) — FİNAL
+  // ============================================
+
+  41: {
+    jp: "第41話", title: "Yas",
+    pages: [
+      { type: "splash", scene: "Yuki'nin Odası — Tapınak — Yuki Yatakta — Perdeler Kapalı — Karanlık", dialogue: [{ type: "inner", text: '"Bir hafta... bir hafta oldu. Ve ben... ben kalkamıyorum. Babam gitti. Büyükbabam gitti. Ve ben... ben hala buradayım."' }] },
+      { type: "normal", scene: "Kapı Çalıyor — Ren İçeri Giriyor — Elinde Yemek Tepsisi", dialogue: [{ type: "say", speaker: "Ren", text: "Yuki... yemek yemen lazım." }, { type: "say", speaker: "Yuki", text: "Aç değilim." }, { type: "say", speaker: "Ren", text: "3 gündür bir şey yemedin." }, { type: "say", speaker: "Yuki", text: "Umurumda değil." }] },
+      { type: "closeup", scene: "Ren Yuki'nin Yanına Oturuyor — Elini Omzuna Koyuyor", dialogue: [{ type: "say", speaker: "Ren", text: "Yuki... baban senin böyle olmanı istemezdi." }, { type: "say", speaker: "Yuki", text: "Babam... babam beni bıraktı. Yine. Ama bu sefer... bu sefer geri gelmeyecek." }, { type: "say", speaker: "Ren", text: "Biliyorum." }] },
+      { type: "splash", scene: "Yuki Ağlamaya Başlıyor — Uzun — Ren Sessizce Sarılıyor", dialogue: [{ type: "say", speaker: "Yuki", text: "Neden... neden hep sevdiklerim ölüyor? Annem... Hana... Gin... Babam... Büyükbabam..." }, { type: "say", speaker: "Ren", text: "Bilmiyorum. Ama... ben buradayım. Ve... gitmeyeceğim." }] },
+      { type: "normal", scene: "Tapınak Avlusu — Mio ve Dr. Kurosawa — Endişeli", dialogue: [{ type: "say", speaker: "Mio", text: "Nasıl?" }, { type: "say", speaker: "Ren", text: "Kötü. Çok kötü." }, { type: "say", speaker: "Dr. Kurosawa", text: "Bu normal. Yas... zaman ister." }, { type: "say", speaker: "Mio", text: "Peki... ne yapacağız?" }] },
+      { type: "splash", scene: "Yuki Pencereden Dışarı Bakıyor — Yağmur — Ama Bir Şey Görüyor", dialogue: [{ type: "inner", text: '"Dışarıda... yağmur yağıyor. Ve... bir çiçek açıyor. Kırmızı. Cinayet değil... fedakarlık."' }] },
+      { type: "closeup", scene: "Yuki'nin Gözleri — İlk Kez Bir Kıvılcım", dialogue: [{ type: "say", speaker: "Yuki", text: "Ren... babam... babam benim için öldü. Ve ben... ben onun fedakarlığını boşa çıkaramam." }, { type: "say", speaker: "Ren", text: "Ne yapacaksın?" }, { type: "say", speaker: "Yuki", text: "Kalkacağım. Ve... yaşayacağım. Onun için." }] },
+      { type: "splash", scene: "Yuki Ayağa Kalkıyor — İlk Kez — Yüzünde Kararlılık", dialogue: [{ type: "say", speaker: "Yuki", text: "Ren... benimle gelir misin?" }, { type: "say", speaker: "Ren", text: "Her zaman." }, { type: "say", speaker: "Yuki", text: "O zaman... mezarlığa gidelim. Onlarla konuşmam lazım." }] },
+      { type: "normal", scene: "Mezarlık — Yağmur — Yuki ve Ren — Yuriko ve Sōren'in Mezarları", dialogue: [{ type: "say", speaker: "Yuki", text: "Anne... baba... ben... ben iyiyim. Gerçekten." }, { type: "say", speaker: "Yuki", text: "Sizi çok özleyeceğim. Ama... yaşayacağım. Sizin için. Ve... kendim için." }] },
+      { type: "splash", scene: "Yuki ve Ren — Mezarların Önünde — Yağmur Duruyor — Güneş Açıyor", dialogue: [{ type: "say", speaker: "Yuki", text: "Ren... teşekkür ederim. Beni bırakmadığın için." }, { type: "say", speaker: "Ren", text: "Seni asla bırakmayacağım. Çünkü... sen benim her şeyimsin." }] }
+    ]
+  },
+
+  42: {
+    jp: "第42話", title: "Boşluk",
+    pages: [
+      { type: "splash", scene: "Yeni Koruyucu Tapınağı — Sabah — Yuki ve Ren — Eğitim Alanı", dialogue: [{ type: "inner", text: '"Babasının ölümünden bir ay sonra... Yuki yeniden eğitime başladı. Ama bu sefer... daha güçlü. Daha kararlı."' }] },
+      { type: "normal", scene: "Yuki Altın Çiçeği İnceliyor — Kutuda — Ama Bir Şey Hissediyor", dialogue: [{ type: "say", speaker: "Yuki", text: "Ren... Altın Çiçek... bir şey söylüyor. Sürekli." }, { type: "say", speaker: "Ren", text: "Ne söylüyor?" }, { type: "say", speaker: "Yuki", text: "Bilmiyorum. Ama... beni çağırıyor." }] },
+      { type: "closeup", scene: "Yuki Çiçeğe Dokunuyor — Ama Kullanmıyor — Sadece Dinliyor", dialogue: [{ type: "whisper", text: '"Yuki... beni kullan... bir kez... sadece bir kez..."' }, { type: "say", speaker: "Yuki", text: "Hayır. Kullanmayacağım." }, { type: "whisper", text: '"Ama... onları görmek istemiyor musun?"' }] },
+      { type: "splash", scene: "Yuki Şok — Elini Çekiyor — Gözleri Açık", dialogue: [{ type: "say", speaker: "Yuki", text: "Onları... görmek mi?" }, { type: "say", speaker: "Dr. Kurosawa", text: "Yuki... Altın Çiçeğin gerçek gücü bu." }, { type: "say", speaker: "Yuki", text: "Ne... ne demek istiyorsun?" }] },
+      { type: "normal", scene: "Dr. Kurosawa Kitabı Açıyor — Altın Çiçek Efsanesi", dialogue: [{ type: "say", speaker: "Dr. Kurosawa", text: "Altın Çiçek... ölüleri geri getirmez. Sadece... bir kez. Son bir veda için." }, { type: "say", speaker: "Yuki", text: "Yani... ailemi görebilir miyim? Bir kez?" }, { type: "say", speaker: "Dr. Kurosawa", text: "Evet. Ama... bedeli var." }] },
+      { type: "closeup", scene: "Yuki'nin Yüzü — Gözyaşı — Ama Kararlılık", dialogue: [{ type: "say", speaker: "Yuki", text: "Ne bedeli?" }, { type: "say", speaker: "Dr. Kurosawa", text: "Çiçeği kullanırsan... bir daha asla açmayacak. Ve... sen... bir daha asla onları göremeyeceksin." }] },
+      { type: "splash", scene: "Yuki Geri Çekiliyor — Düşünceli — Karar Vermek Üzere", dialogue: [{ type: "say", speaker: "Yuki", text: "Yani... bir kez. Son bir kez. Ve sonra... sonsuza dek veda." }, { type: "say", speaker: "Ren", text: "Yuki... bu senin kararın." }, { type: "say", speaker: "Yuki", text: "Biliyorum. Ama... karar veremiyorum." }] },
+      { type: "normal", scene: "Tapınak Çatısı — Gece — Yuki Yalnız — Yıldızlar", dialogue: [{ type: "inner", text: '"Annem... babam... sizi bir kez daha görmek... her şeyim olurdu. Ama... hazır mıyım? Vedalaşmaya hazır mıyım?"' }] },
+      { type: "splash", scene: "Ren Çatıya Çıkıyor — Yuki'nin Yanına Oturuyor", dialogue: [{ type: "say", speaker: "Ren", text: "Ne düşünüyorsun?" }, { type: "say", speaker: "Yuki", text: "Karar veremiyorum. Bir yanım... onları görmek istiyor. Diğer yanım... korkuyor." }, { type: "say", speaker: "Ren", text: "Neden korkuyorsun?" }] },
+      { type: "closeup", scene: "Yuki Ren'e Dönüyor — Gözyaşları", dialogue: [{ type: "say", speaker: "Yuki", text: "Çünkü... son veda... gerçekten son olacak. Ve ben... ben buna hazır değilim." }, { type: "say", speaker: "Ren", text: "Belki hiç hazır olmayacaksın. Ama... belki de buna ihtiyacın var." }] }
+    ]
+  },
+
+  43: {
+    jp: "第43話", title: "Ren'in Dönüşü",
+    pages: [
+      { type: "splash", scene: "Tapınak Bahçesi — Sabah — Yuki Meditasyon Yapıyor — Ren Geliyor", dialogue: [{ type: "inner", text: '"O sabah... Ren bana bir şey söyleyeceğini söyledi. Ve... kalbim hızlı atıyordu."' }] },
+      { type: "normal", scene: "Ren Yuki'nin Karşısına Oturuyor — Ciddi İfade", dialogue: [{ type: "say", speaker: "Ren", text: "Yuki... sana bir şey söylemem lazım." }, { type: "say", speaker: "Yuki", text: "Söyle." }, { type: "say", speaker: "Ren", text: "Ben... ben seni seviyorum." }] },
+      { type: "closeup", scene: "Yuki'nin Yüzü — Şok — Ama Sonra Yumuşama", dialogue: [{ type: "say", speaker: "Yuki", text: "Ren..." }, { type: "say", speaker: "Ren", text: "Biliyorum. Zamanlama kötü. Babam yeni öldü. Ama... ben... ben her gün seni kaybetme korkusuyla yaşıyorum." }, { type: "say", speaker: "Yuki", text: "Neden?" }] },
+      { type: "splash", scene: "Geriye Dönüş — Hana ve Ren — Kısa Bir Anı", dialogue: [{ type: "say", speaker: "Ren (ses)", text: "Hana'yı kaybettiğimde... bir daha kimseyi sevmeyeceğimi düşündüm. Ama sen... sen bana tekrar sevmeyi öğrettin." }] },
+      { type: "normal", scene: "Şimdiki Zaman — Ren Yuki'nin Elini Tutuyor", dialogue: [{ type: "say", speaker: "Ren", text: "Yuki... seninle olmak istiyorum. Ama... sadece sen istersen." }, { type: "say", speaker: "Yuki", text: "Ren... ben..." }, { type: "say", speaker: "Ren", text: "Bekle. Önce düşün. Ben... bekleyeceğim." }] },
+      { type: "closeup", scene: "Yuki'nin Gözleri — Gözyaşı — Mutluluk", dialogue: [{ type: "say", speaker: "Yuki", text: "Hayır... beklemene gerek yok." }, { type: "say", speaker: "Ren", text: "Ne?" }, { type: "say", speaker: "Yuki", text: "Ben de... ben de seni seviyorum. Belki... belki uzun zamandır." }] },
+      { type: "splash", scene: "Ren ve Yuki — İlk Öpücük — Tapınak Bahçesi — Çiçekler Açıyor", dialogue: [{ type: "inner", text: '"O an... o an her şey durdu. Ve... ilk kez... gerçekten mutluydum."' }] },
+      { type: "normal", scene: "Mio Uzaktan İzliyor — Gülümsüyor — Gözyaşları", dialogue: [{ type: "say", speaker: "Mio", text: "Sonunda. Seni aptal." }, { type: "say", speaker: "Dr. Kurosawa", text: "Onları rahatsız etmeyelim." }, { type: "say", speaker: "Mio", text: "Haklısın. Ama... çok tatlılar." }] },
+      { type: "splash", scene: "Tapınak Sofrası — Akşam — Dört Kişi — Mutlu", dialogue: [{ type: "say", speaker: "Mio", text: "Yani... artık sevgili misiniz?" }, { type: "say", speaker: "Ren", text: "Mio!" }, { type: "say", speaker: "Yuki", text: "Evet. Sanırım." }, { type: "say", speaker: "Dr. Kurosawa", text: "Tebrikler. Ama... dikkatli olun. Aşk... tehlikeli olabilir." }] },
+      { type: "closeup", scene: "Yuki ve Ren — El Ele — Sessizlik", dialogue: [{ type: "say", speaker: "Yuki", text: "Ren... bir karar verdim." }, { type: "say", speaker: "Ren", text: "Ne kararı?" }, { type: "say", speaker: "Yuki", text: "Altın Çiçeği kullanacağım. Ailemle... son bir kez vedalaşacağım." }] }
+    ]
+  },
+
+  44: {
+    jp: "第44話", title: "Altın Çiçeğin Gerçeği I",
+    pages: [
+      { type: "splash", scene: "Tapınak Kütüphanesi — Gece — Yuki ve Dr. Kurosawa — Eski Kitap Açık", dialogue: [{ type: "say", speaker: "Dr. Kurosawa", text: "Altın Çiçeği kullanmadan önce... onun gerçeğini öğrenmelisin." }, { type: "say", speaker: "Yuki", text: "Gerçeği mi?" }, { type: "say", speaker: "Dr. Kurosawa", text: "Evet. Çünkü... Altın Çiçek sadece bir çiçek değil. O... bir varlık." }] },
+      { type: "normal", scene: "Dr. Kurosawa Kitabı Okuyor — Eski Japonca", dialogue: [{ type: "say", speaker: "Dr. Kurosawa", text: "'Altın Çiçek... ilk Kan'nōsha tarafından yaratıldı. Amaç... ölüleri geri getirmek değil. Amaç... onları onurlandırmak.'" }, { type: "say", speaker: "Yuki", text: "Yani... çiçek bir tür... anıt mı?" }, { type: "say", speaker: "Dr. Kurosawa", text: "Evet. Ve... bir kez kullanıldığında... görevini tamamlar." }] },
+      { type: "closeup", scene: "Yuki Elini Çiçeğe Uzatıyor — Ama Bir Ses Duyuyor", dialogue: [{ type: "whisper", text: '"Yuki... beni oku... beni anla... ve ben... seni anlayacağım..."' }, { type: "say", speaker: "Yuki", text: "Sen... sen konuşuyor musun?" }, { type: "say", speaker: "Altın Çiçek", text: "Evet. Ben... bir varlığım. Ve... senin annenin bana verdiği bir görev var." }] },
+      { type: "splash", scene: "Yuki Çiçeğe Dokunuyor — Anı Patlıyor — İlk Kan'nōsha ve Altın Çiçek", dialogue: [{ type: "say", speaker: "Altın Çiçek (anıdan)", text: "Beni yaratan kişi... ilk Kan'nōsha'ydı. Adı... Ayanokōji Hana. Senin atan." }, { type: "say", speaker: "Yuki", text: "Ayanokōji Hana mı?!" }, { type: "say", speaker: "Altın Çiçek (anıdan)", text: "Evet. Ve... o... beni yarattığında... kendi hayatını verdi. Beni canlı tutmak için." }] },
+      { type: "normal", scene: "Yuki Şok — Geri Çekiliyor — Gözleri Açık", dialogue: [{ type: "say", speaker: "Yuki", text: "Yani... sen... sen bir insanın hayatıyla mı yaşıyorsun?" }, { type: "say", speaker: "Altın Çiçek", text: "Evet. Ve... ben her kullanıldığımda... o hayattan bir parça harcanır." }, { type: "say", speaker: "Yuki", text: "Ne kadar kaldı?" }] },
+      { type: "closeup", scene: "Altın Çiçek — Sessizlik — Sonra Cevap", dialogue: [{ type: "say", speaker: "Altın Çiçek", text: "Bir kez. Sadece bir kez. Sonra... ben solarım. Ve... senin atan... huzura kavuşur." }, { type: "say", speaker: "Yuki", text: "O zaman... onu kullanacağım. Atama... huzur vermek için." }, { type: "say", speaker: "Altın Çiçek", text: "Ama... bir şey daha var. Kullanıldığımda... beni kullanan kişi... bir yıl boyunca... hiçbir Hayalet Çiçek göremez." }] },
+      { type: "splash", scene: "Yuki Şok — Bu Bir Lanet mi, Armağan mı?", dialogue: [{ type: "say", speaker: "Yuki", text: "Yani... bir yıl boyunca... Kan'nōsha gücümü kaybederim?" }, { type: "say", speaker: "Altın Çiçek", text: "Evet. Ama... bu bir mola. Bir dinlenme. Çünkü... sen çok yoruldun." }, { type: "say", speaker: "Yuki", text: "Ama... ben Kan'nōsha'yım. Bu... bu benim kimliğim." }] },
+      { type: "normal", scene: "Dr. Kurosawa Elini Yuki'nin Omzuna Koyuyor", dialogue: [{ type: "say", speaker: "Dr. Kurosawa", text: "Yuki... belki de bu bir armağan. Belki... belki bir yıl boyunca normal bir hayat yaşayabilirsin." }, { type: "say", speaker: "Yuki", text: "Normal bir hayat mı?" }, { type: "say", speaker: "Dr. Kurosawa", text: "Evet. Ren ile. Mio ile. Benimle. Ailenle." }] },
+      { type: "splash", scene: "Yuki Gözlerini Kapatıyor — Derin Bir Nefes — Karar", dialogue: [{ type: "inner", text: '"Bir yıl... bir yıl boyunca fısıltıları duymayacağım. Bir yıl boyunca... normal olacağım. Belki... belki buna ihtiyacım var."' }] },
+      { type: "splash", scene: "Yuki Gözlerini Açıyor — Kararlı — Altın Çiçeği Tutuyor", dialogue: [{ type: "say", speaker: "Yuki", text: "Karar verdim. Altın Çiçeği kullanacağım. Ama... önce hazırlanmam lazım." }, { type: "say", speaker: "Dr. Kurosawa", text: "Peki. Yarın. Sabah. Tüm aile orada olacak." }] }
+    ]
+  },
+
+  45: {
+    jp: "第45話", title: "Altın Çiçeğin Gerçeği II",
+    pages: [
+      { type: "splash", scene: "Tapınak — Gece — Yuki Yalnız — Altın Çiçek Yanında — Mum Işığı", dialogue: [{ type: "inner", text: '"O gece... uyuyamadım. Çünkü... yarın... yarın son bir kez ailemi göreceğim. Ve... sonra... sonsuza dek veda."' }] },
+      { type: "normal", scene: "Yuki Çiçeğe Bakıyor — Düşünceli", dialogue: [{ type: "say", speaker: "Yuki", text: "Altın Çiçek... sen... sen bir insan mısın?" }, { type: "say", speaker: "Altın Çiçek", text: "Hayır. Ama... bir insanın kalbini taşıyorum." }, { type: "say", speaker: "Yuki", text: "Nasıl bir insan?" }] },
+      { type: "closeup", scene: "Altın Çiçek Parlıyor — Anı Patlıyor — İlk Kan'nōsha Hana", dialogue: [{ type: "say", speaker: "Altın Çiçek (anıdan)", text: "Hana... benim adım. Ayanokōji Hana. Ve... ben... senin atanım. 300 yıl önce yaşadım." }, { type: "say", speaker: "Yuki", text: "300 yıl mı?!" }, { type: "say", speaker: "Altın Çiçek (anıdan)", text: "Evet. Ve... ben... ben bir savaşta öldüm. Ama... ruhum... bu çiçeğe geçti. Torunlarımı korumak için." }] },
+      { type: "splash", scene: "Anı Devam — Hana Savaşta — Son Anı — Çiçeği Yaratıyor", dialogue: [{ type: "say", speaker: "Hana (anıdan)", text: "Bu çiçek... torunlarımı koruyacak. Onlara... son bir veda şansı verecek. Ve... onlar... onlar yaşayacak." }, { type: "say", speaker: "Hana (anıdan)", text: "Yuki... sen... sen benim en güçlü torunumsun. Ve... sen... sen her şeyi başaracaksın." }] },
+      { type: "normal", scene: "Şimdiki Zaman — Yuki Gözlerini Açıyor — Gözyaşları", dialogue: [{ type: "say", speaker: "Yuki", text: "Atam... sen... sen bizim için mi yaşadın?" }, { type: "say", speaker: "Altın Çiçek", text: "Evet. Her Ayanokōji... benim torunum. Ve... her biriniz... benim için özelsiniz." }, { type: "say", speaker: "Yuki", text: "O zaman... seni kullanacağım. Sana... huzur vermek için." }] },
+      { type: "closeup", scene: "Altın Çiçek — Parlıyor — Huzurlu", dialogue: [{ type: "say", speaker: "Altın Çiçek", text: "Teşekkür ederim, Yuki. Ama... bil ki... beni kullanmak... bir veda. Ve... vedalar acıtır." }, { type: "say", speaker: "Yuki", text: "Biliyorum. Ama... bazı vedalar... iyileştirir." }, { type: "say", speaker: "Altın Çiçek", text: "Haklısın. Ve... sen... sen bilge oldun." }] },
+      { type: "splash", scene: "Kapı Çalıyor — Ren İçeri Giriyor — Yuki'yi Görüyor", dialogue: [{ type: "say", speaker: "Ren", text: "Yuki... uyumadın mı?" }, { type: "say", speaker: "Yuki", text: "Uyuyamadım. Yarın... yarın büyük gün." }, { type: "say", speaker: "Ren", text: "Korkuyor musun?" }, { type: "say", speaker: "Yuki", text: "Hayır. Ama... heyecanlıyım. Ve... hüzünlüyüm." }] },
+      { type: "normal", scene: "Ren Yuki'nin Yanına Oturuyor — Elini Tutuyor", dialogue: [{ type: "say", speaker: "Ren", text: "Ben yanında olacağım. Tüm süre boyunca." }, { type: "say", speaker: "Yuki", text: "Teşekkür ederim." }, { type: "say", speaker: "Ren", text: "Yuki... bir şey söyleyeceğim." }, { type: "say", speaker: "Yuki", text: "Söyle." }] },
+      { type: "closeup", scene: "Ren Yuki'ye Bakıyor — Sevgi Dolu", dialogue: [{ type: "say", speaker: "Ren", text: "Onları gördükten sonra... ne olursa olsun... ben senin yanındayım. Sonsuza kadar." }, { type: "say", speaker: "Yuki", text: "Sonsuza kadar mı?" }, { type: "say", speaker: "Ren", text: "Sonsuza kadar." }] },
+      { type: "splash", scene: "Yuki Ren'e Sarılıyor — Uzun — Sessizlik — Ama Huzurlu", dialogue: [{ type: "inner", text: '"O an... o an anladım ki... ben... ben asla yalnız olmadım. Ve... asla olmayacağım."' }] }
+    ]
+  },
+
+  46: {
+    jp: "第46話", title: "Annenin Sırrı",
+    pages: [
+      { type: "splash", scene: "Tapınak — Şafak — Yuki ve Ailesi — Altın Çiçeğin Etrafında Toplandılar", dialogue: [{ type: "inner", text: '"Sabah oldu. Ve... herkes oradaydı. Ren, Mio, Dr. Kurosawa. Ve... ben. Kalbim hızlı atıyordu."' }] },
+      { type: "normal", scene: "Dr. Kurosawa Yuki'ye Bakıyor — Ciddi", dialogue: [{ type: "say", speaker: "Dr. Kurosawa", text: "Yuki... hazır mısın?" }, { type: "say", speaker: "Yuki", text: "Evet. Ama... önce bir şey sormam lazım." }, { type: "say", speaker: "Dr. Kurosawa", text: "Sor." }] },
+      { type: "closeup", scene: "Yuki Dr. Kurosawa'ya Bakıyor — Kararlı", dialogue: [{ type: "say", speaker: "Yuki", text: "Annemin... annemin bir sırrı var mı? Başka bir sır?" }, { type: "say", speaker: "Dr. Kurosawa", text: "Neden soruyorsun?" }, { type: "say", speaker: "Yuki", text: "Çünkü... Altın Çiçek bana bir şey söyledi. Annemin... annemin başka bir amacı varmış." }] },
+      { type: "splash", scene: "Dr. Kurosawa Bir Mektup Çıkarıyor — 'Yuki'ye — Açılınca Okunacak'", dialogue: [{ type: "say", speaker: "Dr. Kurosawa", text: "Bu mektubu... annen bana verdi. Ölümünden önce. 'Yuki Altın Çiçeği kullanmaya karar verdiğinde aç' dedi." }, { type: "say", speaker: "Yuki", text: "Neden... neden şimdiye kadar vermedin?" }, { type: "say", speaker: "Dr. Kurosawa", text: "Çünkü... hazır olman gerekiyordu." }] },
+      { type: "normal", scene: "Yuki Mektubu Açıyor — Annesinin El Yazısı", dialogue: [{ type: "say", speaker: "Yuriko (mektuptan)", text: "Sevgili Yuki'm... Eğer bu mektubu okuyorsan... Altın Çiçeği kullanmaya karar vermişsin demektir. Ve... seni uyarmam lazım." }, { type: "say", speaker: "Yuriko (mektuptan)", text: "Altın Çiçek... sadece son bir veda değil. Aynı zamanda bir seçim. Sen... sen onu kullandığında... bir seçim yapacaksın." }] },
+      { type: "closeup", scene: "Yuki Şok — Okumaya Devam Ediyor", dialogue: [{ type: "say", speaker: "Yuriko (mektuptan)", text: "Seçim şu: Ya... geçmişte yaşamaya devam edersin. Ya da... geleceğe adım atarsın. Ama ikisini birden yapamazsın." }, { type: "say", speaker: "Yuki", text: "Yani... ailemi gördükten sonra... ya onlarla kalacağım... ya da... onları bırakıp yaşayacağım." }] },
+      { type: "splash", scene: "Yuki Mektubu Kapatıyor — Gözyaşları — Ama Kararlılık", dialogue: [{ type: "say", speaker: "Yuriko (mektuptan son)", text: "Yuki... ben... ben senin mutlu olmanı istiyorum. Ve... ne seçersen seç... ben seni seviyorum. - Annen" }, { type: "say", speaker: "Yuki", text: "Anne... biliyorum. Ve... ben de seni seviyorum." }] },
+      { type: "normal", scene: "Yuki Ayağa Kalkıyor — Altın Çiçeği Alıyor — Ailesi Etrafında", dialogue: [{ type: "say", speaker: "Yuki", text: "Hazırım. Ama... bir şey söylemem lazım." }, { type: "say", speaker: "Ren", text: "Söyle." }, { type: "say", speaker: "Yuki", text: "Bu... bu son veda. Sonra... bir yıl boyunca Kan'nōsha gücümü kaybedeceğim. Ama... belki... belki bu iyi bir şey." }] },
+      { type: "closeup", scene: "Ren, Mio, Dr. Kurosawa — Onay — Sevgi", dialogue: [{ type: "say", speaker: "Ren", text: "Ne olursa olsun... yanındayız." }, { type: "say", speaker: "Mio", text: "Her zaman." }, { type: "say", speaker: "Dr. Kurosawa", text: "Ve... bu tapınak... her zaman senin evin." }] },
+      { type: "splash", scene: "Yuki Altın Çiçeği Kaldırıyor — Işık Patlaması — Tapınak Aydınlanıyor", dialogue: [{ type: "say", speaker: "Yuki", text: "Altın Çiçek... beni aileme kavuştur. Son bir kez." }, { type: "say", speaker: "Altın Çiçek", text: "Emredersin, Yuki Ayanokōji. Torunum." }] }
+    ]
+  },
+
+  47: {
+    jp: "第47話", title: "Son Veda I",
+    pages: [
+      { type: "splash", scene: "Tapınak — Işık Patlaması — Ortada İki Figür Beliriyor — Yuriko ve Sōren", dialogue: [{ type: "inner", text: '"Işık... çok parlak. Ve... sonra... onları gördüm. Annem. Babam. Genç. Mutlu. Hayattayken oldukları gibi."' }] },
+      { type: "normal", scene: "Yuki Ağlıyor — Yuriko ve Sōren Yuki'ye Bakıyor — Sevgi Dolu", dialogue: [{ type: "say", speaker: "Yuriko", text: "Yuki... kızım..." }, { type: "say", speaker: "Yuki", text: "Anne... baba... siz... siz gerçek misiniz?" }, { type: "say", speaker: "Sōren", text: "Evet, kızım. Gerçek. Ama... sadece bir süreliğine." }] },
+      { type: "closeup", scene: "Yuki Yuriko'ya Sarılıyor — Uzun — Sıcak", dialogue: [{ type: "say", speaker: "Yuki", text: "Anne... seni çok özledim. 12 yıl... 12 yıl boyunca..." }, { type: "say", speaker: "Yuriko", text: "Biliyorum, Yuki'm. Biliyorum. Ve... her gün... her gün seni izledim." }, { type: "say", speaker: "Yuki", text: "İzledin mi?" }] },
+      { type: "splash", scene: "Geriye Dönüş Montajı — Yuriko'nun Ruhu Yuki'yi İzliyor — Tüm Anlar", dialogue: [{ type: "say", speaker: "Yuriko", text: "Evet. İlk Hayalet Çiçeğini bulduğunda. Ren ile tanıştığında. Tapınağa geldiğinde. Her an... her an seninleydim." }, { type: "say", speaker: "Yuki", text: "Neden... neden yardım etmedin?" }, { type: "say", speaker: "Yuriko", text: "Çünkü... senin kendi yolunu bulman gerekiyordu. Ve... sen buldun." }] },
+      { type: "normal", scene: "Sōren Yuki'ye Yaklaşıyor — Elini Omzuna Koyuyor", dialogue: [{ type: "say", speaker: "Sōren", text: "Yuki... ben... ben çok kötü bir babaydım. Ama... sen... sen bana bir şans verdin." }, { type: "say", speaker: "Yuki", text: "Baba... sen benim babamsın. Ve... seni seviyorum." }, { type: "say", speaker: "Sōren", text: "Ben de seni seviyorum, kızım. Sonsuza kadar." }] },
+      { type: "closeup", scene: "Üçü — Sarılıyor — Tapınak Aydınlanıyor", dialogue: [{ type: "inner", text: '"O an... o an her şey mükemmeldi. Ailem... ailem benimleydi. Ve... ilk kez... gerçekten tam hissettim."' }] },
+      { type: "splash", scene: "Ren ve Mio Uzaktan İzliyor — Duygusal — Ama Mutlu", dialogue: [{ type: "say", speaker: "Mio", text: "Bu... bu çok güzel." }, { type: "say", speaker: "Ren", text: "Evet. Yuki... o bunu hak etti." }, { type: "say", speaker: "Dr. Kurosawa", text: "Yuriko... Sōren... kızınıza iyi bakıyorsunuz." }] },
+      { type: "normal", scene: "Yuriko Yuki'ye Bakıyor — Ciddi Ama Sevgi Dolu", dialogue: [{ type: "say", speaker: "Yuriko", text: "Yuki... bir şey söylemem lazım." }, { type: "say", speaker: "Yuki", text: "Söyle, anne." }, { type: "say", speaker: "Yuriko", text: "Altın Çiçeği kullandığında... bir seçim yapacaksın. Geçmiş... ya da gelecek." }] },
+      { type: "closeup", scene: "Yuriko Yuki'nin Elini Tutuyor — Gözlerinde Sevgi", dialogue: [{ type: "say", speaker: "Yuriko", text: "Ben... ben senin geleceği seçmeni istiyorum. Çünkü... geçmişte... sadece acı var. Ama gelecekte... umut var." }, { type: "say", speaker: "Yuki", text: "Ama... sizi bırakmak istemiyorum." }, { type: "say", speaker: "Yuriko", text: "Bizi bırakmayacaksın. Biz... biz hep senin kalbimizde olacağız." }] },
+      { type: "splash", scene: "Yuki Gözyaşları İçinde — Ama Kararlılık — Karar Veriyor", dialogue: [{ type: "say", speaker: "Yuki", text: "Anne... baba... sizi seviyorum. Ve... sizi asla unutmayacağım. Ama... geleceği seçiyorum." }, { type: "say", speaker: "Yuriko", text: "İyi kızım. Bu... bu doğru seçim." }, { type: "say", speaker: "Sōren", text: "Seninle gurur duyuyoruz, Yuki. Sonsuza kadar." }] }
+    ]
+  },
+
+  48: {
+    jp: "第48話", title: "Son Veda II",
+    pages: [
+      { type: "splash", scene: "Tapınak — Işık Yavaşça Sönüyor — Yuriko ve Sōren Kaybolmaya Başlıyor", dialogue: [{ type: "inner", text: '"Işık... sönmeye başladı. Ve... onlar... onlar kayboluyordu. Ama... bu sefer... bu sefer hazırdım."' }] },
+      { type: "normal", scene: "Yuki Yuriko'nun Elini Tutuyor — Sıkıca", dialogue: [{ type: "say", speaker: "Yuki", text: "Anne... gitme. Daha... daha yeni başladık." }, { type: "say", speaker: "Yuriko", text: "Gitmeliyim, Yuki'm. Ama... sen... sen artık hazırsın." }, { type: "say", speaker: "Yuki", text: "Hazır mıyım?" }] },
+      { type: "closeup", scene: "Yuriko Yuki'nin Yüzünü Okşuyor — Sevgi Dolu", dialogue: [{ type: "say", speaker: "Yuriko", text: "Evet. Sen... sen güçlüsün. Daha önce hiç olmadığın kadar. Ve... sen yalnız değilsin." }, { type: "say", speaker: "Yuki", text: "Ren... Mio... Dr. Kurosawa..." }, { type: "say", speaker: "Yuriko", text: "Evet. Onlar senin yeni ailendir. Ve... onlar seni seviyor." }] },
+      { type: "splash", scene: "Sōren Yuki'ye Sarılıyor — Son Kez", dialogue: [{ type: "say", speaker: "Sōren", text: "Yuki... sen... sen benim en büyük gururumsun. Ve... annenin de." }, { type: "say", speaker: "Yuki", text: "Baba... seni seviyorum." }, { type: "say", speaker: "Sōren", text: "Ben de seni seviyorum, kızım. Şimdi... git. Ve... mutlu ol." }] },
+      { type: "normal", scene: "Yuriko ve Sōren Birbirine Bakıyor — Son Kez — Sonra Yuki'ye", dialogue: [{ type: "say", speaker: "Yuriko", text: "Yuki'm... bir şey daha söylemem lazım." }, { type: "say", speaker: "Yuki", text: "Söyle, anne." }, { type: "say", speaker: "Yuriko", text: "Sen... sen hamilesin. Ren'den." }] },
+      { type: "splash", scene: "Yuki Şok — Ellerini Karnına Götürüyor — İnanamıyor", dialogue: [{ type: "say", speaker: "Yuki", text: "Ne?! Ama... ama nasıl?" }, { type: "say", speaker: "Yuriko", text: "Altın Çiçek bana gösterdi. Sen... sen yeni bir hayat taşıyorsun. Ve... o hayat... bizim ailemizin devamı olacak." }] },
+      { type: "closeup", scene: "Yuki Gözyaşları İçinde — Mutluluk ve Şok", dialogue: [{ type: "say", speaker: "Yuki", text: "Bir bebek... ben... ben anne mi olacağım?" }, { type: "say", speaker: "Sōren", text: "Evet, kızım. Ve... sen... sen harika bir anne olacaksın. Tıpkı annen gibi." }, { type: "say", speaker: "Yuki", text: "Ama... ben hazır değilim..." }] },
+      { type: "splash", scene: "Yuriko Yuki'ye Sarılıyor — Son Kez — Işık Azalıyor", dialogue: [{ type: "say", speaker: "Yuriko", text: "Hiç kimse hazır değildir, Yuki'm. Ama... sen öğreneceksin. Tıpkı benim öğrendiğim gibi." }, { type: "say", speaker: "Yuki", text: "Anne... baba... sizi çok seviyorum." }, { type: "say", speaker: "Yuriko ve Sōren", text: "Biz de seni seviyoruz. Sonsuza kadar." }] },
+      { type: "normal", scene: "Işık Tamamen Sönüyor — Yuriko ve Sōren Kayboluyor — Tapınak Sessiz", dialogue: [{ type: "say", speaker: "Yuki", text: "Anne! Baba!" }, { type: "say", speaker: "Ren", text: "Yuki... onlar gitti." }, { type: "say", speaker: "Yuki", text: "Biliyorum. Ama... bu sefer... bu sefer bu bir veda değil. Bu... bir vasiyet." }] },
+      { type: "splash", scene: "Yuki Ayağa Kalkıyor — Elleri Karnında — Gözyaşları Ama Gülümseme", dialogue: [{ type: "say", speaker: "Yuki", text: "Ren... bir şey söylemem lazım." }, { type: "say", speaker: "Ren", text: "Ne?" }, { type: "say", speaker: "Yuki", text: "Ben... ben hamileyim. Senin bebeğini taşıyorum." }] },
+      { type: "splash", scene: "Ren Şok — Ama Sonra Mutluluk — Yuki'ye Sarılıyor", dialogue: [{ type: "say", speaker: "Ren", text: "Ne?! Yuki... bu... bu harika bir haber!" }, { type: "say", speaker: "Yuki", text: "Gerçekten mi?" }, { type: "say", speaker: "Ren", text: "Evet! Biz... biz bir aile olacağız!" }] }
+    ]
+  },
+
+  49: {
+    jp: "第49話", title: "Bırakış",
+    pages: [
+      { type: "splash", scene: "Tapınak — Altın Çiçek Solmuş — Yuki Ona Bakıyor — Vedalaşıyor", dialogue: [{ type: "inner", text: '"Altın Çiçek... soldu. Ama... görevini tamamladı. Ve... şimdi... şimdi bırakma zamanı."' }] },
+      { type: "normal", scene: "Yuki Altın Çiçeği Kaldırıyor — Solmuş — Ama Huzurlu", dialogue: [{ type: "say", speaker: "Yuki", text: "Altın Çiçek... teşekkür ederim. Her şey için." }, { type: "say", speaker: "Altın Çiçek", text: "Ben... ben teşekkür ederim, Yuki. Beni kullandın... ve bana huzur verdin." }, { type: "say", speaker: "Yuki", text: "Sen... sen gidiyor musun?" }] },
+      { type: "closeup", scene: "Altın Çiçek Son Kez Parlıyor — Sonra Solar", dialogue: [{ type: "say", speaker: "Altın Çiçek", text: "Evet. Ruhum... artık huzura kavuştu. Ve... ben... ben artık gidebilirim." }, { type: "say", speaker: "Yuki", text: "Seni asla unutmayacağım." }, { type: "say", speaker: "Altın Çiçek", text: "Biliyorum. Çünkü... sen... sen benim torunumsun." }] },
+      { type: "splash", scene: "Altın Çiçek Toz Oluyor — Rüzgar Onu Alıp Götürüyor — Yuki İzliyor", dialogue: [{ type: "say", speaker: "Yuki", text: "Elveda... atam. Elveda... ailem. Ama... sizi kalbimde taşıyacağım." }, { type: "say", speaker: "Ren", text: "Yuki... iyi misin?" }, { type: "say", speaker: "Yuki", text: "Evet. İyiyim. Gerçekten." }] },
+      { type: "normal", scene: "Tapınak Avlusu — Aile Toplandı — Yeni Bir Dönem", dialogue: [{ type: "say", speaker: "Mio", text: "Peki... şimdi ne olacak?" }, { type: "say", speaker: "Yuki", text: "Şimdi... yeni bir başlangıç. Bir yıl boyunca... Kan'nōsha gücümü kaybettim. Ama... belki bu iyi bir şey." }, { type: "say", speaker: "Dr. Kurosawa", text: "Nasıl iyi?" }] },
+      { type: "closeup", scene: "Yuki Karnına Dokunuyor — Gülümseme", dialogue: [{ type: "say", speaker: "Yuki", text: "Çünkü... çünkü bir bebek taşıyorum. Ve... onun için... normal bir hayat yaşamak istiyorum. En azından... bir süre." }, { type: "say", speaker: "Ren", text: "Yuki..." }, { type: "say", speaker: "Yuki", text: "Ve... belki... belki bu süre boyunca... gerçekten yaşamayı öğrenirim." }] },
+      { type: "splash", scene: "Tapınak — Aile — Hep Birlikte — Geleceğe Bakıyorlar", dialogue: [{ type: "say", speaker: "Yuki", text: "Ama önce... bir şey yapmam lazım." }, { type: "say", speaker: "Ren", text: "Ne?" }, { type: "say", speaker: "Yuki", text: "Mezarlığa gitmek. Annem ve babama... veda etmek. Gerçek bir veda." }] },
+      { type: "normal", scene: "Yanaka Mezarlığı — Yuki ve Ren — Yuriko ve Sōren'in Mezarları", dialogue: [{ type: "say", speaker: "Yuki", text: "Anne... baba... artık gerçekten veda ediyorum. Ama... kalbimde hep olacaksınız." }, { type: "say", speaker: "Yuki", text: "Ve... size bir söz veriyorum. Mutlu olacağım. Gerçekten mutlu." }] },
+      { type: "splash", scene: "Yuki Mezarlara Beyaz Çiçekler Koyuyor — Güneş Açıyor", dialogue: [{ type: "say", speaker: "Yuki", text: "Bu çiçekler... sizin için. Ve... ben... ben sizin kızınız olmaktan gurur duyuyorum." }, { type: "say", speaker: "Ren", text: "Yuki... gel. Seni eve götüreyim." }, { type: "say", speaker: "Yuki", text: "Ev... evet. Evimiz." }] },
+      { type: "closeup", scene: "Yuki ve Ren — El Ele — Mezarlıktan Ayrılıyor", dialogue: [{ type: "say", speaker: "Yuki", text: "Ren... bir şey söyleyeceğim." }, { type: "say", speaker: "Ren", text: "Söyle." }, { type: "say", speaker: "Yuki", text: "Seni seviyorum. Ve... bu... bu gerçek. İlk kez... bu tamamen gerçek." }] }
+    ]
+  },
+
+  50: {
+    jp: "第50話", title: "Yeni Bahar",
+    pages: [
+      { type: "splash", scene: "Beş Yıl Sonra — Yanaka Mezarlığı — Bahar — Kiraz Çiçekleri — Yuki ve Ren", dialogue: [{ type: "inner", text: '"Beş yıl geçti. Beş yıl. Ve... hala her bahar, buraya geliyorum. Ama artık... artık yalnız değilim."' }] },
+      { type: "normal", scene: "Yuki (23) ve Ren (26) — Mezarların Önünde — Bir Çocuk Elini Tutuyor", dialogue: [{ type: "say", speaker: "Yuki", text: "Anne... baba... size birini tanıştırmak istiyorum." }, { type: "say", speaker: "Yuki", text: "Bu... bu kızınız. Ayanokōji Yuriko." }, { type: "say", speaker: "Ren", text: "Aynı annen gibi. İsmi de, yüzü de." }] },
+      { type: "closeup", scene: "Küçük Yuriko (4 yaşında) — Annesine Benziyor — Mezarlara Bakıyor", dialogue: [{ type: "say", speaker: "Küçük Yuriko", text: "Anne... bu kim?" }, { type: "say", speaker: "Yuki", text: "Bu... senin büyükannen. Ve... büyükbaban." }, { type: "say", speaker: "Küçük Yuriko", text: "Ama... onlar neden yok?" }] },
+      { type: "splash", scene: "Yuki Küçük Yuriko'yu Kucağına Alıyor — Sevgi Dolu", dialogue: [{ type: "say", speaker: "Yuki", text: "Onlar... cennette, tatlım. Ama... seni izliyorlar. Her zaman." }, { type: "say", speaker: "Küçük Yuriko", text: "Gerçekten mi?" }, { type: "say", speaker: "Yuki", text: "Gerçekten. Ve... onlar seni çok seviyor." }] },
+      { type: "normal", scene: "Ren ve Yuki — Küçük Yuriko Aralarında — Mutlu Aile", dialogue: [{ type: "say", speaker: "Ren", text: "Yuki... beş yıl önce... babam öldüğünde... sen yıkılmıştın. Ama şimdi... şimdi bak sana." }, { type: "say", speaker: "Yuki", text: "Evet. Ama... sensiz yapamazdım." }, { type: "say", speaker: "Ren", text: "Ben de. Ama... seninle... her şey mümkün." }] },
+      { type: "closeup", scene: "Yuki'nin Yüzü — Beş Yıl Sonra — Olgun — Huzurlu", dialogue: [{ type: "inner", text: '"Beş yıl... beş yıl boyunca... çok şey değişti. Ben... ben artık Koruyucuların lideri değilim. Ama... onları eğitiyorum. Yeni nesil Kan\'nōsha\'ları."' }] },
+      { type: "splash", scene: "Yeni Koruyucular Tapınağı — Genç Kan'nōsha'lar Eğitim Yapıyor — Yuki Onları İzliyor", dialogue: [{ type: "say", speaker: "Yuki", text: "Bu hareketi düzelt. Duygularını kontrol et." }, { type: "say", speaker: "Genç Öğrenci", text: "Ama... çok zor!" }, { type: "say", speaker: "Yuki", text: "Biliyorum. Ama... sen yapabilirsin. Ben de yaptım." }] },
+      { type: "normal", scene: "Tapınak — Mio ve Dr. Kurosawa — Kahve İçiyor", dialogue: [{ type: "say", speaker: "Mio", text: "Yuki... gerçekten harika bir öğretmen oldu." }, { type: "say", speaker: "Dr. Kurosawa", text: "Evet. Tıpkı annesi gibi." }, { type: "say", speaker: "Mio", text: "Peki... sen hala Koruyucu musun?" }, { type: "say", speaker: "Dr. Kurosawa", text: "Hayır. Ben... artık sadece bir danışmanım. Ve... mutlu olduğumu söyleyebilirim." }] },
+      { type: "closeup", scene: "Yuki ve Küçük Yuriko — Tapınak Bahçesi — Çiçekler", dialogue: [{ type: "say", speaker: "Küçük Yuriko", text: "Anne... bu çiçek ne?" }, { type: "say", speaker: "Yuki", text: "Bu... Hayalet Çiçek, tatlım. Ama... sen göremezsin." }, { type: "say", speaker: "Küçük Yuriko", text: "Neden?" }, { type: "say", speaker: "Yuki", text: "Çünkü... sen henüz Kan'nōsha değilsin. Ama... belki bir gün olacaksın." }] },
+      { type: "splash", scene: "Yuki ve Ren — Küçük Yuriko Aralarında — Mezarlıktan Ayrılıyor", dialogue: [{ type: "say", speaker: "Yuki", text: "Anne... baba... ben iyiyim. Gerçekten iyiyim." }, { type: "say", speaker: "Ren", text: "Hazır mısın?" }, { type: "say", speaker: "Yuki", text: "Evet. Hadi gidelim." }] },
+      { type: "splash", scene: "Mezarlık Yolu — Üçü Yürüyor — Arka Planda Bir Beyaz Çiçek Açıyor — Ve Sonra Yüzlerce", dialogue: [{ type: "inner", text: '"Her ölüm bir iz bırakır. Ama bazıları... bazıları çiçek açar. Ve ben... ben o çiçekleri büyüten kişi oldum."' }] },
+      { type: "splash", scene: "幽霊花 — Bölüm 50: Yeni Bahar — SON", dialogue: [] },
+      { type: "splash", scene: "Ama Hikaye Asla Bitmez — Çünkü Her Bahar Yeni Bir Başlangıçtır — KAGERŌ", dialogue: [] }
     ]
   }
 
 };
+
+
+
