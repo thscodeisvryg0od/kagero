@@ -1,0 +1,105 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 500" width="400" height="500">
+  <defs>
+    <linearGradient id="yuriBg" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#2D1B3D"/>
+      <stop offset="100%" stop-color="#0A0A0A"/>
+    </linearGradient>
+    <linearGradient id="yuriHair" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#FFFFFF"/>
+      <stop offset="100%" stop-color="#C8D8E8"/>
+    </linearGradient>
+    <linearGradient id="yuriDress" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#E63946"/>
+      <stop offset="100%" stop-color="#8B1A1A"/>
+    </linearGradient>
+    <radialGradient id="yuriGlow" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#FFE8B0" stop-opacity="0.5"/>
+      <stop offset="100%" stop-color="#FFE8B0" stop-opacity="0"/>
+    </radialGradient>
+    <filter id="yuriSoft">
+      <feGaussianBlur stdDeviation="1"/>
+    </filter>
+  </defs>
+  <rect width="400" height="500" fill="url(#yuriBg)"/>
+  <circle cx="200" cy="230" r="180" fill="url(#yuriGlow)"/>
+  
+  <!-- Saç arka — uzun, dalgalı -->
+  <path d="M 110 190 Q 100 80 200 70 Q 300 80 290 190 Q 300 280 280 320 Q 260 300 250 280 L 250 200 L 150 200 L 150 280 Q 140 300 120 320 Q 100 280 110 190 Z" fill="url(#yuriHair)" opacity="0.95"/>
+  
+  <!-- Yüz — tombul çocuk yüzü -->
+  <ellipse cx="200" cy="230" rx="68" ry="82" fill="#FFF0E8"/>
+  
+  <!-- Saç ön — kısa, küt -->
+  <path d="M 130 185 Q 130 120 200 110 Q 270 120 270 185 Q 265 165 250 155 Q 240 180 220 165 Q 210 175 200 160 Q 190 175 180 165 Q 160 180 150 155 Q 135 165 130 185 Z" fill="url(#yuriHair)"/>
+  <path d="M 130 185 Q 125 220 130 260 L 145 255 Q 140 220 148 190 Z" fill="url(#yuriHair)"/>
+  <path d="M 270 185 Q 275 220 270 260 L 255 255 Q 260 220 252 190 Z" fill="url(#yuriHair)"/>
+  
+  <!-- Kiraz çiçeği toka — sol tarafta -->
+  <g transform="translate(140, 145)">
+    <ellipse cx="0" cy="-10" rx="5" ry="9" fill="#FFB6C1"/>
+    <ellipse cx="9.5" cy="-3" rx="5" ry="9" fill="#FFB6C1" transform="rotate(72)"/>
+    <ellipse cx="5.9" cy="8" rx="5" ry="9" fill="#FFB6C1" transform="rotate(144)"/>
+    <ellipse cx="-5.9" cy="8" rx="5" ry="9" fill="#FFB6C1" transform="rotate(216)"/>
+    <ellipse cx="-9.5" cy="-3" rx="5" ry="9" fill="#FFB6C1" transform="rotate(288)"/>
+    <circle r="3" fill="#FFE5A0"/>
+  </g>
+  
+  <!-- Gözler — büyük, yuvarlak, kızıl-kahve (Ren'den) -->
+  <ellipse cx="175" cy="235" rx="14" ry="18" fill="#0A0A0A"/>
+  <ellipse cx="225" cy="235" rx="14" ry="18" fill="#0A0A0A"/>
+  <ellipse cx="175" cy="235" rx="12" ry="16" fill="#8B1A1A"/>
+  <ellipse cx="225" cy="235" rx="12" ry="16" fill="#8B1A1A"/>
+  <circle cx="175" cy="237" r="6" fill="#0A0A0A"/>
+  <circle cx="225" cy="237" r="6" fill="#0A0A0A"/>
+  <circle cx="179" cy="230" r="4" fill="#FFFFFF"/>
+  <circle cx="229" cy="230" r="4" fill="#FFFFFF"/>
+  <circle cx="170" cy="240" r="2" fill="#FFFFFF"/>
+  <circle cx="220" cy="240" r="2" fill="#FFFFFF"/>
+  
+  <!-- Kaşlar — sevimli, hafif yay -->
+  <path d="M 158 213 Q 175 207 192 212" stroke="#8B6A5A" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+  <path d="M 208 212 Q 225 207 242 213" stroke="#8B6A5A" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+  
+  <!-- Burun — minik -->
+  <path d="M 200 250 L 197 262 L 203 262" stroke="#D4A5A5" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+  
+  <!-- Ağız — sevimli gülümseme, hafif açık -->
+  <path d="M 188 282 Q 200 294 212 282" stroke="#C84A6A" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+  <path d="M 192 284 Q 200 288 208 284" fill="#FFB6C1" opacity="0.4"/>
+  
+  <!-- Yanaklar — pembe, tombul -->
+  <ellipse cx="150" cy="262" rx="12" ry="8" fill="#FFB6C1" opacity="0.55"/>
+  <ellipse cx="250" cy="262" rx="12" ry="8" fill="#FFB6C1" opacity="0.55"/>
+  
+  <!-- Elbise — kırmızı, fırfırlı yakalı -->
+  <path d="M 110 500 L 110 380 Q 130 340 160 330 L 240 330 Q 270 340 290 380 L 290 500 Z" fill="url(#yuriDress)"/>
+  
+  <!-- Beyaz yaka -->
+  <path d="M 160 330 Q 175 345 200 340 Q 225 345 240 330 Q 220 325 200 328 Q 180 325 160 330 Z" fill="#FFFFFF"/>
+  
+  <!-- Elbise fırfır detayı -->
+  <path d="M 140 400 Q 200 415 260 400" stroke="#8B1A1A" stroke-width="2" fill="none" opacity="0.5"/>
+  <path d="M 130 440 Q 200 455 270 440" stroke="#8B1A1A" stroke-width="2" fill="none" opacity="0.5"/>
+  
+  <!-- Küçük kollar -->
+  <ellipse cx="105" cy="400" rx="18" ry="14" fill="#FFF0E8"/>
+  <ellipse cx="295" cy="400" rx="18" ry="14" fill="#FFF0E8"/>
+  
+  <!-- Küçük eller — çiçek tutuyor -->
+  <circle cx="100" cy="415" r="10" fill="#FFF0E8"/>
+  <circle cx="300" cy="415" r="10" fill="#FFF0E8"/>
+  
+  <!-- Elindeki beyaz çiçek -->
+  <g transform="translate(310, 400)">
+    <ellipse cx="0" cy="-8" rx="4" ry="8" fill="#FFFFFF"/>
+    <ellipse cx="8" cy="-2" rx="4" ry="8" fill="#FFFFFF" transform="rotate(72)"/>
+    <ellipse cx="5" cy="7" rx="4" ry="8" fill="#FFFFFF" transform="rotate(144)"/>
+    <ellipse cx="-5" cy="7" rx="4" ry="8" fill="#FFFFFF" transform="rotate(216)"/>
+    <ellipse cx="-8" cy="-2" rx="4" ry="8" fill="#FFFFFF" transform="rotate(288)"/>
+    <circle r="3" fill="#F4A261"/>
+  </g>
+  
+  <!-- İsim -->
+  <text x="200" y="470" text-anchor="middle" font-family="Cinzel, serif" font-size="18" font-weight="700" fill="#FFFFFF" letter-spacing="3">YURIKO</text>
+  <text x="200" y="490" text-anchor="middle" font-family="Noto Sans JP, sans-serif" font-size="11" fill="#E63946" letter-spacing="2">綾小路 百合子 — Jr.</text>
+</svg>
