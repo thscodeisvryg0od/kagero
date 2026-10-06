@@ -849,6 +849,3 @@ const ALL_CHAPTERS = {
   }
 
 };
-
-
-
