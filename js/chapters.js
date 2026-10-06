@@ -443,7 +443,7 @@ const ALL_CHAPTERS = {
       { type: "normal", scene: "Yuki ve Ren Karanlık Pazar'dan Ayrılıyor — Gin'in Bedeni Arkada", dialogue: [{ type: "say", speaker: "Yuki", text: "Ren... Gin... o benim ailemdi. Tıpkı senin gibi. Tıpkı annem gibi." }, { type: "say", speaker: "Ren", text: "Biliyorum. Ve... onun için savaşacağız." }] },
       { type: "splash", scene: "Yuki ve Ren — Şafak — Tokyo — Yeni Bir Yol — Fuji Dağı Uzakta", dialogue: [{ type: "inner", text: '"Gin... son sözünü unutmayacağım. Ve... Altın Çiçeği bulacağım. Senin için."' }] }
     ]
-  }.
+  },
 
   26: {
     jp: "第26話", title: "Babanın Kalbi",
