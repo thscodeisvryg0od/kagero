@@ -3,6 +3,15 @@
    Ana JavaScript
    ============================================ */
 
+// i18n.js'i otomatik yükle (tüm sayfalarda dil seçici görünsün)
+(function loadI18n() {
+  if (typeof I18N !== 'undefined') return; // zaten yüklü
+  const script = document.createElement('script');
+  script.src = 'js/i18n.js';
+  script.async = false;
+  document.head.appendChild(script);
+})();
+
 document.addEventListener('DOMContentLoaded', () => {
 
   // ============================================
@@ -173,7 +182,7 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   // ============================================
-  // FADE-IN (sadece ana sayfa kartları)
+  // FADE-IN
   // ============================================
   const fadeElements = document.querySelectorAll(
     '.chapter-card, .character-card, .world-card, .product-card'
