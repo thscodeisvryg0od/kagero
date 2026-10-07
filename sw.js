@@ -31,8 +31,8 @@ const OFFLINE_URLS = [
   './assets/character-nishishi.svg',
   './assets/character-mio.svg',
   './assets/character-yuriko.svg',
-  './assets/icon-192.svg',
-  './assets/icon-512.svg',
+  './assets/icon-192-v2.svg',
+  './assets/icon-512-v2.svg',
   './manifest.json'
 ];
 
