@@ -47,6 +47,12 @@
   
   // Dil yöneticisinden mevcut dili al
   const currentLang = urlLang || localStorage.getItem('kagero_lang') || 'tr';
+
+  // Güvenli chapter erişimi
+  function ALL_CHARTS_SAFE() {
+    if (typeof ALL_CHAPTERS !== 'undefined') return ALL_CHAPTERS;
+    return {};
+  }
   
   // Doğru chapter kaynağını seç
   function getChapters() {
@@ -56,12 +62,11 @@
   }
   
   function loadChapter() {
-    // Global fonksiyon olarak tanımla
     const chapters = getChapters();
     const chapter = chapters[chapterNum];
 
     // Eğer çeviri yoksa varsayılana düş
-    if (!chapter && currentLang !== 'tr' && ALL_CHAPTERS[chapterNum]) {
+    if (!chapter && currentLang !== 'tr' && ALL_CHAPTERS && ALL_CHAPTERS[chapterNum]) {
       console.warn('Bu bölümün ' + currentLang + ' çevirisi yok, Türkçe gösteriliyor.');
       showChapter(ALL_CHAPTERS[chapterNum]);
       return;
@@ -85,6 +90,16 @@
     document.getElementById('chapterJp').textContent = chapter.jp;
     document.getElementById('chapterTitle').textContent = chapter.title;
     document.title = `${chapter.title} — KAGERŌ`;
+
+    // Bonus bölüm damgası
+    const chapterJpEl = document.getElementById('chapterJp');
+    if (chapterNum === 51) {
+      chapterJpEl.classList.add('bonus-stamp');
+      document.body.classList.add('bonus-mode');
+    } else {
+      chapterJpEl.classList.remove('bonus-stamp');
+      document.body.classList.remove('bonus-mode');
+    }
 
     const container = document.getElementById('readerContainer');
     let html = '';
@@ -114,14 +129,29 @@
       html += `<div class="page-number">Sayfa ${index + 1}</div></div>`;
     });
 
-    const prevLink = chapterNum > 1 
-      ? `<a href="reader.html?ch=${chapterNum - 1}${urlLang ? '&lang=' + urlLang : ''}" class="nav-btn">← Önceki Bölüm</a>`
-      : `<a href="#" class="nav-btn disabled">← Önceki Bölüm</a>`;
+    // Özel navigasyon kuralları
+    let prevLink, nextLink;
+    const langParam = urlLang ? '&lang=' + urlLang : '';
     
-    const allChapters = ALL_CHAPTERS;
-    const nextLink = allChapters[chapterNum + 1]
-      ? `<a href="reader.html?ch=${chapterNum + 1}${urlLang ? '&lang=' + urlLang : ''}" class="nav-btn">Sonraki Bölüm →</a>`
-      : `<a href="chapters.html" class="nav-btn">Bölüm Arşivi →</a>`;
+    if (chapterNum === 51) {
+      // Bonus bölüm → Final bölüme dön + Ana sayfaya git
+      prevLink = `<a href="reader.html?ch=50${langParam}" class="nav-btn">← Final Bölüm</a>`;
+      nextLink = `<a href="index.html" class="nav-btn bonus-nav">Ana Sayfa →</a>`;
+    } else if (chapterNum === 50) {
+      // Final bölüm → Bonus bölüme git
+      prevLink = `<a href="reader.html?ch=49${langParam}" class="nav-btn">← Önceki Bölüm</a>`;
+      nextLink = `<a href="reader.html?ch=51${langParam}" class="nav-btn bonus-nav">外伝 — Bonus Bölüm →</a>`;
+    } else {
+      // Normal bölümler
+      prevLink = chapterNum > 1 
+        ? `<a href="reader.html?ch=${chapterNum - 1}${langParam}" class="nav-btn">← Önceki Bölüm</a>`
+        : `<a href="#" class="nav-btn disabled">← Önceki Bölüm</a>`;
+      
+      const allChapters = ALL_CHARTS_SAFE();
+      nextLink = allChapters[chapterNum + 1]
+        ? `<a href="reader.html?ch=${chapterNum + 1}${langParam}" class="nav-btn">Sonraki Bölüm →</a>`
+        : `<a href="chapters.html" class="nav-btn">Bölüm Arşivi →</a>`;
+    }
 
     html += `<div class="reader-nav">${prevLink}${nextLink}</div>`;
     html += `
