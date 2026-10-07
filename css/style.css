@@ -1945,3 +1945,99 @@ body.bonus-mode .reader-container::before {
   background: linear-gradient(135deg, #D4A017, #B8860B) !important;
   color: #0A0A0A !important;
 }
+
+/* ============================================
+   FOOTER — DİL SEÇİCİ
+   ============================================ */
+
+.lang-selector-footer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+  margin: 1.2rem 0;
+  font-family: var(--font-body);
+  font-size: 0.8rem;
+  flex-wrap: wrap;
+}
+
+.lang-selector-footer .lang-label {
+  color: var(--gray);
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  font-size: 0.7rem;
+  font-weight: 600;
+  opacity: 0.7;
+}
+
+.lang-selector-footer .lang-links {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.lang-selector-footer .lang-link {
+  color: var(--gray);
+  text-decoration: none;
+  font-weight: 700;
+  font-size: 0.8rem;
+  letter-spacing: 2px;
+  padding: 0.3rem 0.5rem;
+  border-radius: 4px;
+  transition: all 0.3s ease;
+  text-transform: uppercase;
+  font-family: var(--font-title);
+}
+
+.lang-selector-footer .lang-link:hover {
+  color: var(--red);
+  background: rgba(230,57,70,0.08);
+}
+
+.lang-selector-footer .lang-link.active {
+  color: var(--red);
+  background: rgba(230,57,70,0.12);
+}
+
+.lang-selector-footer .lang-sep {
+  color: rgba(230,57,70,0.4);
+  font-weight: 300;
+  user-select: none;
+}
+
+/* ============================================
+   KIRMIZI ETİKET YAZILARI — BEYAZ
+   ============================================ */
+
+/* Bölüm kartlarındaki 第X話 damgası */
+.chapter-item .num,
+.chapter-card .chapter-number,
+.reader-topbar .chapter-info .jp {
+  color: #FFFFFF !important;
+  -webkit-text-fill-color: #FFFFFF !important;
+}
+
+.chapter-item .num,
+.chapter-card .chapter-number {
+  background: #B71C1C !important;
+  color: #FFFFFF !important;
+  -webkit-text-fill-color: #FFFFFF !important;
+  border: 2px solid #FFFFFF !important;
+  font-weight: 800 !important;
+}
+
+/* Reader topbar (bonus hariç) */
+.reader-topbar .chapter-info .jp:not(.bonus-stamp) {
+  background: #B71C1C !important;
+  color: #FFFFFF !important;
+  -webkit-text-fill-color: #FFFFFF !important;
+  border: 2px solid #FFFFFF !important;
+}
+
+/* Bonus bölüm damgası — altın kalır */
+.reader-topbar .chapter-info .jp.bonus-stamp {
+  background: linear-gradient(135deg, #D4A017, #B8860B) !important;
+  color: #0A0A0A !important;
+  -webkit-text-fill-color: #0A0A0A !important;
+  border: 2px solid #0A0A0A !important;
+}
