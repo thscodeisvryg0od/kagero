@@ -1225,3 +1225,135 @@ footer .footer-links a:hover { color: var(--red); }
   .panel-closeup .panel-image { min-height: 280px; }
   .nav-btn { padding: 0.8rem 1rem; font-size: 0.7rem; }
 }
+
+/* ============================================
+   LANGUAGE SELECTOR
+   ============================================ */
+
+.lang-selector {
+  position: relative;
+  display: inline-block;
+  margin-left: 1rem;
+}
+
+.lang-toggle {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  background: transparent;
+  border: 2px solid rgba(230,57,70,0.3);
+  color: var(--gray);
+  padding: 0.4rem 0.8rem;
+  border-radius: 20px;
+  cursor: pointer;
+  font-family: var(--font-body);
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 1px;
+  transition: all 0.3s ease;
+}
+
+.lang-toggle:hover {
+  border-color: var(--red);
+  color: var(--white);
+  background: rgba(230,57,70,0.1);
+}
+
+.lang-flag {
+  font-size: 1rem;
+  line-height: 1;
+}
+
+.lang-code {
+  font-family: 'Cinzel', serif;
+  font-weight: 700;
+}
+
+.lang-arrow {
+  font-size: 0.6rem;
+  opacity: 0.6;
+  transition: transform 0.3s ease;
+}
+
+.lang-selector:has(.lang-dropdown.open) .lang-arrow {
+  transform: rotate(180deg);
+}
+
+.lang-dropdown {
+  position: absolute;
+  top: calc(100% + 0.5rem);
+  right: 0;
+  min-width: 150px;
+  background: rgba(10,10,10,0.98);
+  border: 2px solid rgba(230,57,70,0.4);
+  border-radius: 8px;
+  padding: 0.5rem;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-10px);
+  transition: all 0.25s ease;
+  z-index: 2000;
+  box-shadow: 
+    0 10px 40px rgba(0,0,0,0.8),
+    3px 3px 0 rgba(230,57,70,0.3);
+}
+
+.lang-dropdown.open {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+.lang-option {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 0.6rem 0.8rem;
+  color: var(--gray);
+  text-decoration: none;
+  font-size: 0.85rem;
+  border-radius: 4px;
+  transition: all 0.2s ease;
+  border: 2px solid transparent;
+}
+
+.lang-option:hover {
+  background: rgba(230,57,70,0.15);
+  color: var(--white);
+  border-color: rgba(230,57,70,0.3);
+  transform: translateX(3px);
+}
+
+.lang-option .lang-flag {
+  font-size: 1.1rem;
+}
+
+.lang-option .lang-name {
+  font-family: var(--font-body);
+  font-weight: 500;
+}
+
+/* Aktif dil işareti */
+.lang-option.active {
+  background: rgba(230,57,70,0.2);
+  color: var(--white);
+  border-color: var(--red);
+}
+
+/* Mobil */
+@media (max-width: 968px) {
+  .lang-selector {
+    margin-left: auto;
+    margin-right: 0.5rem;
+  }
+  
+  .lang-toggle {
+    padding: 0.35rem 0.6rem;
+    font-size: 0.7rem;
+  }
+  
+  .lang-dropdown {
+    right: 0;
+    min-width: 140px;
+  }
+}
