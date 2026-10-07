@@ -5,10 +5,16 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Oku — KAGERŌ</title>
 <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
-<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700;900&family=Inter:wght@300;400;600&family=Noto+Sans+JP:wght@300;400;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700;900&family=Inter:wght@300;400;600&family=Noto+Sans+JP:wght@300;400;700&family=Shippori+Mincho:wght@400;700;800&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
+
+<div class="sakura-container" aria-hidden="true">
+  <div class="sakura"></div>
+  <div class="sakura"></div>
+  <div class="sakura"></div>
+</div>
 
 <div class="progress-bar" id="progressBar"></div>
 
@@ -30,88 +36,115 @@
 </div>
 
 <script src="js/chapters.js"></script>
+<script src="js/chapters-en.js"></script>
+<script src="js/chapters-jp.js"></script>
+<script src="js/i18n.js"></script>
 <script>
 (function() {
-  // DEBUG: chapters.js yüklendi mi?
-  if (typeof ALL_CHAPTERS === 'undefined') {
-    document.getElementById('readerContainer').innerHTML = `
-      <div style="text-align: center; padding: 4rem 2rem;">
-        <h2 style="font-family: serif; font-size: 1.5rem; color: #E63946; margin-bottom: 1rem;">⚠️ Hata: chapters.js Yüklenemedi</h2>
-        <p style="color: #B0B0B0; margin-bottom: 1rem;">chapters.js dosyasında bir syntax hatası var. GitHub'da dosyayı kontrol edin:</p>
-        <p style="color: #F4A261; font-size: 0.9rem;">1. Dosyanın en sonunda <strong>};</strong> var mı?<br>
-        2. Virgüller doğru mu? (fazla virgül = hata)<br>
-        3. Süslü parantez <strong>{ }</strong> sayıları denk mi?</p>
-        <a href="chapters.html" style="display: inline-block; margin-top: 2rem; padding: 1rem 2rem; background: #E63946; color: white; text-decoration: none; font-size: 0.85rem; letter-spacing: 2px;">Bölüm Arşivine Dön</a>
-      </div>
-    `;
-    return;
-  }
-
   const urlParams = new URLSearchParams(window.location.search);
   const chapterNum = parseInt(urlParams.get('ch')) || 1;
-  const chapter = ALL_CHAPTERS[chapterNum];
-
-  if (!chapter) {
-    document.getElementById('readerContainer').innerHTML = `
-      <div style="text-align: center; padding: 4rem 2rem;">
-        <h2 style="font-family: serif; font-size: 1.5rem; color: #E63946; margin-bottom: 1rem;">Bölüm Bulunamadı</h2>
-        <p style="color: #B0B0B0; margin-bottom: 2rem;">Bölüm ${chapterNum} mevcut değil.</p>
-        <a href="chapters.html" style="display: inline-block; padding: 1rem 2rem; background: #E63946; color: white; text-decoration: none; font-size: 0.85rem; letter-spacing: 2px;">Bölüm Arşivine Dön</a>
-      </div>
-    `;
-    return;
+  const urlLang = urlParams.get('lang');
+  
+  // Dil yöneticisinden mevcut dili al
+  const currentLang = urlLang || localStorage.getItem('kagero_lang') || 'tr';
+  
+  // Doğru chapter kaynağını seç
+  function getChapters() {
+    if (currentLang === 'en' && typeof CHAPTERS_EN !== 'undefined') return CHAPTERS_EN;
+    if (currentLang === 'jp' && typeof CHAPTERS_JP !== 'undefined') return CHAPTERS_JP;
+    return ALL_CHAPTERS;
   }
+  
+  function loadChapter() {
+    // Global fonksiyon olarak tanımla
+    const chapters = getChapters();
+    const chapter = chapters[chapterNum];
 
-  document.getElementById('chapterJp').textContent = chapter.jp;
-  document.getElementById('chapterTitle').textContent = chapter.title;
-  document.title = `Bölüm ${chapterNum}: ${chapter.title} — KAGERŌ`;
-
-  const container = document.getElementById('readerContainer');
-  let html = '';
-
-  chapter.pages.forEach((page, index) => {
-    let panelClass = 'panel';
-    if (page.type === 'splash') panelClass += ' panel-splash';
-    if (page.type === 'closeup') panelClass += ' panel-closeup';
-
-    html += '<div class="page">';
-    html += `<div class="${panelClass}"><div class="panel-image" data-scene="${page.scene}"></div></div>`;
-
-    if (page.dialogue && page.dialogue.length > 0) {
-      html += '<div class="panel-dialogue">';
-      page.dialogue.forEach(d => {
-        if (d.type === 'say') {
-          html += `<div class="dialogue-box"><div class="dialogue-speaker">${d.speaker}</div><div class="dialogue-text">${d.text}</div></div>`;
-        } else if (d.type === 'inner') {
-          html += `<div class="inner-voice">${d.text}</div>`;
-        } else if (d.type === 'whisper') {
-          html += `<div class="whisper">${d.text}</div>`;
-        }
-      });
-      html += '</div>';
+    // Eğer çeviri yoksa varsayılana düş
+    if (!chapter && currentLang !== 'tr' && ALL_CHAPTERS[chapterNum]) {
+      console.warn('Bu bölümün ' + currentLang + ' çevirisi yok, Türkçe gösteriliyor.');
+      showChapter(ALL_CHAPTERS[chapterNum]);
+      return;
     }
 
-    html += `<div class="page-number">Sayfa ${index + 1}</div></div>`;
+    if (!chapter) {
+      document.getElementById('readerContainer').innerHTML = `
+        <div style="text-align: center; padding: 4rem 2rem;">
+          <h2 style="font-family: serif; font-size: 1.5rem; color: #E63946; margin-bottom: 1rem;">⚠️ Bölüm bulunamadı</h2>
+          <p style="color: #B0B0B0; margin-bottom: 2rem;">Bu bölüm mevcut değil veya çevirisi henüz eklenmedi.</p>
+          <a href="chapters.html" class="btn btn-primary">Bölüm Arşivine Dön</a>
+        </div>
+      `;
+      return;
+    }
+
+    showChapter(chapter);
+  }
+
+  function showChapter(chapter) {
+    document.getElementById('chapterJp').textContent = chapter.jp;
+    document.getElementById('chapterTitle').textContent = chapter.title;
+    document.title = `${chapter.title} — KAGERŌ`;
+
+    const container = document.getElementById('readerContainer');
+    let html = '';
+
+    chapter.pages.forEach((page, index) => {
+      let panelClass = 'panel';
+      if (page.type === 'splash') panelClass += ' panel-splash';
+      if (page.type === 'closeup') panelClass += ' panel-closeup';
+
+      html += '<div class="page">';
+      html += `<div class="${panelClass}"><div class="panel-image" data-scene="${page.scene}"></div></div>`;
+
+      if (page.dialogue && page.dialogue.length > 0) {
+        html += '<div class="panel-dialogue">';
+        page.dialogue.forEach(d => {
+          if (d.type === 'say') {
+            html += `<div class="dialogue-box"><div class="dialogue-speaker">${d.speaker}</div><div class="dialogue-text">${d.text}</div></div>`;
+          } else if (d.type === 'inner') {
+            html += `<div class="inner-voice">${d.text}</div>`;
+          } else if (d.type === 'whisper') {
+            html += `<div class="whisper">${d.text}</div>`;
+          }
+        });
+        html += '</div>';
+      }
+
+      html += `<div class="page-number">Sayfa ${index + 1}</div></div>`;
+    });
+
+    const prevLink = chapterNum > 1 
+      ? `<a href="reader.html?ch=${chapterNum - 1}${urlLang ? '&lang=' + urlLang : ''}" class="nav-btn">← Önceki Bölüm</a>`
+      : `<a href="#" class="nav-btn disabled">← Önceki Bölüm</a>`;
+    
+    const allChapters = ALL_CHAPTERS;
+    const nextLink = allChapters[chapterNum + 1]
+      ? `<a href="reader.html?ch=${chapterNum + 1}${urlLang ? '&lang=' + urlLang : ''}" class="nav-btn">Sonraki Bölüm →</a>`
+      : `<a href="chapters.html" class="nav-btn">Bölüm Arşivi →</a>`;
+
+    html += `<div class="reader-nav">${prevLink}${nextLink}</div>`;
+    html += `
+      <div class="comments-section">
+        <h3 class="comments-title">💬 Yorumlar</h3>
+        <textarea class="comment-input" placeholder="Bu bölüm hakkında ne düşünüyorsun?"></textarea>
+        <button class="comment-submit">Gönder</button>
+      </div>
+    `;
+
+    container.innerHTML = html;
+  }
+
+  // Global erişim için
+  window.loadChapter = loadChapter;
+
+  // Sayfa yüklendiğinde çalıştır
+  loadChapter();
+
+  // Dil değiştiğinde yeniden yükle
+  window.addEventListener('languageChanged', () => {
+    setTimeout(loadChapter, 100);
   });
-
-  const prevLink = chapterNum > 1 
-    ? `<a href="reader.html?ch=${chapterNum - 1}" class="nav-btn">← Önceki Bölüm</a>`
-    : `<a href="#" class="nav-btn disabled">← Önceki Bölüm</a>`;
-  
-  const nextLink = ALL_CHAPTERS[chapterNum + 1]
-    ? `<a href="reader.html?ch=${chapterNum + 1}" class="nav-btn">Sonraki Bölüm →</a>`
-    : `<a href="chapters.html" class="nav-btn">Bölüm Arşivi →</a>`;
-
-  html += `<div class="reader-nav">${prevLink}${nextLink}</div>`;
-  html += `
-    <div class="comments-section">
-      <h3 class="comments-title">💬 Yorumlar</h3>
-      <textarea class="comment-input" placeholder="Bu bölüm hakkında ne düşünüyorsun?"></textarea>
-      <button class="comment-submit">Gönder</button>
-    </div>
-  `;
-
-  container.innerHTML = html;
 })();
 </script>
 <script src="js/main.js"></script>
