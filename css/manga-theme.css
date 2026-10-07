@@ -4,41 +4,37 @@
    Authentic Japanese Manga Aesthetic
    ============================================ */
 
+/* Google Fonts — EN ÜSTTE OLMALI */
+@import url('https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@400;700;800&family=Permanent+Marker&display=swap');
+
 /* ============================================
    1. GENİŞLETİLMİŞ DEĞİŞKENLER
    ============================================ */
 :root {
-  /* Manga Paleti */
-  --ink: #0A0A0A;              /* Mürekkep siyahı */
+  --ink: #0A0A0A;
   --ink-soft: #1A1A1A;
-  --paper: #F4E8D0;            /* Washi kağıdı */
+  --paper: #F4E8D0;
   --paper-dark: #E8DCC0;
-  --screentone: #2A2A2A;       /* Halftone gölge */
-  --manga-red: #C1272D;        /* Geleneksel kırmızı */
+  --screentone: #2A2A2A;
+  --manga-red: #C1272D;
   --manga-red-glow: #FF3B3B;
-  --manga-gold: #D4A017;       /* Altın mühür */
-  --manga-seal: #B71C1C;       /* Kırmızı damga */
+  --manga-gold: #D4A017;
+  --manga-seal: #B71C1C;
   --ghost-blue: #7AA5D2;
 
-  /* Gölgeler */
   --panel-shadow: 6px 6px 0 rgba(0,0,0,0.85);
   --panel-shadow-hover: 10px 10px 0 rgba(230,57,70,0.6);
   --ink-stroke: 2px solid var(--ink);
 
-  /* Fontlar */
   --font-manga-title: 'Shippori Mincho', 'Noto Serif JP', serif;
   --font-manga-body: 'Noto Sans JP', 'Inter', sans-serif;
   --font-sfx: 'Permanent Marker', 'Bebas Neue', cursive;
 }
 
-/* Google Fonts — Manga ek fontları */
-@import url('https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@400;700;800&family=Permanent+Marker&display=swap');
-
 /* ============================================
    2. GLOBAL DOKULAR
    ============================================ */
 
-/* Washi Kağıt Dokusu — Ana Sayfa ve Arkaplanlar */
 body::before {
   content: '';
   position: fixed;
@@ -84,7 +80,6 @@ body::before {
   position: relative;
 }
 
-/* Mürekkep akış animasyonu */
 .hero-title-jp {
   animation: inkBleed 4s ease-in-out infinite alternate, glow 3s ease-in-out infinite alternate;
 }
@@ -115,7 +110,6 @@ body::before {
   padding: 6rem 1rem 4rem;
 }
 
-/* Sayfa — Manga Kağıdı */
 .page {
   background: var(--bg2);
   border: 3px solid var(--ink);
@@ -128,7 +122,6 @@ body::before {
   margin-bottom: 3rem;
 }
 
-/* Sayfa köşelerinde mürekkep damlası */
 .page::before,
 .page::after {
   content: '';
@@ -149,32 +142,27 @@ body::before {
   clip-path: polygon(100% 100%, 0 100%, 100% 0);
 }
 
-/* Sayfa numarası — manga stili */
 .page-number {
   font-family: var(--font-manga-title);
   font-size: 0.7rem;
   font-weight: 700;
   letter-spacing: 3px;
-  color: var(--ink);
+  color: white;
   background: var(--manga-red);
   padding: 0.3rem 0.9rem;
   bottom: 0;
   right: 0;
   top: auto;
   border-top-left-radius: 8px;
-  border-top-right-radius: 0;
-  border-bottom-right-radius: 0;
-  border-bottom-left-radius: 0;
   border: 2px solid var(--ink);
   border-right: none;
   border-bottom: none;
   z-index: 10;
   text-transform: uppercase;
-  color: white;
 }
 
 /* ============================================
-   6. PANEL KENARLIKLARI — GERÇEK MANGA GİBİ
+   6. PANEL KENARLIKLARI
    ============================================ */
 
 .panel {
@@ -186,7 +174,6 @@ body::before {
   border-bottom: none;
 }
 
-/* Panel iç gölgesi — derinlik hissi */
 .panel-image {
   position: relative;
   background: 
@@ -194,7 +181,6 @@ body::before {
   border-bottom: 4px solid var(--ink);
 }
 
-/* Halftone doku panel içinde */
 .panel-image::after {
   content: '';
   position: absolute;
@@ -206,7 +192,6 @@ body::before {
   z-index: 3;
 }
 
-/* Splash paneli — büyük sahne */
 .panel-splash .panel-image {
   background: 
     radial-gradient(ellipse at center, #4D1B5D 0%, #2D1B3D 40%, #0A0A0A 100%);
@@ -228,24 +213,21 @@ body::before {
   z-index: 4;
 }
 
-/* Yakın çekim — dramatik */
 .panel-closeup .panel-image {
   background: 
     radial-gradient(ellipse at center, #3D0A1A 0%, #1A0A1A 50%, #0A0A0A 100%);
 }
 
 /* ============================================
-   7. KONUŞMA BALONCUKLARI — MANGA STİLİ
+   7. KONUŞMA BALONCUKLARI
    ============================================ */
 
 .panel-dialogue {
-  background: 
-    linear-gradient(180deg, #0A0A0A 0%, #1A1A1A 100%);
+  background: linear-gradient(180deg, #0A0A0A 0%, #1A1A1A 100%);
   padding: 2rem 1.5rem;
   position: relative;
 }
 
-/* Normal konuşma balonu — kuyruklu */
 .dialogue-box {
   background: #FFFFFF;
   color: #0A0A0A;
@@ -260,20 +242,11 @@ body::before {
 }
 
 @keyframes bubblePop {
-  0% {
-    transform: scale(0.3) rotate(-8deg);
-    opacity: 0;
-  }
-  70% {
-    transform: scale(1.05) rotate(2deg);
-  }
-  100% {
-    transform: scale(1) rotate(0deg);
-    opacity: 1;
-  }
+  0% { transform: scale(0.3) rotate(-8deg); opacity: 0; }
+  70% { transform: scale(1.05) rotate(2deg); }
+  100% { transform: scale(1) rotate(0deg); opacity: 1; }
 }
 
-/* Balon kuyruğu — konuşana işaret */
 .dialogue-box::after {
   content: '';
   position: absolute;
@@ -300,7 +273,6 @@ body::before {
   z-index: 1;
 }
 
-/* Konuşan kişi adı */
 .dialogue-speaker {
   font-family: var(--font-manga-title);
   font-size: 0.75rem;
@@ -332,7 +304,6 @@ body::before {
   font-weight: 500;
 }
 
-/* İç ses — italik, kesikli kenarlık */
 .inner-voice {
   background: rgba(244,162,97,0.08);
   color: var(--manga-gold);
@@ -360,7 +331,6 @@ body::before {
   line-height: 1;
 }
 
-/* Fısıltı — özel efekt */
 .whisper {
   font-family: var(--font-manga-title);
   font-size: 0.9rem;
@@ -427,7 +397,7 @@ body::before {
 }
 
 /* ============================================
-   9. BÖLÜM KAPAK DAMGASI — "第X話"
+   9. BÖLÜM KAPAK DAMGASI
    ============================================ */
 
 .chapter-info {
@@ -557,7 +527,6 @@ body::before {
   box-shadow: 2px 2px 0 rgba(0,0,0,0.8);
 }
 
-/* Final bölümü için özel stil */
 .chapter-item .status.final {
   background: var(--manga-gold);
   color: var(--ink);
@@ -600,7 +569,6 @@ body::before {
     inset 0 0 20px rgba(0,0,0,0.5);
 }
 
-/* Karakter kartı köşe süsü */
 .character-card::before,
 .character-card::after {
   content: '✦';
@@ -611,13 +579,8 @@ body::before {
   transition: opacity 0.3s ease;
 }
 
-.character-card::before {
-  top: 10px; left: 10px;
-}
-
-.character-card::after {
-  bottom: 10px; right: 10px;
-}
+.character-card::before { top: 10px; left: 10px; }
+.character-card::after { bottom: 10px; right: 10px; }
 
 .character-card:hover::before,
 .character-card:hover::after {
@@ -633,7 +596,6 @@ body::before {
   isolation: isolate;
 }
 
-/* Radyal screentone perde */
 .hero::after {
   content: '';
   position: absolute;
@@ -676,7 +638,7 @@ body::before {
 }
 
 /* ============================================
-   15. KİRAZ YAPRAKLARI — AKIŞKAN
+   15. KİRAZ YAPRAKLARI
    ============================================ */
 
 .sakura-container {
@@ -712,20 +674,14 @@ body::before {
 .sakura:nth-child(8) { left: 45%; animation-duration: 21s; animation-delay: 7s; width: 11px; height: 11px; opacity: 0.4; }
 
 @keyframes sakuraFall {
-  0% {
-    transform: translate3d(0, -10vh, 0) rotate(0deg);
-    opacity: 0;
-  }
+  0% { transform: translate3d(0, -10vh, 0) rotate(0deg); opacity: 0; }
   10% { opacity: 0.7; }
   90% { opacity: 0.4; }
-  100% {
-    transform: translate3d(40px, 110vh, 0) rotate(720deg);
-    opacity: 0;
-  }
+  100% { transform: translate3d(40px, 110vh, 0) rotate(720deg); opacity: 0; }
 }
 
 /* ============================================
-   16. MÜREKKEP DAMGASI — BÖLÜM BAŞLIĞI
+   16. MÜREKKEP DAMGASI
    ============================================ */
 
 .stamp {
@@ -779,26 +735,45 @@ body::before {
 }
 
 /* ============================================
-   18. SCROLLBAR — MANGA STİLİ
+   18. SCROLLBAR — İNCE VE ZARİF
    ============================================ */
 
 ::-webkit-scrollbar {
-  width: 12px;
-  height: 12px;
+  width: 6px;
+  height: 6px;
 }
 
 ::-webkit-scrollbar-track {
-  background: var(--ink);
-  border-left: 2px solid var(--manga-red);
+  background: transparent;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: var(--manga-red);
-  border: 2px solid var(--ink);
+  background: rgba(230, 57, 70, 0.4);
+  border-radius: 3px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: var(--manga-red-glow);
+  background: rgba(230, 57, 70, 0.7);
+}
+
+/* Firefox */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(230, 57, 70, 0.4) transparent;
+}
+
+/* Mobilde scrollbar'ı tamamen gizle */
+@media (max-width: 768px) {
+  ::-webkit-scrollbar {
+    width: 0;
+    height: 0;
+    display: none;
+  }
+  
+  * {
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+  }
 }
 
 /* Selection */
@@ -889,7 +864,7 @@ button:focus-visible {
   }
   
   .sakura:nth-child(n+5) {
-    display: none; /* Mobilde azalt */
+    display: none;
   }
 }
 
