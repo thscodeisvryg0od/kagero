@@ -4,19 +4,25 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Topluluk — KAGERŌ</title>
-<meta name="description" content="KAGERŌ topluluğuna katıl. Forum, anketler, fan art ve daha fazlası.">
+<meta name="description" content="KAGERŌ topluluğuna katıl. Forum, fan art, anketler ve daha fazlası.">
 <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
-<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700;900&family=Inter:wght@300;400;600&family=Noto+Sans+JP:wght@300;400;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700;900&family=Inter:wght@300;400;600&family=Noto+Sans+JP:wght@300;400;700&family=Shippori+Mincho:wght@400;700;800&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
+
+<div class="sakura-container" aria-hidden="true">
+  <div class="sakura"></div>
+  <div class="sakura"></div>
+  <div class="sakura"></div>
+</div>
 
 <nav class="navbar">
   <a href="index.html" class="logo">
     <img src="assets/logo-icon.svg" alt="KAGERŌ" width="36" height="36" style="vertical-align: middle;">
     <span>KAGERŌ</span>
   </a>
-  <button class="menu-toggle">☰</button>
+  <button class="menu-toggle" aria-label="Menü">☰</button>
   <ul>
     <li><a href="index.html">Ana Sayfa</a></li>
     <li><a href="chapters.html">Bölümler</a></li>
@@ -31,7 +37,7 @@
   <h2 class="section-title">
     <span class="section-title-jp">コミュニティ</span> TOPLULUK
   </h2>
-  <p class="section-subtitle">KAGERŌ topluluğuna katıl</p>
+  <p class="section-subtitle">KAGERŌ topluluğuna katıl — 1.247 üye</p>
 
   <div class="forum-grid">
     <div>
@@ -53,13 +59,49 @@
       </div>
 
       <div class="forum-thread">
-        <div class="forum-thread-title">En sevdiğiniz Hayalet Çiçek rengi?</div>
-        <div class="forum-thread-meta">Kan'nōsha • 72 yorum • 2 gün önce</div>
+        <div class="forum-thread-title">Küçük Yuriko hakkında ne düşünüyorsunuz?</div>
+        <div class="forum-thread-meta">NewGenFan • 94 yorum • 2 gün önce</div>
       </div>
 
       <div class="forum-thread">
         <div class="forum-thread-title">Altın Çiçeğin gerçek gücü neydi?</div>
-        <div class="forum-thread-meta">YurikoHayranı • 94 yorum • 3 gün önce</div>
+        <div class="forum-thread-meta">YurikoHayranı • 72 yorum • 3 gün önce</div>
+      </div>
+
+      <!-- FAN ART GALERİSİ -->
+      <h3 style="font-family: var(--font-title); margin: 3rem 0 0.5rem; color: var(--gold);">🎨 Son Fan Art'lar</h3>
+      <p style="color: var(--gray); font-size: 0.85rem; margin-bottom: 0.5rem;">Topluluk üyelerinin çizimleri</p>
+      
+      <div class="fanart-grid">
+        <div class="fanart-item">
+          <div class="symbol">雪</div>
+          <div class="artist">@artist_chan</div>
+        </div>
+        <div class="fanart-item">
+          <div class="symbol">蓮</div>
+          <div class="artist">@darkink</div>
+        </div>
+        <div class="fanart-item">
+          <div class="symbol">花</div>
+          <div class="artist">@ghostpetals</div>
+        </div>
+        <div class="fanart-item">
+          <div class="symbol">庭</div>
+          <div class="artist">@shadowgarden</div>
+        </div>
+        <div class="fanart-item">
+          <div class="symbol">桜</div>
+          <div class="artist">@mio_sakura</div>
+        </div>
+        <div class="fanart-item">
+          <div class="symbol">金</div>
+          <div class="artist">@goldenflower</div>
+        </div>
+      </div>
+
+      <div style="text-align: center; margin-top: 2rem;">
+        <p style="color: var(--gray); font-size: 0.85rem; margin-bottom: 1rem;">Kendi fan art'ını göndermek ister misin?</p>
+        <button class="btn btn-primary" onclick="alert('Demo: Fan art yükleme sistemi yakında aktif olacak!')">Fan Art Gönder</button>
       </div>
     </div>
 
@@ -67,30 +109,47 @@
       <div class="sidebar-box">
         <h3 class="sidebar-title">📊 Haftalık Anket</h3>
         <p style="color: var(--gray); font-size: 0.9rem; margin-bottom: 1rem;">En sevdiğin karakter?</p>
-        <div class="poll-option">Yuki Ayanokōji <span>45%</span></div>
-        <div class="poll-option">Ren Tachibana <span>32%</span></div>
+        <div class="poll-option">Yuki Ayanokōji <span>42%</span></div>
+        <div class="poll-option">Ren Tachibana <span>28%</span></div>
         <div class="poll-option">Bahçıvan <span>15%</span></div>
         <div class="poll-option">Mio Sakuraba <span>8%</span></div>
+        <div class="poll-option">Küçük Yuriko <span>7%</span></div>
       </div>
 
       <div class="sidebar-box">
-        <h3 class="sidebar-title">🎨 Son Fan Art'lar</h3>
-        <p style="color: var(--gray); font-size: 0.85rem;">• Yuki & Ren — @artist_chan</p>
-        <p style="color: var(--gray); font-size: 0.85rem; margin-top: 0.5rem;">• Bahçıvan Portresi — @darkink</p>
-        <p style="color: var(--gray); font-size: 0.85rem; margin-top: 0.5rem;">• Altın Çiçek — @ghostpetals</p>
+        <h3 class="sidebar-title">🏆 Topluluk İstatistikleri</h3>
+        <p style="color: var(--gray); font-size: 0.85rem; line-height: 1.8;">
+          <strong style="color: var(--white);">1.247</strong> üye<br>
+          <strong style="color: var(--white);">8.932</strong> yorum<br>
+          <strong style="color: var(--white);">234</strong> fan art<br>
+          <strong style="color: var(--white);">56.891</strong> okuma
+        </p>
       </div>
 
       <div class="sidebar-box">
         <h3 class="sidebar-title">💬 Discord</h3>
         <p style="color: var(--gray); font-size: 0.85rem; margin-bottom: 1rem;">Topluluğumuza katıl!</p>
-        <button class="btn btn-primary" style="width: 100%; padding: 0.8rem;">Discord'a Katıl</button>
+        <button class="btn btn-primary" style="width: 100%; padding: 0.8rem;" onclick="alert('Demo: Discord davet linki yakında!')">Discord'a Katıl</button>
+      </div>
+
+      <div class="sidebar-box">
+        <h3 class="sidebar-title">📢 Son Haberler</h3>
+        <p style="color: var(--gray); font-size: 0.85rem; line-height: 1.8;">
+          • Bölüm 51 (Bonus) yayında<br>
+          • Fan art yarışması başlıyor<br>
+          • Mobil uygulama yakında<br>
+          • İngilizce çeviriler geliyor
+        </p>
       </div>
     </div>
   </div>
 </section>
 
 <footer>
-  <div class="footer-logo">KAGERŌ <span style="color: var(--red); font-family: var(--font-jp);">陽炎</span></div>
+  <div class="footer-logo">
+    <span class="brand">KAGERŌ</span>
+    <span class="jp">陽炎</span>
+  </div>
   <div class="footer-links">
     <a href="index.html">Ana Sayfa</a>
     <a href="chapters.html">Bölümler</a>
@@ -103,6 +162,7 @@
   <p style="color: var(--red); margin-top: 1rem;">Her hikaye bir iz bırakır. 🌸</p>
 </footer>
 
+<script src="js/i18n.js"></script>
 <script src="js/main.js"></script>
 </body>
 </html>
