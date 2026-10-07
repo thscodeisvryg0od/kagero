@@ -258,3 +258,56 @@ document.addEventListener('DOMContentLoaded', () => {
   console.log('%cKAGERŌ 陽炎', 'color: #E63946; font-size: 28px; font-weight: 900; font-family: serif; letter-spacing: 4px;');
   console.log('%c"Her hikaye bir iz bırakır."', 'color: #F4A261; font-style: italic; font-size: 14px;');
 });
+
+/* ============================================
+   SCROLL POZİSYONU KORUMA
+   chapters.html ve diğer sayfalarda konum korunur
+   ============================================ */
+(function preserveScroll() {
+  const path = window.location.pathname.split('/').pop() || 'index.html';
+  
+  // Reader'da scroll kaydetme — her bölüm baştan başlasın
+  if (path === 'reader.html') return;
+  
+  const key = 'kagero_scroll_' + path;
+  
+  // Pozisyonu kaydet
+  let saveTimeout;
+  window.addEventListener('scroll', () => {
+    if (saveTimeout) clearTimeout(saveTimeout);
+    saveTimeout = setTimeout(() => {
+      try {
+        sessionStorage.setItem(key, window.scrollY);
+      } catch (e) {}
+    }, 150);
+  }, { passive: true });
+  
+  // Linke tıklanmadan önce kaydet
+  document.addEventListener('click', (e) => {
+    const link = e.target.closest('a[href]');
+    if (link && !link.href.startsWith('#')) {
+      try {
+        sessionStorage.setItem(key, window.scrollY);
+      } catch (e) {}
+    }
+  });
+  
+  // Sayfa yüklenince geri yükle
+  window.addEventListener('load', () => {
+    // Hash varsa (örneğin #world-ghost) scroll'u boz
+    if (window.location.hash) return;
+    
+    try {
+      const saved = sessionStorage.getItem(key);
+      if (saved !== null) {
+        const y = parseInt(saved, 10);
+        if (!isNaN(y) && y > 0) {
+          // Küçük gecikme ile içeriğin render olmasını bekle
+          setTimeout(() => {
+            window.scrollTo({ top: y, behavior: 'instant' });
+          }, 100);
+        }
+      }
+    } catch (e) {}
+  });
+})();
