@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<title>Yuki Card — KAGERŌ</title>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700;900&family=Inter:wght@300;400;600&family=Noto+Sans+JP:wght@300;400;700&family=Shippori+Mincho:wght@400;700;800&display=swap" rel="stylesheet">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { 
+    background: #000; 
+    display: flex; 
+    align-items: center; 
+    justify-content: center; 
+    min-height: 100vh; 
+    font-family: 'Inter', sans-serif;
+  }
+  .card {
+    width: 1080px;
+    height: 1080px;
+    background: 
+      radial-gradient(ellipse at top, #2D0A1A 0%, #0A0A0A 70%),
+      linear-gradient(135deg, #0A0A0A, #1A0A1A);
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    color: white;
+  }
+  /* Screentone doku */
+  .card::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image: radial-gradient(circle at 3px 3px, rgba(230,57,70,0.12) 1.5px, transparent 2px);
+    background-size: 20px 20px;
+    pointer-events: none;
+  }
+  /* Köşe damgası */
+  .stamp {
+    position: absolute;
+    top: 40px;
+    right: 40px;
+    background: #B71C1C;
+    color: white;
+    padding: 12px 24px;
+    font-family: 'Shippori Mincho', serif;
+    font-size: 20px;
+    font-weight: 800;
+    letter-spacing: 3px;
+    border: 3px solid white;
+    transform: rotate(-3deg);
+    box-shadow: 5px 5px 0 rgba(0,0,0,0.8);
+  }
+  .stamp-sub {
+    position: absolute;
+    top: 120px;
+    right: 40px;
+    color: #E63946;
+    font-family: 'Shippori Mincho', serif;
+    font-size: 14px;
+    letter-spacing: 4px;
+    font-weight: 700;
+  }
+  /* Karakter portre alanı */
+  .portrait {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 65%;
+    background: 
+      radial-gradient(ellipse at center, #4D1B5D 0%, #1A0A1A 60%, #0A0A0A 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+  }
+  .portrait img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    padding-top: 60px;
+  }
+  .portrait::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse at center, transparent 30%, rgba(10,10,10,0.9) 100%);
+  }
+  /* Alt info */
+  .info {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 40%;
+    padding: 60px;
+    background: linear-gradient(180deg, transparent 0%, #0A0A0A 40%);
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    z-index: 2;
+  }
+  .jp-name {
+    font-family: 'Noto Sans JP', sans-serif;
+    font-size: 24px;
+    color: #E63946;
+    letter-spacing: 12px;
+    margin-bottom: 12px;
+  }
+  .name {
+    font-family: 'Cinzel', serif;
+    font-size: 82px;
+    font-weight: 900;
+    letter-spacing: 3px;
+    background: linear-gradient(135deg, #FFFFFF 0%, #E63946 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    line-height: 1;
+    margin-bottom: 20px;
+  }
+  .role {
+    display: inline-block;
+    padding: 8px 20px;
+    border: 2px solid #E63946;
+    color: #E63946;
+    font-size: 16px;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    margin-bottom: 30px;
+    align-self: flex-start;
+    font-weight: 600;
+  }
+  .tagline {
+    font-style: italic;
+    color: #F4A261;
+    font-size: 22px;
+    line-height: 1.5;
+    padding-left: 24px;
+    border-left: 3px solid #F4A261;
+    max-width: 850px;
+  }
+  /* Logo */
+  .logo {
+    position: absolute;
+    bottom: 40px;
+    right: 60px;
+    font-family: 'Cinzel', serif;
+    font-size: 32px;
+    font-weight: 900;
+    letter-spacing: 4px;
+    z-index: 3;
+  }
+  .logo span {
+    color: #E63946;
+    font-family: 'Noto Sans JP', sans-serif;
+  }
+  .footer-text {
+    position: absolute;
+    bottom: 90px;
+    right: 60px;
+    font-size: 14px;
+    color: #B0B0B0;
+    letter-spacing: 3px;
+    z-index: 3;
+  }
+</style>
+</head>
+<body>
+  <div class="card">
+    <div class="stamp">第01話</div>
+    <div class="stamp-sub">PROTAGONIST</div>
+    
+    <div class="portrait">
+      <img src="../assets/character-yuki.svg" alt="Yuki">
+    </div>
+    
+    <div class="info">
+      <div class="jp-name">綾小路 雪</div>
+      <div class="name">YUKI AYANOKŌJI</div>
+      <div class="role">KAN'NŌSHA</div>
+      <div class="tagline">"Ben zaten çoktan kayboldum. Ama belki... belki birinin beni bulmasına izin verebilirim."</div>
+    </div>
+    
+    <div class="footer-text">KAGERŌ.COM</div>
+    <div class="logo">KAGER<span>Ō</span></div>
+  </div>
+</body>
+</html>
