@@ -1,36 +1,36 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 192 192" width="192" height="192">
   <defs>
-    <radialGradient id="bg192" cx="50%" cy="45%" r="65%">
+    <radialGradient id="bgGrad192" cx="50%" cy="45%" r="75%">
       <stop offset="0%" stop-color="#2D1B3D"/>
-      <stop offset="70%" stop-color="#1A0A1A"/>
-      <stop offset="100%" stop-color="#0A0A0A"/>
+      <stop offset="60%" stop-color="#1A0A1A"/>
+      <stop offset="100%" stop-color="#0A0510"/>
     </radialGradient>
-    <linearGradient id="ring192" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" stop-color="#E63946"/>
-      <stop offset="100%" stop-color="#F4A261"/>
-    </linearGradient>
-    <filter id="glow192">
-      <feGaussianBlur stdDeviation="2" result="b"/>
-      <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
-    </filter>
+    <radialGradient id="flowerGlow192" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#E63946" stop-opacity="0.4"/>
+      <stop offset="100%" stop-color="#E63946" stop-opacity="0"/>
+    </radialGradient>
   </defs>
   
-  <!-- Arka plan: yuvarlak köşeli kare -->
-  <rect width="192" height="192" fill="url(#bg192)" rx="38"/>
+  <!-- Tam kanlı arka plan -->
+  <rect width="192" height="192" fill="url(#bgGrad192)"/>
   
-  <!-- Dış halka (kalın, belirgin) -->
-  <circle cx="96" cy="96" r="68" fill="none" stroke="url(#ring192)" stroke-width="3"/>
+  <!-- Çiçek glow (yumuşak parlaklık) -->
+  <circle cx="96" cy="96" r="70" fill="url(#flowerGlow192)"/>
   
-  <!-- İç halka (ince, zarif) -->
-  <circle cx="96" cy="96" r="54" fill="none" stroke="url(#ring192)" stroke-width="1" opacity="0.5"/>
+  <!-- Tek ince altın halka (safe zone içinde) -->
+  <circle cx="96" cy="96" r="72" fill="none" stroke="#D4A017" stroke-width="1" opacity="0.3"/>
   
-  <!-- Çiçek — ortada, büyük ve belirgin -->
-  <g filter="url(#glow192)" transform="translate(96,96)">
-    <ellipse cx="0" cy="-26" rx="8" ry="21" fill="#E63946"/>
-    <ellipse cx="25" cy="-8" rx="8" ry="21" fill="#E63946" transform="rotate(72)"/>
-    <ellipse cx="15" cy="21" rx="8" ry="21" fill="#E63946" transform="rotate(144)"/>
-    <ellipse cx="-15" cy="21" rx="8" ry="21" fill="#E63946" transform="rotate(216)"/>
-    <ellipse cx="-25" cy="-8" rx="8" ry="21" fill="#E63946" transform="rotate(288)"/>
-    <circle r="7" fill="#F4A261"/>
+  <!-- Çiçek — BÜYÜK, KALIN, NET -->
+  <g transform="translate(96,96)">
+    <!-- 5 yaprak -->
+    <ellipse cx="0" cy="-32" rx="11" ry="26" fill="#E63946"/>
+    <ellipse cx="30" cy="-10" rx="11" ry="26" fill="#E63946" transform="rotate(72)"/>
+    <ellipse cx="19" cy="26" rx="11" ry="26" fill="#E63946" transform="rotate(144)"/>
+    <ellipse cx="-19" cy="26" rx="11" ry="26" fill="#E63946" transform="rotate(216)"/>
+    <ellipse cx="-30" cy="-10" rx="11" ry="26" fill="#E63946" transform="rotate(288)"/>
+    
+    <!-- Merkez altın -->
+    <circle r="9" fill="#F4A261"/>
+    <circle r="4" fill="#FFD88C"/>
   </g>
 </svg>
