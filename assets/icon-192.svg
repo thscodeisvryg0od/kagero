@@ -16,7 +16,7 @@
   <rect width="192" height="192" fill="url(#bg192)" rx="32"/>
   <circle cx="96" cy="96" r="74" fill="none" stroke="url(#ring192)" stroke-width="3"/>
   <circle cx="96" cy="96" r="62" fill="none" stroke="url(#ring192)" stroke-width="1.5" opacity="0.5"/>
-  <g filter="url(#glow192)" transform="translate(96,90)">
+  <g filter="url(#glow192)" transform="translate(96,96)">
     <ellipse cx="0" cy="-22" rx="7" ry="18" fill="#E63946"/>
     <ellipse cx="21" cy="-7" rx="7" ry="18" fill="#E63946" transform="rotate(72)"/>
     <ellipse cx="13" cy="18" rx="7" ry="18" fill="#E63946" transform="rotate(144)"/>
@@ -24,5 +24,4 @@
     <ellipse cx="-21" cy="-7" rx="7" ry="18" fill="#E63946" transform="rotate(288)"/>
     <circle r="6" fill="#F4A261"/>
   </g>
-  <text x="96" y="168" text-anchor="middle" font-family="Georgia, serif" font-size="20" font-weight="700" fill="#FFFFFF" letter-spacing="2">K</text>
 </svg>
