@@ -1,11 +1,107 @@
 /* ============================================
-   KAGERŌ — Anime Çizgi Roman Platformu
-   Ana JavaScript
+   KAGERŌ — Ana JavaScript
+   + PWA Setup
    ============================================ */
 
-// i18n.js'i otomatik yükle (tüm sayfalarda dil seçici görünsün)
+// ============================================
+// PWA SETUP
+// ============================================
+(function setupPWA() {
+  // Manifest link
+  if (!document.querySelector('link[rel="manifest"]')) {
+    const m = document.createElement('link');
+    m.rel = 'manifest';
+    m.href = 'manifest.json';
+    document.head.appendChild(m);
+  }
+
+  // Theme color
+  if (!document.querySelector('meta[name="theme-color"]')) {
+    const t = document.createElement('meta');
+    t.name = 'theme-color';
+    t.content = '#0A0A0A';
+    document.head.appendChild(t);
+  }
+
+  // Apple mobile web app
+  if (!document.querySelector('meta[name="apple-mobile-web-app-capable"]')) {
+    const a1 = document.createElement('meta');
+    a1.name = 'apple-mobile-web-app-capable';
+    a1.content = 'yes';
+    document.head.appendChild(a1);
+
+    const a2 = document.createElement('meta');
+    a2.name = 'apple-mobile-web-app-status-bar-style';
+    a2.content = 'black-translucent';
+    document.head.appendChild(a2);
+
+    const a3 = document.createElement('meta');
+    a3.name = 'apple-mobile-web-app-title';
+    a3.content = 'KAGERŌ';
+    document.head.appendChild(a3);
+  }
+
+  // Apple touch icon
+  if (!document.querySelector('link[rel="apple-touch-icon"]')) {
+    const i = document.createElement('link');
+    i.rel = 'apple-touch-icon';
+    i.href = 'assets/icon-192.svg';
+    document.head.appendChild(i);
+  }
+
+  // Service worker
+  if ('serviceWorker' in navigator) {
+    window.addEventListener('load', () => {
+      navigator.serviceWorker.register('sw.js')
+        .then((reg) => console.log('[KAGERŌ] SW aktif:', reg.scope))
+        .catch((err) => console.warn('[KAGERŌ] SW hata:', err));
+    });
+  }
+
+  // Install prompt butonu
+  let deferredPrompt = null;
+
+  window.addEventListener('beforeinstallprompt', (e) => {
+    e.preventDefault();
+    deferredPrompt = e;
+    showInstallBtn();
+  });
+
+  function showInstallBtn() {
+    if (document.getElementById('installBtn')) return;
+    const navbar = document.querySelector('.navbar');
+    if (!navbar) return;
+
+    const btn = document.createElement('button');
+    btn.id = 'installBtn';
+    btn.className = 'install-btn';
+    btn.setAttribute('aria-label', 'KAGERŌ uygulamasını yükle');
+    btn.innerHTML = '<span>⬇</span> <span class="install-text">Yükle</span>';
+
+    btn.addEventListener('click', async () => {
+      if (!deferredPrompt) return;
+      deferredPrompt.prompt();
+      const { outcome } = await deferredPrompt.userChoice;
+      console.log('[KAGERŌ] Install:', outcome);
+      deferredPrompt = null;
+      btn.remove();
+    });
+
+    const menuToggle = navbar.querySelector('.menu-toggle');
+    if (menuToggle) navbar.insertBefore(btn, menuToggle);
+    else navbar.appendChild(btn);
+  }
+
+  window.addEventListener('appinstalled', () => {
+    const btn = document.getElementById('installBtn');
+    if (btn) btn.remove();
+    console.log('[KAGERŌ] Uygulama yüklendi');
+  });
+})();
+
+// i18n.js'i otomatik yükle
 (function loadI18n() {
-  if (typeof I18N !== 'undefined') return; // zaten yüklü
+  if (typeof I18N !== 'undefined') return;
   const script = document.createElement('script');
   script.src = 'js/i18n.js';
   script.async = false;
@@ -14,9 +110,7 @@
 
 document.addEventListener('DOMContentLoaded', () => {
 
-  // ============================================
   // NAVBAR SCROLL
-  // ============================================
   const navbar = document.querySelector('.navbar');
   let lastScroll = 0;
   let ticking = false;
@@ -39,9 +133,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }, { passive: true });
   }
 
-  // ============================================
   // MOBILE MENU
-  // ============================================
   const menuToggle = document.querySelector('.menu-toggle');
   const navMenu = document.querySelector('.navbar ul');
 
@@ -80,9 +172,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // ============================================
   // İLERLEME ÇUBUĞU
-  // ============================================
   const progressBar = document.getElementById('progressBar');
   if (progressBar) {
     let pbTicking = false;
@@ -100,9 +190,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }, { passive: true });
   }
 
-  // ============================================
   // TAM EKRAN
-  // ============================================
   window.toggleFullscreen = function() {
     if (!document.fullscreenElement) {
       document.documentElement.requestFullscreen().catch(err => console.log(err));
@@ -111,9 +199,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   };
 
-  // ============================================
   // KLAVYE NAVİGASYONU
-  // ============================================
   document.addEventListener('keydown', (e) => {
     if (document.getElementById('readerContainer')) {
       if (e.key === 'ArrowRight') window.scrollBy({ top: 500, behavior: 'smooth' });
@@ -121,9 +207,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   });
 
-  // ============================================
   // SEKMELER
-  // ============================================
   window.showTab = function(tabId, event) {
     const currentPage = document.querySelector('.char-page.active') || document;
     currentPage.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
@@ -133,9 +217,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if (target) target.classList.add('active');
   };
 
-  // ============================================
-  // GÜÇ BARLARI ANİMASYONU
-  // ============================================
+  // GÜÇ BARLARI
   const powerFills = document.querySelectorAll('.power-fill');
   if (powerFills.length > 0 && 'IntersectionObserver' in window) {
     const observer = new IntersectionObserver((entries) => {
@@ -155,9 +237,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // ============================================
   // YORUM GÖNDERME
-  // ============================================
   const commentSubmit = document.querySelector('.comment-submit');
   const commentInput = document.querySelector('.comment-input');
   if (commentSubmit && commentInput) {
@@ -172,22 +252,17 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // ============================================
-  // ANKET OYLAMA
-  // ============================================
+  // ANKET
   document.querySelectorAll('.poll-option').forEach(option => {
     option.addEventListener('click', () => {
       alert(`"${option.textContent.trim()}" için oy kullandınız! (Demo)`);
     });
   });
 
-  // ============================================
   // FADE-IN
-  // ============================================
   const fadeElements = document.querySelectorAll(
     '.chapter-card, .character-card, .world-card, .product-card'
   );
-  
   if (fadeElements.length > 0 && 'IntersectionObserver' in window) {
     const fadeObserver = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
@@ -207,9 +282,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // ============================================
   // KONSOL
-  // ============================================
   console.log('%cKAGERŌ 陽炎', 'color: #E63946; font-size: 28px; font-weight: 900; font-family: serif; letter-spacing: 4px;');
   console.log('%c"Her hikaye bir iz bırakır."', 'color: #F4A261; font-style: italic; font-size: 14px;');
 });
