@@ -6,17 +6,23 @@
 <title>Mağaza — KAGERŌ</title>
 <meta name="description" content="KAGERŌ mağazası — posterler, tişörtler, figürler ve daha fazlası.">
 <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
-<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700;900&family=Inter:wght@300;400;600&family=Noto+Sans+JP:wght@300;400;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700;900&family=Inter:wght@300;400;600&family=Noto+Sans+JP:wght@300;400;700&family=Shippori+Mincho:wght@400;700;800&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
+
+<div class="sakura-container" aria-hidden="true">
+  <div class="sakura"></div>
+  <div class="sakura"></div>
+  <div class="sakura"></div>
+</div>
 
 <nav class="navbar">
   <a href="index.html" class="logo">
     <img src="assets/logo-icon.svg" alt="KAGERŌ" width="36" height="36" style="vertical-align: middle;">
     <span>KAGERŌ</span>
   </a>
-  <button class="menu-toggle">☰</button>
+  <button class="menu-toggle" aria-label="Menü">☰</button>
   <ul>
     <li><a href="index.html">Ana Sayfa</a></li>
     <li><a href="chapters.html">Bölümler</a></li>
@@ -28,70 +34,30 @@
 </nav>
 
 <section style="padding-top: 8rem;">
-  <h2 class="section-title">
+  <h2 class="section-title" style="justify-content: center; text-align: center;">
     <span class="section-title-jp">ショップ</span> MAĞAZA
   </h2>
-  <p class="section-subtitle">KAGERŌ koleksiyonunu keşfet</p>
+  <p class="section-subtitle" style="text-align: center;">KAGERŌ koleksiyonunu keşfet — Demo Mağaza</p>
 
-  <div class="shop-grid">
-    <div class="product-card">
-      <div class="product-image">花</div>
-      <div class="product-info">
-        <h3 class="product-title">Hayalet Çiçek Posteri</h3>
-        <div class="product-price">₺149</div>
-        <button class="product-btn">Sepete Ekle</button>
-      </div>
-    </div>
-
-    <div class="product-card">
-      <div class="product-image">雪</div>
-      <div class="product-info">
-        <h3 class="product-title">Yuki Tişört</h3>
-        <div class="product-price">₺299</div>
-        <button class="product-btn">Sepete Ekle</button>
-      </div>
-    </div>
-
-    <div class="product-card">
-      <div class="product-image">蓮</div>
-      <div class="product-info">
-        <h3 class="product-title">Ren Hoodie</h3>
-        <div class="product-price">₺599</div>
-        <button class="product-btn">Sepete Ekle</button>
-      </div>
-    </div>
-
-    <div class="product-card">
-      <div class="product-image">庭</div>
-      <div class="product-info">
-        <h3 class="product-title">Bahçıvan Figür</h3>
-        <div class="product-price">₺899</div>
-        <button class="product-btn">Sepete Ekle</button>
-      </div>
-    </div>
-
-    <div class="product-card">
-      <div class="product-image">闇</div>
-      <div class="product-info">
-        <h3 class="product-title">Cilt 1 — Fiziksel Kitap</h3>
-        <div class="product-price">₺199</div>
-        <button class="product-btn">Sepete Ekle</button>
-      </div>
-    </div>
-
-    <div class="product-card">
-      <div class="product-image">金</div>
-      <div class="product-info">
-        <h3 class="product-title">Altın Çiçek Kolye</h3>
-        <div class="product-price">₺449</div>
-        <button class="product-btn">Sepete Ekle</button>
-      </div>
-    </div>
+  <div class="shop-filters">
+    <button class="shop-filter active" data-filter="all">Tümü</button>
+    <button class="shop-filter" data-filter="poster">Posterler</button>
+    <button class="shop-filter" data-filter="tshirt">Tişörtler</button>
+    <button class="shop-filter" data-filter="hoodie">Hoodie</button>
+    <button class="shop-filter" data-filter="figure">Figürler</button>
+    <button class="shop-filter" data-filter="book">Kitaplar</button>
+    <button class="shop-filter" data-filter="jewelry">Takılar</button>
+    <button class="shop-filter" data-filter="mug">Kupalar</button>
   </div>
+
+  <div class="shop-grid" id="shopGrid"></div>
 </section>
 
 <footer>
-  <div class="footer-logo">KAGERŌ <span style="color: var(--red); font-family: var(--font-jp);">陽炎</span></div>
+  <div class="footer-logo">
+    <span class="brand">KAGERŌ</span>
+    <span class="jp">陽炎</span>
+  </div>
   <div class="footer-links">
     <a href="index.html">Ana Sayfa</a>
     <a href="chapters.html">Bölümler</a>
@@ -104,6 +70,50 @@
   <p style="color: var(--red); margin-top: 1rem;">Her hikaye bir iz bırakır. 🌸</p>
 </footer>
 
+<script src="js/i18n.js"></script>
+<script src="js/shop.js"></script>
 <script src="js/main.js"></script>
+<script>
+  // Ürünleri ekrana bas
+  function renderProducts(filter = 'all') {
+    const grid = document.getElementById('shopGrid');
+    if (!grid) return;
+
+    const filtered = filter === 'all' 
+      ? SHOP_PRODUCTS 
+      : SHOP_PRODUCTS.filter(p => p.category === filter);
+
+    grid.innerHTML = filtered.map(p => `
+      <div class="product-card">
+        <div class="product-image">${p.symbol}</div>
+        <div class="product-info">
+          <h3 class="product-title">${p.title}</h3>
+          <p style="font-size:0.75rem;color:var(--gray);margin-bottom:0.5rem;">${p.desc}</p>
+          <div class="product-price">₺${p.price}</div>
+          <button class="product-btn" data-product-id="${p.id}">Sepete Ekle</button>
+        </div>
+      </div>
+    `).join('');
+
+    // Sepet butonlarını yeniden bağla
+    grid.querySelectorAll('[data-product-id]').forEach(btn => {
+      btn.addEventListener('click', () => {
+        window.kageroCart.add(btn.dataset.productId);
+      });
+    });
+  }
+
+  // Filtre butonları
+  document.querySelectorAll('.shop-filter').forEach(btn => {
+    btn.addEventListener('click', () => {
+      document.querySelectorAll('.shop-filter').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      renderProducts(btn.dataset.filter);
+    });
+  });
+
+  // İlk render
+  renderProducts();
+</script>
 </body>
 </html>
