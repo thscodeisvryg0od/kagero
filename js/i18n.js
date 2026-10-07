@@ -1,6 +1,6 @@
 /* ============================================
    KAGERŌ — i18n (Internationalization)
-   Multi-language support: TR, EN, JP
+   Multi-language: TR, EN, JP
    ============================================ */
 
 const I18N = {
@@ -9,9 +9,24 @@ const I18N = {
     site_title: 'KAGERŌ — Anime Çizgi Roman Platformu',
     nav: { home: 'Ana Sayfa', chapters: 'Bölümler', characters: 'Karakterler', world: 'Dünya', community: 'Topluluk', shop: 'Mağaza' },
     reader: {
-      back: '← Bölüm Arşivi', prev: '← Önceki Bölüm', next: 'Sonraki Bölüm →',
-      archive: 'Bölüm Arşivi →', page: 'Sayfa', comments: '💬 Yorumlar',
-      comment_placeholder: 'Bu bölüm hakkında ne düşünüyorsun?', comment_send: 'Gönder'
+      back: '← Bölüm Arşivi',
+      prev: '← Önceki Bölüm',
+      next: 'Sonraki Bölüm →',
+      archive: 'Bölüm Arşivi →',
+      bonus: '外伝 — Bonus Bölüm →',
+      back_final: '← Final Bölüm',
+      to_home: 'Ana Sayfa →',
+      page: 'Sayfa',
+      comments: '💬 Yorumlar',
+      comment_placeholder: 'Bu bölüm hakkında ne düşünüyorsun?',
+      comment_send: 'Gönder',
+      not_found: 'Bölüm Bulunamadı',
+      not_found_desc: 'Bu bölüm henüz yayınlanmadı veya mevcut değil.',
+      loading: 'Yükleniyor...'
+    },
+    footer: {
+      copyright: '© 2026 KAGERŌ — Anime Çizgi Roman Platformu. Tüm hakları saklıdır.',
+      slogan: 'Her hikaye bir iz bırakır.'
     }
   },
   en: {
@@ -19,9 +34,24 @@ const I18N = {
     site_title: 'KAGERŌ — Anime Manga Platform',
     nav: { home: 'Home', chapters: 'Chapters', characters: 'Characters', world: 'World', community: 'Community', shop: 'Shop' },
     reader: {
-      back: '← Chapter Archive', prev: '← Previous Chapter', next: 'Next Chapter →',
-      archive: 'Chapter Archive →', page: 'Page', comments: '💬 Comments',
-      comment_placeholder: 'What do you think about this chapter?', comment_send: 'Send'
+      back: '← Chapter Archive',
+      prev: '← Previous Chapter',
+      next: 'Next Chapter →',
+      archive: 'Chapter Archive →',
+      bonus: 'Side Story — Bonus Chapter →',
+      back_final: '← Final Chapter',
+      to_home: 'Home →',
+      page: 'Page',
+      comments: '💬 Comments',
+      comment_placeholder: 'What do you think about this chapter?',
+      comment_send: 'Send',
+      not_found: 'Chapter Not Found',
+      not_found_desc: 'This chapter has not been published yet.',
+      loading: 'Loading...'
+    },
+    footer: {
+      copyright: '© 2026 KAGERŌ — Anime Manga Platform. All rights reserved.',
+      slogan: 'Every story leaves a trace.'
     }
   },
   jp: {
@@ -29,9 +59,24 @@ const I18N = {
     site_title: 'KAGERŌ — アニメ漫画プラットフォーム',
     nav: { home: 'ホーム', chapters: 'チャプター', characters: 'キャラクター', world: '世界観', community: 'コミュニティ', shop: 'ショップ' },
     reader: {
-      back: '← チャプター一覧', prev: '← 前のチャプター', next: '次のチャプター →',
-      archive: 'チャプター一覧 →', page: 'ページ', comments: '💬 コメント',
-      comment_placeholder: 'このチャプターについてどう思いますか？', comment_send: '送信'
+      back: '← チャプター一覧',
+      prev: '← 前のチャプター',
+      next: '次のチャプター →',
+      archive: 'チャプター一覧 →',
+      bonus: '外伝 — ボーナスチャプター →',
+      back_final: '← 最終話',
+      to_home: 'ホーム →',
+      page: 'ページ',
+      comments: '💬 コメント',
+      comment_placeholder: 'このチャプターについてどう思いますか？',
+      comment_send: '送信',
+      not_found: 'チャプターが見つかりません',
+      not_found_desc: 'このチャプターはまだ公開されていません。',
+      loading: '読み込み中...'
+    },
+    footer: {
+      copyright: '© 2026 KAGERŌ — アニメ漫画プラットフォーム. All rights reserved.',
+      slogan: 'すべての物語は痕跡を残す。'
     }
   }
 };
@@ -47,16 +92,14 @@ class LanguageManager {
     const urlParams = new URLSearchParams(window.location.search);
     const urlLang = urlParams.get('lang');
     if (urlLang && I18N[urlLang]) return urlLang;
-
     try {
       const saved = localStorage.getItem('kagero_lang');
       if (saved && I18N[saved]) return saved;
     } catch (e) {}
-
-    const browserLang = navigator.language.substring(0, 2);
-    if (browserLang === 'tr') return 'tr';
-    if (browserLang === 'ja') return 'jp';
-    if (browserLang === 'en') return 'en';
+    const b = navigator.language.substring(0, 2);
+    if (b === 'tr') return 'tr';
+    if (b === 'ja') return 'jp';
+    if (b === 'en') return 'en';
     return 'tr';
   }
 
@@ -65,8 +108,6 @@ class LanguageManager {
       this.applyLanguage(this.currentLang);
       this._injectSelector();
     };
-
-    // DOMContentLoaded zaten tetiklendiyse hemen çalıştır
     if (document.readyState === 'loading') {
       document.addEventListener('DOMContentLoaded', initFn);
     } else {
@@ -82,48 +123,84 @@ class LanguageManager {
     document.documentElement.lang = lang === 'jp' ? 'ja' : lang;
 
     const titleEl = document.querySelector('title');
-    if (titleEl) titleEl.textContent = dict.site_title;
+    if (titleEl && !document.getElementById('readerContainer')) {
+      titleEl.textContent = dict.site_title;
+    }
 
+    // Navbar links
     const navLinks = document.querySelectorAll('.navbar ul li a');
     const navKeys = ['home', 'chapters', 'characters', 'world', 'community', 'shop'];
     navLinks.forEach((link, i) => {
       if (navKeys[i]) link.textContent = dict.nav[navKeys[i]];
     });
 
-    this._updateReaderStrings(dict);
-
+    // Footer links
     const footerLinks = document.querySelectorAll('footer .footer-links a');
     footerLinks.forEach((link, i) => {
       if (navKeys[i]) link.textContent = dict.nav[navKeys[i]];
     });
 
-    try { localStorage.setItem('kagero_lang', lang); } catch (e) {}
+    // Footer copyright & slogan
+    const footerPs = document.querySelectorAll('footer > p');
+    if (footerPs[0]) footerPs[0].textContent = dict.footer.copyright;
+    if (footerPs[1]) footerPs[1].innerHTML = dict.footer.slogan + ' <span style="color: var(--red);">🌸</span>';
 
+    // Reader UI
+    this._updateReaderStrings(dict);
+
+    try { localStorage.setItem('kagero_lang', lang); } catch (e) {}
     this._updateSelectorUI();
-    window.dispatchEvent(new CustomEvent('languageChanged', { detail: { lang, dict } }));
+
+    window.dispatchEvent(new CustomEvent('languageChanged', { 
+      detail: { lang, dict } 
+    }));
   }
 
   _updateReaderStrings(dict) {
+    // Reader topbar back button
     const backBtn = document.querySelector('.back-btn');
     if (backBtn && dict.reader) backBtn.textContent = dict.reader.back;
 
+    // Reader navigation buttons — with bonus support
     const navBtns = document.querySelectorAll('.reader-nav .nav-btn');
     navBtns.forEach(btn => {
       if (btn.classList.contains('disabled')) {
         btn.textContent = dict.reader.prev;
-      } else if (btn.href && btn.href.includes('reader.html')) {
-        if (btn.textContent.includes('Önceki') || btn.textContent.includes('Previous') || btn.textContent.includes('前の')) {
+        return;
+      }
+      
+      const href = btn.getAttribute('href') || '';
+      const text = btn.textContent;
+      
+      // Bonus nav
+      if (btn.classList.contains('bonus-nav') || text.includes('Bonus') || text.includes('外伝')) {
+        if (href.includes('index.html')) {
+          btn.textContent = dict.reader.to_home;
+        } else {
+          btn.textContent = dict.reader.bonus;
+        }
+        return;
+      }
+      
+      // Final back
+      if (href.includes('ch=50') && text.includes('Final')) {
+        btn.textContent = dict.reader.back_final;
+        return;
+      }
+      
+      // Regular nav
+      if (href.includes('reader.html')) {
+        if (text.includes('Önceki') || text.includes('Previous') || text.includes('前の')) {
           btn.textContent = dict.reader.prev;
-        } else if (btn.textContent.includes('Sonraki') || btn.textContent.includes('Next') || btn.textContent.includes('次')) {
+        } else if (text.includes('Sonraki') || text.includes('Next') || text.includes('次')) {
           btn.textContent = dict.reader.next;
-        } else if (btn.textContent.includes('Bonus')) {
-          btn.textContent = '外伝 — Bonus →';
         } else {
           btn.textContent = dict.reader.archive;
         }
       }
     });
 
+    // Comments section
     const commentsTitle = document.querySelector('.comments-title');
     if (commentsTitle) commentsTitle.textContent = dict.reader.comments;
 
@@ -180,10 +257,6 @@ class LanguageManager {
           window.history.replaceState({}, '', url.toString());
           this.applyLanguage(lang);
           dropdown.classList.remove('open');
-          
-          if (document.getElementById('readerContainer') && typeof loadChapter === 'function') {
-            setTimeout(loadChapter, 50);
-          }
         });
       });
 
