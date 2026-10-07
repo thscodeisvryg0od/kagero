@@ -1846,3 +1846,80 @@ body.bonus-mode .reader-container::before {
   }
   .shop-filter { font-size: 0.7rem; padding: 0.5rem 1rem; }
 }
+
+/* ============================================
+   PWA INSTALL BUTTON
+   ============================================ */
+
+.install-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.5rem 1rem;
+  background: linear-gradient(135deg, #E63946 0%, #B71C1C 100%);
+  color: white;
+  border: 2px solid rgba(255,255,255,0.25);
+  border-radius: 20px;
+  font-family: var(--font-body);
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  cursor: pointer;
+  margin-left: 0.8rem;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(230,57,70,0.4);
+  animation: installPulse 2s ease-in-out infinite;
+  z-index: 10;
+}
+
+.install-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(230,57,70,0.7);
+  animation: none;
+}
+
+.install-btn:active {
+  transform: translateY(0);
+}
+
+.install-btn span:first-child {
+  font-size: 1rem;
+  line-height: 1;
+}
+
+@keyframes installPulse {
+  0%, 100% { 
+    box-shadow: 0 4px 15px rgba(230,57,70,0.4);
+    transform: scale(1);
+  }
+  50% { 
+    box-shadow: 0 6px 25px rgba(230,57,70,0.8);
+    transform: scale(1.03);
+  }
+}
+
+/* Mobil */
+@media (max-width: 968px) {
+  .install-btn {
+    margin-left: auto;
+    margin-right: 0.5rem;
+  }
+  .install-text {
+    display: none;
+  }
+  .install-btn {
+    padding: 0.5rem;
+    border-radius: 50%;
+    width: 38px;
+    height: 38px;
+    justify-content: center;
+  }
+}
+
+@media (max-width: 480px) {
+  .install-btn {
+    width: 36px;
+    height: 36px;
+  }
+}
