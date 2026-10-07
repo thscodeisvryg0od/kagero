@@ -35,63 +35,66 @@
   </div>
 </div>
 
+<script src="js/i18n.js"></script>
 <script src="js/chapters.js"></script>
 <script src="js/chapters-en.js"></script>
 <script src="js/chapters-jp.js"></script>
-<script src="js/i18n.js"></script>
 <script>
 (function() {
   const urlParams = new URLSearchParams(window.location.search);
   const chapterNum = parseInt(urlParams.get('ch')) || 1;
-  const urlLang = urlParams.get('lang');
-  
-  // Dil yöneticisinden mevcut dili al
-  const currentLang = urlLang || localStorage.getItem('kagero_lang') || 'tr';
 
-  // Güvenli chapter erişimi
-  function ALL_CHARTS_SAFE() {
-    if (typeof ALL_CHAPTERS !== 'undefined') return ALL_CHAPTERS;
-    return {};
+  function getDict() {
+    const lang = window.i18n ? window.i18n.currentLang : 'tr';
+    return (window.I18N && window.I18N[lang]) ? window.I18N[lang] : (window.I18N ? window.I18N.tr : null);
   }
-  
-  // Doğru chapter kaynağını seç
+
   function getChapters() {
-    if (currentLang === 'en' && typeof CHAPTERS_EN !== 'undefined') return CHAPTERS_EN;
-    if (currentLang === 'jp' && typeof CHAPTERS_JP !== 'undefined') return CHAPTERS_JP;
+    const lang = window.i18n ? window.i18n.currentLang : 'tr';
+    if (lang === 'en' && typeof CHAPTERS_EN !== 'undefined') return CHAPTERS_EN;
+    if (lang === 'jp' && typeof CHAPTERS_JP !== 'undefined') return CHAPTERS_JP;
     return ALL_CHAPTERS;
   }
-  
-  function loadChapter() {
-    const chapters = getChapters();
-    const chapter = chapters[chapterNum];
 
-    // Eğer çeviri yoksa varsayılana düş
-    if (!chapter && currentLang !== 'tr' && ALL_CHAPTERS && ALL_CHAPTERS[chapterNum]) {
-      console.warn('Bu bölümün ' + currentLang + ' çevirisi yok, Türkçe gösteriliyor.');
-      showChapter(ALL_CHAPTERS[chapterNum]);
-      return;
+  function getLangParam() {
+    const lang = window.i18n ? window.i18n.currentLang : 'tr';
+    return (lang && lang !== 'tr') ? '&lang=' + lang : '';
+  }
+
+  function loadChapter() {
+    const dict = getDict();
+    const chapters = getChapters();
+    let chapter = chapters[chapterNum];
+
+    if (!chapter && typeof ALL_CHAPTERS !== 'undefined' && ALL_CHAPTERS[chapterNum]) {
+      chapter = ALL_CHAPTERS[chapterNum];
     }
 
     if (!chapter) {
+      const d = dict ? dict.reader : { not_found: 'Bölüm Bulunamadı', not_found_desc: 'Bu bölüm mevcut değil.', back_to_archive: 'Bölüm Arşivine Dön' };
       document.getElementById('readerContainer').innerHTML = `
         <div style="text-align: center; padding: 4rem 2rem;">
-          <h2 style="font-family: serif; font-size: 1.5rem; color: #E63946; margin-bottom: 1rem;">⚠️ Bölüm bulunamadı</h2>
-          <p style="color: #B0B0B0; margin-bottom: 2rem;">Bu bölüm mevcut değil veya çevirisi henüz eklenmedi.</p>
-          <a href="chapters.html" class="btn btn-primary">Bölüm Arşivine Dön</a>
+          <h2 style="font-family: serif; font-size: 1.5rem; color: #E63946; margin-bottom: 1rem;">${d.not_found}</h2>
+          <p style="color: #B0B0B0; margin-bottom: 2rem;">${d.not_found_desc}</p>
+          <a href="chapters.html" class="btn btn-primary">${d.back_to_archive}</a>
         </div>
       `;
       return;
     }
 
-    showChapter(chapter);
+    showChapter(chapter, dict);
   }
 
-  function showChapter(chapter) {
+  function showChapter(chapter, dict) {
+    if (!dict) dict = getDict();
+    const d = dict.reader;
+    const langParam = getLangParam();
+
     document.getElementById('chapterJp').textContent = chapter.jp;
     document.getElementById('chapterTitle').textContent = chapter.title;
     document.title = `${chapter.title} — KAGERŌ`;
 
-    // Bonus bölüm damgası
+    // Bonus mode
     const chapterJpEl = document.getElementById('chapterJp');
     if (chapterNum === 51) {
       chapterJpEl.classList.add('bonus-stamp');
@@ -114,66 +117,72 @@
 
       if (page.dialogue && page.dialogue.length > 0) {
         html += '<div class="panel-dialogue">';
-        page.dialogue.forEach(d => {
-          if (d.type === 'say') {
-            html += `<div class="dialogue-box"><div class="dialogue-speaker">${d.speaker}</div><div class="dialogue-text">${d.text}</div></div>`;
-          } else if (d.type === 'inner') {
-            html += `<div class="inner-voice">${d.text}</div>`;
-          } else if (d.type === 'whisper') {
-            html += `<div class="whisper">${d.text}</div>`;
+        page.dialogue.forEach(dlg => {
+          if (dlg.type === 'say') {
+            html += `<div class="dialogue-box"><div class="dialogue-speaker">${dlg.speaker}</div><div class="dialogue-text">${dlg.text}</div></div>`;
+          } else if (dlg.type === 'inner') {
+            html += `<div class="inner-voice">${dlg.text}</div>`;
+          } else if (dlg.type === 'whisper') {
+            html += `<div class="whisper">${dlg.text}</div>`;
           }
         });
         html += '</div>';
       }
 
-      html += `<div class="page-number">Sayfa ${index + 1}</div></div>`;
+      html += `<div class="page-number">${d.page} ${index + 1}</div></div>`;
     });
 
-    // Özel navigasyon kuralları
+    // Navigation
     let prevLink, nextLink;
-    const langParam = urlLang ? '&lang=' + urlLang : '';
-    
+
     if (chapterNum === 51) {
-      // Bonus bölüm → Final bölüme dön + Ana sayfaya git
-      prevLink = `<a href="reader.html?ch=50${langParam}" class="nav-btn">← Final Bölüm</a>`;
-      nextLink = `<a href="index.html" class="nav-btn bonus-nav">Ana Sayfa →</a>`;
+      prevLink = `<a href="reader.html?ch=50${langParam}" class="nav-btn">${d.back_final}</a>`;
+      nextLink = `<a href="index.html" class="nav-btn bonus-nav">${d.to_home}</a>`;
     } else if (chapterNum === 50) {
-      // Final bölüm → Bonus bölüme git
-      prevLink = `<a href="reader.html?ch=49${langParam}" class="nav-btn">← Önceki Bölüm</a>`;
-      nextLink = `<a href="reader.html?ch=51${langParam}" class="nav-btn bonus-nav">外伝 — Bonus Bölüm →</a>`;
+      prevLink = `<a href="reader.html?ch=49${langParam}" class="nav-btn">${d.prev}</a>`;
+      nextLink = `<a href="reader.html?ch=51${langParam}" class="nav-btn bonus-nav">${d.bonus}</a>`;
     } else {
-      // Normal bölümler
-      prevLink = chapterNum > 1 
-        ? `<a href="reader.html?ch=${chapterNum - 1}${langParam}" class="nav-btn">← Önceki Bölüm</a>`
-        : `<a href="#" class="nav-btn disabled">← Önceki Bölüm</a>`;
-      
-      const allChapters = ALL_CHARTS_SAFE();
-      nextLink = allChapters[chapterNum + 1]
-        ? `<a href="reader.html?ch=${chapterNum + 1}${langParam}" class="nav-btn">Sonraki Bölüm →</a>`
-        : `<a href="chapters.html" class="nav-btn">Bölüm Arşivi →</a>`;
+      prevLink = chapterNum > 1
+        ? `<a href="reader.html?ch=${chapterNum - 1}${langParam}" class="nav-btn">${d.prev}</a>`
+        : `<a href="#" class="nav-btn disabled">${d.prev}</a>`;
+
+      const allCh = (typeof ALL_CHAPTERS !== 'undefined') ? ALL_CHAPTERS : {};
+      nextLink = allCh[chapterNum + 1]
+        ? `<a href="reader.html?ch=${chapterNum + 1}${langParam}" class="nav-btn">${d.next}</a>`
+        : `<a href="chapters.html" class="nav-btn">${d.archive}</a>`;
     }
 
     html += `<div class="reader-nav">${prevLink}${nextLink}</div>`;
     html += `
       <div class="comments-section">
-        <h3 class="comments-title">💬 Yorumlar</h3>
-        <textarea class="comment-input" placeholder="Bu bölüm hakkında ne düşünüyorsun?"></textarea>
-        <button class="comment-submit">Gönder</button>
+        <h3 class="comments-title">${d.comments}</h3>
+        <textarea class="comment-input" placeholder="${d.comment_placeholder}"></textarea>
+        <button class="comment-submit">${d.comment_send}</button>
       </div>
     `;
 
     container.innerHTML = html;
+
+    // Back button
+    const backBtn = document.querySelector('.back-btn');
+    if (backBtn) backBtn.textContent = d.back;
   }
 
-  // Global erişim için
   window.loadChapter = loadChapter;
 
-  // Sayfa yüklendiğinde çalıştır
-  loadChapter();
+  // Wait for i18n to be ready, then load
+  function waitAndLoad() {
+    if (window.i18n) {
+      loadChapter();
+    } else {
+      setTimeout(waitAndLoad, 50);
+    }
+  }
+  waitAndLoad();
 
-  // Dil değiştiğinde yeniden yükle
+  // Re-render on language change
   window.addEventListener('languageChanged', () => {
-    setTimeout(loadChapter, 100);
+    setTimeout(loadChapter, 50);
   });
 })();
 </script>
