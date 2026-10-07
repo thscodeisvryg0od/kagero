@@ -1,36 +1,27 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512">
   <defs>
-    <radialGradient id="bg512" cx="50%" cy="45%" r="65%">
+    <radialGradient id="bgGrad512" cx="50%" cy="45%" r="75%">
       <stop offset="0%" stop-color="#2D1B3D"/>
-      <stop offset="70%" stop-color="#1A0A1A"/>
-      <stop offset="100%" stop-color="#0A0A0A"/>
+      <stop offset="60%" stop-color="#1A0A1A"/>
+      <stop offset="100%" stop-color="#0A0510"/>
     </radialGradient>
-    <linearGradient id="ring512" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" stop-color="#E63946"/>
-      <stop offset="100%" stop-color="#F4A261"/>
-    </linearGradient>
-    <filter id="glow512">
-      <feGaussianBlur stdDeviation="5" result="b"/>
-      <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
-    </filter>
+    <radialGradient id="flowerGlow512" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#E63946" stop-opacity="0.4"/>
+      <stop offset="100%" stop-color="#E63946" stop-opacity="0"/>
+    </radialGradient>
   </defs>
   
-  <!-- Arka plan: yuvarlak köşeli kare -->
-  <rect width="512" height="512" fill="url(#bg512)" rx="100"/>
+  <rect width="512" height="512" fill="url(#bgGrad512)"/>
+  <circle cx="256" cy="256" r="190" fill="url(#flowerGlow512)"/>
+  <circle cx="256" cy="256" r="192" fill="none" stroke="#D4A017" stroke-width="3" opacity="0.3"/>
   
-  <!-- Dış halka (kalın) -->
-  <circle cx="256" cy="256" r="182" fill="none" stroke="url(#ring512)" stroke-width="8"/>
-  
-  <!-- İç halka (ince) -->
-  <circle cx="256" cy="256" r="144" fill="none" stroke="url(#ring512)" stroke-width="3" opacity="0.5"/>
-  
-  <!-- Çiçek — ortada, büyük -->
-  <g filter="url(#glow512)" transform="translate(256,256)">
-    <ellipse cx="0" cy="-70" rx="22" ry="56" fill="#E63946"/>
-    <ellipse cx="67" cy="-22" rx="22" ry="56" fill="#E63946" transform="rotate(72)"/>
-    <ellipse cx="41" cy="57" rx="22" ry="56" fill="#E63946" transform="rotate(144)"/>
-    <ellipse cx="-41" cy="57" rx="22" ry="56" fill="#E63946" transform="rotate(216)"/>
-    <ellipse cx="-67" cy="-22" rx="22" ry="56" fill="#E63946" transform="rotate(288)"/>
-    <circle r="18" fill="#F4A261"/>
+  <g transform="translate(256,256)">
+    <ellipse cx="0" cy="-86" rx="28" ry="70" fill="#E63946"/>
+    <ellipse cx="82" cy="-27" rx="28" ry="70" fill="#E63946" transform="rotate(72)"/>
+    <ellipse cx="51" cy="70" rx="28" ry="70" fill="#E63946" transform="rotate(144)"/>
+    <ellipse cx="-51" cy="70" rx="28" ry="70" fill="#E63946" transform="rotate(216)"/>
+    <ellipse cx="-82" cy="-27" rx="28" ry="70" fill="#E63946" transform="rotate(288)"/>
+    <circle r="24" fill="#F4A261"/>
+    <circle r="11" fill="#FFD88C"/>
   </g>
 </svg>
