@@ -1804,3 +1804,25 @@ body.bonus-mode .reader-container::before {
   .panel-closeup .panel-image { min-height: 280px; }
   .nav-btn { padding: 0.8rem 1rem; font-size: 0.7rem; }
 }
+
+/* ============================================
+   CHAPTER NUMBER — KOMPAKT ROZET
+   ============================================ */
+
+.chapter-card .chapter-number,
+.chapter-item .num {
+  display: inline-block !important;
+  width: fit-content !important;
+  max-width: 100%;
+  padding: 0.35rem 0.9rem !important;
+  line-height: 1.4;
+}
+
+/* Mobilde biraz küçült */
+@media (max-width: 480px) {
+  .chapter-card .chapter-number,
+  .chapter-item .num {
+    padding: 0.3rem 0.7rem !important;
+    font-size: 0.75rem !important;
+  }
+}
