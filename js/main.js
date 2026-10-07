@@ -4,7 +4,7 @@
    ============================================ */
 
 // ============================================
-// PWA SETUP
+// PWA SETUP (install butonu kaldırıldı)
 // ============================================
 (function setupPWA() {
   // Manifest link
@@ -41,11 +41,11 @@
     document.head.appendChild(a3);
   }
 
-  // Apple touch icon
+  // Apple touch icon (yeni K'sız ikon)
   if (!document.querySelector('link[rel="apple-touch-icon"]')) {
     const i = document.createElement('link');
     i.rel = 'apple-touch-icon';
-    i.href = 'assets/icon-192.svg';
+    i.href = 'assets/icon-192-v2.svg';
     document.head.appendChild(i);
   }
 
@@ -58,45 +58,8 @@
     });
   }
 
-  // Install prompt butonu
-  let deferredPrompt = null;
-
-  window.addEventListener('beforeinstallprompt', (e) => {
-    e.preventDefault();
-    deferredPrompt = e;
-    showInstallBtn();
-  });
-
-  function showInstallBtn() {
-    if (document.getElementById('installBtn')) return;
-    const navbar = document.querySelector('.navbar');
-    if (!navbar) return;
-
-    const btn = document.createElement('button');
-    btn.id = 'installBtn';
-    btn.className = 'install-btn';
-    btn.setAttribute('aria-label', 'KAGERŌ uygulamasını yükle');
-    btn.innerHTML = '<span>⬇</span> <span class="install-text">Yükle</span>';
-
-    btn.addEventListener('click', async () => {
-      if (!deferredPrompt) return;
-      deferredPrompt.prompt();
-      const { outcome } = await deferredPrompt.userChoice;
-      console.log('[KAGERŌ] Install:', outcome);
-      deferredPrompt = null;
-      btn.remove();
-    });
-
-    const menuToggle = navbar.querySelector('.menu-toggle');
-    if (menuToggle) navbar.insertBefore(btn, menuToggle);
-    else navbar.appendChild(btn);
-  }
-
-  window.addEventListener('appinstalled', () => {
-    const btn = document.getElementById('installBtn');
-    if (btn) btn.remove();
-    console.log('[KAGERŌ] Uygulama yüklendi');
-  });
+  // NOT: Install butonu tamamen kaldırıldı.
+  // Tarayıcı, kullanıcı isterse otomatik olarak "Ana ekrana ekle" seçeneği sunar.
 })();
 
 // i18n.js'i otomatik yükle
@@ -104,6 +67,15 @@
   if (typeof I18N !== 'undefined') return;
   const script = document.createElement('script');
   script.src = 'js/i18n.js';
+  script.async = false;
+  document.head.appendChild(script);
+})();
+
+// translate.js'i otomatik yükle (Google Translate)
+(function loadTranslate() {
+  if (window.kageroTranslate) return;
+  const script = document.createElement('script');
+  script.src = 'js/translate.js';
   script.async = false;
   document.head.appendChild(script);
 })();
