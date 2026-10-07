@@ -2222,3 +2222,186 @@ body.js-scroll-reveal .page:nth-child(2) {
     right: 0.5rem !important;
   }
 }
+
+/* ============================================
+   PERFORMANS OPTİMİZASYONU
+   Tarayıcıdaki kasma sorununu çözer
+   ============================================ */
+
+/* 1. Washi kağıt dokusunu kapat (en büyük yük) */
+body::before {
+  display: none !important;
+}
+
+/* 2. Backdrop-filter'ı kaldır — solid renk ile değiştir */
+.navbar {
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+  background: rgba(8, 8, 8, 0.98) !important;
+}
+
+.reader-topbar {
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+  background: rgba(8, 8, 8, 0.98) !important;
+}
+
+.cart-modal-backdrop {
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+  background: rgba(0, 0, 0, 0.92) !important;
+}
+
+/* 3. Sakura yapraklarını azalt — sadece 4 tane göster */
+.sakura:nth-child(n+5) {
+  display: none !important;
+}
+
+/* 4. Hero parçacıklarını azalt — sadece 8 tane */
+.hero-particles span:nth-child(n+9) {
+  display: none !important;
+}
+
+/* 5. Ağır box-shadow'ları hafiflet (glow efektleri) */
+.hero-title-jp {
+  text-shadow: 0 0 20px rgba(230,57,70,0.5) !important;
+  animation: none !important;
+}
+
+.navbar .logo span,
+footer .footer-logo .brand {
+  background: #FFFFFF !important;
+  -webkit-text-fill-color: #FFFFFF !important;
+  color: #FFFFFF !important;
+}
+
+/* Kırmızı Ō harfi için ayrı */
+.navbar .logo span span,
+footer .footer-logo .brand span {
+  background: none !important;
+  -webkit-text-fill-color: #E63946 !important;
+  color: #E63946 !important;
+}
+
+/* 6. Chapter card hover glow'unu hafiflet */
+.chapter-card:hover {
+  box-shadow: 0 5px 15px rgba(230,57,70,0.15) !important;
+}
+
+.character-card:hover {
+  box-shadow: 0 8px 20px rgba(244,162,97,0.15) !important;
+}
+
+/* 7. Reader panel glow'ları hafiflet */
+.panel-image::before {
+  text-shadow: 0 0 10px rgba(230,57,70,0.7), 0 2px 4px rgba(0,0,0,0.9) !important;
+}
+
+.panel-splash .panel-image::before {
+  text-shadow: 0 0 15px rgba(230,57,70,0.8), 0 2px 4px rgba(0,0,0,0.9) !important;
+}
+
+/* 8. Buton hover glow'larını hafiflet */
+.btn-primary:hover,
+.btn-secondary:hover,
+.nav-btn:hover {
+  box-shadow: 0 5px 15px rgba(230,57,70,0.2) !important;
+}
+
+/* 9. Scroll reveal'i tamamen devre dışı bırak (opsiyonel — en büyük performans kazancı) */
+.page {
+  opacity: 1 !important;
+  transform: none !important;
+  transition: none !important;
+}
+
+body.js-scroll-reveal .page {
+  opacity: 1 !important;
+  transform: none !important;
+}
+
+/* 10. Scroll davranışını GPU'ya taşı */
+.navbar,
+.reader-topbar,
+.chapter-card,
+.character-card,
+.product-card,
+.world-card,
+.forum-thread {
+  transform: translateZ(0);
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+}
+
+/* 11. Progress bar'ı sadeleştir */
+.progress-bar {
+  box-shadow: none !important;
+}
+
+/* 12. Next chapter card animasyonunu hafiflet */
+.next-chapter-card {
+  transition: opacity 0.5s ease !important;
+  transform: none !important;
+}
+
+.next-chapter-card.show {
+  transform: none !important;
+}
+
+.next-chapter-card .japanese-continue {
+  animation: none !important;
+  text-shadow: 0 0 15px rgba(230,57,70,0.6) !important;
+}
+
+/* 13. Cart notification animasyonunu hafiflet */
+.cart-notification {
+  transition: opacity 0.3s ease !important;
+  transform: none !important;
+}
+
+.cart-notification.show {
+  transform: none !important;
+}
+
+/* 14. Font render optimizasyonu */
+body,
+p,
+a,
+button {
+  text-rendering: optimizeSpeed;
+}
+
+/* 15. Mobilde ekstra kısıtlamalar */
+@media (max-width: 768px) {
+  .hero-particles span:nth-child(n+5) {
+    display: none !important;
+  }
+  
+  .sakura:nth-child(n+3) {
+    display: none !important;
+  }
+  
+  .next-chapter-card::before {
+    display: none !important;
+  }
+  
+  .dialogue-box.shout::before,
+  .dialogue-box.shout::after {
+    display: none !important;
+  }
+  
+  .panel-image::before {
+    text-shadow: 0 0 8px rgba(230,57,70,0.6) !important;
+  }
+}
+
+/* 16. Prefer-reduced-motion desteği */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
