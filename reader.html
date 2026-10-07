@@ -39,26 +39,9 @@
 (function() {
   'use strict';
 
-  // ============================================
-  // HATA YAKALAYICI (Debug için)
-  // ============================================
-  window.addEventListener('error', (e) => {
-    const c = document.getElementById('readerContainer');
-    if (c) {
-      c.innerHTML = `
-        <div style="text-align: center; padding: 4rem 2rem;">
-          <h2 style="font-family: serif; color: #E63946; margin-bottom: 1rem;">⚠️ Bir hata oluştu</h2>
-          <p style="color: #999; font-size: 0.85rem; word-break: break-all;">${e.message || 'Bilinmeyen hata'}</p>
-          <p style="color: #666; font-size: 0.75rem; margin-top: 0.5rem;">${(e.filename || '').split('/').pop()}:${e.lineno || '?'}</p>
-          <a href="chapters.html" class="btn btn-primary" style="margin-top: 2rem; display: inline-block;">Bölüm Arşivine Dön</a>
-        </div>
-      `;
-    }
-  });
+  const urlParams = new URLSearchParams(window.location.search);
+  const chapterNum = parseInt(urlParams.get('ch')) || 1;
 
-  // ============================================
-  // DEFAULT DICT (i18n yüklenmezse fallback)
-  // ============================================
   const DEFAULT_DICT = {
     reader: {
       back: '← Bölüm Arşivi',
@@ -74,16 +57,15 @@
       comment_send: 'Gönder',
       not_found: 'Bölüm Bulunamadı',
       not_found_desc: 'Bu bölüm mevcut değil.',
-      back_to_archive: 'Bölüm Arşivine Dön'
+      back_to_archive: 'Bölüm Arşivine Dön',
+      continue_jp: '次回へ続く',
+      continue_tr: 'Devam Edecek',
+      read_now: 'Sonraki Bölümü Oku',
+      end_of_seri: 'Hikaye Tamamlandı',
+      end_of_seri_desc: 'Okuduğun için teşekkürler.'
     }
   };
 
-  const urlParams = new URLSearchParams(window.location.search);
-  const chapterNum = parseInt(urlParams.get('ch')) || 1;
-
-  // ============================================
-  // DICT ve CHAPTER seçiciler
-  // ============================================
   function getDict() {
     try {
       if (typeof I18N === 'undefined') return DEFAULT_DICT;
@@ -110,9 +92,30 @@
     return (lang && lang !== 'tr') ? '&lang=' + lang : '';
   }
 
-  // ============================================
-  // ANA YÜKLEME
-  // ============================================
+  function detectDialogueType(dlg) {
+    if (dlg.type !== 'say') return dlg.type;
+    
+    const text = dlg.text || '';
+    const hasExclamation = text.includes('!');
+    
+    // Sadece harfleri say
+    const letters = text.replace(/[^A-Za-zÇĞİÖŞÜçğıöşü]/g, '');
+    const upperLetters = text.replace(/[^A-ZÇĞİÖŞÜ]/g, '');
+    
+    // Metin kısa ve tümü büyükse veya çok büyük harf varsa
+    if (hasExclamation && letters.length > 0 && upperLetters.length / letters.length > 0.6) {
+      return 'shout';
+    }
+    
+    // Fısıltı anahtar kelimeleri
+    const whisperWords = ['fısıltı', 'fısıldadı', 'fısıltıyla', 'sessizce'];
+    if (whisperWords.some(w => text.toLowerCase().includes(w))) {
+      return 'whisper-bubble';
+    }
+    
+    return 'say';
+  }
+
   function loadChapter() {
     const dict = getDict();
     const d = (dict && dict.reader) ? dict.reader : DEFAULT_DICT.reader;
@@ -135,15 +138,15 @@
 
   function showChapter(chapter, d) {
     const langParam = getLangParam();
+    const isBonus = chapterNum === 51;
+    const isFinal = chapterNum === 50;
 
-    // Başlık
     document.getElementById('chapterJp').textContent = chapter.jp || '';
     document.getElementById('chapterTitle').textContent = chapter.title || '';
     document.title = (chapter.title || 'Bölüm') + ' — KAGERŌ';
 
-    // Bonus mode
     const chapterJpEl = document.getElementById('chapterJp');
-    if (chapterNum === 51) {
+    if (isBonus) {
       chapterJpEl.classList.add('bonus-stamp');
       document.body.classList.add('bonus-mode');
     } else {
@@ -151,7 +154,6 @@
       document.body.classList.remove('bonus-mode');
     }
 
-    // Paneller
     const container = document.getElementById('readerContainer');
     let html = '';
 
@@ -171,8 +173,14 @@
       if (page.dialogue && page.dialogue.length > 0) {
         html += '<div class="panel-dialogue">';
         page.dialogue.forEach(dlg => {
-          if (dlg.type === 'say') {
+          const type = detectDialogueType(dlg);
+          
+          if (type === 'say') {
             html += `<div class="dialogue-box"><div class="dialogue-speaker">${dlg.speaker || ''}</div><div class="dialogue-text">${dlg.text || ''}</div></div>`;
+          } else if (type === 'shout') {
+            html += `<div class="dialogue-box shout"><div class="dialogue-speaker">${dlg.speaker || ''}</div><div class="dialogue-text">${dlg.text || ''}</div></div>`;
+          } else if (type === 'whisper-bubble') {
+            html += `<div class="dialogue-box whisper-bubble"><div class="dialogue-speaker">${dlg.speaker || ''}</div><div class="dialogue-text">${dlg.text || ''}</div></div>`;
           } else if (dlg.type === 'inner') {
             html += `<div class="inner-voice">${dlg.text || ''}</div>`;
           } else if (dlg.type === 'whisper') {
@@ -184,6 +192,52 @@
 
       html += `<div class="page-number">${d.page} ${index + 1}</div></div>`;
     });
+
+    // DEVAM EDECEK KARTI
+    const allCh = (typeof ALL_CHAPTERS !== 'undefined') ? ALL_CHAPTERS : {};
+    const hasNext = allCh[chapterNum + 1];
+    const nextChapterData = hasNext ? allCh[chapterNum + 1] : null;
+
+    if (hasNext && !isFinal) {
+      let nextUrl;
+      if (chapterNum === 50) {
+        nextUrl = `reader.html?ch=51${langParam}`;
+      } else {
+        nextUrl = `reader.html?ch=${chapterNum + 1}${langParam}`;
+      }
+      
+      const nextTitle = nextChapterData.title || `Bölüm ${chapterNum + 1}`;
+      const isBonusNext = chapterNum + 1 === 51;
+      
+      html += `
+        <div class="next-chapter-card ${isBonusNext ? 'is-final' : ''}" id="nextCard">
+          <div class="japanese-continue">次回へ続く</div>
+          <div class="turkish-continue">${d.continue_tr}</div>
+          <div class="chapter-preview">${nextTitle}</div>
+          <div class="chapter-preview-sub">${isBonusNext ? '外伝 — Bonus Bölüm' : `第${chapterNum + 1}話`}</div>
+          <a href="${nextUrl}" class="next-btn">${d.read_now} →</a>
+        </div>
+      `;
+    } else if (isFinal) {
+      html += `
+        <div class="next-chapter-card is-final" id="nextCard">
+          <div class="japanese-continue">外伝</div>
+          <div class="turkish-continue">Bonus Bölüm Var</div>
+          <div class="chapter-preview">Yeni Nesil — İlk Fısıltı</div>
+          <div class="chapter-preview-sub">第51話・外伝</div>
+          <a href="reader.html?ch=51${langParam}" class="next-btn">${d.read_now} →</a>
+        </div>
+      `;
+    } else if (isBonus) {
+      html += `
+        <div class="next-chapter-card is-final" id="nextCard">
+          <div class="japanese-continue">完</div>
+          <div class="turkish-continue">${d.end_of_seri}</div>
+          <div class="chapter-preview">${d.end_of_seri_desc}</div>
+          <a href="chapters.html" class="next-btn">${d.archive}</a>
+        </div>
+      `;
+    }
 
     // Navigasyon
     let prevLink, nextLink;
@@ -199,7 +253,6 @@
         ? `<a href="reader.html?ch=${chapterNum - 1}${langParam}" class="nav-btn">${d.prev}</a>`
         : `<a href="#" class="nav-btn disabled">${d.prev}</a>`;
 
-      const allCh = (typeof ALL_CHAPTERS !== 'undefined') ? ALL_CHAPTERS : {};
       nextLink = allCh[chapterNum + 1]
         ? `<a href="reader.html?ch=${chapterNum + 1}${langParam}" class="nav-btn">${d.next}</a>`
         : `<a href="chapters.html" class="nav-btn">${d.archive}</a>`;
@@ -216,18 +269,73 @@
 
     container.innerHTML = html;
 
-    // Back button
     const backBtn = document.querySelector('.back-btn');
     if (backBtn) backBtn.textContent = d.back;
+
+    // Sayfa en başa dön
+    window.scrollTo(0, 0);
+
+    // Scroll reveal
+    setupScrollReveal();
+  }
+
+  function setupScrollReveal() {
+    // Body'e işaret koy — CSS sadece bu varsa gizlesin
+    document.body.classList.add('js-scroll-reveal');
+
+    const pages = document.querySelectorAll('.page');
+    const nextCard = document.getElementById('nextCard');
+
+    // Emniyet kemeri: 2 saniye sonra her şeyi görünür yap
+    const safetyTimer = setTimeout(() => {
+      pages.forEach(p => p.classList.add('visible'));
+      if (nextCard) nextCard.classList.add('show');
+    }, 2000);
+
+    if ('IntersectionObserver' in window) {
+      const pageObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+            pageObserver.unobserve(entry.target);
+          }
+        });
+      }, {
+        threshold: 0.05,
+        rootMargin: '0px 0px -50px 0px'
+      });
+
+      pages.forEach((page, i) => {
+        if (i < 2) {
+          page.classList.add('visible');
+        } else {
+          pageObserver.observe(page);
+        }
+      });
+
+      if (nextCard) {
+        const cardObserver = new IntersectionObserver((entries) => {
+          entries.forEach(entry => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add('show');
+              cardObserver.unobserve(entry.target);
+            }
+          });
+        }, { threshold: 0.1 });
+
+        cardObserver.observe(nextCard);
+      }
+    } else {
+      // Fallback
+      clearTimeout(safetyTimer);
+      pages.forEach(p => p.classList.add('visible'));
+      if (nextCard) nextCard.classList.add('show');
+    }
   }
 
   window.loadChapter = loadChapter;
 
-  // ============================================
-  // YÜKLEME (i18n olmasa bile çalışır)
-  // ============================================
   function waitAndLoad() {
-    // ALL_CHAPTERS hazır mı?
     if (typeof ALL_CHAPTERS !== 'undefined') {
       loadChapter();
     } else {
@@ -235,14 +343,12 @@
     }
   }
 
-  // Sayfa yüklenince başlat
   if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', waitAndLoad);
   } else {
     waitAndLoad();
   }
 
-  // Dil değişince yeniden yükle
   window.addEventListener('languageChanged', () => {
     setTimeout(loadChapter, 50);
   });
