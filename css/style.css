@@ -2115,20 +2115,27 @@ body.bonus-mode .page-number::after {
 }
 
 /* ============================================
-   YUMUŞAK SCROLL REVEAL
+   YUMUŞAK SCROLL REVEAL (Güvenli Versiyon)
    ============================================ */
 .page {
-  opacity: 0;
-  transform: translateY(40px);
+  opacity: 1;
+  transform: translateY(0);
   transition: opacity 0.8s ease, transform 0.8s ease;
 }
 
-.page.visible {
+/* Sadece JS aktif olunca gizle */
+body.js-scroll-reveal .page {
+  opacity: 0;
+  transform: translateY(40px);
+}
+
+body.js-scroll-reveal .page.visible {
   opacity: 1;
   transform: translateY(0);
 }
 
-.page:first-child {
+body.js-scroll-reveal .page:first-child,
+body.js-scroll-reveal .page:nth-child(2) {
   opacity: 1;
   transform: translateY(0);
 }
