@@ -1357,3 +1357,159 @@ footer .footer-links a:hover { color: var(--red); }
     min-width: 140px;
   }
 }
+
+/* ============================================
+   BONUS BÖLÜM STİLLERİ (外伝)
+   ============================================ */
+
+/* Bonus bölüm damgası — başlıkta */
+.chapter-info .jp.bonus-stamp {
+  background: linear-gradient(135deg, var(--manga-gold, #D4A017), #B8860B) !important;
+  color: var(--ink, #0A0A0A) !important;
+  border-color: var(--ink, #0A0A0A) !important;
+  font-weight: 800;
+  animation: bonusPulse 2s ease-in-out infinite alternate;
+  box-shadow: 
+    2px 2px 0 rgba(0,0,0,0.8),
+    0 0 20px rgba(212,160,23,0.6);
+}
+
+@keyframes bonusPulse {
+  from { transform: rotate(-2deg) scale(1); }
+  to { transform: rotate(-2deg) scale(1.05); }
+}
+
+/* Bonus bölüm modu — tüm sayfaya uygulanır */
+body.bonus-mode {
+  --manga-red: #D4A017;
+  --manga-red-glow: #F4C430;
+}
+
+body.bonus-mode .reader-topbar {
+  border-bottom-color: var(--manga-gold, #D4A017);
+  box-shadow: 
+    0 4px 0 rgba(0,0,0,0.5),
+    0 0 30px rgba(212,160,23,0.3);
+}
+
+body.bonus-mode .panel-image {
+  border-bottom-color: var(--manga-gold, #D4A017);
+  background: 
+    radial-gradient(ellipse at center, #4D3D1B 0%, #2D2310 50%, #0A0A0A 100%);
+}
+
+body.bonus-mode .panel-splash .panel-image {
+  background: 
+    radial-gradient(ellipse at center, #6D5D2B 0%, #3D2B10 40%, #0A0A0A 100%);
+}
+
+body.bonus-mode .page {
+  border-color: var(--manga-gold, #D4A017);
+  box-shadow:
+    8px 8px 0 rgba(0,0,0,0.6),
+    inset 0 0 80px rgba(212,160,23,0.08);
+}
+
+body.bonus-mode .page::before,
+body.bonus-mode .page::after {
+  background: var(--manga-gold, #D4A017);
+}
+
+body.bonus-mode .page-number {
+  background: var(--manga-gold, #D4A017);
+  color: var(--ink, #0A0A0A);
+  border-color: var(--ink, #0A0A0A);
+}
+
+body.bonus-mode .dialogue-box {
+  border-color: var(--manga-gold, #D4A017);
+  box-shadow: 
+    5px 5px 0 rgba(212,160,23,0.5),
+    0 0 20px rgba(212,160,23,0.2);
+}
+
+body.bonus-mode .dialogue-box::after {
+  border-top-color: var(--manga-gold, #D4A017);
+}
+
+body.bonus-mode .dialogue-speaker {
+  color: var(--manga-gold, #D4A017);
+}
+
+body.bonus-mode .dialogue-speaker::after {
+  background: var(--manga-gold, #D4A017);
+}
+
+body.bonus-mode .inner-voice {
+  background: rgba(212,160,23,0.08);
+  color: var(--manga-gold, #D4A017);
+  border-left-color: rgba(212,160,23,0.5);
+}
+
+body.bonus-mode .inner-voice::before {
+  color: var(--manga-gold, #D4A017);
+}
+
+/* Bonus navigasyon butonu */
+.nav-btn.bonus-nav {
+  background: linear-gradient(135deg, var(--manga-gold, #D4A017), #B8860B);
+  color: var(--ink, #0A0A0A);
+  border-color: var(--ink, #0A0A0A);
+  font-weight: 800;
+  letter-spacing: 3px;
+  position: relative;
+  overflow: hidden;
+}
+
+.nav-btn.bonus-nav::before {
+  content: '外伝';
+  position: absolute;
+  top: 50%;
+  right: 8px;
+  transform: translateY(-50%) rotate(90deg);
+  font-family: 'Noto Sans JP', sans-serif;
+  font-size: 0.65rem;
+  opacity: 0.6;
+  letter-spacing: 2px;
+}
+
+.nav-btn.bonus-nav:hover {
+  background: linear-gradient(135deg, #F4C430, var(--manga-gold, #D4A017));
+  transform: translate(3px, 3px);
+  box-shadow: 
+    2px 2px 0 var(--ink, #0A0A0A),
+    0 0 30px rgba(212,160,23,0.6);
+}
+
+/* Bonus bölüm arkaplanına altın parçacıklar */
+body.bonus-mode .reader-container::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  background-image:
+    radial-gradient(circle at 20% 30%, rgba(212,160,23,0.15) 1.5px, transparent 2px),
+    radial-gradient(circle at 80% 70%, rgba(212,160,23,0.1) 1.5px, transparent 2px),
+    radial-gradient(circle at 50% 50%, rgba(212,160,23,0.08) 1px, transparent 1.5px);
+  background-size: 200px 200px, 300px 300px, 150px 150px;
+  animation: goldFloat 20s linear infinite;
+}
+
+@keyframes goldFloat {
+  from { background-position: 0 0, 0 0, 0 0; }
+  to { background-position: 200px 200px, -300px 300px, 150px -150px; }
+}
+
+/* Mobil uyum */
+@media (max-width: 768px) {
+  body.bonus-mode .page {
+    box-shadow:
+      5px 5px 0 rgba(0,0,0,0.6),
+      inset 0 0 60px rgba(212,160,23,0.08);
+  }
+  
+  .nav-btn.bonus-nav::before {
+    display: none;
+  }
+}
