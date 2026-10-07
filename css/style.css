@@ -4,6 +4,7 @@
    ============================================ */
 
 @import url('manga-theme.css');
+@import url('style-extras.css');
 
 :root {
   --bg: #0A0A0A;
