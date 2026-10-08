@@ -3,7 +3,7 @@
    Offline cache + PWA install desteği
    ============================================ */
 
-const CACHE_NAME = 'kagero-v1.0.9';
+const CACHE_NAME = 'kagero-v1.0.11';
 
 const OFFLINE_URLS = [
   './',
@@ -36,16 +36,17 @@ const OFFLINE_URLS = [
   './manifest.json'
 ];
 
-// Kurulum: dosyaları önbelleğe al
+// Kurulum: dosyaları önbelleğe al (HTTP önbelleğini atlayarak, hep taze kopya)
 self.addEventListener('install', (event) => {
   event.waitUntil(
     caches.open(CACHE_NAME)
-      .then((cache) => {
-        console.log('[KAGERŌ SW] Caching app shell');
-        return cache.addAll(OFFLINE_URLS).catch(err => {
-          console.warn('[KAGERŌ SW] Cache partial fail:', err);
-        });
-      })
+      .then((cache) => Promise.allSettled(
+        OFFLINE_URLS.map((u) =>
+          fetch(new Request(u, { cache: 'reload' })).then((res) => {
+            if (res && res.ok) return cache.put(u, res);
+          })
+        )
+      ))
       .then(() => self.skipWaiting())
   );
 });
@@ -63,37 +64,45 @@ self.addEventListener('activate', (event) => {
   );
 });
 
-// Fetch: önce cache, sonra network
+// Fetch stratejisi:
+//  - HTML / CSS / JS / JSON: ÖNCE AĞ (güncellemeler hemen görünür),
+//    internet yoksa önbellekten açılır.
+//  - Görseller ve diğer dosyalar: önce önbellek.
 self.addEventListener('fetch', (event) => {
-  if (event.request.method !== 'GET') return;
-  if (!event.request.url.startsWith('http')) return;
+  const req = event.request;
+  if (req.method !== 'GET') return;
+  if (!req.url.startsWith('http')) return;
+
+  const url = new URL(req.url);
+  if (url.origin !== self.location.origin) return; // Google Fonts vb. tarayıcıya bırakılır
+
+  const isCode =
+    req.mode === 'navigate' ||
+    url.pathname.endsWith('/') ||
+    /\.(html|css|js|json)$/.test(url.pathname);
+
+  const remember = (res) => {
+    if (res && res.status === 200 && res.type === 'basic') {
+      const clone = res.clone();
+      caches.open(CACHE_NAME).then((cache) => cache.put(req, clone));
+    }
+    return res;
+  };
+
+  if (isCode) {
+    event.respondWith(
+      fetch(req, { cache: 'no-cache' })
+        .then(remember)
+        .catch(() =>
+          caches.match(req).then((cached) =>
+            cached || (req.mode === 'navigate' ? caches.match('./index.html') : Response.error())
+          )
+        )
+    );
+    return;
+  }
 
   event.respondWith(
-    caches.match(event.request).then((cached) => {
-      const fetchPromise = fetch(event.request).then((response) => {
-        if (response && response.status === 200 && response.type === 'basic') {
-          const clone = response.clone();
-          caches.open(CACHE_NAME).then((cache) => {
-            cache.put(event.request, clone);
-          });
-        }
-        return response;
-      }).catch(() => {
-        // Offline ise index'e dön
-        if (event.request.mode === 'navigate') {
-          return caches.match('./index.html');
-        }
-        return cached;
-      });
-
-      return cached || fetchPromise;
-    })
+    caches.match(req).then((cached) => cached || fetch(req).then(remember))
   );
-});
-
-// Mesaj geldiğinde cache'i güncelle
-self.addEventListener('message', (event) => {
-  if (event.data === 'SKIP_WAITING') {
-    self.skipWaiting();
-  }
 });
