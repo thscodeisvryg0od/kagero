@@ -260,60 +260,58 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 /* ============================================
-   SCROLL POZİSYONU KORUMA
-   chapters.html ve diğer sayfalarda konum korunur
+   NAVİGASYON VE SCROLL
+   - Aynı sayfaya giden link (logo, Ana Sayfa) sayfayı en üste çıkarır.
+   - Konum sadece tarayıcının "geri" tuşunda geri yüklenir.
+   - Normal açılışta sayfa her zaman en üstten başlar.
    ============================================ */
-(function preserveScroll() {
-  const path = window.location.pathname.split('/').pop() || 'index.html';
-  
-  // Reader'da scroll kaydetme — her bölüm baştan başlasın
-  if (path === 'reader.html') return;
-  
-  const key = 'kagero_scroll_' + path;
-  
-  // Pozisyonu kaydet
-  let saveTimeout;
+(function navigationScroll() {
+  const normalize = (p) => p.replace(/index\.html$/, '').replace(/\/+$/, '/');
+  const here = normalize(window.location.pathname);
+  const key = 'kagero_scroll_' + here;
+
+  if ('scrollRestoration' in history) history.scrollRestoration = 'manual';
+
+  let isBack = false;
+  try {
+    const nav = performance.getEntriesByType('navigation')[0];
+    isBack = !!nav && nav.type === 'back_forward';
+  } catch (e) {}
+
+  let saveT;
   window.addEventListener('scroll', () => {
-    if (saveTimeout) clearTimeout(saveTimeout);
-    saveTimeout = setTimeout(() => {
-      try {
-        sessionStorage.setItem(key, window.scrollY);
-      } catch (e) {}
-    }, 150);
+    clearTimeout(saveT);
+    saveT = setTimeout(() => {
+      try { sessionStorage.setItem(key, String(window.scrollY)); } catch (e) {}
+    }, 200);
   }, { passive: true });
-  
-  // Linke tıklanmadan önce kaydet
-  document.addEventListener('click', (e) => {
-    const link = e.target.closest('a[href]');
-    if (link && !link.href.startsWith('#')) {
+
+  if (isBack && !window.location.hash && !/reader\.html$/.test(here)) {
+    window.addEventListener('load', () => {
       try {
-        sessionStorage.setItem(key, window.scrollY);
+        const y = parseInt(sessionStorage.getItem(key), 10);
+        if (y > 0) setTimeout(() => window.scrollTo(0, y), 50);
       } catch (e) {}
-    }
-  });
-  
-  // Sayfa yüklenince geri yükle
-  window.addEventListener('load', () => {
-    // Hash varsa (örneğin #world-ghost) scroll'u boz
-    if (window.location.hash) return;
-    
-    try {
-      const saved = sessionStorage.getItem(key);
-      if (saved !== null) {
-        const y = parseInt(saved, 10);
-        if (!isNaN(y) && y > 0) {
-          // Küçük gecikme ile içeriğin render olmasını bekle
-          setTimeout(() => {
-            window.scrollTo({ top: y, behavior: 'instant' });
-          }, 100);
-        }
-      }
-    } catch (e) {}
+    });
+  }
+
+  document.addEventListener('click', (e) => {
+    const a = e.target.closest('a[href]');
+    if (!a) return;
+    const url = new URL(a.href, window.location.href);
+    if (url.origin !== window.location.origin) return;
+    if (normalize(url.pathname) !== here) return;
+    if (url.search !== window.location.search) return;
+    if (url.hash) return;
+    e.preventDefault();
+    window.scrollTo({ top: 0, behavior: 'smooth' });
   });
 })();
 
 // ============================================
-// YAPRAK SİSTEMİ — derinlikli, rastgele, hafif
+// YAPRAK SİSTEMİ — hafif, derinlikli
+// Blur ve 3D kullanılmaz (mobilde kaydırmayı yavaşlatırdı).
+// Kaydırma sırasında yapraklar kısa süre duraklar.
 // ============================================
 (function initPetals() {
   const reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -321,22 +319,19 @@ document.addEventListener('DOMContentLoaded', () => {
   if (!container || reduce) return;
 
   container.innerHTML = '';
-  const isSmall = window.innerWidth < 700;
-  const count = isSmall ? 12 : 24;
+  const count = window.innerWidth < 700 ? 8 : 16;
   const rnd = (a, b) => a + Math.random() * (b - a);
 
   for (let i = 0; i < count; i++) {
-    // d: 0 = uzak (küçük, bulanık, yavaş), 1 = yakın (büyük, net, hızlı)
-    const d = Math.random();
-    const size = 7 + d * 13;                 // px
-    const blur = (1 - d) * 1.4;              // px
-    const op = 0.3 + d * 0.45;               // opaklık
-    const dur = 16 - d * 6 + rnd(-2, 2);     // s — yakınlar daha hızlı düşer
-    const delay = -rnd(0, dur);              // negatif: sayfa açılınca zaten düşüyor olsun
-    const sway = rnd(2.8, 5.2);              // s
-    const swing = rnd(14, 38) + d * 14;      // px
-    const spin = rnd(3.5, 8) - d * 2;        // s
-    const drift = rnd(-140, 140);            // px
+    const d = Math.random();                 // 0 uzak, 1 yakın
+    const size = 6 + d * 11;                 // px
+    const op = 0.3 + d * 0.4;
+    const dur = 17 - d * 6 + rnd(-2, 2);     // s
+    const delay = -rnd(0, dur);
+    const sway = rnd(3, 5.5);
+    const swing = rnd(12, 30) + d * 10;
+    const spin = rnd(4, 8);
+    const drift = rnd(-120, 120);
 
     const petal = document.createElement('div');
     petal.className = 'petal';
@@ -346,7 +341,6 @@ document.addEventListener('DOMContentLoaded', () => {
       `--dur:${dur.toFixed(2)}s`,
       `--delay:${delay.toFixed(2)}s`,
       `--op:${op.toFixed(2)}`,
-      `--blur:${blur.toFixed(2)}px`,
       `--sway:${sway.toFixed(2)}s`,
       `--swing:${swing.toFixed(0)}px`,
       `--spin:${spin.toFixed(2)}s`,
@@ -361,4 +355,11 @@ document.addEventListener('DOMContentLoaded', () => {
     petal.appendChild(sw);
     container.appendChild(petal);
   }
+
+  let stT;
+  window.addEventListener('scroll', () => {
+    document.documentElement.classList.add('is-scrolling');
+    clearTimeout(stT);
+    stT = setTimeout(() => document.documentElement.classList.remove('is-scrolling'), 180);
+  }, { passive: true });
 })();
