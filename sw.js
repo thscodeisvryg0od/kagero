@@ -3,7 +3,7 @@
    Offline cache + PWA install desteği
    ============================================ */
 
-const CACHE_NAME = 'kagero-v1.0.5';
+const CACHE_NAME = 'kagero-v1.0.7';
 
 const OFFLINE_URLS = [
   './',
@@ -15,7 +15,6 @@ const OFFLINE_URLS = [
   './shop.html',
   './reader.html',
   './css/style.css',
-  './css/manga-theme.css',
   './js/main.js',
   './js/i18n.js',
   './js/chapters.js',
