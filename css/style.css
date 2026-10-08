@@ -2268,15 +2268,17 @@ body::before {
   animation: none !important;
 }
 
-.navbar .logo span,
+/* Footer logosu: arka plan kutusu olmadan, düz beyaz metin.
+   (Önceki sürümde arka plan beyaz yapıldığı için metin beyaz kutunun içinde kayboluyordu.) */
 footer .footer-logo .brand {
-  background: #FFFFFF !important;
+  background: none !important;
+  -webkit-background-clip: border-box;
+  background-clip: border-box;
   -webkit-text-fill-color: #FFFFFF !important;
   color: #FFFFFF !important;
 }
 
-/* Kırmızı Ō harfi için ayrı */
-.navbar .logo span span,
+/* Kırmızı Ō harfi (footer) */
 footer .footer-logo .brand span {
   background: none !important;
   -webkit-text-fill-color: #E63946 !important;
@@ -2484,4 +2486,125 @@ button {
   .reader-topbar {
     background: #0A0A0A !important;
   }
+}
+
+/* ============================================
+   ATMOSFER — KAGERŌ (hayalet çiçek teması)
+   Karanlık, buğulu, hafif titreyen bir his
+   ============================================ */
+
+/* Ekran kenarlarını karartan vinyet */
+body::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 40;
+  background:
+    radial-gradient(ellipse at 50% 40%, transparent 55%, rgba(0,0,0,0.55) 100%);
+}
+
+/* Yavaşça nefes alan kırmızı sis */
+html::before {
+  content: '';
+  position: fixed;
+  inset: -20%;
+  pointer-events: none;
+  z-index: 0;
+  background:
+    radial-gradient(circle at 20% 80%, rgba(120,10,25,0.14), transparent 45%),
+    radial-gradient(circle at 80% 20%, rgba(90,10,40,0.12), transparent 40%);
+  animation: kageroMist 14s ease-in-out infinite alternate;
+}
+
+@keyframes kageroMist {
+  from { transform: translate3d(-2%, 0, 0) scale(1); opacity: 0.8; }
+  to   { transform: translate3d(2%, -2%, 0) scale(1.05); opacity: 1; }
+}
+
+/* ============================================
+   SAKURA / HAYALET ÇİÇEK YAPRAKLARI
+   Her yaprak: düşme (dış), salınım (orta), takla (iç)
+   Derinlik hissi: küçük ve bulanık = uzak, büyük = yakın
+   ============================================ */
+.sakura-container {
+  position: fixed;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+  z-index: 45;
+  perspective: 600px;
+}
+
+.petal {
+  position: absolute;
+  top: -14vh;
+  left: var(--x);
+  width: var(--s);
+  height: var(--s);
+  opacity: 0;
+  will-change: transform, opacity;
+  animation: petalFall var(--dur) linear var(--delay) infinite;
+}
+
+.petal-sway {
+  width: 100%;
+  height: 100%;
+  animation: petalSway var(--sway) ease-in-out infinite alternate;
+}
+
+.petal-body {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  border-radius: 0 85% 0 85% / 0 70% 0 70%;
+  background: radial-gradient(ellipse at 30% 25%,
+    #FFE3EA 0%, #F7A8B8 38%, #D9566B 75%, #7A1A2C 100%);
+  box-shadow: inset -1px -2px 3px rgba(60,5,15,0.35);
+  filter: blur(var(--blur)) drop-shadow(0 0 3px rgba(230,57,70,0.15));
+  transform-style: preserve-3d;
+  animation: petalTumble var(--spin) linear infinite;
+}
+
+/* Yaprağın damarı */
+.petal-body::after {
+  content: '';
+  position: absolute;
+  left: 22%;
+  top: 48%;
+  width: 58%;
+  height: 1px;
+  background: rgba(120,20,35,0.35);
+  transform: rotate(-22deg);
+}
+
+@keyframes petalFall {
+  0%   { transform: translate3d(0, 0, 0); opacity: 0; }
+  6%   { opacity: var(--op); }
+  50%  { transform: translate3d(calc(var(--drift) * 0.5), 55vh, 0); }
+  94%  { opacity: var(--op); }
+  100% { transform: translate3d(var(--drift), 115vh, 0); opacity: 0; }
+}
+
+@keyframes petalSway {
+  from { transform: translate3d(-var(--swing), 0, 0) rotate(-6deg); }
+  to   { transform: translate3d(var(--swing), 0, 0) rotate(6deg); }
+}
+
+@keyframes petalTumble {
+  0%   { transform: rotateX(0deg)   rotateZ(0deg); }
+  50%  { transform: rotateX(160deg) rotateZ(180deg); }
+  100% { transform: rotateX(360deg) rotateZ(360deg); }
+}
+
+/* Kullanıcı hareketi azaltmak istiyorsa yaprakları gösterme */
+@media (prefers-reduced-motion: reduce) {
+  .sakura-container,
+  html::before { display: none; }
+  body::after { background: radial-gradient(ellipse at 50% 40%, transparent 60%, rgba(0,0,0,0.4) 100%); }
+}
+
+/* Küçük ekranda daha az yaprak ve daha az ağır efekt */
+@media (max-width: 700px) {
+  html::before { animation: none; opacity: 0.6; }
 }
