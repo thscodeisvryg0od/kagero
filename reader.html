@@ -7,14 +7,10 @@
 <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
 <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700;900&family=Inter:wght@300;400;600&family=Noto+Sans+JP:wght@300;400;700&family=Shippori+Mincho:wght@400;700;800&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/reader.css">
 </head>
-<body>
+<body class="kagero-reader">
 
-<div class="sakura-container" aria-hidden="true">
-  <div class="sakura"></div>
-  <div class="sakura"></div>
-  <div class="sakura"></div>
-</div>
 
 <div class="progress-bar" id="progressBar"></div>
 
@@ -275,8 +271,6 @@
     // Sayfa en başa dön
     window.scrollTo(0, 0);
 
-    // Scroll reveal
-    setupScrollReveal();
   }
 
   function setupScrollReveal() {
