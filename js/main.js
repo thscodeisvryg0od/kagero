@@ -311,3 +311,54 @@ document.addEventListener('DOMContentLoaded', () => {
     } catch (e) {}
   });
 })();
+
+// ============================================
+// YAPRAK SİSTEMİ — derinlikli, rastgele, hafif
+// ============================================
+(function initPetals() {
+  const reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const container = document.querySelector('.sakura-container');
+  if (!container || reduce) return;
+
+  container.innerHTML = '';
+  const isSmall = window.innerWidth < 700;
+  const count = isSmall ? 12 : 24;
+  const rnd = (a, b) => a + Math.random() * (b - a);
+
+  for (let i = 0; i < count; i++) {
+    // d: 0 = uzak (küçük, bulanık, yavaş), 1 = yakın (büyük, net, hızlı)
+    const d = Math.random();
+    const size = 7 + d * 13;                 // px
+    const blur = (1 - d) * 1.4;              // px
+    const op = 0.3 + d * 0.45;               // opaklık
+    const dur = 16 - d * 6 + rnd(-2, 2);     // s — yakınlar daha hızlı düşer
+    const delay = -rnd(0, dur);              // negatif: sayfa açılınca zaten düşüyor olsun
+    const sway = rnd(2.8, 5.2);              // s
+    const swing = rnd(14, 38) + d * 14;      // px
+    const spin = rnd(3.5, 8) - d * 2;        // s
+    const drift = rnd(-140, 140);            // px
+
+    const petal = document.createElement('div');
+    petal.className = 'petal';
+    petal.style.cssText = [
+      `--x:${rnd(-2, 102).toFixed(2)}%`,
+      `--s:${size.toFixed(1)}px`,
+      `--dur:${dur.toFixed(2)}s`,
+      `--delay:${delay.toFixed(2)}s`,
+      `--op:${op.toFixed(2)}`,
+      `--blur:${blur.toFixed(2)}px`,
+      `--sway:${sway.toFixed(2)}s`,
+      `--swing:${swing.toFixed(0)}px`,
+      `--spin:${spin.toFixed(2)}s`,
+      `--drift:${drift.toFixed(0)}px`
+    ].join(';');
+
+    const sw = document.createElement('div');
+    sw.className = 'petal-sway';
+    const body = document.createElement('div');
+    body.className = 'petal-body';
+    sw.appendChild(body);
+    petal.appendChild(sw);
+    container.appendChild(petal);
+  }
+})();
