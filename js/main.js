@@ -363,3 +363,63 @@ document.addEventListener('DOMContentLoaded', () => {
     stT = setTimeout(() => document.documentElement.classList.remove('is-scrolling'), 180);
   }, { passive: true });
 })();
+
+
+// ============================================
+// ORTAK METİNLER (TR / EN / JP) — okuyucu ve ana sayfa kullanır
+// ============================================
+window.KageroText = (function () {
+  const D = {
+    tr: { continue: 'Devam Et', up_next: 'Sıradaki',
+          chapter: (n) => 'Bölüm ' + n, page: (n) => 'Sayfa ' + n,
+          resume_msg: 'Kaldığın yer: Sayfa {n}', resume_go: 'Devam Et', resume_restart: 'Baştan' },
+    en: { continue: 'Continue', up_next: 'Up next',
+          chapter: (n) => 'Chapter ' + n, page: (n) => 'Page ' + n,
+          resume_msg: 'You stopped at page {n}', resume_go: 'Continue', resume_restart: 'From the start' },
+    jp: { continue: '続きから', up_next: '次のお話',
+          chapter: (n) => '第' + n + '話', page: (n) => n + 'ページ',
+          resume_msg: '{n}ページまで読みました', resume_go: '続きから', resume_restart: '最初から' }
+  };
+  function lang() {
+    let l = (window.i18n && window.i18n.currentLang) || null;
+    if (!l) { try { l = localStorage.getItem('kagero_lang'); } catch (e) {} }
+    return D[l] ? l : 'tr';
+  }
+  function t(key) {
+    const v = (D[lang()] || D.tr)[key];
+    return typeof v === 'function' ? v.apply(null, Array.prototype.slice.call(arguments, 1)) : v;
+  }
+  return { lang: lang, t: t };
+})();
+
+// ============================================
+// ANA SAYFA — "Devam Et" butonu (kaldığın bölüm ve sayfa)
+// ============================================
+(function continueReading() {
+  const box = document.querySelector('.hero-buttons');
+  if (!box) return;
+  let p = null;
+  try { p = JSON.parse(localStorage.getItem('kagero_progress') || 'null'); } catch (e) {}
+  if (!p || !p.ch) return;
+  if (p.done && p.ch >= 51) return; // seri bitmiş
+
+  const a = document.createElement('a');
+  a.className = 'btn btn-primary btn-continue';
+
+  function render() {
+    const T = window.KageroText;
+    const lang = T.lang();
+    const toNext = !!p.done;
+    const ch = toNext ? p.ch + 1 : p.ch;
+    const page = (!toNext && p.page >= 2) ? p.page : 0;
+    a.href = 'reader.html?ch=' + ch + (lang !== 'tr' ? '&lang=' + lang : '') + (page ? '#p' + page : '');
+    a.textContent = (toNext ? T.t('up_next') : T.t('continue')) + ' · ' + T.t('chapter', ch) +
+                    (page ? ', ' + T.t('page', page) : '');
+  }
+
+  render();
+  box.insertBefore(a, box.firstChild);
+  const start = box.querySelector('.btn-primary:not(.btn-continue)');
+  if (start) start.classList.replace('btn-primary', 'btn-secondary');
+  window.addEventListener('languageChanged', render);
+})();
