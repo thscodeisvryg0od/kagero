@@ -6,8 +6,8 @@
 <title>Oku — KAGERŌ</title>
 <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
 <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700;900&family=Inter:wght@300;400;600&family=Noto+Sans+JP:wght@300;400;700&family=Shippori+Mincho:wght@400;700;800&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="css/style.css">
-<link rel="stylesheet" href="css/reader.css">
+<link rel="stylesheet" href="css/style.css?v=1.0.11">
+<link rel="stylesheet" href="css/reader.css?v=1.0.11">
 </head>
 <body class="kagero-reader">
 
@@ -179,7 +179,8 @@
       if (page.type === 'splash') panelClass += ' panel-splash';
       if (page.type === 'closeup') panelClass += ' panel-closeup';
 
-      html += '<div class="page">';
+      const mood = detectMood(page.scene);
+      html += `<div class="page" id="p${index + 1}" data-page="${index + 1}"${mood ? ` data-mood="${mood}"` : ''}>`;
       html += `<div class="${panelClass}"><div class="panel-image" data-scene="${page.scene || ''}"></div></div>`;
 
       if (page.dialogue && page.dialogue.length > 0) {
@@ -287,59 +288,161 @@
     // Sayfa en başa dön
     window.scrollTo(0, 0);
 
+    afterRender(chapter.pages.length);
+
   }
 
-  function setupScrollReveal() {
-    // Body'e işaret koy — CSS sadece bu varsa gizlesin
-    document.body.classList.add('js-scroll-reveal');
+  // ============================================
+  // SAHNE ATMOSFERİ — sahne başlığından ruh hali seçilir
+  // ============================================
+  const MOOD_RULES = [
+    ['fire',      /yangın|alev|ateş|yanan|yanıyor|burning|flame|fire|炎|火事|燃/],
+    ['flashback', /geriye dönüş|geri dönüş|yıl önce|^genç |flashback|回想|過去/],
+    ['dream',     /rüya|dream|夢/],
+    ['rain',      /yağmur|rain|雨/],
+    ['lab',       /laborat|研究所|ラボ/],
+    ['cemetery',  /mezar|cemetery|grave|墓/],
+    ['night',     /gece|ay ışığı|dolunay|night|moonlight|夜(?!明)|月光/],
+    ['dawn',      /şafak|gün doğ|sabah|dawn|sunrise|夜明け|朝/],
+    ['shrine',    /tapınak|altın çiçek|shrine|temple|golden flower|神社|金の花/]
+  ];
 
-    const pages = document.querySelectorAll('.page');
-    const nextCard = document.getElementById('nextCard');
+  function detectMood(scene) {
+    const s = String(scene || '').toLocaleLowerCase('tr');
+    for (const [name, re] of MOOD_RULES) if (re.test(s)) return name;
+    return '';
+  }
 
-    // Emniyet kemeri: 2 saniye sonra her şeyi görünür yap
-    const safetyTimer = setTimeout(() => {
-      pages.forEach(p => p.classList.add('visible'));
-      if (nextCard) nextCard.classList.add('show');
-    }, 2000);
+  let veils = null;
+  function ensureVeils() {
+    if (veils) return veils;
+    veils = document.createElement('div');
+    veils.className = 'mood-veils';
+    veils.setAttribute('aria-hidden', 'true');
+    MOOD_RULES.forEach(([name]) => {
+      const v = document.createElement('i');
+      v.className = 'mood-veil';
+      v.dataset.m = name;
+      veils.appendChild(v);
+    });
+    document.body.insertBefore(veils, document.body.firstChild);
+    return veils;
+  }
 
+  function setMood(mood) {
+    ensureVeils().querySelectorAll('.mood-veil').forEach((v) => {
+      v.classList.toggle('on', v.dataset.m === mood);
+    });
+  }
+
+  // ============================================
+  // KALDIĞIN YERDEN DEVAM
+  // Kayıt: localStorage 'kagero_progress' = {ch, page, total, done, ts}
+  // ============================================
+  let pageObserver = null;
+  let currentPage = 0;
+  let totalPages = 0;
+  let tracking = false;     // kullanıcı kaydırmadan kayıt yazma
+  let userTouched = false;  // yazı tipi yüklenince tekrar kaydırma için
+  let saveTimer = null;
+
+  ['touchstart', 'wheel', 'keydown', 'mousedown'].forEach((ev) =>
+    window.addEventListener(ev, () => { userTouched = true; }, { passive: true }));
+  window.addEventListener('scroll', () => { tracking = true; }, { passive: true });
+
+  function saveProgress(page, done) {
+    if (!tracking || page < 1) return;
+    clearTimeout(saveTimer);
+    saveTimer = setTimeout(() => {
+      try {
+        localStorage.setItem('kagero_progress',
+          JSON.stringify({ ch: chapterNum, page: page, total: totalPages, done: !!done, ts: Date.now() }));
+      } catch (e) {}
+    }, 500);
+  }
+
+  function readSaved() {
+    try { return JSON.parse(localStorage.getItem('kagero_progress') || 'null'); } catch (e) { return null; }
+  }
+
+  function scrollToPage(n) {
+    const el = document.getElementById('p' + n);
+    if (!el) return;
+    const top = el.getBoundingClientRect().top + window.scrollY - 72;
+    window.scrollTo({ top: Math.max(0, top), behavior: 'instant' });
+  }
+
+  function showResumeToast(page) {
+    const T = window.KageroText;
+    if (!T) return;
+    const old = document.getElementById('resumeToast');
+    if (old) old.remove();
+
+    const el = document.createElement('div');
+    el.id = 'resumeToast';
+    el.className = 'resume-toast';
+    el.setAttribute('role', 'status');
+    el.innerHTML = '<span class="resume-msg"></span>' +
+      '<button type="button" class="resume-go"></button>' +
+      '<button type="button" class="resume-restart"></button>';
+    el.querySelector('.resume-msg').textContent = T.t('resume_msg').replace('{n}', page);
+    el.querySelector('.resume-go').textContent = T.t('resume_go');
+    el.querySelector('.resume-restart').textContent = T.t('resume_restart');
+    document.body.appendChild(el);
+    requestAnimationFrame(() => el.classList.add('show'));
+
+    const hide = () => { el.classList.remove('show'); setTimeout(() => el.remove(), 450); };
+    el.querySelector('.resume-go').addEventListener('click', () => { scrollToPage(page); hide(); });
+    el.querySelector('.resume-restart').addEventListener('click', hide);
+    setTimeout(hide, 15000);
+  }
+
+  function afterRender(pageCount) {
+    totalPages = pageCount;
+    tracking = false;
+    userTouched = false;
+    currentPage = 0;
+    const oldToast = document.getElementById('resumeToast');
+    if (oldToast) oldToast.remove();
+    setMood('');
+
+    if (pageObserver) pageObserver.disconnect();
     if ('IntersectionObserver' in window) {
-      const pageObserver = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add('visible');
-            pageObserver.unobserve(entry.target);
-          }
+      pageObserver = new IntersectionObserver((entries) => {
+        entries.forEach((en) => {
+          if (!en.isIntersecting) return;
+          const t = en.target;
+          if (t.id === 'nextCard') { saveProgress(totalPages, true); return; }
+          if (t.classList.contains('reader-hero')) { currentPage = 0; setMood(''); return; }
+          const n = parseInt(t.dataset.page, 10);
+          currentPage = n;
+          setMood(t.dataset.mood || '');
+          saveProgress(n, false);
         });
-      }, {
-        threshold: 0.05,
-        rootMargin: '0px 0px -50px 0px'
-      });
+      }, { rootMargin: '-45% 0px -45% 0px', threshold: 0 });
+      document.querySelectorAll('.reader-hero, .page, #nextCard').forEach((el) => pageObserver.observe(el));
+    }
 
-      pages.forEach((page, i) => {
-        if (i < 2) {
-          page.classList.add('visible');
-        } else {
-          pageObserver.observe(page);
-        }
-      });
+    // Nereye dönülecek? (dil değişimi > adres #pN > kayıtlı konum)
+    const forced = window.__resumePage || 0;
+    window.__resumePage = 0;
+    const hashMatch = /^#p(\d+)$/.exec(window.location.hash || '');
+    let target = 0;
+    let silent = false;
+    if (forced > 1) { target = forced; silent = true; }
+    else if (hashMatch) { target = parseInt(hashMatch[1], 10); silent = true; }
 
-      if (nextCard) {
-        const cardObserver = new IntersectionObserver((entries) => {
-          entries.forEach(entry => {
-            if (entry.isIntersecting) {
-              entry.target.classList.add('show');
-              cardObserver.unobserve(entry.target);
-            }
-          });
-        }, { threshold: 0.1 });
-
-        cardObserver.observe(nextCard);
+    if (silent && target > 1 && target <= totalPages) {
+      scrollToPage(target);
+      if (document.fonts && document.fonts.ready) {
+        document.fonts.ready.then(() => { if (!userTouched) scrollToPage(target); });
       }
-    } else {
-      // Fallback
-      clearTimeout(safetyTimer);
-      pages.forEach(p => p.classList.add('visible'));
-      if (nextCard) nextCard.classList.add('show');
+      return;
+    }
+
+    const saved = readSaved();
+    if (saved && saved.ch === chapterNum && saved.page >= 2 && saved.page <= totalPages && !saved.done) {
+      showResumeToast(saved.page);
     }
   }
 
@@ -374,10 +477,11 @@
   }
 
   window.addEventListener('languageChanged', () => {
+    window.__resumePage = currentPage;
     setTimeout(loadChapter, 50);
   });
 })();
 </script>
-<script src="js/main.js"></script>
+<script src="js/main.js?v=1.0.11"></script>
 </body>
 </html>
