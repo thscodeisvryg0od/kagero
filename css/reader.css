@@ -97,8 +97,8 @@ html body.kagero-reader .reader-controls {
 
 /* Çiçek: okudukça açılır (--p JS ile 0..1) */
 html body.kagero-reader .bloom {
-  width: 26px;
-  height: 26px;
+  width: 32px;
+  height: 32px;
   overflow: visible;
 }
 
@@ -107,7 +107,7 @@ html body.kagero-reader .bloom .bp {
   fill-opacity: 0.85;
   transform-box: view-box;
   transform-origin: 20px 20px;
-  transform: scale(calc(0.35 + var(--p, 0) * 0.65));
+  transform: scale(calc(0.4 + var(--p, 0) * 0.6));
   transition: transform 0.25s linear;
   filter: drop-shadow(0 0 3px rgba(230,57,70,0.5));
 }
@@ -590,3 +590,150 @@ html body.kagero-reader.bonus-mode .dialogue-box.shout { background: #8A6A12 !im
   html body.kagero-reader .dialogue-box,
   html body.kagero-reader .bloom .bp { animation: none !important; transition: none !important; }
 }
+
+/* Balonlardaki eski parlama/kuyruk süslerini kaldır (sağ kenarda soluk gölge yapıyordu) */
+html body.kagero-reader .dialogue-box::before,
+html body.kagero-reader .dialogue-box::after {
+  display: none !important;
+  content: none !important;
+}
+
+/* ============================================
+   SAHNE ATMOSFERİ
+   Her sayfa, sahne başlığına göre bir "ruh hali" alır.
+   Okurken arka plan yavaşça o renge geçer,
+   panelin ışığı ve sahne yazısının parıltısı da değişir.
+   ============================================ */
+
+/* Renk paletleri: --m-core panel merkezi, --m-edge alt ışık, --m-glow yazı parıltısı */
+.page[data-mood="fire"]      { --m-core: rgba(214,82,22,.50);  --m-edge: rgba(120,30,10,.46);  --m-glow: rgba(255,146,64,.95); }
+.page[data-mood="flashback"] { --m-core: rgba(176,124,64,.36); --m-edge: rgba(92,62,30,.42);   --m-glow: rgba(242,196,128,.88); }
+.page[data-mood="dream"]     { --m-core: rgba(190,170,238,.36);--m-edge: rgba(120,90,190,.36); --m-glow: rgba(228,218,255,.92); }
+.page[data-mood="rain"]      { --m-core: rgba(52,112,194,.42); --m-edge: rgba(20,50,122,.46);  --m-glow: rgba(136,194,255,.92); }
+.page[data-mood="lab"]       { --m-core: rgba(40,172,132,.32); --m-edge: rgba(15,82,72,.46);   --m-glow: rgba(124,242,204,.88); }
+.page[data-mood="cemetery"]  { --m-core: rgba(122,132,172,.32);--m-edge: rgba(50,56,92,.46);   --m-glow: rgba(194,204,238,.84); }
+.page[data-mood="night"]     { --m-core: rgba(62,62,172,.42);  --m-edge: rgba(20,20,92,.52);   --m-glow: rgba(154,164,255,.88); }
+.page[data-mood="dawn"]      { --m-core: rgba(242,152,102,.40);--m-edge: rgba(152,72,72,.42);  --m-glow: rgba(255,204,154,.92); }
+.page[data-mood="shrine"]    { --m-core: rgba(212,162,42,.36); --m-edge: rgba(112,72,22,.44);  --m-glow: rgba(252,214,114,.88); }
+
+/* Panel ışığı */
+html body.kagero-reader .page[data-mood] .panel-image {
+  background:
+    radial-gradient(ellipse at 50% 36%, var(--m-core), transparent 62%),
+    radial-gradient(ellipse at 50% 112%, var(--m-edge), transparent 70%),
+    #0d090c !important;
+}
+
+html body.kagero-reader .page[data-mood] .panel-splash .panel-image {
+  background:
+    radial-gradient(ellipse at 50% 42%, var(--m-core), transparent 46%),
+    radial-gradient(ellipse at 50% 42%, var(--m-core), transparent 64%),
+    radial-gradient(ellipse at 50% 108%, var(--m-edge), transparent 70%),
+    #0b0709 !important;
+}
+
+html body.kagero-reader .page[data-mood] .panel-closeup .panel-image {
+  background: radial-gradient(circle at 50% 50%, var(--m-core), #0d090c 72%) !important;
+}
+
+/* Sahne yazısının parıltısı */
+html body.kagero-reader .page[data-mood] .panel-image::before {
+  text-shadow: 0 0 20px var(--m-glow), 0 2px 6px rgba(0,0,0,1);
+}
+
+html body.kagero-reader .page[data-mood] .panel-splash .panel-image::before {
+  text-shadow: 0 0 30px var(--m-glow), 0 0 60px var(--m-glow), 0 2px 6px rgba(0,0,0,1);
+}
+
+/* Sayfa numarası ayracı (✿) da ruh haline uyar */
+html body.kagero-reader .page[data-mood]::before { color: var(--m-glow); opacity: .55; }
+
+/* Tüm ekranı saran, yavaş geçişli arka plan katmanları */
+.mood-veils { position: fixed; inset: 0; z-index: 0; pointer-events: none; }
+
+.mood-veil {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  transition: opacity 1.8s ease;
+  background:
+    radial-gradient(ellipse 90% 55% at 50% 0%, var(--v1), transparent 70%),
+    radial-gradient(ellipse 80% 45% at 50% 105%, var(--v2), transparent 70%);
+}
+
+.mood-veil.on { opacity: 1; }
+
+.mood-veil[data-m="fire"]      { --v1: rgba(190,70,20,.24);  --v2: rgba(120,30,10,.30); }
+.mood-veil[data-m="flashback"] { --v1: rgba(160,112,56,.20); --v2: rgba(92,62,30,.26); }
+.mood-veil[data-m="dream"]     { --v1: rgba(170,150,230,.20);--v2: rgba(110,80,180,.26); }
+.mood-veil[data-m="rain"]      { --v1: rgba(40,100,184,.24); --v2: rgba(20,50,122,.30); }
+.mood-veil[data-m="lab"]       { --v1: rgba(36,160,124,.18); --v2: rgba(15,82,72,.28); }
+.mood-veil[data-m="cemetery"]  { --v1: rgba(112,122,164,.18);--v2: rgba(50,56,92,.28); }
+.mood-veil[data-m="night"]     { --v1: rgba(54,54,166,.24);  --v2: rgba(20,20,92,.32); }
+.mood-veil[data-m="dawn"]      { --v1: rgba(240,150,100,.20);--v2: rgba(152,72,72,.26); }
+.mood-veil[data-m="shrine"]    { --v1: rgba(206,156,40,.18); --v2: rgba(112,72,22,.26); }
+
+/* ============================================
+   KALDIĞIN YERDEN DEVAM — bildirim kartı
+   ============================================ */
+.resume-toast {
+  position: fixed;
+  left: 50%;
+  bottom: calc(env(safe-area-inset-bottom, 0px) + 16px);
+  transform: translate(-50%, 24px);
+  opacity: 0;
+  z-index: 80;
+  width: min(92vw, 460px);
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: .55rem;
+  padding: .8rem 1rem;
+  border: 1px solid rgba(230,57,70,.4);
+  border-radius: 16px;
+  background: rgba(14,9,12,.96);
+  box-shadow: 0 18px 50px rgba(0,0,0,.75), 0 0 34px rgba(179,32,47,.22);
+  color: #EDE4D3;
+  font-family: 'Inter', sans-serif;
+  transition: opacity .4s ease, transform .4s ease;
+}
+
+.resume-toast.show { opacity: 1; transform: translate(-50%, 0); }
+
+.resume-toast .resume-msg {
+  flex: 1 1 100%;
+  font-family: 'Shippori Mincho', serif;
+  font-size: .98rem;
+  letter-spacing: .03em;
+}
+
+.resume-toast button {
+  flex: 1 1 0;
+  padding: .6rem .9rem;
+  border-radius: 999px;
+  font-family: 'Cinzel', serif;
+  font-size: .68rem;
+  letter-spacing: .18em;
+  text-transform: uppercase;
+  cursor: pointer;
+}
+
+.resume-toast .resume-go {
+  background: #B3202F;
+  color: #FFF4EA;
+  border: none;
+  box-shadow: 0 0 20px rgba(179,32,47,.45);
+}
+
+.resume-toast .resume-restart {
+  background: transparent;
+  color: rgba(237,228,211,.8);
+  border: 1px solid rgba(237,228,211,.25);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .mood-veil, .resume-toast { transition: none; }
+}
+
+/* Adres çubuğundan (#pN) gelen kaydırmalar üst barın altında kalmasın */
+html body.kagero-reader .page { scroll-margin-top: 72px; }
